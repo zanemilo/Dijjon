@@ -214,12 +214,12 @@ inn_items = {
 
 #creates instance of Items class with self, name, desc, val, damage, damage_type, poisoned, enchant as arguments
 melee_items = {
-"Sword" : Item("Sword","A sword, a radiant emblem of timeless valor and ardent passion.",5,roll_d6(),"Slashing",False,None),
-"Axe" : Item("Axe","An axe, a rugged embodiment of unyielding strength and untamed spirit.",8,roll_d8(),"Slashing",False,None),
-"Spear" : Item("Spear","A spear, a poised extension of precision and swiftness.",6,roll_d6(),"Piercing",False,None),
-"Dagger" : Item("Dagger","A dagger, a clandestine whisper in the night, wields both elegance and treachery.",4,roll_d4(),False,None),
-"Fist" : Item("Fist","A fist, an embodiment of raw power",0,1,False,None),
-"Hammer" : Item("Hammer","A hammer, a mighty embodiment of thunderous strength and unrelenting force",8,roll_d8(),False,None),
+"Sword" : Melee_Item("Sword","A sword, a radiant emblem of timeless valor and ardent passion.",5,roll_d6(),"Slashing",False,None),
+"Axe" : Melee_Item("Axe","An axe, a rugged embodiment of unyielding strength and untamed spirit.",8,roll_d8(),"Slashing",False,None),
+"Spear" : Melee_Item("Spear","A spear, a poised extension of precision and swiftness.",6,roll_d6(),"Piercing",False,None),
+"Dagger" : Melee_Item("Dagger","A dagger, a clandestine whisper in the night, wields both elegance and treachery.",4,roll_d4(),"Piercing",False,None),
+"Fist" : Melee_Item("Fist","A fist, an embodiment of raw power",0,1,"Blunt",False,None),
+"Hammer" : Melee_Item("Hammer","A hammer, a mighty embodiment of thunderous strength and unrelenting force",8,roll_d8(),"Blunt",False,None),
 
 }
 
@@ -381,8 +381,9 @@ def rent_a_room():
 
 # starts order function using an item list as an arguement
 def order(item_list):
+    global last_var
     spc_brk()
-    print("Buy:")
+    print(f"Buy:\n\nYour GP: {playerOne.gold}")
     spc_brk()
     for i, (name, item) in enumerate(item_list.items()):
         print(f"{i+1}. {item.name} - {item.val} gp")
@@ -390,13 +391,20 @@ def order(item_list):
     choice = input("What would you like to purchase? ")
     # while loop checks if input is digit or integer that is in the range of enumerated item_list options
     while not choice.isdigit() or int(choice) not in range(1, len(item_list)+1):
-        print("Invalid choice. Please select a valid option. ")
+        invalid_choice = input(f"Invalid choice. Please select a valid option. \nWould you like to leave?\nInput the number of your choice\n\n1. Yes\n2. No")
         spc_brk()
+        if invalid_choice() == 1:
+            last_var()
+        elif invalid_choice() == 2:
+            order(item_list)
+        else:
+            print("Invalid input. Returning to last screen and returning input as error to logs.")
+            order(item_list)
         order(item_list)
     chosen_item = list(item_list.values())[int(choice)-1]
     if has_gold_check(chosen_item.val) == True:
         playerOne.gold -= chosen_item.val
-        print(f"You have purchased {chosen_item.name} for {chosen_item.val} gold.\nNew Gp Total: {playerOne.gold}")
+        print(f"You have purchased {chosen_item.name} for {chosen_item.val} gold.")
         return chosen_item
     else:
         print(f"You do not have enough gp to purchase {chosen_item.name}")
