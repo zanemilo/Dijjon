@@ -393,9 +393,9 @@ def order(item_list):
     while not choice.isdigit() or int(choice) not in range(1, len(item_list)+1):
         invalid_choice = input(f"Invalid choice. Please select a valid option. \nWould you like to leave?\nInput the number of your choice\n\n1. Yes\n2. No")
         spc_brk()
-        if invalid_choice() == 1:
+        if int(invalid_choice()) == 1:
             last_var()
-        elif invalid_choice() == 2:
+        elif int(invalid_choice()) == 2:
             order(item_list)
         else:
             print("Invalid input. Returning to last screen and returning input as error to logs.")
