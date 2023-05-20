@@ -255,7 +255,7 @@ def sheet():
     stats["LEVEL"] = playerOne.lvl
     stats["XP"] = playerOne.xp
 
-    print(f"""
+    print(f"""\n
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 | NAME: {playerOne.name.upper().center(39)}   |
 | RACE: {playerOne.race.upper().center(39)}   |
@@ -270,18 +270,11 @@ def sheet():
 |                                                 |
 | GOLD: {stats['GP']}{' '*(2-len(str(stats['GP'])))} | XP: {stats['XP']}{' '*(2-len(str(stats['XP'])))}                               |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-""")
+\n\n\n\n""")
 
 
 #Call playerOne character sheet function
-spc_brk()
 sheet()
-spc_brk()
-spc_brk()
-spc_brk()
-spc_brk()
-
-
 
 # Print out the player's information
 #print(playerOne.hp)
@@ -300,9 +293,9 @@ def resume():
         last_var()
         spc_brk()
     elif last_var is None:
-        print("There was an unexpected error trying to return to the last menu")
+        print(f"\nThere was an unexpected error trying to return to the last menu\n")
         spc_brk()
-        print("By default you will be returned to the Main Menu, aka 'start_menu()'")
+        print(f"\nBy default you will be returned to the Main Menu, aka 'start_menu()'\n")
         start_menu()
         spc_brk()
 
@@ -330,9 +323,8 @@ def search_for_inn():
         inn_menu()
         spc_brk()
     else:
-        print("After an extended amount of searching you are unable to find an Inn nearby...")
+        print(f"\nAfter an extended amount of searching you are unable to find an Inn nearby...\n")
         start_menu()
-        spc_brk()
 
 # Start menu function
 def start_menu():
@@ -340,11 +332,10 @@ def start_menu():
     global last_var
     
     # Display the menu options
-    print("1. Resume\n2. Player Stats\n3. Find an Inn\n4. Quit")
+    print(f"\n1. Resume\n2. Player Stats\n3. Find an Inn\n4. Quit\n")
     
     # Get the player's choice
-    choice = input("Input the number of your selection: ")
-    spc_brk()
+    choice = input(f"\nInput the number of your selection: \n")
     
     # Handle the player's choice
     if choice == "1":
@@ -352,7 +343,7 @@ def start_menu():
             resume()
             spc_brk()
         elif last_var is None:
-            print("You have yet to embark on a journey. Please select a valid option.")
+            print(f"\nYou have yet to embark on a journey. Please select a valid option.\n")
             spc_brk()
             start_menu()
             spc_brk()
@@ -367,16 +358,16 @@ def start_menu():
     elif choice == "4":
         quit()
     else:
-        print("Invalid choice. Please try again: ")
+        print(f"\nInvalid choice. Please try again: \n")
         start_menu()
-        spc_brk()
 
 # defines rent a room function for future implementation
 def rent_a_room():
-    global last_var
-    print("You rent a room for the rest of the day...")
-    spc_brk()
-    last_var()
+    print("rent_a_room() function start")
+    print(f"\nYou rent a room for the rest of the day...\n")
+    # global last_var
+    # last_var()
+    print("rent_a_room() function end")
 
 
 # starts order function using an item list as an arguement
@@ -398,7 +389,7 @@ def order(item_list):
         elif int(invalid_choice()) == 2:
             order(item_list)
         else:
-            print("Invalid input. Returning to last screen and returning input as error to logs.")
+            print(f"\nInvalid input. Returning to last screen and returning input as error to logs.\n")
             order(item_list)
         order(item_list)
     chosen_item = list(item_list.values())[int(choice)-1]
@@ -412,8 +403,7 @@ def order(item_list):
         
 # rat quest TBC
 def quest_menu1():
-    spc_brk()
-    print(f"Too Be Continued...")
+    print(f"\nToo Be Continued...\n")
     quit()
     
 # Inn menu function
@@ -431,11 +421,14 @@ def inn_menu():
     # Handle the player's choice
     if choice == "1":
         order(inn_items)
-        inn_menu()
-        
+        inn_menu()  
     elif choice == "2":
-        last_var = inn_menu()
+        print(f"\nchoice == 2 start\n")
+        last_var = inn_menu
+        print(f"last_var set to inn_menu()")
         rent_a_room()
+        print(f"\nchoice == 2 end\nAttempting to execute last_var...\n")
+        last_var()
     elif choice == "3":
         if rumors_selected_prev == True:
             print("You listen to the lively chatter of the inn, but don't hear any new rumors.")
@@ -445,6 +438,7 @@ def inn_menu():
             print("The rough looking man explains his concern for the inn and how the rat infestation has gotten out of hand. He was hired to extreminate them himself but he has an irrational fear of basements. ")
             print("He gives you half of the payment upfront")
             spc_brk()
+            #refactor this section using the class functions for get/ give
             playerOne.gold += 10
             spc_brk()
             print(f"{playerOne.name}'s Gold Total: {playerOne.gold}")
@@ -455,10 +449,10 @@ def inn_menu():
     elif choice == "4":
         start_menu() # requires new menu func
     else:
-        print("Invalid choice. Please try again: ")
+        print(f"\nInvalid choice. Returning to Inn Menu \n")
         inn_menu()
 
-
+print(f"\nEnd of code reach... returning to Main Menu aka 'start_menu()'\n")
 start_menu()
 
 
