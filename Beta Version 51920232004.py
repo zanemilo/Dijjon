@@ -175,10 +175,13 @@ class CharacterCreator(Character):
                 print(f"Invalid race name: {race_name}")
         return race_name
 
-    # method to prompt user for name, class choice and race choice
+    # method to prompt user for name then resaves the input to title case
+    # class choice and race choice
     def create_character(self):
         spc_brk()
         name = input("Enter your name: ")
+        name = name.title()
+        print('Name Stored as:',name)
         char_class = self.get_valid_class()
         race = self.get_valid_race()
         character_class = self.classes.get(char_class, None)
@@ -354,7 +357,7 @@ def start_menu():
     elif choice == "3":
         search_for_inn()
         last_var = start_menu()
-        spc_brk()
+        print("hi")
     elif choice == "4":
         quit()
     else:
