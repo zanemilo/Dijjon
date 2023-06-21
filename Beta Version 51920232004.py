@@ -1,4 +1,5 @@
 import random
+import buildMob
 
 #var that stores the value of the last called variable in a new variable:
 last_var = None
