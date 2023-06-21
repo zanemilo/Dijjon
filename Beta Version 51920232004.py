@@ -6,12 +6,6 @@ import dice_Roll
 last_var = None
 
 
-
-def spc_brk():
-    print("")
-
-
-
 # Base class for all characters
 class Character:
     def __init__(self, name, race, char_class):
@@ -21,6 +15,7 @@ class Character:
     gold = 10
     arm_c = 10
     hp = 6
+    hpMax = 6
     spd = 30
     xp = 0
     lvl = 1
@@ -28,10 +23,10 @@ class Character:
     inventory = {}
 
     def get_item(player, amount, item):
-        print(f"{player.name} recieved {amount} {item}")
+        print(f"{player.name} recieved {amount} {item}\n")
         #add, append the item and amount into the player.inventory
     def give_item(player, action, amount, item):
-        print(f"{player.name} {action} {amount} {item}")
+        print(f"{player.name} {action} {amount} {item}\n")
         #pop, (re)move the item and amount from the player.inventory
 # Fighter class, subclass of Character
 class Fighter(Character):
@@ -94,17 +89,17 @@ class Quest():
     def create_quest():  #Quest Generation: Create a function that generates quests based on certain criteria, such as the player's level, location, and faction affiliation. This function can randomly select a quest template from a pool of pre-defined quests and fill in the details based on the criteria.
         if playerOne.level == 1:
             print("LEVEL 1 DETECTED")
-            print(f"Generating level {playerOne.level} quest for {playerOne.name}")
+            print(f"Generating level {playerOne.level} quest for {playerOne.name}\n")
 
 
         elif playerOne.level == 2:
             print("LEVEL 2 DETECTED")
-            print(f"Generating level {playerOne.level} quest for {playerOne.name}")
+            print(f"Generating level {playerOne.level} quest for {playerOne.name}\n")
 
 
         else:
             print("LEVEL 3 or greator DETECTED")
-            print(f"Generating level {playerOne.level} quest for {playerOne.name}")
+            print(f"Generating level {playerOne.level} quest for {playerOne.name}\n")
 
 
         
@@ -143,11 +138,11 @@ class CharacterCreator(Character):
         valid_class = False
         while not valid_class:
             self.class_List()
-            class_name = input(f"Please choose your character's class : ")
+            class_name = input(f"Please choose your character's class: \n")
             if class_name in self.classes:
                 valid_class = True
             else:
-                print(f"Invalid class name: {class_name}")
+                print(f"Invalid class name: {class_name}\n")
         return class_name
     
     #checks if race name input is in the race list
@@ -155,25 +150,25 @@ class CharacterCreator(Character):
         valid_race = False
         while not valid_race:
             self.race_List()
-            race_name = input(f"Choose your character's race : ")
+            race_name = input(f"Choose your character's race:\n")
             if race_name in self.races:
                 valid_race = True
             else:
-                print(f"Invalid race name: {race_name}")
+                print(f"Invalid race name: {race_name}\n")
         return race_name
 
     # method to prompt user for name then resaves the input to title case
     # class choice and race choice
     def create_character(self):
-        spc_brk()
-        name = input("Enter your name: ")
+         
+        name = input("Enter your name:\n")
         name = name.title()
-        print('Name Stored as:',name)
+        print('Name Stored as:',name, '\n')
         char_class = self.get_valid_class()
         race = self.get_valid_race()
         character_class = self.classes.get(char_class, None)
         if character_class is None:
-            raise ValueError(f"Invalid class name: {char_class}")
+            raise ValueError(f"Invalid class name: {char_class}\n")
         return character_class(name, race)
 
 creator = CharacterCreator(None, None, None)
@@ -266,28 +261,14 @@ def sheet():
 #Call playerOne character sheet function
 sheet()
 
-# Print out the player's information
-#print(playerOne.hp)
-#print(f"Player Name: {playerOne.name}")
-#print(f"Class: {playerOne.char_class}")
-#print(f"Race: {playerOne.race}")
-#print(f"Str: {playerOne.str}")
-#print(f"Dex: {playerOne.dex}")
-#print(f"Con: {playerOne.con}")
-#print(f"Int: {playerOne.int}")
-#print(f"Wis: {playerOne.wis}")
-#print(f"Cha: {playerOne.cha}")
 
 def resume():
     if last_var is not None:
         last_var()
-        spc_brk()
     elif last_var is None:
         print(f"\nThere was an unexpected error trying to return to the last menu\n")
-        spc_brk()
         print(f"\nBy default you will be returned to the Main Menu, aka 'start_menu()'\n")
         start_menu()
-        spc_brk()
 
 # set placeholder value for item check var used in has_gold_check() function
 item_cost = 0
@@ -307,11 +288,14 @@ def has_gold_check(item_cost):
 perception_Difficulty = 10 + dice_Roll.roll_d4()
 
 # rolls a check against the player's wis modifier to see if they can discover an inn nearby
+# idea for future, create instead a 'search' function that can use 'inn','cave',etc. as an argument
+# def search_for(thing):
+#   if dice_Roll.roll_d20() + modifier(playerOne.wis) >= perception_Difficulty:
+
 def search_for_inn():
     if dice_Roll.roll_d20() + modifier(playerOne.wis) >= perception_Difficulty:
-        print("As you wander forth, your eyes eventually catch sight of a quaint inn nestled snugly amongst the area, beckoning you with its warm glow and welcoming atmosphere.")
+        print("As you wander forth, your eyes eventually catch sight of a quaint inn nestled snugly amongst the area, beckoning you with its warm glow and welcoming atmosphere.\n")
         inn_menu()
-        spc_brk()
     else:
         print(f"\nAfter an extended amount of searching you are unable to find an Inn nearby...\n")
         start_menu()
@@ -331,20 +315,16 @@ def start_menu():
     if choice == "1":
         if last_var is not None:
             resume()
-            spc_brk()
         elif last_var is None:
             print(f"\nYou have yet to embark on a journey. Please select a valid option.\n")
-            spc_brk()
             start_menu()
-            spc_brk()
     elif choice == "2":
         sheet()
-        spc_brk()
         start_menu()    
     elif choice == "3":
         search_for_inn()
         last_var = start_menu()
-        print("hi")
+        print("hi\n") #???
     elif choice == "4":
         quit()
     else:
@@ -355,6 +335,10 @@ def start_menu():
 def rent_a_room():
     print("rent_a_room() function start")
     print(f"\nYou rent a room for the rest of the day...\n")
+    if playerOne.hp < playerOne.hpMax:
+        playerOne.hp = playerOne.hpMax
+        print('Hp restored to\n')
+        print(playerOne.hp)
     # global last_var
     # last_var()
     print("rent_a_room() function end")
@@ -363,17 +347,17 @@ def rent_a_room():
 # starts order function using an item list as an arguement
 def order(item_list):
     global last_var
-    spc_brk()
+
     print(f"Buy:\n\nYour GP: {playerOne.gold}")
-    spc_brk()
+
     for i, (name, item) in enumerate(item_list.items()):
         print(f"{i+1}. {item.name} - {item.val} gp")
-    spc_brk()
+
     choice = input("What would you like to purchase? ")
     # while loop checks if input is digit or integer that is in the range of enumerated item_list options
     while not choice.isdigit() or int(choice) not in range(1, len(item_list)+1):
         invalid_choice = input(f"Invalid choice. Please select a valid option. \nWould you like to leave?\nInput the number of your choice\n\n1. Yes\n2. No")
-        spc_brk()
+
         if int(invalid_choice()) == 1:
             last_var()
         elif int(invalid_choice()) == 2:
@@ -398,7 +382,7 @@ def quest_menu1():
     
 # Inn menu function
 def inn_menu():
-    spc_brk()
+
     global last_var
     rumors_selected_prev = False
     
@@ -421,18 +405,16 @@ def inn_menu():
         last_var()
     elif choice == "3":
         if rumors_selected_prev == True:
-            print("You listen to the lively chatter of the inn, but don't hear any new rumors.")
+            print("You listen to the lively chatter of the inn, but don't hear any new rumors.\n")
         else:
-            print("You spend the next hours or so easedropping and conversing with patrons. ")
-            print("Three conversations, an arguement about local politics and small talk about the rise in cost of hay leads you to a meet a rough looking man. ")
-            print("The rough looking man explains his concern for the inn and how the rat infestation has gotten out of hand. He was hired to extreminate them himself but he has an irrational fear of basements. ")
-            print("He gives you half of the payment upfront")
-            spc_brk()
+            print("You spend the next hours or so easedropping and conversing with patrons.\n ")
+            print("Three conversations, an arguement about local politics and small talk about the rise in cost of hay leads you to a meet a rough looking man.\n ")
+            print("The rough looking man explains his concern for the inn and how the rat infestation has gotten out of hand. He was hired to extreminate them himself but he has an irrational fear of basements.\n")
+            print("He gives you half of the payment upfront\n")
+
             #refactor this section using the class functions for get/ give
             playerOne.gold += 10
-            spc_brk()
-            print(f"{playerOne.name}'s Gold Total: {playerOne.gold}")
-            spc_brk()
+            print(f"{playerOne.name}'s Gold Total: {playerOne.gold}\n")
             rumors_selected_prev = True
             stats["GP"] = playerOne.gold
             quest_menu1() # requires new menu func
