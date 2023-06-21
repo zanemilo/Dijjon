@@ -7,6 +7,7 @@ last_var = None
 
 
 # Base class for all characters
+#think about storing info into dictionary with corresponding key : value
 class Character:
     def __init__(self, name, race, char_class):
         self.name = name
@@ -73,10 +74,6 @@ class Melee_Item(Item):
         self.damage_type = damage_type
         self.poisoned = poisoned
         self.enchant = enchant
-
-
-
-
 
 
 class Quest():
