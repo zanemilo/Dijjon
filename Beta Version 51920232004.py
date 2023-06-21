@@ -293,7 +293,9 @@ perception_Difficulty = 10 + dice_Roll.roll_d4()
 #   if dice_Roll.roll_d20() + modifier(playerOne.wis) >= perception_Difficulty:
 
 def search_for_inn():
-    if dice_Roll.roll_d20() + modifier(playerOne.wis) >= perception_Difficulty:
+    answer = dice_Roll.roll_d20() + modifier(playerOne.wis) 
+    print(f'You rolled:',answer, 'and needed atleast:',perception_Difficulty, 'to succeed the check!\n')
+    if answer >= perception_Difficulty:
         print("As you wander forth, your eyes eventually catch sight of a quaint inn nestled snugly amongst the area, beckoning you with its warm glow and welcoming atmosphere.\n")
         inn_menu()
     else:
