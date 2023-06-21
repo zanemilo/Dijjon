@@ -3,7 +3,7 @@ import random
 #var that stores the value of the last called variable in a new variable:
 last_var = None
 
-# Function to roll the character's stats
+# Function, create rolls list populated with 4 random integers between 1-6, then drops lowest value, then returns sum
 def roll_stats():
     rolls = [random.randint(1, 6) for i in range(4)]
     rolls.remove(min(rolls))
