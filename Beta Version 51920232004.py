@@ -46,12 +46,14 @@ class Character:
     xp = 0
     lvl = 1
 
+    inventory = {}
+
     def get_item(player, amount, item):
         print(f"{player.name} recieved {amount} {item}")
-
+        #add, append the item and amount into the player.inventory
     def give_item(player, action, amount, item):
         print(f"{player.name} {action} {amount} {item}")
-
+        #pop, (re)move the item and amount from the player.inventory
 # Fighter class, subclass of Character
 class Fighter(Character):
     def __init__(self, name, race):
