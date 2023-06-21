@@ -24,3 +24,6 @@ def roll_d12():
 
 def roll_d20():
     return random.randint(1, 20)
+
+def roll_d100():
+    return random.randint(1, 100)
