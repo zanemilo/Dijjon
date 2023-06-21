@@ -1,33 +1,11 @@
 import random
 import buildMob
+import dice_Roll
 
 #var that stores the value of the last called variable in a new variable:
 last_var = None
 
-# Function, create rolls list populated with 4 random integers between 1-6, then drops lowest value, then returns sum
-def roll_stats():
-    rolls = [random.randint(1, 6) for i in range(4)]
-    rolls.remove(min(rolls))
-    return sum(rolls)
 
-# dice roll functions
-def roll_d4():
-    return random.randint(1, 4)
-
-def roll_d6():
-    return random.randint(1, 6)
-
-def roll_d8():
-    return random.randint(1, 8)
-
-def roll_d10():
-    return random.randint(1, 10)
-
-def roll_d12():
-    return random.randint(1, 12)
-
-def roll_d20():
-    return random.randint(1, 20)
 
 def spc_brk():
     print("")
@@ -59,32 +37,32 @@ class Character:
 class Fighter(Character):
     def __init__(self, name, race):
         super().__init__(name, race, "Fighter")
-        self.str = 2 + roll_stats()
-        self.dex = 1 + roll_stats()
-        self.con = 2 + roll_stats()
-        self.int = 0 + roll_stats()
-        self.wis = 0 + roll_stats()
-        self.cha = 0 + roll_stats()
+        self.str = 2 + dice_Roll.roll_stats()
+        self.dex = 1 + dice_Roll.roll_stats()
+        self.con = 2 + dice_Roll.roll_stats()
+        self.int = 0 + dice_Roll.roll_stats()
+        self.wis = 0 + dice_Roll.roll_stats()
+        self.cha = 0 + dice_Roll.roll_stats()
 # Rogue class, subclass of Character
 class Rogue(Character):
     def __init__(self, name, race):
         super().__init__(name, race, "Rogue")
-        self.str = 1 + roll_stats()
-        self.dex = 2 + roll_stats()
-        self.con = 1 + roll_stats()
-        self.int = 0 + roll_stats()
-        self.wis = 0 + roll_stats()
-        self.cha = 0 + roll_stats()
+        self.str = 1 + dice_Roll.roll_stats()
+        self.dex = 2 + dice_Roll.roll_stats()
+        self.con = 1 + dice_Roll.roll_stats()
+        self.int = 0 + dice_Roll.roll_stats()
+        self.wis = 0 + dice_Roll.roll_stats()
+        self.cha = 0 + dice_Roll.roll_stats()
 # Wizard class, subclass of Character
 class Wizard(Character):
     def __init__(self, name, race):
         super().__init__(name, race, "Wizard")
-        self.str = 0 + roll_stats()
-        self.dex = 0 + roll_stats()
-        self.con = 1 + roll_stats()
-        self.int = 2 + roll_stats()
-        self.wis = 2 + roll_stats()
-        self.cha = 0 + roll_stats()
+        self.str = 0 + dice_Roll.roll_stats()
+        self.dex = 0 + dice_Roll.roll_stats()
+        self.con = 1 + dice_Roll.roll_stats()
+        self.int = 2 + dice_Roll.roll_stats()
+        self.wis = 2 + dice_Roll.roll_stats()
+        self.cha = 0 + dice_Roll.roll_stats()
 
 # Item class: think template for items in game
 class Item():
@@ -226,12 +204,12 @@ inn_items = {
 
 #creates instance of Items class with self, name, desc, val, damage, damage_type, poisoned, enchant as arguments
 melee_items = {
-"Sword" : Melee_Item("Sword","A sword, a radiant emblem of timeless valor and ardent passion.",5,roll_d6(),"Slashing",False,None),
-"Axe" : Melee_Item("Axe","An axe, a rugged embodiment of unyielding strength and untamed spirit.",8,roll_d8(),"Slashing",False,None),
-"Spear" : Melee_Item("Spear","A spear, a poised extension of precision and swiftness.",6,roll_d6(),"Piercing",False,None),
-"Dagger" : Melee_Item("Dagger","A dagger, a clandestine whisper in the night, wields both elegance and treachery.",4,roll_d4(),"Piercing",False,None),
+"Sword" : Melee_Item("Sword","A sword, a radiant emblem of timeless valor and ardent passion.",5,dice_Roll.roll_d6(),"Slashing",False,None),
+"Axe" : Melee_Item("Axe","An axe, a rugged embodiment of unyielding strength and untamed spirit.",8,dice_Roll.roll_d8(),"Slashing",False,None),
+"Spear" : Melee_Item("Spear","A spear, a poised extension of precision and swiftness.",6,dice_Roll.roll_d6(),"Piercing",False,None),
+"Dagger" : Melee_Item("Dagger","A dagger, a clandestine whisper in the night, wields both elegance and treachery.",4,dice_Roll.roll_d4(),"Piercing",False,None),
 "Fist" : Melee_Item("Fist","A fist, an embodiment of raw power",0,1,"Blunt",False,None),
-"Hammer" : Melee_Item("Hammer","A hammer, a mighty embodiment of thunderous strength and unrelenting force",8,roll_d8(),"Blunt",False,None),
+"Hammer" : Melee_Item("Hammer","A hammer, a mighty embodiment of thunderous strength and unrelenting force",8,dice_Roll.roll_d8(),"Blunt",False,None),
 
 }
 
@@ -326,11 +304,11 @@ def has_gold_check(item_cost):
 
 
 # updatable var for perception difficulty. Determines if player will find something. consider adding a difficulty function to make this adjustable from one place later on
-perception_Difficulty = 10 + roll_d4()
+perception_Difficulty = 10 + dice_Roll.roll_d4()
 
 # rolls a check against the player's wis modifier to see if they can discover an inn nearby
 def search_for_inn():
-    if roll_d20() + modifier(playerOne.wis) >= perception_Difficulty:
+    if dice_Roll.roll_d20() + modifier(playerOne.wis) >= perception_Difficulty:
         print("As you wander forth, your eyes eventually catch sight of a quaint inn nestled snugly amongst the area, beckoning you with its warm glow and welcoming atmosphere.")
         inn_menu()
         spc_brk()
