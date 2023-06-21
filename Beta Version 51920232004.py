@@ -176,12 +176,10 @@ creator = CharacterCreator(None, None, None)
 playerOne = creator.create_character()
 
 
-def modifier(stat):
-    (playerOne.stat - 10)/2
-    return sum
+     
 
 def modifier(stat):
-    return (stat - 10)/2
+    return (int((stat - 10)/2))
 
 
 #creates instance of Items class name, description and value as arguments
