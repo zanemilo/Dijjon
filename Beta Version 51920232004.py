@@ -32,12 +32,13 @@ class Character:
         if item_amount < amount or item_amount == 0:
             print('You do not have enough', item, 'to give!\n')
         else:
-            player.inventory.pop[item] -= amount
+            player.inventory[item] -= amount #work around by subtracting one from amount in inventory
             print(f"{player.name} {action} {amount} {item}\n")
             #pop, (re)move the item and amount from the player.inventory
+            #not working properly, may use work around for now of del item and 'give' item to the other player
     def show_inventory(player):
         num = 1
-        for item in player.inventory:
+        for item in player.inventory > 0:
             print(f'{num}. {item}')
             num += 1
 
