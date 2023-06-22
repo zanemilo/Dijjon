@@ -24,12 +24,24 @@ class Character:
     inventory = {}
 
     def get_item(player, amount, item):
-        print(f"{player.name} recieved {amount} {item}\n")
+        player.inventory[item] = amount
+        print(f"{player.name} recieved {amount} {item}!\n")
         #add, append the item and amount into the player.inventory
     def give_item(player, action, amount, item):
-        print(f"{player.name} {action} {amount} {item}\n")
-        #pop, (re)move the item and amount from the player.inventory
-# Fighter class, subclass of Character
+        item_amount = player.inventory[item]
+        if item_amount < amount or item_amount == 0:
+            print('You do not have enough', item, 'to give!\n')
+        else:
+            player.inventory.pop[item] -= amount
+            print(f"{player.name} {action} {amount} {item}\n")
+            #pop, (re)move the item and amount from the player.inventory
+    def show_inventory(player):
+        num = 1
+        for item in player.inventory:
+            print(f'{num}. {item}')
+            num += 1
+
+        # Fighter class, subclass of Character
 class Fighter(Character):
     def __init__(self, name, race):
         super().__init__(name, race, "Fighter")
@@ -302,8 +314,11 @@ def start_menu():
     #indicate global variable outside function
     global last_var
     
-    # Display the menu options
-    print(f"\n1. Resume\n2. Player Stats\n3. Find an Inn\n4. Quit\n")
+    if last_var is None:
+        print(f"\n1. R̶e̶s̶u̶m̶e̶\n2. Player Stats\n3. Find an Inn\n4. Quit\n5. Get Sword\n6. Give Sword\n7. Inventory\n")
+    else:
+        # Display the menu options
+        print(f"\n1. Resume\n2. Player Stats\n3. Find an Inn\n4. Quit\n5. Get Sword\n6. Give Sword\n7. Inventory\n")
     
     # Get the player's choice
     choice = input(f"\nInput the number of your selection: \n")
@@ -321,9 +336,18 @@ def start_menu():
     elif choice == "3":
         search_for_inn()
         last_var = start_menu()
-        print("hi\n") #???
     elif choice == "4":
         quit()
+    elif choice == "5":
+        playerOne.get_item(1, 'Sword')
+        start_menu()
+    elif choice == "6":
+        playerOne.give_item('gave away', 1, 'Sword')
+        start_menu()
+    elif choice == "7":
+        for i in playerOne.inventory:
+            print(i)
+        start_menu()
     else:
         print(f"\nInvalid choice. Please try again: \n")
         start_menu()
