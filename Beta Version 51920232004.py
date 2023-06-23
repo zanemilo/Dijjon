@@ -149,6 +149,7 @@ class CharacterCreator(Character):
         while not valid_class:
             self.class_List()
             class_name = input(f"Please choose your character's class: \n")
+            class_name = class_name.title()
             if class_name in self.classes:
                 valid_class = True
             else:
@@ -161,6 +162,7 @@ class CharacterCreator(Character):
         while not valid_race:
             self.race_List()
             race_name = input(f"Choose your character's race:\n")
+            race_name = race_name.title()
             if race_name in self.races:
                 valid_race = True
             else:
