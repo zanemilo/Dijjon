@@ -32,7 +32,8 @@ class Character:
         if item_amount < amount or item_amount == 0:
             print('You do not have enough', item, 'to give!\n')
         else:
-            player.inventory[item] -= amount #work around by subtracting one from amount in inventory
+            player.inventory.pop(item) #this should fix the bug of keeping item in inv
+            #player.inventory[item] -= amount #work around by subtracting one from amount in inventory
             print(f"{player.name} {action} {amount} {item}\n")
             #pop, (re)move the item and amount from the player.inventory
             #not working properly, may use work around for now of del item and 'give' item to the other player
@@ -316,7 +317,7 @@ def start_menu():
     global last_var
     
     if last_var is None:
-        print(f"\n1. R̶e̶s̶u̶m̶e̶\n2. Player Stats\n3. Find an Inn\n4. Quit\n5. Get Sword\n6. Give Sword\n7. Inventory\n")
+        print(f"\n1. R̶e̶s̶u̶m̶e\n2. Player Stats\n3. Find an Inn\n4. Quit\n5. Get Sword\n6. Give Sword\n7. Inventory\n")
     else:
         # Display the menu options
         print(f"\n1. Resume\n2. Player Stats\n3. Find an Inn\n4. Quit\n5. Get Sword\n6. Give Sword\n7. Inventory\n")
@@ -353,7 +354,7 @@ def start_menu():
         print(f"\nInvalid choice. Please try again: \n")
         start_menu()
 
-# defines rent a room function for future implementation
+# defines rent a room function, needs to be tested to see if hp is restored properly
 def rent_a_room():
     print("rent_a_room() function start")
     print(f"\nYou rent a room for the rest of the day...\n")
@@ -366,7 +367,7 @@ def rent_a_room():
     print("rent_a_room() function end")
 
 
-# starts order function using an item list as an arguement
+# starts order(think salesperson) function using an item list as an arguement
 def order(item_list):
     global last_var
 
