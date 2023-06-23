@@ -28,19 +28,18 @@ class Character:
         print(f"{player.name} recieved {amount} {item}!\n")
         #add, append the item and amount into the player.inventory
     def give_item(player, action, amount, item):
-        item_amount = player.inventory[item]
-        if item_amount < amount or item_amount == 0:
-            print('You do not have enough', item, 'to give!\n')
+        if item not in player.inventory:
+            print('You do not have enough', item, f'to {action}!\n')
+        elif player.inventory[item] < amount or player.inventory[item] == 0:
+            print('You do not have enough', item, f'to {action}!\n')
         else:
-            player.inventory.pop(item) #this should fix the bug of keeping item in inv
-            #player.inventory[item] -= amount #work around by subtracting one from amount in inventory
+            player.inventory.pop(item) #this should fix the bug of keeping item in inv but removes all not some
+            #player.inventory[item] -= amount 
             print(f"{player.name} {action} {amount} {item}\n")
-            #pop, (re)move the item and amount from the player.inventory
-            #not working properly, may use work around for now of del item and 'give' item to the other player
     def show_inventory(player):
         num = 1
-        for item in player.inventory > 0:
-            print(f'{num}. {item}')
+        for item in player.inventory:
+            print(f'{num}. {item} - {player.inventory[item]}') # item would be the name (key), player.inventory[item] would be the corresponding value
             num += 1
 
         # Fighter class, subclass of Character
@@ -347,8 +346,7 @@ def start_menu():
         playerOne.give_item('gave away', 1, 'Sword')
         start_menu()
     elif choice == "7":
-        for i in playerOne.inventory:
-            print(i)
+        playerOne.show_inventory()
         start_menu()
     else:
         print(f"\nInvalid choice. Please try again: \n")
