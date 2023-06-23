@@ -374,7 +374,7 @@ def order(item_list):
     for i, (name, item) in enumerate(item_list.items()):
         print(f"{i+1}. {item.name} - {item.val} gp")
 
-    choice = input("What would you like to purchase? ")
+    choice = input("What would you like to purchase?\n")
     # while loop checks if input is digit or integer that is in the range of enumerated item_list options
     while not choice.isdigit() or int(choice) not in range(1, len(item_list)+1):
         invalid_choice = input(f"Invalid choice. Please select a valid option. \nWould you like to leave?\nInput the number of your choice\n\n1. Yes\n2. No")
@@ -391,7 +391,7 @@ def order(item_list):
     if has_gold_check(chosen_item.val) == True:
         playerOne.gold -= chosen_item.val
         print(f"You have purchased {chosen_item.name} for {chosen_item.val} gold.")
-        return chosen_item
+        playerOne.inventory.update(name=f'{chosen_item.name}')# not working as intended, might need to simplify or refactor this code
     else:
         print(f"You do not have enough gp to purchase {chosen_item.name}")
         order(item_list)
