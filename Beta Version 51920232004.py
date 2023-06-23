@@ -318,10 +318,10 @@ def start_menu():
     global last_var
     
     if last_var is None:
-        print(f"\n1. R̶e̶s̶u̶m̶e\n2. Player Stats\n3. Find an Inn\n4. Quit\n5. Get Sword\n6. Give Sword\n7. Inventory\n")
+        print(f"\n1. R̶e̶s̶u̶m̶e\n2. Player Stats\n3. Find an Inn\n4. Quit\n5. Get Sword\n6. Give Sword\n7. Inventory\n8. Damage(1-3)\n")
     else:
         # Display the menu options
-        print(f"\n1. Resume\n2. Player Stats\n3. Find an Inn\n4. Quit\n5. Get Sword\n6. Give Sword\n7. Inventory\n")
+        print(f"\n1. Resume\n2. Player Stats\n3. Find an Inn\n4. Quit\n5. Get Sword\n6. Give Sword\n7. Inventory\n8. Damage(1-3)\n")
     
     # Get the player's choice
     choice = input(f"\nInput the number of your selection: \n")
@@ -350,6 +350,11 @@ def start_menu():
     elif choice == "7":
         playerOne.show_inventory()
         start_menu()
+    elif choice == "8":
+        damage = random.randint(1,3)
+        playerOne.hp -= damage
+        print(f"{playerOne.name} takes {damage}!\n",f"{playerOne.name}'s HP: {playerOne.hp}/{playerOne.hpMax}\n")
+        start_menu()    
     else:
         print(f"\nInvalid choice. Please try again: \n")
         start_menu()
