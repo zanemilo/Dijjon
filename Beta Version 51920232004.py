@@ -393,7 +393,12 @@ def order(item_list):
     if has_gold_check(chosen_item.val) == True:
         playerOne.gold -= chosen_item.val
         print(f"You have purchased {chosen_item.name} for {chosen_item.val} gold.")
-        playerOne.inventory.update(name=f'{chosen_item.name}')# not working as intended, might need to simplify or refactor this code
+        temp_dict1 = {chosen_item.name : chosen_item.val}
+        playerOne.inventory.update(temp_dict1) # this would overwrite the value
+        #playerOne.inventory.update(name=f'{chosen_item.name}')# not working as intended, might need to simplify or refactor this code
+        temp_dict1.pop(chosen_item.name) # deletes temp_dict1 key and value
+        #print(temp_dict1, "\n")
+        print(playerOne.inventory, "\n")
     else:
         print(f"You do not have enough gp to purchase {chosen_item.name}")
         order(item_list)
