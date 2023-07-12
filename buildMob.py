@@ -1,11 +1,21 @@
 import random
+from settings import Settings as s
 
-def build_Mob(name, type, hp, arm_c, spd, xp, lvl ):
-    mob = { 'name' : name, 'type' : type, 'hp' : hp, 'arm_c' : arm_c, 'spd' : spd, 'xp' : xp, 'lvl' : lvl,}
-    return mob
+
+
+class Mob:
+    """Class that can be called to build random mobs"""
+
+
+
+    def __init__(self):
+
+        self.info = { 'name' : self.name, 'type' : self.mobtype, 'hp' : self.hp, 'arm_c' : self.arm_c, 'spd' : self.spd, 'xp' : self.xp, 'lvl' : self.lvl,}
+
     
-#rat = build_Mob('rat', 'beast', 3, 10, 15, 2, 1)
-#print(rat)
+
+
+ 
 
 
    
