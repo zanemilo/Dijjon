@@ -257,6 +257,7 @@ monster_dict = {
 }
 
 locations = { 
+    # town locations
     'towns' : {
     {
         "name": "Smallville",
@@ -288,6 +289,115 @@ locations = {
         "size": "medium",
         "inn": "The Whispering Willow",
         "general_store": "Mystic Emporium",
+    },
+    },
+    # cave locations
+    'caves' : {
+    {
+        "name": "Shadowfang Cavern",
+        "size": "small",
+    },
+    {
+        "name": "Crystal Depths",
+        "size": "large",
+    },
+    {
+        "name": "Whispering Grotto",
+        "size": "medium",
+    },
+    {
+        "name": "Mossy Hollows",
+        "size": "small",
+    },
+    {
+        "name": "Echoing Abyss",
+        "size": "large",
+    },
+    },
+    # bandit camp locations
+    'bandit camps' : {
+    {
+        "name": "Raven's Roost",
+        "size": "small",
+    },
+    {
+        "name": "Serpent's Hideout",
+        "size": "large",
+    },
+    {
+        "name": "Blackthorn Encampment",
+        "size": "medium",
+    },
+    {
+        "name": "Viper's Den",
+        "size": "small",
+    },
+    {
+        "name": "Daggerfall Outpost",
+        "size": "large",
+    },
+    },
+    # roadside locations
+    'roadside locations' : {
+    {
+        "name": "Crossroads Rest",
+        "size": "small",
+    },
+    {
+        "name": "Wagon Wheel Waystation",
+        "size": "small",
+    },
+    {
+        "name": "Traveller's Haven",
+        "size": "small",
+    },
+    {
+        "name": "Hillside Retreat",
+        "size": "small",
+    },
+    {
+        "name": "Wayfarer's Rest",
+        "size": "small",
+    },
+     {
+        "name": "Lone Pine Inn",
+        "size": "small",
+    },
+    {
+        "name": "Misty Meadows",
+        "size": "small",
+    },
+    {
+        "name": "Sunset Oasis",
+        "size": "small",
+    },
+    {
+        "name": "Twin Oaks Tavern",
+        "size": "small",
+    },
+    {
+        "name": "Roaming Rendezvous",
+        "size": "small",
+    },
+     {
+        "name": "Silent Springs",
+        "size": "small",
+    },
+    {
+        "name": "Starlight Rest Stop",
+        "size": "small",
+    },
+    {
+        "name": "Hidden Hollow",
+        "size": "small",
+    },
+    {
+        "name": "Golden Fields Inn",
+        "size": "small",
+    },
+    {
+        "name": "Riverside Retreat",
+        "size": "small",
     },
     },
 }
