@@ -1,4 +1,6 @@
 
+
+# random names
 name_list = ["Aarav",
     "Ada",
     "Aelius",
@@ -130,6 +132,7 @@ name_list = ["Aarav",
     "Wren",
     "Zayn",]
 
+# monster types
 monster_type_list = [
     "aberration",
     "beast",
@@ -143,6 +146,7 @@ monster_type_list = [
     "monstrosity",
 ]
 
+# monsters with types as values
 monster_dict = {
     # Aberrations
     "Cthulhu": "aberration",
@@ -256,9 +260,11 @@ monster_dict = {
     "Hook Horror": "monstrosity",
 }
 
+# nested dict containing master list of locations
+# towns, caves, bandit camps, and roadside locations
 locations = { 
     # town locations
-    'towns' : {
+    'towns' : [
     {
         "name": "Smallville",
         "size": "small",
@@ -290,9 +296,9 @@ locations = {
         "inn": "The Whispering Willow",
         "general_store": "Mystic Emporium",
     },
-    },
+    ],
     # cave locations
-    'caves' : {
+    'caves' : [
     {
         "name": "Shadowfang Cavern",
         "size": "small",
@@ -313,9 +319,9 @@ locations = {
         "name": "Echoing Abyss",
         "size": "large",
     },
-    },
+    ],
     # bandit camp locations
-    'bandit camps' : {
+    'bandit camps' : [
     {
         "name": "Raven's Roost",
         "size": "small",
@@ -336,9 +342,9 @@ locations = {
         "name": "Daggerfall Outpost",
         "size": "large",
     },
-    },
+    ],
     # roadside locations
-    'roadside locations' : {
+    'roadside locations' : [
     {
         "name": "Crossroads Rest",
         "size": "small",
@@ -399,5 +405,7 @@ locations = {
         "name": "Riverside Retreat",
         "size": "small",
     },
-    },
+    ],
 }
+
+
