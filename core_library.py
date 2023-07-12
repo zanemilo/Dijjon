@@ -255,3 +255,39 @@ monster_dict = {
     "Umber Hulk": "monstrosity",
     "Hook Horror": "monstrosity",
 }
+
+locations = { 
+    'towns' : {
+    {
+        "name": "Smallville",
+        "size": "small",
+        "inn": "The Cozy Hearth",
+        "general_store": "Peddler's Corner",
+
+    },
+    {
+        "name": "Midtown",
+        "size": "medium",
+        "inn": "The Golden Griffin",
+        "general_store": "Market Bazaar",
+    },
+    {
+        "name": "Grand City",
+        "size": "large",
+        "inn": "The Royal Retreat",
+        "general_store": "Emporium of Wonders",
+    },
+    {
+        "name": "Riverside",
+        "size": "small",
+        "inn": "The Rusty Anchor",
+        "general_store": "River's Edge Trading Post",
+    },
+    {
+        "name": "Misty Hollow",
+        "size": "medium",
+        "inn": "The Whispering Willow",
+        "general_store": "Mystic Emporium",
+    },
+    },
+}
