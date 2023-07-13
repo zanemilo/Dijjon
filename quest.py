@@ -3,7 +3,7 @@
 class Quest():
 
 
-    def __init__(self, quest_name, objective, completion, reward, **task ):
+    def __init__(self, quest_name, objective, completion, reward, priority='misc', task=''):
         """Quest Class for handling building quest and tracking quest progress."""
 
         self.quest_name = quest_name
@@ -11,6 +11,7 @@ class Quest():
         self.task = task
         self.reward = reward
         self.completion = completion
+        self.priority = priority
 
         self.info = {
             'quest Name' : self.quest_name,
@@ -26,14 +27,22 @@ class Quest():
             'misc' : {}
         }
 
+        
+
     def check_quest_status(self):
         """Return instance quest info"""
         print(f'{self.info}')
+        return self.info
+
+    def check_all_quest_status(self):
+        """Return all quest status"""
+        print(f'{self.quests}')
+        return self.quests
 
     def add_quest_tracker(self, priority):
-        """Used during instance initialization to place into proper priority tracker"""
+        """Used during  instatiation to place into proper priority tracker"""
         self.new_quest = {}
-        self.new_quest.update(self.info)
+        self.new_quest = self.info
         if priority == 'primary':
             self.quests['primary'] = self.new_quest
         elif priority == 'secondary':
@@ -42,7 +51,9 @@ class Quest():
             self.quests['misc'] = self.new_quest
         else:
             print(f'Error while adding {self.quest_name} to quest tracker')
-            pass
+            print(priority)
+
+        
 
     # def create_quest():  #Quest Generation: Create a function that generates quests based on certain criteria, such as the player's level, location, and faction affiliation. This function can randomly select a quest template from a pool of pre-defined quests and fill in the details based on the criteria.
     #     if m.playerOne.level == 1:
@@ -60,7 +71,11 @@ class Quest():
     #         print(f"Generating level {m.playerOne.level} quest for {m.playerOne.name}\n")
 
 # test quest instance
-starter_quest = Quest('Humble Beginnings', 'Find your way to the docks.', False, 'Big Fish')
+starter_quest = Quest('Humble Beginnings', 'Find your way to the docks.', False, 'Big Fish', 'primary')
 
-print(starter_quest.info)
+starter_quest.add_quest_tracker(starter_quest.priority)
+        
+Quest.check_all_quest_status(starter_quest)
+
+
 
