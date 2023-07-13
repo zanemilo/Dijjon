@@ -11,9 +11,18 @@ class Mob:
     """Class that can be called to build random mobs"""
 
 
-
-    def __init__(self, name=r.choice(nl), mob=r.choice(list(md.keys())), hp=r.randint(10,30), arm_c=r.randint(10,30), spd=30, xp=r.randint(10,30), lvl=r.randint(10,30)):
-        
+    # if no arguement is given, the mob will have the default randomized name, mob, mob type, etc.
+    def __init__(self, name=None, mob=None, hp=None, arm_c=None, spd=30, xp=None, lvl=None):
+        # instastiat the variables so we can pass them to the self.info dictionary below
+        # also we must use the __init__ method to choose each new isntances variables uniquely
+        # as the class arguments are only checked once when the class itself if initialized
+        self.name = name if name is not None else r.choice(nl)
+        self.mob = mob if mob is not None else r.choice(list(md.keys()))
+        self.hp = hp if hp is not None else r.randint(10, 30)
+        self.arm_c = arm_c if arm_c is not None else r.randint(10, 15)
+        self.spd = spd
+        self.xp = xp if xp is not None else r.randint(10, 30)
+        self.lvl = lvl if lvl is not None else r.randint(1, 3)
     
         # if mob argument is input (always should since it will a randomized default value), 
         # mobtype will be pulled from corresponding monster_dict of mob
@@ -34,7 +43,19 @@ class Mob:
     
 
 
- # test instance of Mob class
+ # test instances of Mob class
+
+yuan_ti = Mob(mob='Yuan-ti', hp=60, arm_c=25)
+
+print(f'{yuan_ti.name, yuan_ti.info}')
+
+new_mob1 = Mob()
+
+print(new_mob1.info)
+
+new_mob2 = Mob()
+
+print(new_mob2.info)
 
 # tests what the default output for name choice would be
 # print(r.choice(nl))
