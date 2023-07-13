@@ -13,6 +13,7 @@ class Mob:
 
     # if no arguement is given, the mob will have the default randomized name, mob, mob type, etc.
     def __init__(self, name=None, mob=None, hp=None, arm_c=None, spd=30, xp=None, lvl=None):
+
         # instastiat the variables so we can pass them to the self.info dictionary below
         # also we must use the __init__ method to choose each new isntances variables uniquely
         # as the class arguments are only checked once when the class itself if initialized
@@ -23,12 +24,14 @@ class Mob:
         self.spd = spd
         self.xp = xp if xp is not None else r.randint(10, 30)
         self.lvl = lvl if lvl is not None else r.randint(1, 3)
-    
-        # if mob argument is input (always should since it will a randomized default value), 
-        # mobtype will be pulled from corresponding monster_dict of mob
-        if mob:
-            self.mobtype = md[f'{mob}']
+        
+        # mob type based of mob selected
+        self.mobtype = md[f'{self.mob}']
 
+        # set max health (maybe make this a tuple? not sure if I need to)
+        self.max_hp = self.hp
+
+        # dict of stats for accessing, altering
         self.info = { 
             'name' : self.name, 
             'mob' : self.mob,
