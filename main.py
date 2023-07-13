@@ -2,6 +2,8 @@ import random
 import buildMob
 import dice_Roll
 
+from settings import Settings as s
+
 #var that stores the value of the last called variable in a new variable:
 last_var = None
 
@@ -259,6 +261,7 @@ sheet(playerOne)
 
 
 def resume():
+    """Resume if last_var has a function saved"""
     if last_var is not None:
         last_var()
     elif last_var is None:
@@ -266,11 +269,10 @@ def resume():
         print(f"\nBy default you will be returned to the Main Menu, aka 'start_menu()'\n")
         start_menu()
 
-# set placeholder value for item check var used in has_gold_check() function
-item_cost = 0
 
-# function called to check if the player has sufficient gold to pay for an item/service/interaction
 def has_gold_check(item_cost):
+    """function called to check if the player has sufficient gold to pay for an item/service/interaction"""
+    item_cost = 0
     if playerOne.gold >= item_cost:
         item_cost = 0
         return True
@@ -435,7 +437,7 @@ def inn_menu():
             playerOne.gold += 10
             print(f"{playerOne.name}'s Gold Total: {playerOne.gold}\n")
             rumors_selected_prev = True
-            stats["GP"] = playerOne.gold
+            sheet.stats["GP"] = playerOne.gold
             quest_menu1() # requires new menu func
     elif choice == "4":
         start_menu() # requires new menu func
