@@ -48,17 +48,17 @@ class Mob:
 
  # test instances of Mob class
 
-yuan_ti = Mob(mob='Yuan-ti', hp=60, arm_c=25)
+# yuan_ti = Mob(mob='Yuan-ti', hp=60, arm_c=25)
 
-print(f'{yuan_ti.name, yuan_ti.info}')
+# print(f'{yuan_ti.name, yuan_ti.info}')
 
-new_mob1 = Mob()
+# new_mob1 = Mob()
 
-print(new_mob1.info)
+# print(new_mob1.info)
 
-new_mob2 = Mob()
+# new_mob2 = Mob()
 
-print(new_mob2.info)
+# print(new_mob2.info)
 
 # tests what the default output for name choice would be
 # print(r.choice(nl))

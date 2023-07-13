@@ -408,4 +408,56 @@ locations = {
     ],
 }
 
+# factions dictionary this way a player, npc or location can adapt beliefs, join or represent the factions
+# they will also have varying levels of hostility, or helpfulness to certain factions whom are rivals or allies
+factions = {
+    'order_of_the_silver_shield': {
+        'name': 'Order of the Silver Shield',
+        'alignment': 'Lawful Good',
+        'description': 'The Order of the Silver Shield is a noble and chivalrous faction dedicated to protecting the innocent, upholding justice, and eradicating evil.',
+        'allied_factions': ['circle_of_mages', 'guild_of_artisans'],
+        'rival_factions': ['cult_of_the_shadow', 'brigands_of_the_crimson_eye'],
+        'neutral_factions': [],
+    },
+    'circle_of_mages': {
+        'name': 'Circle of Mages',
+        'alignment': 'Neutral',
+        'description': 'The Circle of Mages is a secretive faction of spellcasters who seek knowledge and the understanding of magical forces. They maintain balance and neutrality in their pursuits.',
+        'allied_factions': ['order_of_the_silver_shield'],
+        'rival_factions': ['cult_of_the_shadow', 'cabal_of_the_arcane_eye'],
+        'neutral_factions': [],
+    },
+    'cult_of_the_shadow': {
+        'name': 'Cult of the Shadow',
+        'alignment': 'Chaotic Evil',
+        'description': 'The Cult of the Shadow is a dark and sinister faction that worships forbidden powers and seeks to spread chaos and corruption throughout the land.',
+        'allied_factions': ['brigands_of_the_crimson_eye'],
+        'rival_factions': ['order_of_the_silver_shield', 'circle_of_mages'],
+        'neutral_factions': [],
+    },
+    'guild_of_artisans': {
+        'name': 'Guild of Artisans',
+        'alignment': 'Lawful Neutral',
+        'description': 'The Guild of Artisans is a faction comprising skilled craftsmen and artisans. They strive for excellence in their craft, preserving traditional methods, and promoting trade and prosperity.',
+        'allied_factions': ['order_of_the_silver_shield'],
+        'rival_factions': ['cabal_of_the_arcane_eye'],
+        'neutral_factions': [],
+    },
+    'brigands_of_the_crimson_eye': {
+        'name': 'Brigands of the Crimson Eye',
+        'alignment': 'Chaotic Neutral',
+        'description': 'The Brigands of the Crimson Eye are a notorious faction of thieves and mercenaries. They operate outside the law and are driven by personal gain and the thrill of adventure.',
+        'allied_factions': ['cult_of_the_shadow'],
+        'rival_factions': ['order_of_the_silver_shield'],
+        'neutral_factions': ['circle_of_mages'],
+    },
+    'cabal_of_the_arcane_eye': {
+        'name': 'Cabal of the Arcane Eye',
+        'alignment': 'Neutral Evil',
+        'description': 'The Cabal of the Arcane Eye is a secretive faction of power-hungry sorcerers and warlocks. They manipulate arcane forces for their own gain and seek to control the world.',
+        'allied_factions': ['circle_of_mages'],
+        'rival_factions': ['guild_of_artisans'],
+        'neutral_factions': [],
+    }
+}
 
