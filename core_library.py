@@ -132,6 +132,41 @@ name_list = ["Aarav",
     "Wren",
     "Zayn",]
 
+# commoner jobs
+jobs = [
+    'Farmer',
+    'Blacksmith',
+    'Carpenter',
+    'Baker',
+    'Tailor',
+    'Fisherman',
+    'Miner',
+    'Woodcutter',
+    'Merchant',
+    'Innkeeper',
+    'Barber',
+    'Miller',
+    'Potter',
+    'Brewer',
+    'Butcher',
+    'Mason',
+    'Scribe',
+    'Tanner',
+    'Herbalist',
+    'Messenger',
+    'Stablehand',
+    'Servant',
+    'Street Vendor',
+    'Town Crier',
+    'Cartographer',
+    'Guard',
+    'Town Guard',
+    'Jeweler',
+    'Weaver',
+    'Bard',
+    'Sailor',
+]
+
 # monster types
 monster_type_list = [
     "aberration",

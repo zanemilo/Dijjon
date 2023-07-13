@@ -46,7 +46,7 @@ class Mob:
     
 
 
- # test instances of Mob class
+# test instances of Mob class
 
 # yuan_ti = Mob(mob='Yuan-ti', hp=60, arm_c=25)
 
