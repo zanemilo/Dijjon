@@ -1,2 +1,4 @@
 # ignore all .txt files (* == wild card)
 *.txt
+*.md
+__pycache__
