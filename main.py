@@ -6,9 +6,10 @@ import dice_Roll
 last_var = None
 
 
-# Base class for all characters
+
 #think about storing info into dictionary with corresponding key : value
 class Character:
+    """Base Class for all characters whether user controlled or NPC"""
     def __init__(self, name, race, char_class):
         self.name = name
         self.race = race
@@ -24,10 +25,12 @@ class Character:
     inventory = {}
 
     def get_item(player, amount, item):
+        """add, append the item and amount into the player.inventory"""
         player.inventory[item] = amount
         print(f"{player.name} recieved {amount} {item}!\n")
-        #add, append the item and amount into the player.inventory
+    
     def give_item(player, action, amount, item):
+        """method for user character giving away, selling, dropping, donating an item"""
         if item not in player.inventory:
             print('You do not have enough', item, f'to {action}!\n')
         elif player.inventory[item] < amount or player.inventory[item] == 0:
@@ -36,14 +39,17 @@ class Character:
             player.inventory.pop(item) #this should fix the bug of keeping item in inv but removes all not some
             #player.inventory[item] -= amount 
             print(f"{player.name} {action} {amount} {item}\n")
+
     def show_inventory(player):
+        """Displays player's inventory contents"""
         num = 1
         for item in player.inventory:
             print(f'{num}. {item} - {player.inventory[item]}') # item would be the name (key), player.inventory[item] would be the corresponding value
             num += 1
 
-        # Fighter class, subclass of Character
+
 class Fighter(Character):
+    """Fighter class, subclass of Character"""
     def __init__(self, name, race):
         super().__init__(name, race, "Fighter")
         self.str = 2 + dice_Roll.roll_stats()
@@ -52,8 +58,9 @@ class Fighter(Character):
         self.int = 0 + dice_Roll.roll_stats()
         self.wis = 0 + dice_Roll.roll_stats()
         self.cha = 0 + dice_Roll.roll_stats()
-# Rogue class, subclass of Character
+
 class Rogue(Character):
+    """Rogue class, subclass of Character"""
     def __init__(self, name, race):
         super().__init__(name, race, "Rogue")
         self.str = 1 + dice_Roll.roll_stats()
@@ -62,8 +69,9 @@ class Rogue(Character):
         self.int = 0 + dice_Roll.roll_stats()
         self.wis = 0 + dice_Roll.roll_stats()
         self.cha = 0 + dice_Roll.roll_stats()
-# Wizard class, subclass of Character
+
 class Wizard(Character):
+    """Wizard class, subclass of Character"""
     def __init__(self, name, race):
         super().__init__(name, race, "Wizard")
         self.str = 0 + dice_Roll.roll_stats()
@@ -73,14 +81,16 @@ class Wizard(Character):
         self.wis = 2 + dice_Roll.roll_stats()
         self.cha = 0 + dice_Roll.roll_stats()
 
-# Item class: think template for items in game
+
 class Item():
+    """Item class: think template for items in game"""
     def __init__(self, name, desc, val):
         self.name = name
         self.desc = desc
         self.val = val
 
 class Melee_Item(Item):
+    """Melee_Item class: subclass to Item"""
     def __init__(self, name, desc, val, damage, damage_type, poisoned, enchant):
         super().__init__(name, desc, val)
         self.damage = damage
@@ -88,32 +98,6 @@ class Melee_Item(Item):
         self.poisoned = poisoned
         self.enchant = enchant
 
-
-class Quest():
-    def __init__(self, name, objectives, reward, completion_status):
-        self.name = name
-        self.objectives = objectives
-        self.reward = reward
-        self.completion_status = completion_status
-
-    def create_quest():  #Quest Generation: Create a function that generates quests based on certain criteria, such as the player's level, location, and faction affiliation. This function can randomly select a quest template from a pool of pre-defined quests and fill in the details based on the criteria.
-        if playerOne.level == 1:
-            print("LEVEL 1 DETECTED")
-            print(f"Generating level {playerOne.level} quest for {playerOne.name}\n")
-
-
-        elif playerOne.level == 2:
-            print("LEVEL 2 DETECTED")
-            print(f"Generating level {playerOne.level} quest for {playerOne.name}\n")
-
-
-        else:
-            print("LEVEL 3 or greator DETECTED")
-            print(f"Generating level {playerOne.level} quest for {playerOne.name}\n")
-
-
-        
-        
 
 class CharacterCreator(Character):
 
@@ -218,43 +202,45 @@ melee_items = {
 
 }
 
-
-#dictionary of playerOne instance's stats used for sheet to pull updated info
-stats = {
-    "STR": playerOne.str,
-    "DEX": playerOne.dex,
-    "CON": playerOne.con,
-    "INT": playerOne.int,
-    "WIS": playerOne.wis,
-    "CHA": playerOne.cha,
-    "HP": playerOne.hp,
-    "AC": playerOne.arm_c,
-    "GP": playerOne.gold,
-    "SPD": playerOne.spd,
-    "LEVEL": playerOne.lvl,
-    "XP" : playerOne.xp,
+ 
+def sheet(character): 
+    """Generate and display the character sheet"""
+    
+    #dictionary of character instance's stats used for sheet to pull updated info
+    stats = {
+    "STR": character.str,
+    "DEX": character.dex,
+    "CON": character.con,
+    "INT": character.int,
+    "WIS": character.wis,
+    "CHA": character.cha,
+    "HP": character.hp,
+    "AC": character.arm_c,
+    "GP": character.gold,
+    "SPD": character.spd,
+    "LEVEL": character.lvl,
+    "XP" : character.xp,
 }
 
- # Generate and display the character sheet
-def sheet(): 
-    stats["STR"] = playerOne.str
-    stats["DEX"] = playerOne.dex
-    stats["CON"] = playerOne.con
-    stats["INT"] = playerOne.int
-    stats["WIS"] = playerOne.wis
-    stats["CHA"] = playerOne.cha
-    stats["HP"] = playerOne.hp
-    stats["AC"] = playerOne.arm_c
-    stats["GP"] = playerOne.gold
-    stats["SPD"] = playerOne.spd
-    stats["LEVEL"] = playerOne.lvl
-    stats["XP"] = playerOne.xp
+
+    stats["STR"] = character.str
+    stats["DEX"] = character.dex
+    stats["CON"] = character.con
+    stats["INT"] = character.int
+    stats["WIS"] = character.wis
+    stats["CHA"] = character.cha
+    stats["HP"] = character.hp
+    stats["AC"] = character.arm_c
+    stats["GP"] = character.gold
+    stats["SPD"] = character.spd
+    stats["LEVEL"] = character.lvl
+    stats["XP"] = character.xp
 
     print(f"""\n
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| NAME: {playerOne.name.upper().center(39)}   |
-| RACE: {playerOne.race.upper().center(39)}   |
-| CLASS: {playerOne.char_class.upper().center(38)}   |
+| NAME: {character.name.upper().center(39)}   |
+| RACE: {character.race.upper().center(39)}   |
+| CLASS: {character.char_class.upper().center(38)}   |
 | LEVEL: {stats['LEVEL']}{' '*(2-len(str(stats['LEVEL'])))}                                       |
 |                                                 |
 | STR: {stats['STR']}{' '*(2-len(str(stats['STR'])))} | DEX: {stats['DEX']}{' '*(2-len(str(stats['DEX'])))} | CON: {stats['CON']}{' '*(2-len(str(stats['CON'])))} | INT: {stats['INT']}{' '*(2-len(str(stats['INT'])))} | WIS: {stats['WIS']}{' '*(2-len(str(stats['WIS'])))} | 
@@ -269,7 +255,7 @@ def sheet():
 
 
 #Call playerOne character sheet function
-sheet()
+sheet(playerOne)
 
 
 def resume():
