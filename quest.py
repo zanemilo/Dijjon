@@ -1,4 +1,4 @@
-import main as m
+
 
 class Quest():
 
@@ -13,13 +13,36 @@ class Quest():
         self.completion = completion
 
         self.info = {
-            'Quest Name' : self.quest_name,
-            'Objective' : self.objective,
-            'Task' : self.task,
-            'Reward' : self.reward,
-            'Completion' : self.completion,
+            'quest Name' : self.quest_name,
+            'objective' : self.objective,
+            'task' : self.task,
+            'reward' : self.reward,
+            'completion' : self.completion,
         }
 
+        self.quests = { 
+            'primary' : {},
+            'secondary' : {},
+            'misc' : {}
+        }
+
+    def check_quest_status(self):
+        """Return instance quest info"""
+        print(f'{self.info}')
+
+    def add_quest_tracker(self, priority):
+        """Used during instance initialization to place into proper priority tracker"""
+        self.new_quest = {}
+        self.new_quest.update(self.info)
+        if priority == 'primary':
+            self.quests['primary'] = self.new_quest
+        elif priority == 'secondary':
+            self.quests['secondary'] = self.new_quest
+        elif priority == 'misc':
+            self.quests['misc'] = self.new_quest
+        else:
+            print(f'Error while adding {self.quest_name} to quest tracker')
+            pass
 
     # def create_quest():  #Quest Generation: Create a function that generates quests based on certain criteria, such as the player's level, location, and faction affiliation. This function can randomly select a quest template from a pool of pre-defined quests and fill in the details based on the criteria.
     #     if m.playerOne.level == 1:
@@ -38,4 +61,6 @@ class Quest():
 
 # test quest instance
 starter_quest = Quest('Humble Beginnings', 'Find your way to the docks.', False, 'Big Fish')
+
+print(starter_quest.info)
 
