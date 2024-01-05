@@ -99,3 +99,6 @@ class Player:
         for item in self.inventory:
             print(f'{num}. {item} - {self.inventory[item]}') # item would be the name (key), self.inventory[item] would be the corresponding value
             num += 1
+
+    def modifier(stat):
+        return (int((stat - 10)/2))

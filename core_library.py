@@ -1,4 +1,29 @@
+import Item as i
+import dice_Roll
 
+#creates instance of Items class name, description and value as arguments
+inn_items = {
+"Oats" : i.Item("Oats","As you observe the oats, their small and unassuming appearance belies the nourishing and hearty sustenance they provide, a testament to the adage that good things come in small packages.",1),
+"Bread" : i.Item("Bread","As the aroma of freshly baked inn bread wafts towards you, its unpretentious and humble exterior masks the warm, comforting sustenance it promises, a tribute to the saying that true beauty lies in simplicity.",2),
+"Pie" : i.Item("Pie","As your eyes settle on the apple pie, the aroma of freshly baked cinnamon and butter wafts towards you, enticing your taste buds with the promise of a warm and flaky crust enveloping sweet and tangy apples, a quintessential treat that evokes memories of home and comfort.",3),
+"Ale" : i.Item("Ale","The inn's modest ale is a simple yet satisfying drink, with a smooth taste that lingers on the tongue.",1),
+"Milk" : i.Item("Milk","As you obtain a glass of milk, the creamy white liquid provides a soothing and wholesome taste, evoking a sense of comfort and simplicity.",2),
+"Water Mug" : i.Item("Water Mug","The clear and unremarkable appearance of the water in the mug was a refreshing contrast to the chaos of the world around it.",0),
+
+
+}
+
+
+#creates instance of Items class with self, name, desc, val, damage, damage_type, poisoned, enchant as arguments
+melee_items = {
+"Sword" : i.Melee_Item("Sword","A sword, a radiant emblem of timeless valor and ardent passion.",5,dice_Roll.roll_d6(),"Slashing",False,None),
+"Axe" : i.Melee_Item("Axe","An axe, a rugged embodiment of unyielding strength and untamed spirit.",8,dice_Roll.roll_d8(),"Slashing",False,None),
+"Spear" : i.Melee_Item("Spear","A spear, a poised extension of precision and swiftness.",6,dice_Roll.roll_d6(),"Piercing",False,None),
+"Dagger" : i.Melee_Item("Dagger","A dagger, a clandestine whisper in the night, wields both elegance and treachery.",4,dice_Roll.roll_d4(),"Piercing",False,None),
+"Fist" : i.Melee_Item("Fist","A fist, an embodiment of raw power",0,1,"Blunt",False,None),
+"Hammer" : i.Melee_Item("Hammer","A hammer, a mighty embodiment of thunderous strength and unrelenting force",8,dice_Roll.roll_d8(),"Blunt",False,None),
+
+}
 
 # random names
 name_list = ["Aarav",

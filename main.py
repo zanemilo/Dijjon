@@ -176,12 +176,13 @@ playerOne = creator.create_character()
 
 
      
-
+# Refactored to Player Class
 def modifier(stat):
     return (int((stat - 10)/2))
 
 
-#creates instance of Items class name, description and value as arguments
+# Refactored to core_library
+# creates instance of Items class name, description and value as arguments
 inn_items = {
 "Oats" : Item("Oats","As you observe the oats, their small and unassuming appearance belies the nourishing and hearty sustenance they provide, a testament to the adage that good things come in small packages.",1),
 "Bread" : Item("Bread","As the aroma of freshly baked inn bread wafts towards you, its unpretentious and humble exterior masks the warm, comforting sustenance it promises, a tribute to the saying that true beauty lies in simplicity.",2),
@@ -193,8 +194,8 @@ inn_items = {
 
 }
 
-
-#creates instance of Items class with self, name, desc, val, damage, damage_type, poisoned, enchant as arguments
+# Refactored to core_library
+# creates instance of Items class with self, name, desc, val, damage, damage_type, poisoned, enchant as arguments
 melee_items = {
 "Sword" : Melee_Item("Sword","A sword, a radiant emblem of timeless valor and ardent passion.",5,dice_Roll.roll_d6(),"Slashing",False,None),
 "Axe" : Melee_Item("Axe","An axe, a rugged embodiment of unyielding strength and untamed spirit.",8,dice_Roll.roll_d8(),"Slashing",False,None),
