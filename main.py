@@ -1,6 +1,7 @@
 import random
 import buildMob
 import dice_Roll
+import Player
 
 from settings import Settings as s
 
