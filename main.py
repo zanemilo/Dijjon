@@ -104,12 +104,14 @@ class Melee_Item(Item):
 
 class CharacterCreator(Character):
 
+    # Refactored to CL for referencing later in main
     races = {
         "Human": "Human",
         "Elf": "Elf",
         "Dwarf": "Dwarf",
     }
 
+    # Refactored to CL for referencing later in main
     classes = {
         "Fighter": Fighter,
         "Rogue": Rogue,
@@ -271,7 +273,7 @@ def resume():
         print(f"\nBy default you will be returned to the Main Menu, aka 'start_menu()'\n")
         start_menu()
 
-
+# Refactoring to trade class
 def has_gold_check(item_cost):
     """function called to check if the player has sufficient gold to pay for an item/service/interaction"""
     item_cost = 0
@@ -350,13 +352,13 @@ def start_menu():
         start_menu()
 
 # defines rent a room function, needs to be tested to see if hp is restored properly
-def rent_a_room():
+def rent_a_room(player):
     print("rent_a_room() function start")
     print(f"\nYou rent a room for the rest of the day...\n")
-    if playerOne.hp < playerOne.hpMax:
-        playerOne.hp = playerOne.hpMax
+    if player.hp < player.hpMax:
+        player.hp = player.hpMax
         print('Hp restored to\n')
-        print(playerOne.hp)
+        print(player.hp)
     # global last_var
     # last_var()
     print("rent_a_room() function end")

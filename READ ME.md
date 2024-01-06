@@ -1,5 +1,5 @@
 This is the official documentation for Dijjon Beta.
-READ ME Last Updated on 1/5/2024
+READ ME Last Updated on 1/6/2024
 
 
 
@@ -33,3 +33,5 @@ Bugs to fix:
 Major Change Log:
 
 Integrated DijjonAlphaDevelopment folder with Git for ease of tracking progress. (win+x+i, then cd to alph dev folder, git status, git commit -m)
+
+Refactoring player and npc creation to dedicated class files to be referenced in main. Expanded Classes and Races which have been refactored to core library 1/6/2024
