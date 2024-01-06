@@ -116,21 +116,21 @@ class CharacterCreator(Character):
         "Wizard": Wizard,
     }
 
-    # creates function with a for loop to print each of the classes dictionary items
+    # function with a for loop to print each of the classes dictionary items
     def class_List(self):
         num = 1
         for class_Array in self.classes:
             print(f'{num}. {class_Array}')
             num += 1
 
-    # creates function with a for loop to print a each of the races dictionary items
+    # function with a for loop to print a each of the races dictionary items
     def race_List(self):
         num = 1
         for race_Array in self.races:
             print(f'{num}. {race_Array}')
             num += 1
 
-    #checks if class name input is in the class list
+    # checks if class name input is in the class list
     def get_valid_class(self):
         valid_class = False
         while not valid_class:

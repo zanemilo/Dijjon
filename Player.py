@@ -1,3 +1,6 @@
+import core_library as cl
+import random as r
+
 
 class Player:
     """Main Player Class with Mutators, Accessors, Attributes and other variable"""
@@ -102,3 +105,24 @@ class Player:
 
     def modifier(stat):
         return (int((stat - 10)/2))
+    
+    def display_info(self):
+        """Display player's info"""
+        print(f"Name: {self.get_name()}\nRace: {self.get_race()}\nCharacter class: {self.get_char_class()}\nGold: {self.get_gold()}\nArmor Class: {self.get_arm_c()}\nHP: {self.get_hp()}\nMax HP: {self.get_hpMax()}\nSpeed: {self.get_spd()}\nXP: {self.get_xp()}\nLevel: {self.get_lvl()} ")
+
+# # Test Randomness into Player creation, can be used to build NPCs
+# random_name_num = r.randint(0, len(cl.name_list) - 1)
+# random_name = cl.name_list[random_name_num]
+
+# random_race_num = r.randint(0, len(cl.races) - 1)
+# random_race = cl.races[random_race_num]
+
+# random_class_num = r.randint(0, len(cl.classes) - 1)
+# random_class = cl.classes[random_class_num]
+
+# print(f"{random_name_num} {random_race_num} {random_class_num}")
+
+# # Test instatiate testPlayer Player object
+# testPlayer = Player(random_name, random_race, random_class)
+
+# testPlayer.display_info()

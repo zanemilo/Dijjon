@@ -1,7 +1,7 @@
 import Item as i
 import dice_Roll
 
-#creates instance of Items class name, description and value as arguments
+# creates instance of Items class name, description and value as arguments
 inn_items = {
 "Oats" : i.Item("Oats","As you observe the oats, their small and unassuming appearance belies the nourishing and hearty sustenance they provide, a testament to the adage that good things come in small packages.",1),
 "Bread" : i.Item("Bread","As the aroma of freshly baked inn bread wafts towards you, its unpretentious and humble exterior masks the warm, comforting sustenance it promises, a tribute to the saying that true beauty lies in simplicity.",2),
@@ -13,8 +13,36 @@ inn_items = {
 
 }
 
+# list of available races
+races = [
+    "Dragonborn",
+    "Dwarf",
+    "Elf",
+    "Gnome",
+    "Half-Elf",
+    "Halfling",
+    "Half-Orc",
+    "Human",
+    "Tiefling",
+]
 
-#creates instance of Items class with self, name, desc, val, damage, damage_type, poisoned, enchant as arguments
+# list of available races
+classes = [
+    "Barbarian",
+    "Bard",
+    "Cleric",
+    "Druid",
+    "Fighter",
+    "Monk",
+    "Paladin",
+    "Ranger",
+    "Rogue",
+    "Sorcerer",
+    "Warlock",
+    "Wizard",
+]
+
+# creates instance of Items class with self, name, desc, val, damage, damage_type, poisoned, enchant as arguments
 melee_items = {
 "Sword" : i.Melee_Item("Sword","A sword, a radiant emblem of timeless valor and ardent passion.",5,dice_Roll.roll_d6(),"Slashing",False,None),
 "Axe" : i.Melee_Item("Axe","An axe, a rugged embodiment of unyielding strength and untamed spirit.",8,dice_Roll.roll_d8(),"Slashing",False,None),
