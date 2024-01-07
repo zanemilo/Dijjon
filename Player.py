@@ -104,6 +104,24 @@ class Player:
     
     def set_cha(self, cha):
         self.cha = cha
+
+    def get_str(self):
+        return self.str
+    
+    def set_str(self, str):
+        self.str = str
+
+    def get_dex(self):
+        return self.dex
+    
+    def set_dex(self, dex):
+        self.dex = dex
+
+    def get_con(self):
+        return self.con
+    
+    def set_con(self, con):
+        self.con = con
         
     def get_item(self, amount, item):
         """add, append the item and amount into the self.inventory"""

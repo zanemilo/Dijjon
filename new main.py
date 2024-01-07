@@ -29,7 +29,7 @@ main_game_loop = True
 while main_game_loop:
 
     player = create_character() # this makes it so the class instance created inside this function is accessible outside of the fucntions scope
-    player.display_info()
-    master.sheet(player)
+    player.display_info() # simple layout player info
+    master.sheet(player) # character sheet style layout player info
 
     input() # hold here

@@ -5,7 +5,7 @@ from core_library import classes
 class Master:
     """Class for actions or deciscions a DM would typically make in the overarching gameplay, story etc."""
 
-    def sheet(character):  # FIX ME: After implementing child classes for char_classes redirect this to print stats from there
+    def sheet(self, character):  # passed testing in new main
         """Generate and display the character sheet"""
     
         #dictionary of character instance's stats used for sheet to pull updated info
