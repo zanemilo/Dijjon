@@ -81,6 +81,12 @@ class Player:
     def set_xp(self, xp):
         self.xp = xp
 
+    def get_lvl(self):
+        return self.lvl
+
+    def set_lvl(self, lvl):
+        self.lvl = lvl
+
     def get_int(self):
         return self.int
     
@@ -126,7 +132,7 @@ class Player:
     
     def display_info(self):
         """Display player's info"""
-        print(f"Name: {self.get_name()}\nRace: {self.get_race()}\nCharacter class: {self.get_char_class()}\nGold: {self.get_gold()}\nArmor Class: {self.get_arm_c()}\nHP: {self.get_hp()}\nMax HP: {self.get_hpMax()}\nSpeed: {self.get_spd()}\nXP: {self.get_xp()}\nLevel: {self.get_lvl()} ")
+        print(f"Name: {self.get_name()}\nRace: {self.get_race()}\nCharacter class: {self.get_char_class()}\nGold: {self.get_gold()}\nArmor Class: {self.get_arm_c()}\nHP: {self.get_hp()}\nMax HP: {self.get_hpMax()}\nSpeed: {self.get_spd()}\nXP: {self.get_xp()}\nLevel: {self.get_lvl()}\nStr: {self.get_str()}\nDex: {self.get_dex()}\nCon: {self.get_con()}\nInt: {self.get_int()}\nWis: {self.get_wis()}\nCha: {self.get_cha()}\n")
 
 
 # # Test Randomness into Player creation, can be used to build NPCs
