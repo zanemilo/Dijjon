@@ -100,26 +100,19 @@ class Master:
         return race_name
     
     def valid_class(self, class_name): # passed testing in new main
-        """checks if class name input is in the class list"""
+        """checks if class name arg is in the class list"""
 
         if class_name in classes:
             return True
         elif class_name not in classes:
-            return False
-        else:
-            print("Error: class_name provided as argument was not found in core_library classes list.\nReturning False as default.")
-            return False
-        
+            return False 
     
-    def valid_race(self, race_name):
-        """checks if race name input is in the race list"""
+    def valid_race(self, race_name): # passed testing in new main
+        """checks if race name arg is in the race list"""
         
-        if race_name in classes:
+        if race_name in races:
             return True
-        elif race_name not in classes:
-            return False
-        else:
-            print("Error: race_name provided as argument was not found in core_library classes list.\nReturning False as default.")
+        elif race_name not in races:
             return False
 
     def create_character(self):
