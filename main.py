@@ -29,22 +29,24 @@ class Character:
 
     def get_item(player, amount, item):
         """add, append the item and amount into the player.inventory"""
+
         player.inventory[item] = amount
         print(f"{player.name} recieved {amount} {item}!\n")
     
     def give_item(player, action, amount, item):
         """method for user character giving away, selling, dropping, donating an item"""
+
         if item not in player.inventory:
             print('You do not have enough', item, f'to {action}!\n')
         elif player.inventory[item] < amount or player.inventory[item] == 0:
             print('You do not have enough', item, f'to {action}!\n')
         else:
-            player.inventory.pop(item) #this should fix the bug of keeping item in inv but removes all not some
-            #player.inventory[item] -= amount 
+            player.inventory.pop(item) #this should fix the bug of keeping item in inv but removes all not some 
             print(f"{player.name} {action} {amount} {item}\n")
 
     def show_inventory(player):
         """Displays player's inventory contents"""
+
         num = 1
         for item in player.inventory:
             print(f'{num}. {item} - {player.inventory[item]}') # item would be the name (key), player.inventory[item] would be the corresponding value
@@ -53,6 +55,7 @@ class Character:
 
 class Fighter(Character):
     """Fighter class, subclass of Character"""
+
     def __init__(self, name, race):
         super().__init__(name, race, "Fighter")
         self.str = 2 + dice_Roll.roll_stats()
@@ -64,6 +67,7 @@ class Fighter(Character):
 
 class Rogue(Character):
     """Rogue class, subclass of Character"""
+
     def __init__(self, name, race):
         super().__init__(name, race, "Rogue")
         self.str = 1 + dice_Roll.roll_stats()
@@ -75,6 +79,7 @@ class Rogue(Character):
 
 class Wizard(Character):
     """Wizard class, subclass of Character"""
+
     def __init__(self, name, race):
         super().__init__(name, race, "Wizard")
         self.str = 0 + dice_Roll.roll_stats()
@@ -87,6 +92,7 @@ class Wizard(Character):
 
 class Item():
     """Item class: think template for items in game"""
+
     def __init__(self, name, desc, val):
         self.name = name
         self.desc = desc
@@ -94,6 +100,7 @@ class Item():
 
 class Melee_Item(Item):
     """Melee_Item class: subclass to Item"""
+
     def __init__(self, name, desc, val, damage, damage_type, poisoned, enchant):
         super().__init__(name, desc, val)
         self.damage = damage
@@ -118,15 +125,17 @@ class CharacterCreator(Character):
         "Wizard": Wizard,
     }
 
-    # function with a for loop to print each of the classes dictionary items
     def class_List(self):
+        """function with a for loop to print each of the classes dictionary items"""
+
         num = 1
         for class_Array in self.classes:
             print(f'{num}. {class_Array}')
             num += 1
 
-    # function with a for loop to print a each of the races dictionary items
     def race_List(self):
+        """function with a for loop to print a each of the races dictionary items"""
+
         num = 1
         for race_Array in self.races:
             print(f'{num}. {race_Array}')
@@ -134,6 +143,8 @@ class CharacterCreator(Character):
 
     # checks if class name input is in the class list
     def get_valid_class(self):
+        """checks if class name input is in the class list"""
+
         valid_class = False
         while not valid_class:
             self.class_List()
@@ -145,8 +156,8 @@ class CharacterCreator(Character):
                 print(f"Invalid class name: {class_name}\n")
         return class_name
     
-    #checks if race name input is in the race list
     def get_valid_race(self):
+        """checks if race name input is in the race list"""
         valid_race = False
         while not valid_race:
             self.race_List()
@@ -158,9 +169,8 @@ class CharacterCreator(Character):
                 print(f"Invalid race name: {race_name}\n")
         return race_name
 
-    # method to prompt user for name then resaves the input to title case
-    # class choice and race choice
     def create_character(self):
+        """method to prompt user for name then resaves the input to title case class choice and race choice"""
          
         name = input("Enter your name:\n")
         name = name.title()
