@@ -11,267 +11,267 @@ last_var = None
 
 
 #think about storing info into dictionary with corresponding key : value
-class Character:
-    """Base Class for all characters whether user controlled or NPC"""
-    def __init__(self, name, race, char_class):
-        self.name = name
-        self.race = race
-        self.char_class = char_class
-    gold = 10
-    arm_c = 10
-    hp = 6
-    hpMax = 6
-    spd = 30
-    xp = 0
-    lvl = 1
+# class Character:
+#     """Base Class for all characters whether user controlled or NPC"""
+#     def __init__(self, name, race, char_class):
+#         self.name = name
+#         self.race = race
+#         self.char_class = char_class
+#     gold = 10
+#     arm_c = 10
+#     hp = 6
+#     hpMax = 6
+#     spd = 30
+#     xp = 0
+#     lvl = 1
 
-    inventory = {}
+#     inventory = {}
 
-    def get_item(player, amount, item):
-        """add, append the item and amount into the player.inventory"""
+#     def get_item(player, amount, item):
+#         """add, append the item and amount into the player.inventory"""
 
-        player.inventory[item] = amount
-        print(f"{player.name} recieved {amount} {item}!\n")
+#         player.inventory[item] = amount
+#         print(f"{player.name} recieved {amount} {item}!\n")
     
-    def give_item(player, action, amount, item):
-        """method for user character giving away, selling, dropping, donating an item"""
+#     def give_item(player, action, amount, item):
+#         """method for user character giving away, selling, dropping, donating an item"""
 
-        if item not in player.inventory:
-            print('You do not have enough', item, f'to {action}!\n')
-        elif player.inventory[item] < amount or player.inventory[item] == 0:
-            print('You do not have enough', item, f'to {action}!\n')
-        else:
-            player.inventory.pop(item) #this should fix the bug of keeping item in inv but removes all not some 
-            print(f"{player.name} {action} {amount} {item}\n")
+#         if item not in player.inventory:
+#             print('You do not have enough', item, f'to {action}!\n')
+#         elif player.inventory[item] < amount or player.inventory[item] == 0:
+#             print('You do not have enough', item, f'to {action}!\n')
+#         else:
+#             player.inventory.pop(item) #this should fix the bug of keeping item in inv but removes all not some 
+#             print(f"{player.name} {action} {amount} {item}\n")
 
-    def show_inventory(player):
-        """Displays player's inventory contents"""
+#     def show_inventory(player):
+#         """Displays player's inventory contents"""
 
-        num = 1
-        for item in player.inventory:
-            print(f'{num}. {item} - {player.inventory[item]}') # item would be the name (key), player.inventory[item] would be the corresponding value
-            num += 1
-
-
-class Fighter(Character):
-    """Fighter class, subclass of Character"""
-
-    def __init__(self, name, race):
-        super().__init__(name, race, "Fighter")
-        self.str = 2 + dice_Roll.roll_stats()
-        self.dex = 1 + dice_Roll.roll_stats()
-        self.con = 2 + dice_Roll.roll_stats()
-        self.int = 0 + dice_Roll.roll_stats()
-        self.wis = 0 + dice_Roll.roll_stats()
-        self.cha = 0 + dice_Roll.roll_stats()
-
-class Rogue(Character):
-    """Rogue class, subclass of Character"""
-
-    def __init__(self, name, race):
-        super().__init__(name, race, "Rogue")
-        self.str = 1 + dice_Roll.roll_stats()
-        self.dex = 2 + dice_Roll.roll_stats()
-        self.con = 1 + dice_Roll.roll_stats()
-        self.int = 0 + dice_Roll.roll_stats()
-        self.wis = 0 + dice_Roll.roll_stats()
-        self.cha = 0 + dice_Roll.roll_stats()
-
-class Wizard(Character):
-    """Wizard class, subclass of Character"""
-
-    def __init__(self, name, race):
-        super().__init__(name, race, "Wizard")
-        self.str = 0 + dice_Roll.roll_stats()
-        self.dex = 0 + dice_Roll.roll_stats()
-        self.con = 1 + dice_Roll.roll_stats()
-        self.int = 2 + dice_Roll.roll_stats()
-        self.wis = 2 + dice_Roll.roll_stats()
-        self.cha = 0 + dice_Roll.roll_stats()
+#         num = 1
+#         for item in player.inventory:
+#             print(f'{num}. {item} - {player.inventory[item]}') # item would be the name (key), player.inventory[item] would be the corresponding value
+#             num += 1
 
 
-class Item():
-    """Item class: think template for items in game"""
+# class Fighter(Character):
+#     """Fighter class, subclass of Character"""
 
-    def __init__(self, name, desc, val):
-        self.name = name
-        self.desc = desc
-        self.val = val
+#     def __init__(self, name, race):
+#         super().__init__(name, race, "Fighter")
+#         self.str = 2 + dice_Roll.roll_stats()
+#         self.dex = 1 + dice_Roll.roll_stats()
+#         self.con = 2 + dice_Roll.roll_stats()
+#         self.int = 0 + dice_Roll.roll_stats()
+#         self.wis = 0 + dice_Roll.roll_stats()
+#         self.cha = 0 + dice_Roll.roll_stats()
 
-class Melee_Item(Item):
-    """Melee_Item class: subclass to Item"""
+# class Rogue(Character):
+#     """Rogue class, subclass of Character"""
 
-    def __init__(self, name, desc, val, damage, damage_type, poisoned, enchant):
-        super().__init__(name, desc, val)
-        self.damage = damage
-        self.damage_type = damage_type
-        self.poisoned = poisoned
-        self.enchant = enchant
+#     def __init__(self, name, race):
+#         super().__init__(name, race, "Rogue")
+#         self.str = 1 + dice_Roll.roll_stats()
+#         self.dex = 2 + dice_Roll.roll_stats()
+#         self.con = 1 + dice_Roll.roll_stats()
+#         self.int = 0 + dice_Roll.roll_stats()
+#         self.wis = 0 + dice_Roll.roll_stats()
+#         self.cha = 0 + dice_Roll.roll_stats()
+
+# class Wizard(Character):
+#     """Wizard class, subclass of Character"""
+
+#     def __init__(self, name, race):
+#         super().__init__(name, race, "Wizard")
+#         self.str = 0 + dice_Roll.roll_stats()
+#         self.dex = 0 + dice_Roll.roll_stats()
+#         self.con = 1 + dice_Roll.roll_stats()
+#         self.int = 2 + dice_Roll.roll_stats()
+#         self.wis = 2 + dice_Roll.roll_stats()
+#         self.cha = 0 + dice_Roll.roll_stats()
 
 
-class CharacterCreator(Character):
+# class Item():
+#     """Item class: think template for items in game"""
 
-    # Refactored to CL for referencing later in main
-    races = {
-        "Human": "Human",
-        "Elf": "Elf",
-        "Dwarf": "Dwarf",
-    }
+#     def __init__(self, name, desc, val):
+#         self.name = name
+#         self.desc = desc
+#         self.val = val
 
-    # Refactored to CL for referencing later in main
-    classes = {
-        "Fighter": Fighter,
-        "Rogue": Rogue,
-        "Wizard": Wizard,
-    }
+# class Melee_Item(Item):
+#     """Melee_Item class: subclass to Item"""
 
-    def class_List(self):
-        """function with a for loop to print each of the classes dictionary items"""
+#     def __init__(self, name, desc, val, damage, damage_type, poisoned, enchant):
+#         super().__init__(name, desc, val)
+#         self.damage = damage
+#         self.damage_type = damage_type
+#         self.poisoned = poisoned
+#         self.enchant = enchant
 
-        num = 1
-        for class_Array in self.classes:
-            print(f'{num}. {class_Array}')
-            num += 1
 
-    def race_List(self):
-        """function with a for loop to print a each of the races dictionary items"""
+# class CharacterCreator(Character):
 
-        num = 1
-        for race_Array in self.races:
-            print(f'{num}. {race_Array}')
-            num += 1
+#     # Refactored to CL for referencing later in main
+#     races = {
+#         "Human": "Human",
+#         "Elf": "Elf",
+#         "Dwarf": "Dwarf",
+#     }
 
-    # checks if class name input is in the class list
-    def get_valid_class(self):
-        """checks if class name input is in the class list"""
+#     # Refactored to CL for referencing later in main
+#     classes = {
+#         "Fighter": Fighter,
+#         "Rogue": Rogue,
+#         "Wizard": Wizard,
+#     }
 
-        valid_class = False
-        while not valid_class:
-            self.class_List()
-            class_name = input(f"Please choose your character's class: \n")
-            class_name = class_name.title()
-            if class_name in self.classes:
-                valid_class = True
-            else:
-                print(f"Invalid class name: {class_name}\n")
-        return class_name
+#     def class_List(self):
+#         """function with a for loop to print each of the classes dictionary items"""
+
+#         num = 1
+#         for class_Array in self.classes:
+#             print(f'{num}. {class_Array}')
+#             num += 1
+
+#     def race_List(self):
+#         """function with a for loop to print a each of the races dictionary items"""
+
+#         num = 1
+#         for race_Array in self.races:
+#             print(f'{num}. {race_Array}')
+#             num += 1
+
+#     # checks if class name input is in the class list
+#     def get_valid_class(self):
+#         """checks if class name input is in the class list"""
+
+#         valid_class = False
+#         while not valid_class:
+#             self.class_List()
+#             class_name = input(f"Please choose your character's class: \n")
+#             class_name = class_name.title()
+#             if class_name in self.classes:
+#                 valid_class = True
+#             else:
+#                 print(f"Invalid class name: {class_name}\n")
+#         return class_name
     
-    def get_valid_race(self):
-        """checks if race name input is in the race list"""
-        valid_race = False
-        while not valid_race:
-            self.race_List()
-            race_name = input(f"Choose your character's race:\n")
-            race_name = race_name.title()
-            if race_name in self.races:
-                valid_race = True
-            else:
-                print(f"Invalid race name: {race_name}\n")
-        return race_name
+#     def get_valid_race(self):
+#         """checks if race name input is in the race list"""
+#         valid_race = False
+#         while not valid_race:
+#             self.race_List()
+#             race_name = input(f"Choose your character's race:\n")
+#             race_name = race_name.title()
+#             if race_name in self.races:
+#                 valid_race = True
+#             else:
+#                 print(f"Invalid race name: {race_name}\n")
+#         return race_name
 
-    def create_character(self):
-        """method to prompt user for name then resaves the input to title case class choice and race choice"""
+#     def create_character(self):
+#         """method to prompt user for name then resaves the input to title case class choice and race choice"""
          
-        name = input("Enter your name:\n")
-        name = name.title()
-        print('Name Stored as:',name, '\n')
-        char_class = self.get_valid_class()
-        race = self.get_valid_race()
-        character_class = self.classes.get(char_class, None)
-        if character_class is None:
-            raise ValueError(f"Invalid class name: {char_class}\n")
-        return character_class(name, race)
+#         name = input("Enter your name:\n")
+#         name = name.title()
+#         print('Name Stored as:',name, '\n')
+#         char_class = self.get_valid_class()
+#         race = self.get_valid_race()
+#         character_class = self.classes.get(char_class, None)
+#         if character_class is None:
+#             raise ValueError(f"Invalid class name: {char_class}\n")
+#         return character_class(name, race)
 
-creator = CharacterCreator(None, None, None)
+# creator = CharacterCreator(None, None, None)
 
-playerOne = creator.create_character()
+# playerOne = creator.create_character()
 
 
      
-# Refactored to Player Class
-def modifier(stat):
-    return (int((stat - 10)/2))
+# # Refactored to Player Class
+# def modifier(stat):
+#     return (int((stat - 10)/2))
 
 
-# Refactored to core_library
-# creates instance of Items class name, description and value as arguments
-inn_items = {
-"Oats" : Item("Oats","As you observe the oats, their small and unassuming appearance belies the nourishing and hearty sustenance they provide, a testament to the adage that good things come in small packages.",1),
-"Bread" : Item("Bread","As the aroma of freshly baked inn bread wafts towards you, its unpretentious and humble exterior masks the warm, comforting sustenance it promises, a tribute to the saying that true beauty lies in simplicity.",2),
-"Pie" : Item("Pie","As your eyes settle on the apple pie, the aroma of freshly baked cinnamon and butter wafts towards you, enticing your taste buds with the promise of a warm and flaky crust enveloping sweet and tangy apples, a quintessential treat that evokes memories of home and comfort.",3),
-"Ale" : Item("Ale","The inn's modest ale is a simple yet satisfying drink, with a smooth taste that lingers on the tongue.",1),
-"Milk" : Item("Milk","As you obtain a glass of milk, the creamy white liquid provides a soothing and wholesome taste, evoking a sense of comfort and simplicity.",2),
-"Water Mug" : Item("Water Mug","The clear and unremarkable appearance of the water in the mug was a refreshing contrast to the chaos of the world around it.",0),
+# # Refactored to core_library
+# # creates instance of Items class name, description and value as arguments
+# inn_items = {
+# "Oats" : Item("Oats","As you observe the oats, their small and unassuming appearance belies the nourishing and hearty sustenance they provide, a testament to the adage that good things come in small packages.",1),
+# "Bread" : Item("Bread","As the aroma of freshly baked inn bread wafts towards you, its unpretentious and humble exterior masks the warm, comforting sustenance it promises, a tribute to the saying that true beauty lies in simplicity.",2),
+# "Pie" : Item("Pie","As your eyes settle on the apple pie, the aroma of freshly baked cinnamon and butter wafts towards you, enticing your taste buds with the promise of a warm and flaky crust enveloping sweet and tangy apples, a quintessential treat that evokes memories of home and comfort.",3),
+# "Ale" : Item("Ale","The inn's modest ale is a simple yet satisfying drink, with a smooth taste that lingers on the tongue.",1),
+# "Milk" : Item("Milk","As you obtain a glass of milk, the creamy white liquid provides a soothing and wholesome taste, evoking a sense of comfort and simplicity.",2),
+# "Water Mug" : Item("Water Mug","The clear and unremarkable appearance of the water in the mug was a refreshing contrast to the chaos of the world around it.",0),
 
 
-}
+# }
 
-# Refactored to core_library
-# creates instance of Items class with self, name, desc, val, damage, damage_type, poisoned, enchant as arguments
-melee_items = {
-"Sword" : Melee_Item("Sword","A sword, a radiant emblem of timeless valor and ardent passion.",5,dice_Roll.roll_d6(),"Slashing",False,None),
-"Axe" : Melee_Item("Axe","An axe, a rugged embodiment of unyielding strength and untamed spirit.",8,dice_Roll.roll_d8(),"Slashing",False,None),
-"Spear" : Melee_Item("Spear","A spear, a poised extension of precision and swiftness.",6,dice_Roll.roll_d6(),"Piercing",False,None),
-"Dagger" : Melee_Item("Dagger","A dagger, a clandestine whisper in the night, wields both elegance and treachery.",4,dice_Roll.roll_d4(),"Piercing",False,None),
-"Fist" : Melee_Item("Fist","A fist, an embodiment of raw power",0,1,"Blunt",False,None),
-"Hammer" : Melee_Item("Hammer","A hammer, a mighty embodiment of thunderous strength and unrelenting force",8,dice_Roll.roll_d8(),"Blunt",False,None),
+# # Refactored to core_library
+# # creates instance of Items class with self, name, desc, val, damage, damage_type, poisoned, enchant as arguments
+# melee_items = {
+# "Sword" : Melee_Item("Sword","A sword, a radiant emblem of timeless valor and ardent passion.",5,dice_Roll.roll_d6(),"Slashing",False,None),
+# "Axe" : Melee_Item("Axe","An axe, a rugged embodiment of unyielding strength and untamed spirit.",8,dice_Roll.roll_d8(),"Slashing",False,None),
+# "Spear" : Melee_Item("Spear","A spear, a poised extension of precision and swiftness.",6,dice_Roll.roll_d6(),"Piercing",False,None),
+# "Dagger" : Melee_Item("Dagger","A dagger, a clandestine whisper in the night, wields both elegance and treachery.",4,dice_Roll.roll_d4(),"Piercing",False,None),
+# "Fist" : Melee_Item("Fist","A fist, an embodiment of raw power",0,1,"Blunt",False,None),
+# "Hammer" : Melee_Item("Hammer","A hammer, a mighty embodiment of thunderous strength and unrelenting force",8,dice_Roll.roll_d8(),"Blunt",False,None),
 
-}
+# }
 
- 
-def sheet(character): 
-    """Generate and display the character sheet"""
+#   # refactored to master
+# def sheet(character): 
+#     """Generate and display the character sheet"""
     
-    #dictionary of character instance's stats used for sheet to pull updated info
-    stats = {
-    "STR": character.str,
-    "DEX": character.dex,
-    "CON": character.con,
-    "INT": character.int,
-    "WIS": character.wis,
-    "CHA": character.cha,
-    "HP": character.hp,
-    "AC": character.arm_c,
-    "GP": character.gold,
-    "SPD": character.spd,
-    "LEVEL": character.lvl,
-    "XP" : character.xp,
-}
+#     #dictionary of character instance's stats used for sheet to pull updated info
+#     stats = {
+#     "STR": character.str,
+#     "DEX": character.dex,
+#     "CON": character.con,
+#     "INT": character.int,
+#     "WIS": character.wis,
+#     "CHA": character.cha,
+#     "HP": character.hp,
+#     "AC": character.arm_c,
+#     "GP": character.gold,
+#     "SPD": character.spd,
+#     "LEVEL": character.lvl,
+#     "XP" : character.xp,
+# }
 
 
-    stats["STR"] = character.str
-    stats["DEX"] = character.dex
-    stats["CON"] = character.con
-    stats["INT"] = character.int
-    stats["WIS"] = character.wis
-    stats["CHA"] = character.cha
-    stats["HP"] = character.hp
-    stats["AC"] = character.arm_c
-    stats["GP"] = character.gold
-    stats["SPD"] = character.spd
-    stats["LEVEL"] = character.lvl
-    stats["XP"] = character.xp
+#     stats["STR"] = character.str
+#     stats["DEX"] = character.dex
+#     stats["CON"] = character.con
+#     stats["INT"] = character.int
+#     stats["WIS"] = character.wis
+#     stats["CHA"] = character.cha
+#     stats["HP"] = character.hp
+#     stats["AC"] = character.arm_c
+#     stats["GP"] = character.gold
+#     stats["SPD"] = character.spd
+#     stats["LEVEL"] = character.lvl
+#     stats["XP"] = character.xp
 
-    print(f"""\n
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| NAME: {character.name.upper().center(39)}   |
-| RACE: {character.race.upper().center(39)}   |
-| CLASS: {character.char_class.upper().center(38)}   |
-| LEVEL: {stats['LEVEL']}{' '*(2-len(str(stats['LEVEL'])))}                                       |
-|                                                 |
-| STR: {stats['STR']}{' '*(2-len(str(stats['STR'])))} | DEX: {stats['DEX']}{' '*(2-len(str(stats['DEX'])))} | CON: {stats['CON']}{' '*(2-len(str(stats['CON'])))} | INT: {stats['INT']}{' '*(2-len(str(stats['INT'])))} | WIS: {stats['WIS']}{' '*(2-len(str(stats['WIS'])))} | 
-| CHA: {stats['CHA']}{' '*(2-len(str(stats['CHA'])))} |                                       |
-| ARMOR CLASS: {stats['AC']}{' '*(2-len(str(stats['AC'])))} | SPEED: {stats['SPD']}{' '*(2-len(str(stats['SPD'])))}                     |
-|                                                 |
-| HIT POINTS: {stats['HP']}{' '*(2-len(str(stats['HP'])))} | SPELL SLOTS: {'0'+' '*(2-len('2'))}                |
-|                                                 |
-| GOLD: {stats['GP']}{' '*(2-len(str(stats['GP'])))} | XP: {stats['XP']}{' '*(2-len(str(stats['XP'])))}                               |
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\n\n\n\n""")
+#     print(f"""\n
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# | NAME: {character.name.upper().center(39)}   |
+# | RACE: {character.race.upper().center(39)}   |
+# | CLASS: {character.char_class.upper().center(38)}   |
+# | LEVEL: {stats['LEVEL']}{' '*(2-len(str(stats['LEVEL'])))}                                       |
+# |                                                 |
+# | STR: {stats['STR']}{' '*(2-len(str(stats['STR'])))} | DEX: {stats['DEX']}{' '*(2-len(str(stats['DEX'])))} | CON: {stats['CON']}{' '*(2-len(str(stats['CON'])))} | INT: {stats['INT']}{' '*(2-len(str(stats['INT'])))} | WIS: {stats['WIS']}{' '*(2-len(str(stats['WIS'])))} | 
+# | CHA: {stats['CHA']}{' '*(2-len(str(stats['CHA'])))} |                                       |
+# | ARMOR CLASS: {stats['AC']}{' '*(2-len(str(stats['AC'])))} | SPEED: {stats['SPD']}{' '*(2-len(str(stats['SPD'])))}                     |
+# |                                                 |
+# | HIT POINTS: {stats['HP']}{' '*(2-len(str(stats['HP'])))} | SPELL SLOTS: {'0'+' '*(2-len('2'))}                |
+# |                                                 |
+# | GOLD: {stats['GP']}{' '*(2-len(str(stats['GP'])))} | XP: {stats['XP']}{' '*(2-len(str(stats['XP'])))}                               |
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# \n\n\n\n""")
 
 
-#Call playerOne character sheet function
-sheet(playerOne)
+# #Call playerOne character sheet function
+# sheet(playerOne)
 
 
 def resume():
