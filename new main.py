@@ -15,5 +15,6 @@ main_game_loop = True
 
 while main_game_loop:
 
-    master.race_list()
+    x = master.valid_class(input().title())
+    print(f"Passed Test: {x}")
     input() # hold here

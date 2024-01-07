@@ -71,32 +71,56 @@ class Master:
             print(f'{num}. {race_type}')
             num += 1
 
-    def get_valid_class(self):
-        """checks if class name input is in the class list"""
+    def get_valid_class(self): # passed testing in new main
+        """Prompt user for class against list of avaiable classes then validates input and returns class name"""
 
-        valid_class = False
-        while not valid_class:
-            self.class_List()
-            class_name = input(f"Please choose your character's class: \n")
+        valid = False
+        while not valid:
+            self.class_list()
+            class_name = input(f"Type in your character's class from the options above:\n")
             class_name = class_name.title()
-            if class_name in self.classes:
-                valid_class = True
+            if class_name in classes:
+                valid = True
             else:
                 print(f"Invalid class name: {class_name}\n")
         return class_name
     
-    def get_valid_race(self):
-        """checks if race name input is in the race list"""
-        valid_race = False
-        while not valid_race:
-            self.race_List()
-            race_name = input(f"Choose your character's race:\n")
+    def get_valid_race(self): # passed testing in new main
+        """Prompt user for race against list of avaiable racees then validates input and returns race name"""
+
+        valid = False
+        while not valid:
+            self.race_list()
+            race_name = input(f"Type in your character's race from the options above:\n")
             race_name = race_name.title()
-            if race_name in self.races:
-                valid_race = True
+            if race_name in races:
+                valid = True
             else:
                 print(f"Invalid race name: {race_name}\n")
         return race_name
+    
+    def valid_class(self, class_name): # passed testing in new main
+        """checks if class name input is in the class list"""
+
+        if class_name in classes:
+            return True
+        elif class_name not in classes:
+            return False
+        else:
+            print("Error: class_name provided as argument was not found in core_library classes list.\nReturning False as default.")
+            return False
+        
+    
+    def valid_race(self, race_name):
+        """checks if race name input is in the race list"""
+        
+        if race_name in classes:
+            return True
+        elif race_name not in classes:
+            return False
+        else:
+            print("Error: race_name provided as argument was not found in core_library classes list.\nReturning False as default.")
+            return False
 
     def create_character(self):
         """method to prompt user for name then resaves the input to title case class choice and race choice"""
