@@ -20,6 +20,7 @@ Current Goals of project: priority from high-low as follows(!,H,M,L)
 
 [L]Create a dictionary with mad-lib type phrases that each type of commoner job might say. This could include information about other NPCs within town, comments on events (including events triggered by the player)
 
+[L] Player Inventory UI currently displays as "1. Oats - 1" Where the second '1' is the monetary value of the oats. It looks like player has 1 oats. Should change to displayt either quantity or label it as '1 gp'
 
 
 

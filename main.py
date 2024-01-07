@@ -287,7 +287,7 @@ def has_gold_check(item_cost):
 
 
 # updatable var for perception difficulty. Determines if player will find something. consider adding a difficulty function to make this adjustable from one place later on
-perception_Difficulty = 10 + dice_Roll.roll_d4()
+perception_Difficulty = 0 + dice_Roll.roll_d4()
 
 # rolls a check against the player's wis modifier to see if they can discover an inn nearby
 # idea for future, create instead a 'search' function that can use 'inn','cave',etc. as an argument
@@ -326,7 +326,7 @@ def start_menu():
             print(f"\nYou have yet to embark on a journey. Please select a valid option.\n")
             start_menu()
     elif choice == "2":
-        sheet()
+        sheet(playerOne)
         start_menu()    
     elif choice == "3":
         search_for_inn()
@@ -425,7 +425,7 @@ def inn_menu():
         print(f"\nchoice == 2 start\n")
         last_var = inn_menu
         print(f"last_var set to inn_menu()")
-        rent_a_room()
+        rent_a_room(playerOne)
         print(f"\nchoice == 2 end\nAttempting to execute last_var...\n")
         last_var()
     elif choice == "3":
@@ -441,7 +441,6 @@ def inn_menu():
             playerOne.gold += 10
             print(f"{playerOne.name}'s Gold Total: {playerOne.gold}\n")
             rumors_selected_prev = True
-            sheet.stats["GP"] = playerOne.gold
             quest_menu1() # requires new menu func
     elif choice == "4":
         start_menu() # requires new menu func
