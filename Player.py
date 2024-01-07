@@ -1,5 +1,6 @@
 import core_library as cl
 import random as r
+import master as m
 
 
 class Player:
@@ -92,8 +93,7 @@ class Player:
         elif self.inventory[item] < amount or self.inventory[item] == 0:
             print('You do not have enough', item, f'to {action}!\n')
         else:
-            self.inventory.pop(item) #this should fix the bug of keeping item in inv but removes all not some
-            #player.inventory[item] -= amount 
+            self.inventory.pop(item) #this should fix the bug of keeping item in inv but removes all not some 
             print(f"{self.name} {action} {amount} {item}\n")
 
     def show_inventory(self):
@@ -109,6 +109,9 @@ class Player:
     def display_info(self):
         """Display player's info"""
         print(f"Name: {self.get_name()}\nRace: {self.get_race()}\nCharacter class: {self.get_char_class()}\nGold: {self.get_gold()}\nArmor Class: {self.get_arm_c()}\nHP: {self.get_hp()}\nMax HP: {self.get_hpMax()}\nSpeed: {self.get_spd()}\nXP: {self.get_xp()}\nLevel: {self.get_lvl()} ")
+
+    def player_sheet(self):
+        m.sheet(self)
 
 # # Test Randomness into Player creation, can be used to build NPCs
 # random_name_num = r.randint(0, len(cl.name_list) - 1)
