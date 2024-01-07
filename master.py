@@ -55,7 +55,7 @@ class Master:
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         \n\n\n\n""")
 
-    def class_list(self):
+    def class_list(self): # passed testing in new main
         """function with a for loop to print each of the classes dictionary items"""
 
         num = 1
@@ -63,15 +63,14 @@ class Master:
             print(f'{num}. {class_type}')
             num += 1
 
-    def race_list(self):
+    def race_list(self): # passed testing in new main
         """function with a for loop to print a each of the races dictionary items"""
 
         num = 1
-        for race_Array in self.races:
-            print(f'{num}. {race_Array}')
+        for race_type in races:
+            print(f'{num}. {race_type}')
             num += 1
 
-    # checks if class name input is in the class list
     def get_valid_class(self):
         """checks if class name input is in the class list"""
 
@@ -111,3 +110,4 @@ class Master:
         if character_class is None:
             raise ValueError(f"Invalid class name: {char_class}\n")
         return character_class(name, race)
+    
