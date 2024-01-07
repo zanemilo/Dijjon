@@ -1,7 +1,7 @@
 import random
 import buildMob
 import dice_Roll
-import Player
+import Player as p
 import master as m
 from settings import Settings as s
 
@@ -11,10 +11,25 @@ last_var = None
 # Instantiate Master in main
 master = m.Master()
 
+def create_character():
+        """function to prompt user for all information to build a Player class instance as the users character."""
+         
+        name = input("Enter your name:\n")
+        name = name.title()
+
+        char_class = master.get_valid_class()
+
+        race = master.get_valid_race()
+    
+        player = p.Player(name, race, char_class)
+        return player
+
 main_game_loop = True
 
 while main_game_loop:
 
-    x = master.valid_race(input().title())
-    print(f"Passed Test: {x}")
+    player = create_character() # this makes it so the class instance created inside this function is accessible outside of the fucntions scope
+    player.display_info()
+    master.sheet(player)
+
     input() # hold here

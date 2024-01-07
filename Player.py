@@ -6,7 +6,7 @@ import master as m
 class Player:
     """Main Player Class with Mutators, Accessors, Attributes and other variable"""
 
-    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, hp = 6, hpMax = 6, spd = 30, xp = 0, lvl = 1):
+    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, hp = 6, hpMax = 6, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0):
         self.name = name
         self.race = race
         self.char_class = char_class
@@ -17,6 +17,12 @@ class Player:
         self.spd = spd
         self.xp = xp
         self.lvl = lvl
+        self.str = str
+        self.dex = dex
+        self.con = con
+        self.int = int
+        self.wis = wis
+        self.cha = cha
         self.inventory = {}
         # FIX ME: Add all player attributes here
 
@@ -75,12 +81,24 @@ class Player:
     def set_xp(self, xp):
         self.xp = xp
 
-    def get_lvl(self):
-        return self.lvl
+    def get_int(self):
+        return self.int
     
-    def set_lvl(self, lvl):
-        self.lvl = lvl
+    def set_int(self, int):
+        self.int = int
 
+    def get_wis(self):
+        return self.wis
+    
+    def set_wis(self, wis):
+        self.wis = wis
+    
+    def get_cha(self):
+        return self.cha
+    
+    def set_cha(self, cha):
+        self.cha = cha
+        
     def get_item(self, amount, item):
         """add, append the item and amount into the self.inventory"""
         self.inventory[item] = amount
@@ -110,8 +128,6 @@ class Player:
         """Display player's info"""
         print(f"Name: {self.get_name()}\nRace: {self.get_race()}\nCharacter class: {self.get_char_class()}\nGold: {self.get_gold()}\nArmor Class: {self.get_arm_c()}\nHP: {self.get_hp()}\nMax HP: {self.get_hpMax()}\nSpeed: {self.get_spd()}\nXP: {self.get_xp()}\nLevel: {self.get_lvl()} ")
 
-    def player_sheet(self):
-        m.sheet(self)
 
 # # Test Randomness into Player creation, can be used to build NPCs
 # random_name_num = r.randint(0, len(cl.name_list) - 1)

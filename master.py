@@ -5,7 +5,7 @@ from core_library import classes
 class Master:
     """Class for actions or deciscions a DM would typically make in the overarching gameplay, story etc."""
 
-    def sheet(character): 
+    def sheet(character):  # FIX ME: After implementing child classes for char_classes redirect this to print stats from there
         """Generate and display the character sheet"""
     
         #dictionary of character instance's stats used for sheet to pull updated info
@@ -115,16 +115,4 @@ class Master:
         elif race_name not in races:
             return False
 
-    def create_character(self):
-        """method to prompt user for name then resaves the input to title case class choice and race choice"""
-         
-        name = input("Enter your name:\n")
-        name = name.title()
-        print('Name Stored as:',name, '\n')
-        char_class = self.get_valid_class()
-        race = self.get_valid_race()
-        character_class = self.classes.get(char_class, None)
-        if character_class is None:
-            raise ValueError(f"Invalid class name: {char_class}\n")
-        return character_class(name, race)
     
