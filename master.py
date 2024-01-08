@@ -1,4 +1,6 @@
 import Player as p
+import settings
+import random as r
 from core_library import races
 from core_library import classes
 
@@ -115,4 +117,21 @@ class Master:
         elif race_name not in races:
             return False
 
-    
+    def check(self, check_type): 
+        """Handles validating check types and calculating DC amount based on randint range and current_difficulty settings"""
+
+        valid_types = [
+        'acrobatics', 'animal_handling', 'arcana', 'athletics', 'deception', 
+        'history', 'insight', 'intimidation', 'investigation', 'medicine', 
+        'nature', 'perception', 'performance', 'persuasion', 'religion', 'sleight_of_hand', 
+        'stealth', 'survival', 'str','dex', 'con', 'int', 'wis', 'cha']
+
+        check_dc = 0
+
+        if check_type.lower() in valid_types:
+            check_dc = r.randint(5, 13) + settings.current_difficulty + settings.location_difficulty
+            return check_dc
+
+
+# Instance of settings
+settings = settings.Settings(2)

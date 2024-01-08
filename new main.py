@@ -32,4 +32,7 @@ while main_game_loop:
     player.display_info() # simple layout player info
     master.sheet(player) # character sheet style layout player info
 
+    x = master.check('religion')
+    print(f'{x}')
+        
     input() # hold here
