@@ -22,6 +22,8 @@ Current Goals of project: priority from high-low as follows(!,H,M,L)
 
 [L] Make a list of optional check types based on location of player. For example, location is 'cave' check_type_options = ['perception', 'investigation', etc.] Also can base this off of event type, or action type. For example event is 'dialogue' check_type_options = ['decpetion', 'persuasion', etc.]
 
+[L] Improve roll_stats in dice_Roll file by allowing user to select which stats recieve which values as they are being rolled until all the stats are filled or chosen.
+
 
 
 

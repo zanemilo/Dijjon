@@ -145,7 +145,7 @@ class Player:
             print(f'{num}. {item} - {self.inventory[item]}') # item would be the name (key), self.inventory[item] would be the corresponding value
             num += 1
 
-    def modifier(stat):
+    def get_modifier(stat):
         return (int((stat - 10)/2))
     
     def display_info(self):
