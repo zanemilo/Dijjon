@@ -20,6 +20,8 @@ Current Goals of project: priority from high-low as follows(!,H,M,L)
 
 [L] Player Inventory UI currently displays as "1. Oats - 1" Where the second '1' is the monetary value of the oats. It looks like player has 1 oats. Should change to displayt either quantity or label it as '1 gp'
 
+[L] Make a list of optional check types based on location of player. For example, location is 'cave' check_type_options = ['perception', 'investigation', etc.] Also can base this off of event type, or action type. For example event is 'dialogue' check_type_options = ['decpetion', 'persuasion', etc.]
+
 
 
 
