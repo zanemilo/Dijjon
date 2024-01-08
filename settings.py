@@ -1,22 +1,34 @@
-
+import random as r
 
 class Settings:
     """A class to store all settings for Dijjon"""
 
-    def __init__(self):
+    def __init__(self, current_difficulty):
         """Initialize game settings"""
-    
+        self.current_difficulty = current_difficulty
+
+    def check(self, check_type):
+        """Handles validating check types and calculating DC amount based on randint range and current_difficulty settings"""
+
+        valid_types = [
+        'acrobatics', 'animal_handling', 'arcana', 'athletics', 'deception', 
+        'history', 'insight', 'intimidation', 'investigation', 'medicine', 
+        'nature', 'perception', 'performance', 'persuasion', 'religion', 'sleight_of_hand', 
+        'stealth', 'survival', 'str','dex', 'con', 'int', 'wis', 'cha']
+
+        check_dc = 0
+
+        if check_type.lower() in valid_types:
+            check_dc = r.randint(5, 13) + self.current_difficulty
+            return check_dc
+            
+# # Settings instance for testing
+# settings = Settings(2)
+# history_check = settings.check("history") # test history check
+
+# print(f'History check DC: {history_check}') # Print test results
 
 
-        # difficulty settings
-        def difficulty(self):
-            """this can be accessed or referenced while building mobs, weighting an event for example, a mob in normal may have d20 + 0 while very_hard is d20 + 4"""
-            self.cant_lose = -30 # still possible to lose, fail, die
-            self.easy = -1
-            self.normal = 0
-            self.hard = 2
-            self.very_hard = 4
-            self.cant_win = 30 # still possible to win or suceed, damn near impossible tho
 
             
             
