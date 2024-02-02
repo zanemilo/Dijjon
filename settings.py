@@ -13,7 +13,6 @@ class Settings:
         self.location_difficulty = location_difficulty
 
     
-
     def get_diff(self):
         """Returns current difficulty"""
         return self.current_difficulty
