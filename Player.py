@@ -152,7 +152,7 @@ class Player:
             num += 1
 
     def get_modifier(self, stat):
-        return (int((stat - 10)/2))
+        return (stat - 10)/2
     
     def display_info(self):
         """Display player's info"""

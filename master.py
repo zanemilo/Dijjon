@@ -126,7 +126,7 @@ class Master:
         name = input("Enter your name:\n")
         return name.title()
     
-    def check(self, check_type, player_roll): 
+    def check(self, check_type, player_roll): # passed testing in new main
         """Handles validating check types and calculating DC amount based on randint range and current_difficulty settings"""
 
         valid_types = [

@@ -6,7 +6,7 @@
 
 import random
 import buildMob as mb
-import dice_Roll as roll
+import dice_Roll as dr
 import Player as p
 import master as m
 from settings import Settings as s
@@ -22,7 +22,7 @@ main_game_loop = True
 player = p.Player(master.get_name(), master.get_valid_race(), master.get_valid_class())
 # player.display_info() # simple layout player info
 master.sheet(player) # character sheet style layout player info
-
+print(master.check('dex', (dr.roll_d20() + player.get_modifier(player.get_dex()))))
 
 while main_game_loop:
 
