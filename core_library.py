@@ -1,3 +1,8 @@
+# Dijjon Core Library File
+# Developed & designed by: Zane M Deso
+# Purpose: Used to store all in game content, implementation of a helper class to access each list/dict accordingly is required.
+# Perhaps using master to navigate the tables would be best.
+
 import Item as i
 import dice_Roll
 

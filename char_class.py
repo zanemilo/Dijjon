@@ -1,3 +1,7 @@
+# Dijjon character class Class
+# Developed & designed by: Zane M Deso
+# Purpose: This is supposed to emulate the class/job that a player or NPC or enemy can have. It still needs to be implemented fully.
+
 import Player
 import dice_Roll
 
@@ -11,6 +15,7 @@ class Fighter(Player):
         self.int = 0 + dice_Roll.roll_stats()
         self.wis = 0 + dice_Roll.roll_stats()
         self.cha = 0 + dice_Roll.roll_stats()
+    # FIX ME: Requires accessors and mutators
 
 class Rogue(Player):
     """Rogue class, subclass of Player"""
@@ -22,6 +27,7 @@ class Rogue(Player):
         self.int = 0 + dice_Roll.roll_stats()
         self.wis = 0 + dice_Roll.roll_stats()
         self.cha = 0 + dice_Roll.roll_stats()
+        # FIX ME: Requires accessors and mutators
 
 class Wizard(Player):
     """Wizard class, subclass of Player"""
@@ -33,3 +39,4 @@ class Wizard(Player):
         self.int = 2 + dice_Roll.roll_stats()
         self.wis = 2 + dice_Roll.roll_stats()
         self.cha = 0 + dice_Roll.roll_stats()
+        # FIX ME: Requires accessors and mutators

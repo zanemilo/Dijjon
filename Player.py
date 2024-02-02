@@ -1,10 +1,15 @@
+# Dijjon Player Class
+# Developed & designed by: Zane M Deso
+# Purpose: Used to handle player creation, stats, attributes, status effect, and other associated player centered functions
+
+
 import core_library as cl
 import random as r
 import master as m
 
 
 class Player:
-    """Main Player Class with Mutators, Accessors, Attributes and other variable"""
+    """Main Player Class with Mutators, Accessors, Attributes and other variables"""
 
     def __init__(self, name, race, char_class, gold = 10, arm_c = 10, hp = 6, hpMax = 6, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0):
         self.name = name

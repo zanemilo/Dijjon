@@ -1,3 +1,7 @@
+# Dijjon master Class
+# Developed & designed by: Zane M Deso
+# Purpose: This class is the main driver and will be the DM in a sense when it comes to making choices behind the scenes.
+
 import Player as p
 import settings
 import random as r

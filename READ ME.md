@@ -1,7 +1,7 @@
 This is the official documentation for Dijjon Beta.
-READ ME Last Updated on 1/6/2024
+READ ME Last Updated on 1/29/2024
 
-
+Dijjon (Current working name) is a text based game based on the Fantasy RPG world of Dijjon based on the creative work of John Philips Swanson. The game takes the player through a broken down version of the DnD 5e campaign written by John Philips Swanson. The text based game will showcase dynamics by injecting RNG into every interaction, encounter and outcome. No two play throughs should be the same. 
 
 
 

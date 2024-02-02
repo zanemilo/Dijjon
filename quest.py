@@ -1,4 +1,6 @@
-
+# Dijjon Quest Class
+# Developed & designed by: Zane M Deso
+# Purpose: Used to handle quest creation, rewards, main objectives, task, each task status, completion requirement and other associated player centered functions
 
 class Quest():
 
@@ -26,8 +28,6 @@ class Quest():
             'secondary' : {},
             'misc' : {}
         }
-
-        
 
     def check_quest_status(self):
         """Return instance quest info"""

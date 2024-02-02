@@ -1,3 +1,7 @@
+# Dijjon Quest Class
+# Developed & designed by: Zane M Deso
+# Purpose: Used to handle settings for the game.
+
 import random as r
 
 class Settings:
@@ -11,9 +15,11 @@ class Settings:
     
 
     def get_diff(self):
+        """Returns current difficulty"""
         return self.current_difficulty
     
     def set_diff(self, difficulty):
+        """Change current difficulty"""
         
         valid_difficulties = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 

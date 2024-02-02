@@ -1,3 +1,9 @@
+# Dijjon New Main
+# Developed & designed by: Zane M Deso
+# Content by: John P Swanson
+# Purpose: New Main will act as the entrance point for the program to run.
+
+
 import random
 import buildMob
 import dice_Roll
@@ -32,7 +38,5 @@ while main_game_loop:
     player.display_info() # simple layout player info
     master.sheet(player) # character sheet style layout player info
 
-    x = master.check('religion')
-    print(f'{x}')
         
     input() # hold here

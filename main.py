@@ -1,3 +1,8 @@
+# Dijjon OLD Main 
+# Developed & designed by: Zane M Deso
+# Purpose: This was the previous version of main that is being used to reference that everything has been migrated over. This will eventually be deleted.
+
+
 import random
 import buildMob
 import dice_Roll

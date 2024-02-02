@@ -1,3 +1,7 @@
+# Dijjon Mob Class
+# Developed & designed by: Zane M Deso
+# Purpose: This class is in charge of building and tearing down Mobs as needed for encounters, battle, filling dungeons, etc.
+
 import random as r
 
 from core_library import monster_dict as md
@@ -10,7 +14,6 @@ from settings import Settings as s
 class Mob:
     """Class that can be called to build random mobs"""
 
-
     # if no arguement is given, the mob will have the default randomized name, mob, mob type, etc.
     def __init__(self, name=None, mob=None, hp=None, arm_c=None, spd=30, xp=None, lvl=None):
 
@@ -20,28 +23,13 @@ class Mob:
         self.name = name if name is not None else r.choice(nl)
         self.mob = mob if mob is not None else r.choice(list(md.keys()))
         self.hp = hp if hp is not None else r.randint(10, 30)
-        self.arm_c = arm_c if arm_c is not None else r.randint(10, 15)
+        self.arm_c = arm_c if arm_c is not None else r.randint(10, 15) 
         self.spd = spd
         self.xp = xp if xp is not None else r.randint(10, 30)
         self.lvl = lvl if lvl is not None else r.randint(1, 3)
-        
-        # mob type based of mob selected
-        self.mobtype = md[f'{self.mob}']
-
-        # set max health (maybe make this a tuple? not sure if I need to)
-        self.max_hp = self.hp
-
-        # dict of stats for accessing, altering
-        self.info = { 
-            'name' : self.name, 
-            'mob' : self.mob,
-            'type' : self.mobtype, 
-            'hp' : self.hp, 
-            'arm_c' : self.arm_c, 
-            'spd' : self.spd, 
-            'xp' : self.xp, 
-            'lvl' : self.lvl,
-            }
+        self.mobtype = md[f'{self.mob}'] # mob type based of mob selected
+        self.max_hp = self.hp # set max health (maybe make this a tuple? not sure if I need to)
+        # FIX ME: Mob Class requires accessors and mutators.
 
     
 

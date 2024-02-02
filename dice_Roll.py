@@ -1,3 +1,7 @@
+# Dijjon dice_Roll Class
+# Developed & designed by: Zane M Deso
+# Purpose: Simply used to simulate die roll according to what rolls would typically be made in DnD 5e
+
 import random
 
 # Function, create rolls list populated with 4 random integers between 1-6, then drops lowest value, then returns sum
