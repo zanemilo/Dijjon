@@ -121,12 +121,12 @@ class Master:
         elif race_name not in races:
             return False
 
-    def get_name(self):
+    def get_name(self): # passed testing in new main
         """prompt user for a name, returns name"""
         name = input("Enter your name:\n")
         return name.title()
     
-    def check(self, check_type): 
+    def check(self, check_type, player_roll): 
         """Handles validating check types and calculating DC amount based on randint range and current_difficulty settings"""
 
         valid_types = [
@@ -136,12 +136,16 @@ class Master:
         'stealth', 'survival', 'str','dex', 'con', 'int', 'wis', 'cha']
 
         check_dc = 0
+        passed_check = False
 
         if check_type.lower() in valid_types:
             check_dc = r.randint(5, 13) + settings.current_difficulty + settings.location_difficulty
-            return check_dc
+            if player_roll >= check_dc:
+                passed_check = True
 
-    def create_character(self):
+            return passed_check
+
+    def create_character(self): # passed testing in new main
         """function to prompt user for all information to build a Player class instance as the users character."""
          
         name = input("Enter your name:\n")
