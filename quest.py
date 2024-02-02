@@ -37,14 +37,12 @@ class Quest():
 
     def add_quest_tracker(self, priority):
         """Used during instatiation to place into proper priority tracker ['primary', 'secondary', or 'misc']"""
-        self.new_quest = {}
-        self.new_quest = self.info
         if priority == 'primary':
-            self.quests['primary'] = self.new_quest
+            self.quests['primary'] = self.info
         elif priority == 'secondary':
-            self.quests['secondary'] = self.new_quest
+            self.quests['secondary'] = self.info
         elif priority == 'misc':
-            self.quests['misc'] = self.new_quest
+            self.quests['misc'] = self.info
         else:
             print(f'Error while adding {self.quest_name} to quest tracker')
             print(priority)
@@ -122,14 +120,16 @@ class Quest():
 
 # test quest instances
 starter_quest = Quest('Humble Beginnings', 'Find your way to the docks.', False, 'Big Fish', 'primary')
-starter_quest.add_quest_tracker(starter_quest.priority)
-        
-Quest.check_quest_status(starter_quest)
+starter_quest.add_quest_tracker(starter_quest.priority)     
+print(starter_quest.get_info())
 
-starter_quest = Quest('Second is the Worst', 'Navigate the open sea.', False, '', 'primary')
-starter_quest.add_quest_tracker(starter_quest.priority)
-        
-Quest.check_quest_status(starter_quest)
+find_boat_quest = Quest('Find a boat', 'Find a Boat', False, 'Boat', 'secondary')
+find_boat_quest.add_quest_tracker(find_boat_quest.priority)  
+print(find_boat_quest.get_info())
+
+next_quest = Quest('Second is the Worst', 'Navigate the open sea.', False, 'Pearl', 'primary')
+next_quest.add_quest_tracker(next_quest.priority)
+print(next_quest.get_info())
 
 
 
