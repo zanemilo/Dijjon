@@ -121,6 +121,11 @@ class Master:
         elif race_name not in races:
             return False
 
+    def get_name(self):
+        """prompt user for a name, returns name"""
+        name = input("Enter your name:\n")
+        return name.title()
+    
     def check(self, check_type): 
         """Handles validating check types and calculating DC amount based on randint range and current_difficulty settings"""
 
@@ -136,6 +141,18 @@ class Master:
             check_dc = r.randint(5, 13) + settings.current_difficulty + settings.location_difficulty
             return check_dc
 
+    def create_character(self):
+        """function to prompt user for all information to build a Player class instance as the users character."""
+         
+        name = input("Enter your name:\n")
+        name = name.title()
+
+        char_class = self.get_valid_class()
+
+        race = self.get_valid_race()
+    
+        player = p(name, race, char_class)
+        return player
 
 # Instance of settings
 settings = settings.Settings(2)

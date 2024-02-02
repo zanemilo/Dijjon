@@ -150,12 +150,14 @@ class Player:
             print(f'{num}. {item} - {self.inventory[item]}') # item would be the name (key), self.inventory[item] would be the corresponding value
             num += 1
 
-    def get_modifier(stat):
+    def get_modifier(self, stat):
         return (int((stat - 10)/2))
     
     def display_info(self):
         """Display player's info"""
         print(f"Name: {self.get_name()}\nRace: {self.get_race()}\nCharacter class: {self.get_char_class()}\nGold: {self.get_gold()}\nArmor Class: {self.get_arm_c()}\nHP: {self.get_hp()}\nMax HP: {self.get_hpMax()}\nSpeed: {self.get_spd()}\nXP: {self.get_xp()}\nLevel: {self.get_lvl()}\nStr: {self.get_str()}\nDex: {self.get_dex()}\nCon: {self.get_con()}\nInt: {self.get_int()}\nWis: {self.get_wis()}\nCha: {self.get_cha()}\n")
+
+    
 
 
 # # Test Randomness into Player creation, can be used to build NPCs
@@ -174,3 +176,5 @@ class Player:
 # testPlayer = Player(random_name, random_race, random_class)
 
 # testPlayer.display_info()
+
+

@@ -17,21 +17,9 @@ last_var = None
 # Instantiate Master in main
 master = m.Master()
 
-def create_character():
-        """function to prompt user for all information to build a Player class instance as the users character."""
-         
-        name = input("Enter your name:\n")
-        name = name.title()
-
-        char_class = master.get_valid_class()
-
-        race = master.get_valid_race()
-    
-        player = p.Player(name, race, char_class)
-        return player
 
 main_game_loop = True
-player = create_character() # this makes it so the player instance created inside this function is accessible outside of the functions scope
+player = p.Player(master.get_name(), master.get_valid_race(), master.get_valid_class())
 # player.display_info() # simple layout player info
 master.sheet(player) # character sheet style layout player info
 
