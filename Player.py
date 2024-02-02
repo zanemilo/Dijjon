@@ -158,11 +158,7 @@ class Player:
         """Takes stat as an args and returns instances stats value"""
         
         stat = stat.lower()
-        valid_types = [
-        'acrobatics', 'animal_handling', 'arcana', 'athletics', 'deception', 
-        'history', 'insight', 'intimidation', 'investigation', 'medicine', 
-        'nature', 'perception', 'performance', 'persuasion', 'religion', 'sleight_of_hand', 
-        'stealth', 'survival', 'str','dex', 'con', 'int', 'wis', 'cha']
+        valid_types = ['str','dex', 'con', 'int', 'wis', 'cha']
 
         if stat in valid_types:
             if stat == 'str':
@@ -180,6 +176,39 @@ class Player:
             else:
                 print(f'Error: An unexpected error occured while attempting to find stat args matching stat for instance\nstat: {stat}')
         
+    def get_skill_stat(self, skill):
+        """Takes skill as an args and returns instances stats value"""
+        
+        stat_mapping = {
+            'acrobatics': self.get_dex(),  # Dexterity for Acrobatics
+            'animal_handling': self.get_wis(),  # Wisdom for Animal Handling
+            'arcana': self.get_int(),  # Intelligence for Arcana
+            'athletics': self.get_str(),  # Strength for Athletics
+            'deception': self.get_cha(),  # Charisma for Deception
+            'history': self.get_int(),  # Intelligence for History
+            'insight': self.get_wis(),  # Wisdom for Insight
+            'intimidation': self.get_cha(),  # Charisma for Intimidation
+            'investigation': self.get_int(),  # Intelligence for Investigation
+            'medicine': self.get_wis(),  # Wisdom for Medicine
+            'nature': self.get_int(),  # Intelligence for Nature
+            'perception': self.get_wis(),  # Wisdom for Perception
+            'performance': self.get_cha(),  # Charisma for Performance
+            'persuasion': self.get_cha(),  # Charisma for Persuasion
+            'religion': self.get_int(),  # Intelligence for Religion
+            'sleight_of_hand': self.get_dex(),  # Dexterity for Sleight of Hand
+            'stealth': self.get_dex(),  # Dexterity for Stealth
+            'survival': self.get_wis(),  # Wisdom for Survival
+        }
+
+        # Convert skill to lowercase for case-insensitive comparison
+        skill = skill.lower()
+
+        if skill in stat_mapping:
+            # Call the corresponding method based on the skill
+            return stat_mapping[skill]
+        else:
+            print(f'Error: Skill "{skill}" not found in the mapping.')
+
     def display_info(self):
         """Display player's info"""
         print(f"Name: {self.get_name()}\nRace: {self.get_race()}\nCharacter class: {self.get_char_class()}\nGold: {self.get_gold()}\nArmor Class: {self.get_arm_c()}\nHP: {self.get_hp()}\nMax HP: {self.get_hpMax()}\nSpeed: {self.get_spd()}\nXP: {self.get_xp()}\nLevel: {self.get_lvl()}\nStr: {self.get_str()}\nDex: {self.get_dex()}\nCon: {self.get_con()}\nInt: {self.get_int()}\nWis: {self.get_wis()}\nCha: {self.get_cha()}\n")
@@ -196,10 +225,12 @@ class Player:
 
         sum_of_player_roll = 0
 
-        if check_type in valid_types:
+        if check_type in valid_types[:valid_types.index('survival')+1]:
+            sum_of_player_roll = dr.roll_d20() + self.get_modifier(self.get_skill_stat(check_type))
+        elif check_type in valid_types:
             sum_of_player_roll = dr.roll_d20() + self.get_modifier(self.get_stat(check_type))
         
-        return sum_of_player_roll
+        return int(sum_of_player_roll)
 
 
 

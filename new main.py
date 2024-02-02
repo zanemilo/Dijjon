@@ -19,12 +19,14 @@ master = m.Master()
 
 
 main_game_loop = True
-player = p.Player(master.get_name(), master.get_valid_race(), master.get_valid_class())
-# player.display_info() # simple layout player info
+player = p.Player(master.get_name(), master.get_valid_race(), master.get_valid_class()) # instantiate a new player
 master.sheet(player) # character sheet style layout player info
-p_roll = player.player_check_roll('dex')
-print(f'Player Rolled: {p_roll}')
-print(f'Passed Check?: {master.check("dex", p_roll)}')
+ 
+print(f'Passed dex Check?: {master.check("dex", player.player_check_roll("dex"))}') # example dex check
+print(f'Passed int Check?: {master.check("int", player.player_check_roll("int"))}') # example int check
+print(f'Passed arcana Check?: {master.check("arcana", player.player_check_roll("arcana"))}') # example arcana check
+print(f'Passed investigation Check?: {master.check("investigation", player.player_check_roll("investigation"))}') # example investigation check
+print(f'Passed  Check?: {master.check("sleight_of_hand", player.player_check_roll("sleight_of_hand"))}') # example sleight_of_hand check
 
 while main_game_loop:
 

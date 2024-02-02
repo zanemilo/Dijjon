@@ -141,6 +141,7 @@ class Master:
 
         if check_type.lower() in valid_types:
             check_dc = r.randint(5, 13) + settings.current_difficulty + settings.location_difficulty
+            print(f'Check DC: {check_dc}')
             if player_roll >= check_dc:
                 passed_check = True
 
