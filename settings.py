@@ -7,7 +7,7 @@ import random as r
 class Settings:
     """A class to store all settings for Dijjon"""
 
-    def __init__(self, current_difficulty, location_difficulty = 0):
+    def __init__(self, current_difficulty = 2, location_difficulty = 0):
         """Initialize game settings"""
         self.current_difficulty = current_difficulty
         self.location_difficulty = location_difficulty

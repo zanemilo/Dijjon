@@ -155,4 +155,4 @@ class Master:
         return player
 
 # Instance of settings
-settings = settings.Settings(2)
+settings = settings.Settings()
