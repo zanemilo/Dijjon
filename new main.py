@@ -5,8 +5,8 @@
 
 
 import random
-import buildMob
-import dice_Roll
+import buildMob as mb
+import dice_Roll as roll
 import Player as p
 import master as m
 from settings import Settings as s
@@ -31,12 +31,15 @@ def create_character():
         return player
 
 main_game_loop = True
+player = create_character() # this makes it so the player instance created inside this function is accessible outside of the functions scope
+# player.display_info() # simple layout player info
+master.sheet(player) # character sheet style layout player info
+
 
 while main_game_loop:
 
-    player = create_character() # this makes it so the class instance created inside this function is accessible outside of the fucntions scope
-    player.display_info() # simple layout player info
-    master.sheet(player) # character sheet style layout player info
 
-        
+    
+
+
     input() # hold here

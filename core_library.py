@@ -554,3 +554,34 @@ factions = {
     }
 }
 
+# Reward Items Table:
+# This table contains various items that can be used as rewards for players in the game.
+# Each item has a unique identifier (1-10) and includes a name, description, and value.
+reward_items_table = {
+    1: i.Item("Health Potion", "A small vial containing a red liquid. When consumed, it restores health.", 50),
+    2: i.Item("Scroll of Identify", "A parchment containing magical runes. Allows the identification of magical items.", 75),
+    3: i.Item("Lockpicks", "A set of tools used for picking locks. Essential for any rogue.", 30),
+    4: i.Item("Antitoxin", "A small vial containing a substance that provides advantage on saving throws against poison for 1 hour.", 20),
+    5: i.Item("Rope of Climbing", "A 50-foot length of silk rope that can move at your command.", 100),
+    6: i.Item("Goggles of Night", "These goggles allow you to see in darkness as if it were dim light.", 150),
+    7: i.Item("Bag of Holding", "This bag has an interior space considerably larger than its outside dimensions.", 200),
+    8: i.Item("Wand of Magic Missiles", "A wand that can cast Magic Missile at varying levels.", 250),
+    9: i.Item("Ring of Feather Falling", "This ring negates any damage from falling.", 120),
+    10: i.Item("Elixir of Invisibility", "An elixir that grants invisibility for 1 hour.", 100),
+}
+
+# Magical Items Table:
+# This table contains various magical weapons that can be used as rare and powerful rewards for players in the game.
+# Each item has a unique identifier (1-10) and includes a name, description, value, damage, damage type, poisoned, and enchant.
+magical_items_table = {
+    1: i.Melee_Item("Flame Tongue", "A sword with a blade wreathed in fire. Deals extra fire damage.", 1000, dice_Roll.roll_d6(), "Slashing", False, "Fire"),
+    2: i.Melee_Item("Frost Brand", "A sword with a blade of ice. Deals extra cold damage.", 1200, dice_Roll.roll_d6(), "Slashing", False, "Cold"),
+    3: i.Melee_Item("Dragon Slayer", "A sword specifically crafted to slay dragons. Deals extra damage against dragons.", 1500, dice_Roll.roll_d8(), "Slashing", False, "+5 Damage to Dragons"),
+    4: i.Melee_Item("Staff of Power", "A staff that grants the wielder various magical abilities.", 2000, dice_Roll.roll_d6(), "Bludgeoning", False, "Random Magical Abilities"),
+    5: i.Melee_Item("Dagger of Venom", "A dagger coated in venom. Deals poison damage and can poison the target.", 800, dice_Roll.roll_d4(), "Piercing", True, "Poisoned"),
+    6: i.Melee_Item("Hammer of Thunderbolts", "A mighty hammer with lightning enchantments. Deals extra thunder damage.", 1800, dice_Roll.roll_d8(), "Bludgeoning", False, "Thunder"),
+    7: i.Melee_Item("Luck Blade", "A sword that grants the wielder a limited number of wishes.", 2500, dice_Roll.roll_d8(), "Slashing", False, "Grants 3 wishes"),
+    8: i.Melee_Item("Holy Avenger", "A sword imbued with holy magic. Deals extra radiant damage and grants protection against evil.", 2200, dice_Roll.roll_d8(), "Slashing", False, "Radiant"),
+    9: i.Melee_Item("Vorpal Sword", "A sword with the ability to decapitate foes on a critical hit.", 3000, dice_Roll.roll_d10(), "Slashing", False, None),
+    10: i.Melee_Item("Sun Blade", "A sword that emits bright light and deals radiant damage.", 2000, dice_Roll.roll_d8(), "Slashing", False, "Radiant"),
+}
