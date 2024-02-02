@@ -154,11 +154,53 @@ class Player:
     def get_modifier(self, stat):
         return (stat - 10)/2
     
+    def get_stat(self, stat):
+        """Takes stat as an args and returns instances stats value"""
+        
+        stat = stat.lower()
+        valid_types = [
+        'acrobatics', 'animal_handling', 'arcana', 'athletics', 'deception', 
+        'history', 'insight', 'intimidation', 'investigation', 'medicine', 
+        'nature', 'perception', 'performance', 'persuasion', 'religion', 'sleight_of_hand', 
+        'stealth', 'survival', 'str','dex', 'con', 'int', 'wis', 'cha']
+
+        if stat in valid_types:
+            if stat == 'str':
+                return self.get_str()
+            elif stat == 'dex':
+                return self.get_dex()
+            elif stat == 'con':
+                return self.get_con()
+            elif stat == 'int':
+                return self.get_int()
+            elif stat == 'wis':
+                return self.get_wis()
+            elif stat == 'cha':
+                return self.get_cha()
+            else:
+                print(f'Error: An unexpected error occured while attempting to find stat args matching stat for instance\nstat: {stat}')
+        
     def display_info(self):
         """Display player's info"""
         print(f"Name: {self.get_name()}\nRace: {self.get_race()}\nCharacter class: {self.get_char_class()}\nGold: {self.get_gold()}\nArmor Class: {self.get_arm_c()}\nHP: {self.get_hp()}\nMax HP: {self.get_hpMax()}\nSpeed: {self.get_spd()}\nXP: {self.get_xp()}\nLevel: {self.get_lvl()}\nStr: {self.get_str()}\nDex: {self.get_dex()}\nCon: {self.get_con()}\nInt: {self.get_int()}\nWis: {self.get_wis()}\nCha: {self.get_cha()}\n")
 
-    
+    def player_check_roll(self, check_type):
+        """Takes stat as an args and rolls a d20 + the instances stat associated modifier"""
+
+        check_type = check_type.lower()
+        valid_types = [
+        'acrobatics', 'animal_handling', 'arcana', 'athletics', 'deception', 
+        'history', 'insight', 'intimidation', 'investigation', 'medicine', 
+        'nature', 'perception', 'performance', 'persuasion', 'religion', 'sleight_of_hand', 
+        'stealth', 'survival', 'str','dex', 'con', 'int', 'wis', 'cha']
+
+        sum_of_player_roll = 0
+
+        if check_type in valid_types:
+            sum_of_player_roll = dr.roll_d20() + self.get_modifier(self.get_stat(check_type))
+        
+        return sum_of_player_roll
+
 
 
 # # Test Randomness into Player creation, can be used to build NPCs

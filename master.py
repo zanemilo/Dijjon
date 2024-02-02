@@ -129,6 +129,7 @@ class Master:
     def check(self, check_type, player_roll): # passed testing in new main
         """Handles validating check types and calculating DC amount based on randint range and current_difficulty settings"""
 
+        check_type = check_type.lower()
         valid_types = [
         'acrobatics', 'animal_handling', 'arcana', 'athletics', 'deception', 
         'history', 'insight', 'intimidation', 'investigation', 'medicine', 

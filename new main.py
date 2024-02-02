@@ -22,7 +22,9 @@ main_game_loop = True
 player = p.Player(master.get_name(), master.get_valid_race(), master.get_valid_class())
 # player.display_info() # simple layout player info
 master.sheet(player) # character sheet style layout player info
-print(master.check('dex', (dr.roll_d20() + player.get_modifier(player.get_dex()))))
+p_roll = player.player_check_roll('dex')
+print(f'Player Rolled: {p_roll}')
+print(f'Passed Check?: {master.check("dex", p_roll)}')
 
 while main_game_loop:
 
