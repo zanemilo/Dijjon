@@ -12,7 +12,7 @@ import master as m
 class Player:
     """Main Player Class with Mutators, Accessors, Attributes and other variables"""
 
-    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, hp = 6, hpMax = 6, spd = 30, xp = 0, lvl = 1, str = dr.roll_stats(), dex = dr.roll_stats(), con = dr.roll_stats(), int = dr.roll_stats(), wis = dr.roll_stats(), cha = dr.roll_stats()):
+    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, hp = 6, hpMax = 6, spd = 30, xp = 0, lvl = 1, str = (dr.roll_stats() + r.randint(-1, 2)), dex = (dr.roll_stats() + r.randint(-1, 2)), con = (dr.roll_stats() + r.randint(-1, 2)), int = (dr.roll_stats() + r.randint(-1, 2)), wis = (dr.roll_stats() + r.randint(-1, 2)), cha = (dr.roll_stats() + r.randint(-1, 2))):
         self.name = name
         self.race = race
         self.char_class = char_class

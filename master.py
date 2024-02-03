@@ -8,6 +8,7 @@ import random as r
 from core_library import races
 from core_library import classes
 
+
 class Master:
     """Class for actions or deciscions a DM would typically make in the overarching gameplay, story etc."""
 
@@ -126,7 +127,7 @@ class Master:
         name = input("Enter your name:\n")
         return name.title()
     
-    def check(self, check_type, player_roll): # passed testing in new main
+    def check(self, check_type, player_roll, bias = r.randint(1, 18)): # passed testing in new main
         """Handles validating check types and calculating DC amount based on randint range and current_difficulty settings"""
 
         check_type = check_type.lower()
@@ -140,7 +141,7 @@ class Master:
         passed_check = False
 
         if check_type.lower() in valid_types:
-            check_dc = r.randint(5, 13) + settings.current_difficulty + settings.location_difficulty
+            check_dc = bias + settings.current_difficulty + settings.location_difficulty
             # print(f'Check DC: {check_dc}')
             if player_roll >= check_dc:
                 passed_check = True
@@ -159,6 +160,20 @@ class Master:
     
         player = p(name, race, char_class)
         return player
+
+    def opposing_check(self, entity_one, enitity_two, check_type):
+        """Take two opposing instances of (currently only) Player class and conduct rolls and checks"""
+
+        e_one_roll = entity_one.check(check_type, entity_one.player_check_roll(check_type))
+        e_two_roll = enitity_two.check(check_type, enitity_two.player_check_roll(check_type))
+
+        if e_one_roll < e_two_roll:
+            return enitity_two
+        elif e_two_roll < e_one_roll:
+            return entity_one
+        elif e_one_roll == e_two_roll:
+            Master.opposing_check(entity_one, enitity_two, check_type)
+
 
 # Instance of settings
 settings = settings.Settings()
