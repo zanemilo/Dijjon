@@ -34,6 +34,8 @@ print(f'Did {player.get_name()} pass the arcana Check?: {master.check("arcana", 
 print(f'Did {player.get_name()} pass the investigation Check?: {master.check("investigation", player.player_check_roll("investigation"))}') # example investigation check
 print(f'Did {player.get_name()} pass the sleight of hand Check?: {master.check("sleight_of_hand", player.player_check_roll("sleight_of_hand"))}') # example sleight_of_hand check
 
+print(f'The winner of the check is: {master.opposing_check(player, bandit, "str")}')
+
 while main_game_loop:
 
 

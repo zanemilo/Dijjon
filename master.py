@@ -164,8 +164,8 @@ class Master:
     def opposing_check(self, entity_one, enitity_two, check_type):
         """Take two opposing instances of (currently only) Player class and conduct rolls and checks"""
 
-        e_one_roll = entity_one.check(check_type, entity_one.player_check_roll(check_type))
-        e_two_roll = enitity_two.check(check_type, enitity_two.player_check_roll(check_type))
+        e_one_roll = self.check(check_type, entity_one.player_check_roll(check_type))
+        e_two_roll = self.check(check_type, enitity_two.player_check_roll(check_type))
 
         if e_one_roll < e_two_roll:
             return enitity_two
