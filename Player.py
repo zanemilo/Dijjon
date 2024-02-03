@@ -12,7 +12,7 @@ import master as m
 class Player:
     """Main Player Class with Mutators, Accessors, Attributes and other variables"""
 
-    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, hp = 6, hpMax = 6, spd = 30, xp = 0, lvl = 1, str = (dr.roll_stats() + r.randint(-1, 2)), dex = (dr.roll_stats() + r.randint(-1, 2)), con = (dr.roll_stats() + r.randint(-1, 2)), int = (dr.roll_stats() + r.randint(-1, 2)), wis = (dr.roll_stats() + r.randint(-1, 2)), cha = (dr.roll_stats() + r.randint(-1, 2))):
+    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, hp = 6, hpMax = 6, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0):
         self.name = name
         self.race = race
         self.char_class = char_class
@@ -23,12 +23,12 @@ class Player:
         self.spd = spd
         self.xp = xp
         self.lvl = lvl
-        self.str = str
-        self.dex = dex
-        self.con = con
-        self.int = int
-        self.wis = wis
-        self.cha = cha
+        self.str = str + dr.roll_stats() + r.randint(-1, 2)
+        self.dex = dex + dr.roll_stats() + r.randint(-1, 2)
+        self.con = con + dr.roll_stats() + r.randint(-1, 2)
+        self.int = int + dr.roll_stats() + r.randint(-1, 2)
+        self.wis = wis + dr.roll_stats() + r.randint(-1, 2)
+        self.cha = cha + dr.roll_stats() + r.randint(-1, 2)
         self.inventory = {}
         # FIX ME: Add all player attributes here
 
