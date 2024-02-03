@@ -168,11 +168,11 @@ class Master:
         e_two_roll = self.check(check_type, enitity_two.player_check_roll(check_type))
 
         if e_one_roll < e_two_roll:
-            return enitity_two
+            return enitity_two.get_name()
         elif e_two_roll < e_one_roll:
-            return entity_one
+            return entity_one.get_name()
         elif e_one_roll == e_two_roll:
-            Master.opposing_check(entity_one, enitity_two, check_type)
+            return self.opposing_check(entity_one, enitity_two, check_type)
 
 
 # Instance of settings
