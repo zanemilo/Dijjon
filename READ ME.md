@@ -1,5 +1,5 @@
 This is the official documentation for Dijjon Beta.
-READ ME Last Updated on 1/29/2024
+READ ME Last Updated on 2/11/2024
 
 Dijjon (Current working name) is a text based game based on the Fantasy RPG world of Dijjon based on the creative work of John Philips Swanson. The game takes the player through a broken down version of the DnD 5e campaign written by John Philips Swanson. The text based game will showcase dynamics by injecting RNG into every interaction, encounter and outcome. No two play throughs should be the same. 
 
@@ -8,6 +8,14 @@ Dijjon (Current working name) is a text based game based on the Fantasy RPG worl
 
 
 Current Goals of project: priority from high-low as follows(!,H,M,L)
+
+[H] I need to change attribute name convetion for "int" in Player class attributes. It is conflicting with int() function.
+
+[H] Refactor Player class to be a child of an Entity class, then set NPCs and Mobs as childs to the Entity class as well.
+
+[H] Finish Implementation of Combat Class, this is an important feature in the over all game play and needs to be functional.
+
+[H] Finish Implementation of First Bandit Quest Prototype to make a functional demo environment to test new features, troubleshoot bugs, and generally demonstrate with.
 
 [H] Move away from long single file of spaghetti code. I would like to try to refactor bits of code into dedicated files that will be imported into the main game loop later on. This way code is easier read, review takes much less time and focus maintains on development. Break it down into OOP Classes (ie, Player Class should be dedicated class with sep file)
 
