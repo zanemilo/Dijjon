@@ -5,8 +5,10 @@
 import Player as p
 import settings
 import random as r
+import dice_Roll as dr
 from core_library import races
 from core_library import classes
+
 
 
 class Master:
@@ -161,11 +163,11 @@ class Master:
         player = p(name, race, char_class)
         return player
 
-    def opposing_check(self, entity_one, enitity_two, check_type):
+    def opposing_check(self, entity_one, enitity_two, check_type): # passed testing in new main
         """Take two opposing instances of (currently only) Player class and conduct rolls and checks"""
 
-        e_one_roll = self.check(check_type, entity_one.player_check_roll(check_type))
-        e_two_roll = self.check(check_type, enitity_two.player_check_roll(check_type))
+        e_one_roll = self.check(check_type, entity_one.player_check_roll(check_type)) # FIX ME: To adjust this once I have used inheritance correctly,
+        e_two_roll = self.check(check_type, enitity_two.player_check_roll(check_type)) # just use the check_roll method associated from the parent class
 
         if e_one_roll < e_two_roll:
             return enitity_two.get_name()
@@ -174,6 +176,49 @@ class Master:
         elif e_one_roll == e_two_roll:
             return self.opposing_check(entity_one, enitity_two, check_type)
 
+    def combat_simulation(self, entity_one, entity_two):
+        """Simulate turn-based combat between two entities"""
+        print("Starting combat simulation...")
+        while entity_one.get_hp() > 0 and entity_two.get_hp() > 0:
+            # Entity One's turn
+            print(f"{entity_one.get_name()}'s turn:")
+            action = input("Choose an action (attack): ")
+            if action.lower() == "attack":
+                # Calculate attack roll
+                attack_roll = dr.roll_d20() + entity_one.get_modifier(entity_one.get_str())
+                print(f"{entity_one.get_name()} rolls {attack_roll} to attack.")
+                # Check if attack hits
+                if attack_roll >= entity_two.get_arm_c():
+                    damage = dr.roll_d6() + entity_one.get_modifier(entity_one.get_str())
+                    print(f"{entity_one.get_name()} hits {entity_two.get_name()} for {damage} damage!")
+                    entity_two.set_hp(entity_two.get_hp() - damage)
+                else:
+                    print(f"{entity_one.get_name()} misses the attack.")
+
+            # Check if Entity Two is still alive
+            if entity_two.get_hp() <= 0:
+                print(f"{entity_two.get_name()} has been defeated!")
+                break
+
+            # Entity Two's turn
+            print(f"{entity_two.get_name()}'s turn:")
+            action = input("Choose an action (attack): ")
+            if action.lower() == "attack":
+                # Calculate attack roll
+                attack_roll = dr.roll_d20() + entity_two.get_modifier(entity_two.get_str())
+                print(f"{entity_two.get_name()} rolls {attack_roll} to attack.")
+                # Check if attack hits
+                if attack_roll >= entity_one.get_arm_c():
+                    damage = dr.roll_d6() + entity_two.get_modifier(entity_two.get_str())
+                    print(f"{entity_two.get_name()} hits {entity_one.get_name()} for {damage} damage!")
+                    entity_one.set_hp(entity_one.get_hp() - damage)
+                else:
+                    print(f"{entity_two.get_name()} misses the attack.")
+
+            # Check if Entity One is still alive
+            if entity_one.get_hp() <= 0:
+                print(f"{entity_one.get_name()} has been defeated!")
+                break
 
 # Instance of settings
 settings = settings.Settings()

@@ -36,6 +36,8 @@ print(f'Did {player.get_name()} pass the sleight of hand Check?: {master.check("
 
 print(f'The winner of the opposing check is: {master.opposing_check(player, bandit, "str")}')
 
+master.combat_simulation(player, bandit)
+
 while main_game_loop:
 
 

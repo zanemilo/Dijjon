@@ -13,7 +13,7 @@ class Trade:
         self.name = name
 
     def has_gold_check(self, player, item_cost):
-        """function called to check if the player has sufficient gold to pay for an item/service/interaction"""
+        """Function called to check if the player has sufficient gold to pay for an item/service/interaction"""
         item_cost = 0
         if player.gold >= item_cost:
             item_cost = 0

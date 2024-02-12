@@ -12,14 +12,12 @@ import master as m
 class Player:
     """Main Player Class with Mutators, Accessors, Attributes and other variables"""
 
-    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, hp = 6, hpMax = 6, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0):
+    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0,  hp = 6, hpMax = 6):
         self.name = name
         self.race = race
         self.char_class = char_class
         self.gold = gold
         self.arm_c = arm_c
-        self.hp = hp
-        self.hpMax = hpMax
         self.spd = spd
         self.xp = xp
         self.lvl = lvl
@@ -29,10 +27,57 @@ class Player:
         self.int = int + dr.roll_stats() + r.randint(-1, 2)
         self.wis = wis + dr.roll_stats() + r.randint(-1, 2)
         self.cha = cha + dr.roll_stats() + r.randint(-1, 2)
+        self.hp = hp + self.get_modifier(self.con)
+        self.hpMax = hpMax + self.get_modifier(self.con)
         self.inventory = {}
+        self.equipment_slots = {
+            'head': None,
+            'chest': None,
+            'feet': None,
+            'weapon': None,
+            'shield': None,
+            # Add more equipment slots as needed
+        }
         # FIX ME: Add all player attributes here
 
-    # FIX ME: Add/create player associated methods here 
+    # FIX ME: Add/create player associated methods here
+
+    def equip_item(self, item):
+        """Equip an item to the appropriate equipment slot"""
+        # Check if the item is equippable
+        if item.slot not in self.equipment_slots:
+            print(f"{item.name} is not equippable.")
+            return
+        # Check if the slot is already occupied
+        if self.equipment_slots[item.slot] is not None:
+            print(f"{self.name} already has an item equipped in the {item.slot} slot.")
+            return
+        # Equip the item
+        self.equipment_slots[item.slot] = item
+        print(f"{self.name} equipped {item.name}.")
+
+    def unequip_item(self, slot):
+        """Unequip an item from the specified slot"""
+        if slot not in self.equipment_slots:
+            print(f"Invalid equipment slot: {slot}.")
+            return
+        if self.equipment_slots[slot] is None:
+            print(f"No item equipped in {slot} slot.")
+            return
+        # Unequip the item
+        unequipped_item = self.equipment_slots[slot]
+        self.equipment_slots[slot] = None
+        print(f"{self.name} unequipped {unequipped_item.name} from {slot}.")
+
+    def display_equipment(self):
+        """Display the items currently equipped"""
+        print("Equipment:")
+        for slot, item in self.equipment_slots.items():
+            if item:
+                print(f"{slot}: {item.name}")
+            else:
+                print(f"{slot}: Empty")
+
     def get_name(self):
         return self.name
     
@@ -131,7 +176,7 @@ class Player:
         
     def get_item(self, amount, item):
         """add, append the item and amount into the self.inventory"""
-        self.inventory[item] = amount
+        self.inventory[item] += amount
         print(f"{self.name} recieved {amount} {item}!\n")
     
     def give_item(self, action, amount, item):
