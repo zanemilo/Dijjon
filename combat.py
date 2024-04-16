@@ -81,11 +81,11 @@ class Combat:
         # For simplicity, let's assume a basic attack
         print(f"{attacker.get_name()} attacks {target.get_name()}!")
         # Calculate hit roll
-        hit_roll = random.randint(1, 20) + attacker.get_modifier("str")
-        if hit_roll >= target.get_armor_class(): # Hit successful
-            damage = random.randint(1, 6) + attacker.get_modifier("str")
+        hit_roll = random.randint(1, 20) + attacker.get_modifier(attacker.get_str())
+        if hit_roll >= target.get_arm_c(): # Hit successful
+            damage = random.randint(1, 6) + attacker.get_modifier(attacker.get_str())
             print(f"{attacker.get_name()} hits {target.get_name()} for {damage} damage!")
-            target.take_damage(damage)
+            target.set_hp(target.get_hp() - damage)
         else:
             print(f"{attacker.get_name()} misses the attack!") # lets make a table somewhere to add spicy quips and descriptions dynamically instead of the same thing everytime
 
