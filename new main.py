@@ -30,7 +30,7 @@ master.sheet(bandit) # character sheet style layout player info
 #print(f'Did {player.get_name()} pass the investigation Check?: {master.check("investigation", player.player_check_roll("investigation"))}') # example investigation check
 #print(f'The winner of the opposing check is: {master.opposing_check(player, bandit, "str")}') # example opposing check
 
-# master.combat_simulation(player, bandit) # prototype to the prototype combat sim out of master still needs to be cleaned up and used in Comabt class file
+#master.combat_simulation(player, bandit) # prototype to the prototype combat sim out of master still needs to be cleaned up and used in Combat class file
 
 while main_game_loop:
 

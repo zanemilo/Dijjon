@@ -7,7 +7,7 @@ import core_library as cl
 import random as r
 import dice_Roll as dr
 import master as m
-import Entity
+from Entity import Entity  # using 'from Entity' due to probable cause of being mistaken as a module.
 
 
 class Player(Entity):

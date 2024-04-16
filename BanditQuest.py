@@ -37,10 +37,12 @@ class BanditQuest:
             # Implement fleeing logic
             # Assuming successful escape here for simplicity
             print("You manage to escape from the bandits, but they continue to pursue you.")
+            # FIX ME: NARRATIVE CHOICE, survival check a low dc level to see if the bandits catch up
+            # if they do iniate combat
 
     def finish_quest(self):
         """Finish the bandit quest"""
         print("\nThe bandits have been dealt with, and you continue on your journey.")
         print("As you travel, you can't help but wonder what other challenges await you in this land.")
 
-# End of quest.py
+
