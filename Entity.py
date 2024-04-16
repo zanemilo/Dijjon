@@ -10,7 +10,7 @@ class Entity:
     A base class for all entities in the game, such as players, NPCs, and mobs.
     It encapsulates common attributes and functionalities.
     """
-    def __init__(self, name, hp, arm_c, spd, xp, lvl):
+    def __init__(self, name, hp, arm_c, spd, xp, lvl, is_enemy = False):
         """
         Initialize a new instance of the Entity class.
         
@@ -27,6 +27,7 @@ class Entity:
         self.spd = spd
         self.xp = xp
         self.lvl = lvl
+        self.is_enemy = is_enemy  # Used to designate other NPCs as enemies, for use in combat.py
         self.status_effects = {}  # Track status effects like 'poisoned', 'stunned', etc.
 
     def get_name(self):

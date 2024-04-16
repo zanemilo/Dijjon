@@ -9,6 +9,7 @@ import buildMob as mb
 import dice_Roll as dr
 import Player as p
 import master as m
+import combat as c
 from settings import Settings as s
 from core_library import classes as cls
 from core_library import name_list as nm
@@ -31,6 +32,11 @@ master.sheet(bandit) # character sheet style layout player info
 #print(f'The winner of the opposing check is: {master.opposing_check(player, bandit, "str")}') # example opposing check
 
 #master.combat_simulation(player, bandit) # prototype to the prototype combat sim out of master still needs to be cleaned up and used in Combat class file
+
+# Setup combat scenario
+combat = c.Combat([player, bandit])
+# Run the combat
+combat.start_combat()
 
 while main_game_loop:
 

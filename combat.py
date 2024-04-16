@@ -3,24 +3,15 @@
 # Purpose: Combat takes care of all combat related scenarios including turn orders, actions, calling checks, rolls, tie breakers, win condition checking, and state tracking for comabt events.
 
 import random
+from Player import Player
 
 class Combat:
-    def __init__(self, entities):
-        self.entities = entities
-
-    # Dijjon combat
-# Developed & designed by: Zane M Deso
-# Purpose: Combat takes care of all combat related scenarios including turn orders, actions, calling checks, rolls, tie breakers, win condition checking, and state tracking for comabt events.
-
-import random
-
-class Combat:
-    def __init__(self, entities):
+    def __init__(self, entities):  # FIX ME: Add a list to track teams and team members, might need to implemnet some team classes or simplify it by only allowing two teams at first via two teams lists
         self.entities = entities
 
     def roll_initiative(self):
         """Roll initiative for all entities"""
-        initiative_scores = {entity: random.randint(1, 20) for entity in self.entities}
+        initiative_scores = {entity: random.randint(1, 20) for entity in self.entities} # Currently only calls for a random int between 1 - 20. FIX ME: Implement proper dex calls per entity.
         sorted_entities = sorted(self.entities, key=lambda x: initiative_scores[x], reverse=True)
         return sorted_entities
 
@@ -29,21 +20,26 @@ class Combat:
         turn_order = self.roll_initiative()
         print("Combat begins!")
         round_number = 1
-        while not self.check_combat_over():
+        while not self.check_if_any_enemy_alive():
             print(f"Round {round_number}")
             for entity in turn_order:
-                if self.check_combat_over():
+                if self.check_if_any_enemy_alive():
                     break
                 print(f"{entity.get_name()}'s turn:")
                 self.entity_turn(entity)
             round_number += 1
         print("Combat ends!")
 
-    def check_combat_over(self, Enemy):
+    # def check_combat_over(self):  # Del param for 'Enemy', imported Player class, and change isInstance check against the Player class type
+    #     """Check if combat is over by checking if any enemy is still alive."""
+    #     return not any(isinstance(entity, Player) for entity in self.entities)
+    
+    def check_if_any_enemy_alive(self):  #FIX ME: Once 'is_enemy' dot notation is implemented in eithe Player.py or Entity.py we will implement this commented out function
         """Check if combat is over by checking if any enemy is still alive."""
-        return not any(isinstance(entity, Enemy) for entity in self.entities)
+        return any(entity.is_enemy for entity in self.entities)
 
-    def entity_turn(self, entity, Player):
+
+    def entity_turn(self, entity): # Player param is a reference to the actual Player.py class
         """Handle a single entity's turn, differentiating between player and enemy actions."""
         if isinstance(entity, Player):
             self.player_turn(entity)
@@ -52,7 +48,7 @@ class Combat:
 
     def player_turn(self, player):
         """Process a player's turn, allowing them to choose an action."""
-        action = input("Choose an action (e.g., attack, defend, etc.): ")
+        action = input("Choose an action (e.g., attack, defend, etc.): ") # FIX ME: eventually will be reimplemented to incorporate the player instance list of available actions
         if action.lower() == "attack":
             target = self.choose_target(player)
             if target:
@@ -65,11 +61,9 @@ class Combat:
     def enemy_turn(self, enemy, Player):
         """Automatically process an enemy's turn, for now simply choosing to attack."""
         # This can be expanded with a more sophisticated AI or strategy pattern
-        target = random.choice([e for e in self.entities if e != enemy and isinstance(e, Player)])
+        target = random.choice([e for e in self.entities if e != enemy and isinstance(e, Player)]) # target will be a random choice of one of the enitities in combat only if the target is a Player instance and not itself.
         self.attack(enemy, target)
-
-
-        
+  
     def choose_target(self, entity):
         """Prompt the player to choose a target for their action."""
         print("Choose a target:")

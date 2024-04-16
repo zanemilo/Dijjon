@@ -2,6 +2,17 @@
 # Developed & designed by: Zane M Deso
 # Purpose: This class is a prototype class to handle fleshing out the intro bandit quest to demo Dijjon and test some game mechanics
 
+import random as r
+import buildMob as mb
+import dice_Roll as dr
+import Player as p
+import master as m
+from settings import Settings as s
+from core_library import classes as cls
+from core_library import name_list as nm
+from core_library import races as rc
+
+
 class BanditQuest:
     def __init__(self, player):
         self.player = player
