@@ -24,7 +24,7 @@ main_game_loop = True
 player = p.Player(master.get_name(), master.get_valid_race(), master.get_valid_class()) # instantiate a new player
 master.sheet(player) # character sheet style layout player info
 
-bandit = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls))) # instantiate a new player
+bandit = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player
 master.sheet(bandit) # character sheet style layout player info
  
 #print(f'Did {player.get_name()} pass the dex Check?: {master.check("dex", player.player_check_roll("dex"))}') # example dex check
