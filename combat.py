@@ -20,21 +20,18 @@ class Combat:
         turn_order = self.roll_initiative()
         print("Combat begins!")
         round_number = 1
-        while not self.check_if_any_enemy_alive():
+        while self.check_if_any_enemy_alive():
             print(f"Round {round_number}")
             for entity in turn_order:
-                if self.check_if_any_enemy_alive():
+                if not self.check_if_any_enemy_alive():
                     break
                 print(f"{entity.get_name()}'s turn:")
                 self.entity_turn(entity)
             round_number += 1
         print("Combat ends!")
 
-    # def check_combat_over(self):  # Del param for 'Enemy', imported Player class, and change isInstance check against the Player class type
-    #     """Check if combat is over by checking if any enemy is still alive."""
-    #     return not any(isinstance(entity, Player) for entity in self.entities)
     
-    def check_if_any_enemy_alive(self):  #FIX ME: Once 'is_enemy' dot notation is implemented in eithe Player.py or Entity.py we will implement this commented out function
+    def check_if_any_enemy_alive(self):  
         """Check if combat is over by checking if any enemy is still alive."""
         return any(entity.is_enemy for entity in self.entities)
 
