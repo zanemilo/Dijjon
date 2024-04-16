@@ -44,7 +44,35 @@ Bugs to fix:
 
 [M] give_item function is not working properly, work around is to player.inventory.pop(item) this removes the whole key AND value. I want to be able to append/update the value and/or pop if the value reaches 0. This sounds do able with a while loop to check while player.inventory(item) == 0: player.inventory.pop(item)??
 
+ROAD MAP:
 
+    Core Game Mechanics:
+        Combat System: Refine the combat mechanics and interactions, ensuring balanced gameplay. Consider integrating AI strategies for non-player characters (NPCs).
+        Quest System: Expand the quest system (e.g., BanditQuest.py, quest.py) to include more complex, branching quests with multiple outcomes.
+
+    Character Development:
+        Character Classes: Enhance the character class system (char_class.py) by adding unique abilities and progression paths.
+        Entities and NPCs: Further develop the entities (Entity.py) to include more detailed attributes and behaviors.
+
+    Item and Inventory Management:
+        Items: Continue to refine the item system (Item.py), possibly by adding item durability or special item effects.
+        Trading System: Implement or improve the trading system (trade.py) to allow player interactions with NPC vendors and other players.
+
+    World Building:
+        Environment: Define more environments and locations that players can explore. Consider different environmental effects on gameplay.
+        Mob Generation: Develop the mob generation system (buildMob.py) to dynamically create challenges for players.
+
+    User Interface and Experience:
+        Settings and Customization: Update the settings module (settings.py) to allow players more customization options for their gameplay experience.
+        Feedback System: Implement a system to collect player feedback to continuously improve the game based on user experience.
+
+    Technical Improvements:
+        Code Refactoring: Regularly review and refactor the codebase to improve maintainability and performance.
+        Testing and Debugging: Increase the focus on testing all modules extensively to ensure there are minimal bugs and issues.
+
+    Documentation and Help System:
+        Game Documentation: Create comprehensive documentation to help new players understand the game mechanics and controls.
+        Developer Documentation: Maintain clear and detailed developer documentation to facilitate easier updates and expansions.
 
 Major Change Log:
 
