@@ -11,6 +11,16 @@ class Entity:
     It encapsulates common attributes and functionalities.
     """
     def __init__(self, name, hp, arm_c, spd, xp, lvl):
+        """
+        Initialize a new instance of the Entity class.
+        
+        :param name: str - The name of the entity.
+        :param hp: int - Health points of the entity, determining how much damage it can take before being defeated.
+        :param arm_c: int - Armor class of the entity, contributing to its defense against attacks.
+        :param spd: int - Speed of the entity, affecting its turn order in combat.
+        :param xp: int - Experience points of the entity, used for leveling up.
+        :param lvl: int - Current level of the entity, affecting its overall strength and abilities.
+        """
         self.name = name
         self.hp = hp
         self.arm_c = arm_c
@@ -80,9 +90,9 @@ class Entity:
             print("Status Effects: None")
 
 # Example of creating an Entity and manipulating its properties
-entity = Entity("Test Entity", 100, 15, 30, 200, 5)
-entity.display_info()
-entity.modify_hp(-20)  # Entity takes 20 damage
-entity.add_status_effect("poisoned", 3)
-entity.update_status_effects()  # Updates the status effects
-entity.display_info()
+# entity = Entity("Test Entity", 100, 15, 30, 200, 5)
+# entity.display_info()
+# entity.modify_hp(-20)  # Entity takes 20 damage
+# entity.add_status_effect("poisoned", 3)
+# entity.update_status_effects()  # Updates the status effects
+# entity.display_info()
