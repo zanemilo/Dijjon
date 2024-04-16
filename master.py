@@ -9,7 +9,6 @@ import dice_Roll as dr
 from core_library import races
 from core_library import classes
 
-# a
 
 class Master:
     """Class for actions or deciscions a DM would typically make in the overarching gameplay, story etc."""
