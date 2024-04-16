@@ -39,11 +39,11 @@ class Combat:
             round_number += 1
         print("Combat ends!")
 
-    def check_combat_over(self):
+    def check_combat_over(self, Enemy):
         """Check if combat is over by checking if any enemy is still alive."""
         return not any(isinstance(entity, Enemy) for entity in self.entities)
 
-    def entity_turn(self, entity):
+    def entity_turn(self, entity, Player):
         """Handle a single entity's turn, differentiating between player and enemy actions."""
         if isinstance(entity, Player):
             self.player_turn(entity)
@@ -62,7 +62,7 @@ class Combat:
         else:
             print("Invalid action. Choose another action.")
 
-    def enemy_turn(self, enemy):
+    def enemy_turn(self, enemy, Player):
         """Automatically process an enemy's turn, for now simply choosing to attack."""
         # This can be expanded with a more sophisticated AI or strategy pattern
         target = random.choice([e for e in self.entities if e != enemy and isinstance(e, Player)])
