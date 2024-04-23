@@ -6,8 +6,10 @@ import random
 from Player import Player
 
 class Combat:
-    def __init__(self, entities):  # FIX ME: Add a list to track teams and team members, might need to implemnet some team classes or simplify it by only allowing two teams at first via two teams lists
+    def __init__(self, entities):
         self.entities = entities
+        self.team1 = [e for e in entities if e.is_enemy is False]
+        self.team2 = [e for e in entities if e.is_enemy is True]
 
     def roll_initiative(self):
         """Roll initiative for all entities"""
@@ -20,10 +22,10 @@ class Combat:
         turn_order = self.roll_initiative()
         print("Combat begins!")
         round_number = 1
-        while self.check_if_any_enemy_alive():
+        while any(e.is_alive() for e in self.team1) and any(e.is_alive() for e in self.team2):
             print(f"Round {round_number}")
             for entity in turn_order:
-                if not self.check_if_any_enemy_alive():
+                if not (any(e.is_alive() for e in self.team1) and any(e.is_alive() for e in self.team2)):
                     break
                 print(f"{entity.get_name()}'s turn:")
                 self.entity_turn(entity)
@@ -31,40 +33,33 @@ class Combat:
         print("Combat ends!")
 
     
-    def check_if_any_enemy_alive(self):  
-        """Check if combat is over by checking if any enemy is still alive."""
-        return any(entity.is_enemy for entity in self.entities)
 
 
-    def entity_turn(self, entity): # Player param is a reference to the actual Player.py class
+    def entity_turn(self, entity):
         """Handle a single entity's turn, differentiating between player and enemy actions."""
-        if isinstance(entity, Player):
-            self.player_turn(entity)
-        else:
-            self.enemy_turn(entity)
-
-    def player_turn(self, player):
-        """Process a player's turn, allowing them to choose an action."""
-        action = input("Choose an action (e.g., attack, defend, etc.): ") # FIX ME: eventually will be reimplemented to incorporate the player instance list of available actions
-        if action.lower() == "attack":
-            target = self.choose_target(player)
-            if target:
-                self.attack(player, target)
+        while True:  # Keep asking until a valid action is taken
+            action = input(f"{entity.get_name()}, choose an action (attack, defend, etc.): ")
+            if action.lower() == "attack":
+                target = self.choose_target(entity)
+                if target:
+                    self.attack(entity, target)
+                    break  # Exit the loop after a valid action
             else:
-                print("No valid target available.")
-        else:
-            print("Invalid action. Choose another action.")
+                print("Invalid action. Choose another action.")
 
-    def enemy_turn(self, enemy, Player):
-        """Automatically process an enemy's turn, for now simply choosing to attack."""
-        # This can be expanded with a more sophisticated AI or strategy pattern
-        target = random.choice([e for e in self.entities if e != enemy and isinstance(e, Player)]) # target will be a random choice of one of the enitities in combat only if the target is a Player instance and not itself.
-        self.attack(enemy, target)
+  
+
+    def enemy_turn(self, enemy):
+        """Automatically process an enemy's turn, choosing to attack."""
+        valid_targets = [e for e in self.entities if e != enemy and e.is_alive()]
+        if valid_targets:
+            target = random.choice(valid_targets)
+            self.attack(enemy, target)
   
     def choose_target(self, entity):
         """Prompt the player to choose a target for their action."""
         print("Choose a target:")
-        valid_targets = [e for e in self.entities if e != entity]
+        valid_targets = [e for e in self.entities if e != entity and e.is_alive()]
         for idx, target in enumerate(valid_targets):
             print(f"{idx + 1}. {target.get_name()}")
         choice = input("Enter the number of the target: ")
@@ -74,20 +69,19 @@ class Combat:
                 return valid_targets[idx]
         except ValueError:
             pass
+        print("Invalid target choice.")
         return None
 
     def attack(self, attacker, target):
         """Execute an attack action from attacker to target."""
-        # For simplicity, let's assume a basic attack
-        print(f"{attacker.get_name()} attacks {target.get_name()}!")
-        # Calculate hit roll
-        hit_roll = random.randint(1, 20) + attacker.get_modifier(attacker.get_str())
-        if hit_roll >= target.get_arm_c(): # Hit successful
+        print(f"{attacker.get_name()} prepares to attack {target.get_name()}!")
+        hit_roll = random.randint(1, 20) + attacker.get_modifier(attacker.get_dex())
+        if hit_roll >= target.get_arm_c():
             damage = random.randint(1, 6) + attacker.get_modifier(attacker.get_str())
             print(f"{attacker.get_name()} hits {target.get_name()} for {damage} damage!")
-            target.set_hp(target.get_hp() - damage)
+            target.set_hp(target.get_hp() - damage)  # FIX ME: Simplified damage version for now, plan on passing damage to the target to process (thinking something like target.damage(int, type, crit=False, non_lethal=False))
         else:
-            print(f"{attacker.get_name()} misses the attack!") # lets make a table somewhere to add spicy quips and descriptions dynamically instead of the same thing everytime
+            print(f"{attacker.get_name()} misses the attack!")
 
 
 
