@@ -5,6 +5,7 @@
 import random
 from Player import Player
 
+
 class Combat:
     def __init__(self, entities):
         self.entities = entities
@@ -32,9 +33,6 @@ class Combat:
             round_number += 1
         print("Combat ends!")
 
-    
-
-
     def entity_turn(self, entity):
         """Handle a single entity's turn, differentiating between player and enemy actions."""
         while True:  # Keep asking until a valid action is taken
@@ -46,8 +44,6 @@ class Combat:
                     break  # Exit the loop after a valid action
             else:
                 print("Invalid action. Choose another action.")
-
-  
 
     def enemy_turn(self, enemy):
         """Automatically process an enemy's turn, choosing to attack."""

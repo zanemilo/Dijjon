@@ -5,6 +5,7 @@
 import Player
 import dice_Roll
 
+
 class Fighter(Player):
     """Fighter class, subclass of Player"""
     def __init__(self, name, race):

@@ -3,8 +3,6 @@
 # Purpose: Used to handle player creation, stats, attributes, status effect, and other associated player centered functions
 
 
-
-
 class Entity:
     """
     A base class for all entities in the game, such as players, NPCs, and mobs.

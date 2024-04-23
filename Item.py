@@ -2,6 +2,7 @@
 # Developed & designed by: Zane M Deso
 # Purpose: Used to handle item creation, associated attributes, status effect, etc.
 
+
 class Item():
     """Item class: think template for items in game"""
     def __init__(self, name, desc, val):

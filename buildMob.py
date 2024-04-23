@@ -10,7 +10,6 @@ from core_library import monster_type_list as mtl
 from settings import Settings as s
 
 
-
 class Mob:
     """Class that can be called to build random mobs"""
 

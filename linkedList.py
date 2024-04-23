@@ -2,7 +2,6 @@
 # Developed & designed by: Zane M Deso
 # Purpose: This will be the class for the linked lists that will allow for use in state management classes, previous events, current events, maybe even milestone progressions in the future.
 
-
 class Node:
     """A Node in a singly linked list, contains data and a link to the next node."""
     def __init__(self, data):

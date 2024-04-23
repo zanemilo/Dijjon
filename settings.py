@@ -4,6 +4,7 @@
 
 import random as r
 
+
 class Settings:
     """A class to store all settings for Dijjon"""
 

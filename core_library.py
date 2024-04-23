@@ -6,6 +6,7 @@
 import Item as i
 import dice_Roll
 
+
 # creates instance of Items class name, description and value as arguments
 inn_items = {
 "Oats" : i.Item("Oats","As you observe the oats, their small and unassuming appearance belies the nourishing and hearty sustenance they provide, a testament to the adage that good things come in small packages.",1),
@@ -14,7 +15,6 @@ inn_items = {
 "Ale" : i.Item("Ale","The inn's modest ale is a simple yet satisfying drink, with a smooth taste that lingers on the tongue.",1),
 "Milk" : i.Item("Milk","As you obtain a glass of milk, the creamy white liquid provides a soothing and wholesome taste, evoking a sense of comfort and simplicity.",2),
 "Water Mug" : i.Item("Water Mug","The clear and unremarkable appearance of the water in the mug was a refreshing contrast to the chaos of the world around it.",0),
-
 
 }
 
