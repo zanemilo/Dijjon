@@ -10,8 +10,6 @@ Dijjon (Current working name) is a text based game based on the Fantasy RPG worl
 
 Current Goals of project: priority from high-low as follows(!,H,M,L)
 
-[H] I need to change attribute name convetion for "int" in Player class attributes. It is conflicting with int() function.
-
 [H] Refactor Player class to be a child of an Entity class, then set NPCs and Mobs as childs to the Entity class as well.
 
 [H] Finish Implementation of Combat Class, this is an important feature in the over all game play and needs to be functional.
@@ -81,3 +79,7 @@ Integrated DijjonAlphaDevelopment folder with Git for ease of tracking progress.
 Refactoring player and npc creation to dedicated class files to be referenced in main. Expanded Classes and Races which have been refactored to core library 1/6/2024
 
 [DONE] Find a way to enumerate race, class selection as is done in the menu functions. This way user may either input the name of the selection OR the enumeration corresponding with the selection. Both should be valid.
+
+[DONE] I need to change attribute name convetion for "int" in Player class attributes. It is conflicting with int() function. - ZMD 4/22/2024
+
+Integrated Repo with Gihub

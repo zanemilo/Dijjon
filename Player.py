@@ -13,7 +13,7 @@ from Entity import Entity  # using 'from Entity' due to probable cause of being 
 class Player(Entity):
     """Main Player Class with Mutators, Accessors, Attributes and other variables"""
 
-    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, int = 0, wis = 0, cha = 0,  hp = 6, hpMax = 6, is_enemy = False):
+    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, intel = 0, wis = 0, cha = 0,  hp = 6, hpMax = 6, is_enemy = False):
         super().__init__(name, hp, arm_c, spd, xp, lvl, is_enemy)
         self.name = name
         self.race = race
@@ -26,7 +26,7 @@ class Player(Entity):
         self.str = str + dr.roll_stats() + r.randint(-1, 2)
         self.dex = dex + dr.roll_stats() + r.randint(-1, 2)
         self.con = con + dr.roll_stats() + r.randint(-1, 2)
-        self.int = int + dr.roll_stats() + r.randint(-1, 2)
+        self.intel = intel + dr.roll_stats() + r.randint(-1, 2)
         self.wis = wis + dr.roll_stats() + r.randint(-1, 2)
         self.cha = cha + dr.roll_stats() + r.randint(-1, 2)
         self.hp = hp + self.get_modifier(self.con)
@@ -141,11 +141,11 @@ class Player(Entity):
     def set_lvl(self, lvl):
         self.lvl = lvl
 
-    def get_int(self):
-        return self.int
+    def get_intel(self):
+        return self.intel
     
-    def set_int(self, int):
-        self.int = int
+    def set_intel(self, intel):
+        self.intel = intel
 
     def get_wis(self):
         return self.wis
@@ -206,7 +206,7 @@ class Player(Entity):
         """Takes stat as an args and returns instances stats value"""
         
         stat = stat.lower()
-        valid_types = ['str','dex', 'con', 'int', 'wis', 'cha']
+        valid_types = ['str','dex', 'con', 'intel', 'wis', 'cha']
 
         if stat in valid_types:
             if stat == 'str':
@@ -216,7 +216,7 @@ class Player(Entity):
             elif stat == 'con':
                 return self.get_con()
             elif stat == 'int':
-                return self.get_int()
+                return self.get_intel()
             elif stat == 'wis':
                 return self.get_wis()
             elif stat == 'cha':
@@ -230,19 +230,19 @@ class Player(Entity):
         stat_mapping = {
             'acrobatics': self.get_dex(),  # Dexterity for Acrobatics
             'animal_handling': self.get_wis(),  # Wisdom for Animal Handling
-            'arcana': self.get_int(),  # Intelligence for Arcana
+            'arcana': self.get_intel(),  # Intelligence for Arcana
             'athletics': self.get_str(),  # Strength for Athletics
             'deception': self.get_cha(),  # Charisma for Deception
-            'history': self.get_int(),  # Intelligence for History
+            'history': self.get_intel(),  # Intelligence for History
             'insight': self.get_wis(),  # Wisdom for Insight
             'intimidation': self.get_cha(),  # Charisma for Intimidation
-            'investigation': self.get_int(),  # Intelligence for Investigation
+            'investigation': self.get_intel(),  # Intelligence for Investigation
             'medicine': self.get_wis(),  # Wisdom for Medicine
-            'nature': self.get_int(),  # Intelligence for Nature
+            'nature': self.get_intel(),  # Intelligence for Nature
             'perception': self.get_wis(),  # Wisdom for Perception
             'performance': self.get_cha(),  # Charisma for Performance
             'persuasion': self.get_cha(),  # Charisma for Persuasion
-            'religion': self.get_int(),  # Intelligence for Religion
+            'religion': self.get_intel(),  # Intelligence for Religion
             'sleight_of_hand': self.get_dex(),  # Dexterity for Sleight of Hand
             'stealth': self.get_dex(),  # Dexterity for Stealth
             'survival': self.get_wis(),  # Wisdom for Survival
@@ -259,7 +259,7 @@ class Player(Entity):
 
     def display_info(self):
         """Display player's info"""
-        print(f"Name: {self.get_name()}\nRace: {self.get_race()}\nCharacter class: {self.get_char_class()}\nGold: {self.get_gold()}\nArmor Class: {self.get_arm_c()}\nHP: {self.get_hp()}\nMax HP: {self.get_hpMax()}\nSpeed: {self.get_spd()}\nXP: {self.get_xp()}\nLevel: {self.get_lvl()}\nStr: {self.get_str()}\nDex: {self.get_dex()}\nCon: {self.get_con()}\nInt: {self.get_int()}\nWis: {self.get_wis()}\nCha: {self.get_cha()}\n")
+        print(f"Name: {self.get_name()}\nRace: {self.get_race()}\nCharacter class: {self.get_char_class()}\nGold: {self.get_gold()}\nArmor Class: {self.get_arm_c()}\nHP: {self.get_hp()}\nMax HP: {self.get_hpMax()}\nSpeed: {self.get_spd()}\nXP: {self.get_xp()}\nLevel: {self.get_lvl()}\nStr: {self.get_str()}\nDex: {self.get_dex()}\nCon: {self.get_con()}\nInt: {self.get_intel()}\nWis: {self.get_wis()}\nCha: {self.get_cha()}\n")
 
     def player_check_roll(self, check_type):
         """Takes stat as an args and rolls a d20 + the instances stat associated modifier"""
@@ -269,7 +269,7 @@ class Player(Entity):
         'acrobatics', 'animal_handling', 'arcana', 'athletics', 'deception', 
         'history', 'insight', 'intimidation', 'investigation', 'medicine', 
         'nature', 'perception', 'performance', 'persuasion', 'religion', 'sleight_of_hand', 
-        'stealth', 'survival', 'str','dex', 'con', 'int', 'wis', 'cha']
+        'stealth', 'survival', 'str','dex', 'con', 'intel', 'wis', 'cha']
 
         sum_of_player_roll = 0
 
