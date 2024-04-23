@@ -69,6 +69,7 @@ class LinkedList:
 # node = inventory.find("bread")
 # print("Node found:", node.data if node else "No node found")
 
+
 # # Example usage assuming each menu is an object or structured data:
 # last_menu = LinkedList()
 # menu_state1 = {'menu': 'Main', 'selection': 'Start Game'}
