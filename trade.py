@@ -9,21 +9,22 @@ import Item as it
 class Trade:
     """Trade Class for shopping for items, trading items"""
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, transaction_id):
+        self.transaction_id = transaction_id
 
-    def has_gold_check(self, player, item_cost):
+    def tick_transaction_id(self):
+        """Function called to increment and return a unique transaction id int"""
+        self.transaction_id += 1
+        return self.transaction_id
+
+    def has_gold_check(self, player, item_cost=0):
         """Function called to check if the player has sufficient gold to pay for an item/service/interaction"""
-        item_cost = 0
         if player.gold >= item_cost:
-            item_cost = 0
             return True
         else:
-            item_cost = 0
             return False
         
-    # starts order(think salesperson) function using an item list as an arguement
-    def order(self, player, item_list):
+    def order(self, player, item_list):  # starts order(think salesperson) function using an item list as an arguement
         global last_var
 
         print(f"Buy:\n\nYour GP: {player.gold}")
@@ -39,7 +40,7 @@ class Trade:
             invalid_choice = input(f"Invalid choice. Please select a valid option. \nWould you like to leave?\nInput the number of your choice\n\n1. Yes\n2. No")
 
             if int(invalid_choice()) == 1:
-                last_var()
+                last_var
 
             elif int(invalid_choice()) == 2:
                 self.order(item_list)
