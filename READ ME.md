@@ -82,4 +82,4 @@ Refactoring player and npc creation to dedicated class files to be referenced in
 
 [DONE] I need to change attribute name convetion for "int" in Player class attributes. It is conflicting with int() function. - ZMD 4/22/2024
 
-Integrated Repo with Gihub
+Integrated Repo with Github
