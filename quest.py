@@ -3,8 +3,6 @@
 # Purpose: Used to handle quest creation, rewards, main objectives, task, each task status, completion requirement and other associated player centered functions
 
 class Quest():
-
-
     def __init__(self, quest_name, objective, completion, reward, priority='misc', task=''):
         """Quest Class for handling building quest and tracking quest progress."""
 
@@ -101,35 +99,19 @@ class Quest():
         self.reward = new_reward
         self.info['reward'] = new_reward
 
-        
 
-    # def create_quest():  #Quest Generation: Create a function that generates quests based on certain criteria, such as the player's level, location, and faction affiliation. This function can randomly select a quest template from a pool of pre-defined quests and fill in the details based on the criteria.
-    #     if m.playerOne.level == 1:
-    #         print("LEVEL 1 DETECTED")
-    #         print(f"Generating level {m.playerOne.level} quest for {m.playerOne.name}\n")
+# # test quest instances
+# starter_quest = Quest('Humble Beginnings', 'Find your way to the docks.', False, 'Big Fish', 'primary')
+# starter_quest.add_quest_tracker(starter_quest.priority)     
+# print(starter_quest.get_info())
 
+# find_boat_quest = Quest('Find a boat', 'Find a Boat', False, 'Boat', 'secondary')
+# find_boat_quest.add_quest_tracker(find_boat_quest.priority)  
+# print(find_boat_quest.get_info())
 
-    #     elif m.playerOne.level == 2:
-    #         print("LEVEL 2 DETECTED")
-    #         print(f"Generating level {m.playerOne.level} quest for {m.playerOne.name}\n")
-
-
-    #     else:
-    #         print("LEVEL 3 or greator DETECTED")
-    #         print(f"Generating level {m.playerOne.level} quest for {m.playerOne.name}\n")
-
-# test quest instances
-starter_quest = Quest('Humble Beginnings', 'Find your way to the docks.', False, 'Big Fish', 'primary')
-starter_quest.add_quest_tracker(starter_quest.priority)     
-print(starter_quest.get_info())
-
-find_boat_quest = Quest('Find a boat', 'Find a Boat', False, 'Boat', 'secondary')
-find_boat_quest.add_quest_tracker(find_boat_quest.priority)  
-print(find_boat_quest.get_info())
-
-next_quest = Quest('Second is the Worst', 'Navigate the open sea.', False, 'Pearl', 'primary')
-next_quest.add_quest_tracker(next_quest.priority)
-print(next_quest.get_info())
+# next_quest = Quest('Second is the Worst', 'Navigate the open sea.', False, 'Pearl', 'primary')
+# next_quest.add_quest_tracker(next_quest.priority)
+# print(next_quest.get_info())
 
 
 

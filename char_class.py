@@ -1,6 +1,6 @@
 # Dijjon character class Class
 # Developed & designed by: Zane M Deso
-# Purpose: This is supposed to emulate the class/job that a player or NPC or enemy can have. It still needs to be implemented fully.
+# Purpose: This is supposed to emulate the class/job that a player or NPC or enemy can have. The plan here is to embed this into the Player class file so that it can be accessed via the Player class instances. This will also let the abilities be listed by the character class of the Player of NPC.
 
 import Player
 import dice_Roll
