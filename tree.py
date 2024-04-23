@@ -1,6 +1,6 @@
 # Dijjon tree
 # Developed & designed by: Zane M Deso
-# Purpose: This will be the class for the tree that will act as an abstract class for other trees as needed such as state management(previous menus, interactions, previous room, event etc.)
+# Purpose: This will be the class for the tree that will act as an abstract class for other trees as needed such asmaps, dungeons, choices, etc.
 
 class Tree:
     def __init__(self, root, left=None, right=None):
