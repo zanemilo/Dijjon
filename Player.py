@@ -94,8 +94,6 @@ class Player(Entity):
         """Display the updated player status."""
         print(f"Updated Player Status - HP: {self.hp}, Speed: {self.spd}, Visibility: {self.visibility.check_visibility()}")
 
-
-
     def apply_environment_effect(self, condition):
         self.visibility.update_visibility(condition)
         print(f"{self.name}'s current visibility: {self.visibility.check_visibility()}")
