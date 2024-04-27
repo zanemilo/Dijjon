@@ -14,7 +14,7 @@ from Entity import Entity  # using 'from Entity' due to probable cause of being 
 class Player(Entity):
     """Main Player Class with Mutators, Accessors, Attributes and other variables"""
 
-    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, intel = 0, wis = 0, cha = 0,  hp = 6, hpMax = 6, is_enemy = False, visibility_conditions=None, **kwargs):
+    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, intel = 0, wis = 0, cha = 0,  hp = 6, hpMax = 6, is_enemy = False, visibility_conditions=None, special_senses=[], **kwargs):
         super().__init__(name, hp, arm_c, spd, xp, lvl, is_enemy)
         self.name = name
         self.race = race
@@ -33,7 +33,9 @@ class Player(Entity):
         self.hp = hp + self.get_modifier(self.con)
         self.hpMax = hpMax + self.get_modifier(self.con)
         self.is_enemy = is_enemy
-        self.visibility = Visibility(special_senses=visibility_conditions or [])
+        self.special_senses = special_senses
+        self.visibility_conditions = visibility_conditions
+        self.visibility = Visibility(special_senses=special_senses)
         self.inventory = {}
         self.equipment_slots = {
             'head': None,
@@ -58,13 +60,12 @@ class Player(Entity):
 
             'lightning': lambda i: setattr(self, 'hp', self.hp - 20) if i == 3 else None,
 
-            'fog': lambda i: setattr(self, 'visibility', max(0, self.visibility - i * 20)),
+            'fog': lambda i: self.visibility.update_visibility({'fog': True}),
 
             'blizzard': lambda i: (setattr(self, 'spd', self.spd - i * 7),
                                    setattr(self, 'hp', self.hp - i * 5)),
 
-            'sandstorm': lambda i: (setattr(self, 'spd', self.spd - i * 7),
-                                    setattr(self, 'visibility', max(0, self.visibility - i * 30))),
+            'sandstorm': lambda i: self.visibility.update_visibility({'sandstorm': True}),
 
             'hurricane': lambda i: (setattr(self, 'spd', self.spd - i * 15),
                                     setattr(self, 'hp', self.hp - i * 15)),
@@ -73,11 +74,12 @@ class Player(Entity):
 
             'cold_snap': lambda i: setattr(self, 'hp', self.hp - i * 5),
 
-            'dust_devil': lambda i: setattr(self, 'visibility', max(0, self.visibility - i * 15)),
+            'dust_devil': lambda i: self.visibility.update_visibility({'dust_devil': True}),
 
             'hailstorm': lambda i: setattr(self, 'hp', self.hp - i * 10),
 
-            'sleet': lambda i: setattr(self, 'spd', self.spd - i * 8),
+            'sleet': lambda i: (setattr(self, 'spd', self.spd - i * 8),
+                                self.visibility.update_visibility({'sleet': True})),
 
             'tornado': lambda i: setattr(self, 'hp', self.hp - i * 30)
         }
@@ -87,6 +89,11 @@ class Player(Entity):
         if effect_func:
             effect_func(intensity)
             self.display_updated_status()
+
+    def display_updated_status(self):
+        """Display the updated player status."""
+        print(f"Updated Player Status - HP: {self.hp}, Speed: {self.spd}, Visibility: {self.visibility.check_visibility()}")
+
 
 
     def apply_environment_effect(self, condition):
