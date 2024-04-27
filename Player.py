@@ -7,13 +7,14 @@ import core_library as cl
 import random as r
 import dice_Roll as dr
 import master as m
+from Visibility import Visibility
 from Entity import Entity  # using 'from Entity' due to probable cause of being mistaken as a module.
 
 
 class Player(Entity):
     """Main Player Class with Mutators, Accessors, Attributes and other variables"""
 
-    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, intel = 0, wis = 0, cha = 0,  hp = 6, hpMax = 6, is_enemy = False):
+    def __init__(self, name, race, char_class, gold = 10, arm_c = 10, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, intel = 0, wis = 0, cha = 0,  hp = 6, hpMax = 6, is_enemy = False, visibility_conditions=None, **kwargs):
         super().__init__(name, hp, arm_c, spd, xp, lvl, is_enemy)
         self.name = name
         self.race = race
@@ -32,6 +33,7 @@ class Player(Entity):
         self.hp = hp + self.get_modifier(self.con)
         self.hpMax = hpMax + self.get_modifier(self.con)
         self.is_enemy = is_enemy
+        self.visibility = Visibility(special_senses=visibility_conditions or [])
         self.inventory = {}
         self.equipment_slots = {
             'head': None,
@@ -44,6 +46,52 @@ class Player(Entity):
         # FIX ME: Add all player attributes here
 
     # FIX ME: Add/create player associated methods here
+
+    def weather_effect(self, weather, intensity):
+        """Apply effects based on the weather condition and its intensity using a dictionary with lambda functions."""
+        effects = {
+            'rain': lambda i: (setattr(self, 'spd', self.spd - i * 5),
+                               setattr(self, 'hp', self.hp - 5) if i == 3 else None),
+
+            'rain_storm': lambda i: (setattr(self, 'spd', self.spd - i * 10),
+                                     setattr(self, 'hp', self.hp - 10) if i == 3 else None),
+
+            'lightning': lambda i: setattr(self, 'hp', self.hp - 20) if i == 3 else None,
+
+            'fog': lambda i: setattr(self, 'visibility', max(0, self.visibility - i * 20)),
+
+            'blizzard': lambda i: (setattr(self, 'spd', self.spd - i * 7),
+                                   setattr(self, 'hp', self.hp - i * 5)),
+
+            'sandstorm': lambda i: (setattr(self, 'spd', self.spd - i * 7),
+                                    setattr(self, 'visibility', max(0, self.visibility - i * 30))),
+
+            'hurricane': lambda i: (setattr(self, 'spd', self.spd - i * 15),
+                                    setattr(self, 'hp', self.hp - i * 15)),
+
+            'heatwave': lambda i: setattr(self, 'hp', self.hp - i * 5),
+
+            'cold_snap': lambda i: setattr(self, 'hp', self.hp - i * 5),
+
+            'dust_devil': lambda i: setattr(self, 'visibility', max(0, self.visibility - i * 15)),
+
+            'hailstorm': lambda i: setattr(self, 'hp', self.hp - i * 10),
+
+            'sleet': lambda i: setattr(self, 'spd', self.spd - i * 8),
+
+            'tornado': lambda i: setattr(self, 'hp', self.hp - i * 30)
+        }
+
+        # Call the corresponding effect function if the weather condition is found
+        effect_func = effects.get(weather)
+        if effect_func:
+            effect_func(intensity)
+            self.display_updated_status()
+
+
+    def apply_environment_effect(self, condition):
+        self.visibility.update_visibility(condition)
+        print(f"{self.name}'s current visibility: {self.visibility.check_visibility()}")
 
     def equip_item(self, item):
         """Equip an item to the appropriate equipment slot"""
