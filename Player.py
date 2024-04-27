@@ -215,7 +215,7 @@ class Player(Entity):
                 return self.get_dex()
             elif stat == 'con':
                 return self.get_con()
-            elif stat == 'int':
+            elif stat == 'intel':
                 return self.get_intel()
             elif stat == 'wis':
                 return self.get_wis()

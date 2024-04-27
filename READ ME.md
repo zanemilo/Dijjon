@@ -23,6 +23,8 @@ Current Goals of project: priority from high-low as follows(!,H,M,L)
 
 [M] I am going to need to build compositional relationships within Player class to implement character classes to each Player instance. Each ability will also need to be written as a class child of a greator Ability class. Then lastly, I will need to make a CharacterClassFactory to help with NPCs. We will Need to extend it to take into account the instances level at the time to give it the correct abilities that the classes level would have access to. Another layer would be to consider how NPCs will choose prepared spells later in game development.
 
+[L] Use nodes to track map expansion. So as the player goes to areas and discovers them they will be tracked in a  tree and requested to be visualized later for reference or travel. Going to need to build out a map class.
+
 [L] Add functionality for quest generation. Start small such as swapping the reward for a rand item on reward table or swapping enemy to be encountered or the total num of enemies in encounter.
 
 [L] Create a dictionary with mad-lib type phrases that each type of commoner job might say. This could include information about other NPCs within town, comments on events (including events triggered by the player)

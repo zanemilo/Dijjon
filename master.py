@@ -21,7 +21,7 @@ class Master:
         "STR": character.str,
         "DEX": character.dex,
         "CON": character.con,
-        "INT": character.int,
+        "INT": character.intel,
         "WIS": character.wis,
         "CHA": character.cha,
         "HP": character.hp,
@@ -32,11 +32,11 @@ class Master:
         "XP" : character.xp,
         }
 
-        # This may be redundant, will need to test
+        # This may be redundant, will need to test EDIT: This is absolutely redundant, will replace sheet function ahead.
         stats["STR"] = character.str
         stats["DEX"] = character.dex
         stats["CON"] = character.con
-        stats["INT"] = character.int
+        stats["INT"] = character.intel
         stats["WIS"] = character.wis
         stats["CHA"] = character.cha
         stats["HP"] = character.hp
