@@ -1,6 +1,7 @@
 # Dijjon Mob Class
 # Developed & designed by: Zane M Deso
 # Purpose: This class is in charge of building and tearing down Mobs as needed for encounters, battle, filling dungeons, etc.
+# EDIT: This will ultimately be defunct and replaced by Mob class that inherits from Entity class.
 
 import random as r
 
