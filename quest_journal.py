@@ -1,6 +1,8 @@
-# Dijjon Quest Class
+# Dijjon quest_journal Class
 # Developed & designed by: Zane M Deso
-# Purpose: Used to handle quest creation, rewards, main objectives, task, each task status, completion requirement and other associated player centered functions
+# Purpose: Used to handle quest creation, rewards, main objectives, task, each task status, completion requirement and other associated player centered functions.
+# EDIT: I am considering using this as a quest journal instead as to track quest statuses, display them etc for the player to analyze. Will refactor into quest_journal
+# and create a new quest class that will be the subclass to Event.
 
 class Quest():
     def __init__(self, quest_name, objective, completion, reward, priority='misc', task=''):
