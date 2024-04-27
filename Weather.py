@@ -1,6 +1,6 @@
 # Dijjon weather
 # Author: Zane M Deso
-# Purpose: This class handles weather effects for the purpose of simple calling of routine weather patterns at varying serverities.
+# Purpose: This class manages weather effects, offering a system to simulate routine weather patterns at varied intensities for dynamic environmental storytelling.
 
 class Weather:
     """This class manages weather effects, offering a system to simulate routine weather patterns at varied intensities for dynamic environmental storytelling."""
