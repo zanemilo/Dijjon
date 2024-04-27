@@ -87,3 +87,62 @@ Refactoring player and npc creation to dedicated class files to be referenced in
 [DONE] I need to change attribute name convetion for "int" in Player class attributes. It is conflicting with int() function. - ZMD 4/22/2024
 
 Integrated Repo with Github
+
+
+STORY ARCH PLANS:
+
+1. Branching Choices
+
+Start with defining key decision points in your story where players can choose different paths. These decisions should impact the story significantly. Think about:
+
+    Moral decisions: What ethical choices will players face? How will these choices affect their alignment or relationships with NPCs?
+    Strategic decisions: Will they choose safety or risk for potentially greater rewards?
+    Information-based decisions: Decisions that depend on the knowledge or secrets they have uncovered.
+
+2. Consequences and Repercussions
+
+Each choice should lead to a different outcome:
+
+    Immediate consequences: Direct results of the player’s actions that are felt right away.
+    Delayed consequences: Some choices might not impact the story until later, providing a surprise twist or a revisit to a seemingly minor decision made earlier.
+    Subtle changes: Not all effects need to be dramatic; some can subtly alter dialogue, NPC behavior, or available quests.
+
+3. Random Elements
+
+Introduce randomness to keep the game unpredictable. This could be through:
+
+    Random encounters: Depending on where and when they travel, different challenges or opportunities arise.
+    Luck-based elements: Certain outcomes, especially in battles or when using magical items, could depend on a dice roll or similar mechanic.
+
+4. Character Development and Relationships
+
+Allow player decisions to impact their relationships with NPCs:
+
+    Friendship, rivalry, or romance: Choices that affect emotional ties, potentially opening or closing quest lines.
+    Reputation: How other characters perceive the player can change access to certain areas or alter NPC interactions.
+
+5. Time-Sensitive Quests
+
+Incorporate quests that only become available if the player visits locations at certain times or completes specific tasks within a time frame:
+
+    Seasonal or time-based events: Quests that can only be accessed during certain in-game seasons or times of day.
+    Missable quests: Opportunities that disappear if not acted upon quickly.
+
+6. Tracking Past Choices
+
+Use variables to track choices and their outcomes, which can influence later events:
+
+    State tracking: Keep a log of decisions and states that NPCs or environments are in due to past actions.
+    Dialogue changes: Alter NPC dialogues based on past interactions or known history.
+
+7. Multiple Endings
+
+Plan multiple endings based on the cumulative effect of the player’s decisions throughout the game. This can range from highly positive outcomes to tragic ones, depending on the paths chosen.
+8. Feedback and Adaptation
+
+Allow the game environment to reflect changes based on player actions:
+
+    Environmental changes: Alter the game world visually or functionally based on the story progress, like a town rebuilding after an attack or wilderness growing over an abandoned site.
+    NPC adaptations: NPCs could change their strategies or responses based on the player's reputation or past dealings.
+
+By weaving these elements together, you can create a rich, dynamic story that rewards exploration and replayability, giving players a fresh experience each time they play. This not only makes your game more engaging but also encourages deeper emotional investment in the storyline and characters.
