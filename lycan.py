@@ -1,0 +1,1 @@
+# Plans to implement compositional relationship with entity class instances to enact lycanthropic effect
