@@ -9,9 +9,10 @@ from core_library import monster_dict as md
 from core_library import name_list as nl
 from core_library import monster_type_list as mtl
 from settings import Settings as s
+from Entity import Entity
 
 
-class Mob:
+class Mob(Entity):
     """Class that can be called to build random mobs"""
 
     # if no arguement is given, the mob will have the default randomized name, mob, mob type, etc.

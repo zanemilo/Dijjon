@@ -3,7 +3,7 @@
 # Purpose: This class is a prototype class to handle fleshing out the intro bandit quest to demo Dijjon and test some game mechanics
 
 import random as r
-import buildMob as mb
+import Mob as mb
 import dice_Roll as dr
 import Player as p
 import master as m

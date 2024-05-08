@@ -3,7 +3,7 @@
 # Purpose: Placeholder Quest/Event/Location Idea
 
 import random as r
-import buildMob as mb
+import Mob as mb
 import dice_Roll as dr
 import Player as p
 import master as m
