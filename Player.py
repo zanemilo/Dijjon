@@ -12,7 +12,7 @@ from Entity import Entity  # using 'from Entity' due to probable cause of being 
 
 
 class Player(Entity):
-    """Main Player Class with Mutators, Accessors, Attributes and other variables"""
+    """Player Class to generate User's character instance as well as NPC instances."""
 
     def __init__(self, name, race, char_class, gold = 10, arm_c = 10, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, intel = 0, wis = 0, cha = 0,  hp = 6, hpMax = 6, is_enemy = False, visibility_conditions=None, special_senses=[], **kwargs):
         super().__init__(name, hp, arm_c, spd, xp, lvl, is_enemy)
