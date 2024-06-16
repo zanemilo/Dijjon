@@ -17,31 +17,42 @@ from core_library import races as rc
 
 last_var = None # var that stores the value of the last called variable in a new variable:
 
+def combat_sim(): # tested and works in main
+    bandit = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player
+    master.sheet(bandit) # character sheet style layout player info
+    # Setup combat scenario
+    combat = c.Combat([player, bandit])
+    # Run the combat
+    combat.start_combat()
+
+def skill_check_sim():
+    bandit = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player
+    master.sheet(bandit) # character sheet style layout player info
+    print(f'Did {player.get_name()} pass the dex Check?: {master.check("dex", player.player_check_roll("dex"))}') # example dex check
+    print(f'Did {player.get_name()} pass the investigation Check?: {master.check("investigation", player.player_check_roll("investigation"))}') # example investigation check
+    print(f'The winner of the opposing check is: {master.opposing_check(player, bandit, "str")}') # example opposing check
+
 master = m.Master() # Instantiate Master in main
 
 main_game_loop = True
 
 player = p.Player(master.get_name(), master.get_valid_race(), master.get_valid_class()) # instantiate a new player
 master.sheet(player) # character sheet style layout player info
-
-bandit = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player
-master.sheet(bandit) # character sheet style layout player info
  
-#print(f'Did {player.get_name()} pass the dex Check?: {master.check("dex", player.player_check_roll("dex"))}') # example dex check
-#print(f'Did {player.get_name()} pass the investigation Check?: {master.check("investigation", player.player_check_roll("investigation"))}') # example investigation check
-#print(f'The winner of the opposing check is: {master.opposing_check(player, bandit, "str")}') # example opposing check
+# # # _________TESTS__________# # # 
+# test skill check outcomes in main
+# skill_check_sim()
 
-#master.combat_simulation(player, bandit) # prototype to the prototype combat sim out of master still needs to be cleaned up and used in Combat class file
+# test combat scenario in main
+# combat_sim()
+# # # _________TESTS___END____# # #
 
-# Setup combat scenario
-combat = c.Combat([player, bandit])
-# Run the combat
-combat.start_combat()
 
 while main_game_loop:
 
+    print("This is the hardcoded main menu.")
+    print("1. Enter the Enchanted Forest\n2. ")
+    input("What would you like to do? (Pick an option above...)")
 
     
-
-
-    input() # hold here
+    input("End of loop reach.") # hold here
