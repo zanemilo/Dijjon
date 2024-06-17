@@ -1,14 +1,42 @@
 This is the official documentation for Dijjon Beta.
 Author: Zane M Deso
-READ ME Last Updated on 5/7/2024
+READ ME Last Updated on 6/16/2024
 
 Dijjon (Current working name) is a text based game based on the Fantasy RPG world of Dijjon based on the creative work of John Philip Swanson. The game takes the player through a broken down version of the DnD 5e campaign written by John Philip Swanson. The text based game will showcase dynamics by injecting RNG into every interaction, encounter and outcome. No two play throughs should be the same. 
 
 
+UPDATE: As of 6/16/2024, I enact Agile practices upon this project and will be doing mini sprints. I will do this by wearing 4 different hats but never at the same time. Admittedly I know I will probably pick one or two and run with those. I should make note of which one.
+
+I WILL BE DOING LOW COMMITMENT SPRINTS FROM NOW ON!!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Current Sprint Goal:
+
+- Create a start menu with some playable functionality. Plug in some of the hard-coded quests into main. Work on story points if you find time.
 
 
 
-Current Goals of project: priority from high-low as follows(!,H,M,L)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Back Log of project: priority from high-low as follows(!,H,M,L)
 
 [H] Refactor Player class to be a child of an Entity class, then set NPCs and Mobs as childs to the Entity class as well.
 
@@ -17,6 +45,10 @@ Current Goals of project: priority from high-low as follows(!,H,M,L)
 [H] Finish Implementation of First Bandit Quest Prototype to make a functional demo environment to test new features, troubleshoot bugs, and generally demonstrate with.
 
 [H] Move away from long single file of spaghetti code. I would like to try to refactor bits of code into dedicated files that will be imported into the main game loop later on. This way code is easier read, review takes much less time and focus maintains on development. Break it down into OOP Classes (ie, Player Class should be dedicated class with sep file)
+
+[M] Integrate Quest Journal with Quests (whereever hard-coded and/or dynamic)
+
+[M] Create a better UI functionality for the quest journal instead of a dict being display.
 
 [M] Small idea for menu functions such as inn_menu... temporarily(once selction is made simply delete the option from the list or dictionary) append table to end with 'quit' or 'back' or 'return' only for sake of adding option to the enumerated output for user to select from. This way user won't assume they are stuck in menu.
 -Another idea, showcased in Python crash course is to print('If you would like to quit at anytime, enter 'q'') followed by incorporating that input into the if elif else logic tree for the menu.
@@ -38,6 +70,25 @@ Current Goals of project: priority from high-low as follows(!,H,M,L)
 [L] Add Accessors and Mutators to each class.
 
 [L] Correctly implement enchants to Melee_Items class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -75,6 +126,34 @@ ROAD MAP:
     Documentation and Help System:
         Game Documentation: Create comprehensive documentation to help new players understand the game mechanics and controls.
         Developer Documentation: Maintain clear and detailed developer documentation to facilitate easier updates and expansions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Major Change Log:
 
