@@ -53,7 +53,7 @@ class EnchantedForest:
         if option in options:
             if option == 'help':
                 check = player.player_check_roll('dex')
-                if check == 1 | check < 11:
+                if check == 1 | check < 12:
                     self._help_creature_fail()
                 elif check >= 12:
                     self._help_creature_pass()
@@ -92,6 +92,79 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
         self.tasks_completed += 1
 
     def solve_puzzle(self):  # FIX ME: Still needs to be wrote out
+
+        print() # Additional Flavor text here
+        print("""As you are traveling through the woods you find yourself at the edge of a creek.
+               \nAt the edge of the creek a medium sized stone catches your eye. Engravings riddle the face of the stone.
+               \nYou carefully brush aside the overgrowth and find these words burrowed into the surface: 
+               \n
+               \nIn the creek below, redirect the waters flow
+               \nSo the water swirls as an otter unfurls
+               \nWhat you will find will be worth the time
+               \n""")
+        puzzle_active = True
+
+        while puzzle_active:
+
+            print(""" 
+            \nAs you shift your attention to the creek you notice that the creekbed is made up of large cobblestone.
+            \nYou can arrange the stones in one of the below options depicted:
+            \n
+            \n1.
+            \n
+            \n |    o   o       |
+            \n |    o      o     | 
+            \n  |   o   o   o     |
+            \n   |  o   o      o   |
+            \n    | o          o    |
+            \n    | o        o      |
+            \n   |  o o    o       |
+            \n  |   o     o       |
+            \n |    o   o     o  |
+            \n      
+            \n2.
+            \n
+            \n
+            \n |       o    o   |
+            \n |    o    o    o  | 
+            \n  |                 |
+            \n   |   o    o     o  |
+            \n    |                 |
+            \n    |  o    o     o   |
+            \n   |    o            |
+            \n  |         o       |
+            \n |    o         o  |
+            \n
+            \n3.
+            \n
+            \n |                |
+            \n |   o  o    o     | 
+            \n  |        o    o   |
+            \n   |          o      |
+            \n    |  o    o         |
+            \n    |            o    |
+            \n   |  o  o    o      |
+            \n  |         o     o |
+            \n |   o             |
+            \n
+            \n
+            \n4.
+            \n
+            \n |  o    o     o  |
+            \n |   o      o   o  | 
+            \n  |   o      o   o  |
+            \n   |   o    o   o    |
+            \n    |  o   o    o     |
+            \n    | o   o    o      |
+            \n   | o  o     o      |
+            \n  | o   o    o      |
+            \n |   o   o    o     |
+            \n""")
+
+            answer = input()
+
+
+         
         print("You adjust the stones in a creek, altering the flow and revealing a new path.")
         self.tasks_completed += 1
 
@@ -102,9 +175,9 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
         else:
             print("You need to engage more with the forest to find your way.")
 
-master = m.Master() # Instantiate Master for testing"""
-dummy_player = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player for testing
-master.sheet(dummy_player) # character sheet style layout player info
+# master = m.Master() # Instantiate Master for testing"""
+# dummy_player = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player for testing
+# master.sheet(dummy_player) # character sheet style layout player info
 
-forest = EnchantedForest()
-forest.walk_forest(dummy_player)
+# forest = EnchantedForest()
+# forest.walk_forest(dummy_player)

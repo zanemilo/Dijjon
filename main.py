@@ -10,7 +10,7 @@ import dice_Roll as dr
 import Player as p
 import master as m
 import combat as c
-import Hard_Code_Quests EnchantedForest as EF
+import EnchantedForest as EF
 from settings import Settings as s
 from core_library import classes as cls
 from core_library import name_list as nm
@@ -26,12 +26,16 @@ def combat_sim(): # tested and works in main
     # Run the combat
     combat.start_combat()
 
-def skill_check_sim():
+def skill_check_test():
     bandit = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player
     master.sheet(bandit) # character sheet style layout player info
     print(f'Did {player.get_name()} pass the dex Check?: {master.check("dex", player.player_check_roll("dex"))}') # example dex check
     print(f'Did {player.get_name()} pass the investigation Check?: {master.check("investigation", player.player_check_roll("investigation"))}') # example investigation check
     print(f'The winner of the opposing check is: {master.opposing_check(player, bandit, "str")}') # example opposing check
+
+def create_player():
+    player = p.Player(master.get_name(), master.get_valid_race(), master.get_valid_class()) # instantiate a new player
+    master.sheet(player) # character sheet style layout player info
 
 master = m.Master() # Instantiate Master in main
 
@@ -50,13 +54,15 @@ master.sheet(player) # character sheet style layout player info
 
 
 while main_game_loop:
+    if player is None:
+        create_player()
 
     print("This is the hardcoded main menu.")
     print("1. Enter the Enchanted Forest\n ")
     input("What would you like to do? (Pick an option above...)")
     print("JK there was only one option.")
-    forest = EnchantedForest()
-    forest.walk_forest(dummy_player)
+    forest = EF.EnchantedForest()
+    forest.walk_forest(player)
 
     
     input("End of loop reach.") # hold here
