@@ -10,6 +10,7 @@ import dice_Roll as dr
 import Player as p
 import master as m
 import combat as c
+import Hard_Code_Quests EnchantedForest as EF
 from settings import Settings as s
 from core_library import classes as cls
 from core_library import name_list as nm
@@ -51,8 +52,11 @@ master.sheet(player) # character sheet style layout player info
 while main_game_loop:
 
     print("This is the hardcoded main menu.")
-    print("1. Enter the Enchanted Forest\n2. ")
+    print("1. Enter the Enchanted Forest\n ")
     input("What would you like to do? (Pick an option above...)")
+    print("JK there was only one option.")
+    forest = EnchantedForest()
+    forest.walk_forest(dummy_player)
 
     
     input("End of loop reach.") # hold here

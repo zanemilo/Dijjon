@@ -35,7 +35,6 @@ Current Sprint Goal:
 
 
 
-
 Back Log of project: priority from high-low as follows(!,H,M,L)
 
 [H] Refactor Player class to be a child of an Entity class, then set NPCs and Mobs as childs to the Entity class as well.
