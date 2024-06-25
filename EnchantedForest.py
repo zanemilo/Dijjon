@@ -95,7 +95,7 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
 
         print() # Additional Flavor text here
         print("""As you are traveling through the woods you find yourself at the edge of a creek.
-               \nAt the edge of the creek a medium sized stone catches your eye. Engravings riddle the face of the stone.
+               \nAt the edge of the creek a stump sized stone catches your eye. Engravings riddle the face of the stone.
                \nYou carefully brush aside the overgrowth and find these words burrowed into the surface: 
                \n
                \nIn the creek below, redirect the waters flow
@@ -158,7 +158,7 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
             \n    | o   o    o      |
             \n   | o  o     o      |
             \n  | o   o    o      |
-            \n |   o   o    o     |
+            \n |   o   o    o    |
             \n""")
 
             answer = input()
