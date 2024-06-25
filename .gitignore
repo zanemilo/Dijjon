@@ -1,6 +1,6 @@
 # ignore all .txt files (* == wild card)
 *.txt
-*.md
+#*.md
 __pycache__
 .gitignore
 *.pyc
