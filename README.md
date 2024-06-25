@@ -3,7 +3,7 @@ Dijjon Beta
 This is the official documentation for Dijjon Beta, a text-based game set in the Fantasy RPG world of Dijjon. The game is inspired by the creative work of John Philip Swanson and takes the player through a dynamic version of the DnD 5e campaign he wrote.
 
 Author: Zane M Deso
-Last Updated: June 16, 2024
+Last Updated: June 25, 2024
 Table of Contents
 
     Introduction
