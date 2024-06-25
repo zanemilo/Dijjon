@@ -27,10 +27,10 @@ class EnchantedForest:
 
     def walk_forest(self, player):
         """Entry Function for this quest. Acts as main function."""
-        print("You step into the vibrant, living forest, where the trees seem to whisper.")
+        print("\n\nYou step into the vibrant, living forest, where the trees seem to whisper.")
         options = ['help', 'solve', 'continue']
         while not self.path_found:
-            option = input("Choose to 'help' a creature, 'solve' a forest puzzle, or 'continue' walking? ")
+            option = input("\n\nChoose to 'help' a creature, 'solve' a forest puzzle, or 'continue' walking? ")
             if option in options:
                 if option == 'help':
                     self.help_creature(player)
@@ -47,10 +47,11 @@ class EnchantedForest:
 
     def help_creature(self, player):
         """Player encounters a creature that they may attempt to help or not"""
-        print("You hear a faint rustling followed by a soft, distressed mewing from beneath a cluster of ferns. As you approach, the sound grows clearer, and you discover a small Tressym caught in a tangled mess of thorns. Its delicate wings flutter weakly, shimmering with a dusting of iridescent scales that catch the light like tiny stars. The Tressym's eyes meet yours, shimmering with a mixture of fear and hope.")
+        print("\n\nYou hear a faint rustling followed by a soft, distressed mewing from beneath a cluster of ferns.\nAs you approach, the sound grows clearer, and you discover a small Tressym caught in a tangled mess of thorns.\nIts delicate wings flutter weakly, shimmering with a dusting of iridescent scales that catch the light like tiny stars.\nThe Tressym's eyes meet yours, shimmering with a mixture of fear and hope.")
         options = ['help', 'leave it', 'end it']
-        option = input(f"{self.display_options(options)}")
-        if option in options:
+        #option = input(f"{self.display_options(options)}")
+        option = input(f"\n\nChoose to 'help', 'leave', or 'kill' the creature? ")
+        if option.lower() in options:
             if option == 'help':
                 check = player.player_check_roll('dex')
                 if check == 1 | check < 12:
@@ -58,30 +59,30 @@ class EnchantedForest:
                 elif check >= 12:
                     self._help_creature_pass()
 
-            elif option == 'leave it':
+            elif option == 'leave':
                 pass
-            elif option == 'end it':
+            elif option == 'kill':
                 self._help_creature_death()
         else:
             option = input()
         self.tasks_completed += 1
 
     def _help_creature_fail(self):
-        print("Despite your efforts, the thorns prove too intricate and pull at the Tressym's delicate wings. With every gentle tug you attempt, the creature lets out a pained cry that tugs at your heart. Realizing that brute force could harm the creature further, you stop and search desperately around for another way to help. As you hesitate, the Tressym gives one desperate flutter and frees itself, though its wings now bear slight tears, marring their perfect symmetry. It gives you a long, sorrowful look before limping away into the underbrush, its trust in you shaken. As it disappears, the forest's shadows seem to deepen, and you can't shake the feeling that your failure has cost you more than just a chance to help.")
+        print("\nDespite your efforts, the thorns prove too intricate and pull at the Tressym's delicate wings. With every gentle tug you attempt, the creature lets out a pained cry that tugs at your heart. Realizing that brute force could harm the creature further, you stop and search desperately around for another way to help. As you hesitate, the Tressym gives one desperate flutter and frees itself, though its wings now bear slight tears, marring their perfect symmetry. It gives you a long, sorrowful look before limping away into the underbrush, its trust in you shaken. As it disappears, the forest's shadows seem to deepen, and you can't shake the feeling that your failure has cost you more than just a chance to help.")
         
         input("Press enter to continue...")
         
         self.tasks_completed += 1
 
     def _help_creature_pass(self):
-        print("Gently, you work to free the creature, mindful of its fragile wings, which resemble the vibrant pattern of a butterfly's. With each careful movement, the Tressym's soft purring grows louder, a sound that warms the cool air of the forest. Finally, it steps free, uninjured and grateful. In a display of gratitude, the Tressym circles above you, casting playful shadows on the ground and leaving a trail of sparkling, magical dust. It lands briefly on your shoulder, nuzzling against your cheek, then leaps into the air and disappears amongst the treetops, leaving behind a feeling of goodwill that seems to lighten the forest's whispering shadows. You gain a small, enchanted feather that glows faintly in your pocket, a token of the forest's magic and mystery.")
+        print("\nGently, you work to free the creature, mindful of its fragile wings, which resemble the vibrant pattern of a butterfly's. With each careful movement, the Tressym's soft purring grows louder, a sound that warms the cool air of the forest. Finally, it steps free, uninjured and grateful. In a display of gratitude, the Tressym circles above you, casting playful shadows on the ground and leaving a trail of sparkling, magical dust. It lands briefly on your shoulder, nuzzling against your cheek, then leaps into the air and disappears amongst the treetops, leaving behind a feeling of goodwill that seems to lighten the forest's whispering shadows. You gain a small, enchanted feather that glows faintly in your pocket, a token of the forest's magic and mystery.")
 
         input("Press enter to continue...")
         
         self.tasks_completed += 1
 
     def _help_creature_death(self):
-        print("""The Tressym's soft cries tug at your conscience, yet a part of you steels against the plaintive mewling. The forest around you seems to hold its breath as you approach, the decision weighing heavily in your mind. You realize that freeing the creature might be beyond your current skill, or perhaps the danger of drawing the attention of something more sinister lurking within the forest looms too large in your thoughts.
+        print("""\nThe Tressym's soft cries tug at your conscience, yet a part of you steels against the plaintive mewling. The forest around you seems to hold its breath as you approach, the decision weighing heavily in your mind. You realize that freeing the creature might be beyond your current skill, or perhaps the danger of drawing the attention of something more sinister lurking within the forest looms too large in your thoughts.
 
 With a heavy heart, you opt for a merciful end to the Tressym's suffering. As you prepare to act, the creature's eyes meet yours, a glint of understanding—or perhaps resignation—flashing within. The deed is quick, and the Tressym's body relaxes as its spirit escapes the pain-ridden confines of the mortal realm. The air grows chill as the forest's whispers rise in a mournful dirge.
 
