@@ -54,7 +54,8 @@ class EnchantedForest:
         if option.lower() in options:
             if option == 'help':
                 check = player.player_check_roll('dex')
-                if check == 1 | check < 12:
+                print(f"DEX CHECK: {check}")
+                if check < 12:
                     self._help_creature_fail()
                 elif check >= 12:
                     self._help_creature_pass()
