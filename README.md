@@ -19,6 +19,12 @@ Introduction
 Dijjon (current working name) is a text-based game that incorporates RNG into every interaction, encounter, and outcome, ensuring that no two playthroughs are the same. As of June 16, 2024, Agile practices have been enacted, and development will proceed in mini sprints.
 Current Sprint Goal
 
+    Flesh out EnchantedForest HardCoded Quest.
+    Make functional puzzle aspect.
+    Implement continue function. (Idea here is to have beginning -> middle -> end of the quest, although some quests do not warrant having to finish objectives. This one the palyer could just mosey on by)
+
+Previous Sprint Goal
+
     Create a start menu with some playable functionality.
     Plug in some of the hard-coded quests into the main game.
     Work on story points if time permits.
@@ -26,6 +32,8 @@ Current Sprint Goal
 Backlog
 High Priority
 
+    [H] Make functional intro quest line
+    [H] Inject encounters into hardcoded quests to add dynamic feel to 'traveling', 'exploring', or 'continuing'
     [H] Refactor Player class to be a child of an Entity class; set NPCs and Mobs as children of the Entity class.
     [H] Finish Implementation of Combat Class.
     [H] Finish Implementation of First Bandit Quest Prototype.
