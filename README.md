@@ -49,6 +49,7 @@ Medium Priority
 
 Low Priority
 
+    [L] Incorporate Party Level + Size to Solo Monster Hash Lookup Table for balanced solo monster encounters.
     [L] Track map expansion using nodes.
     [L] Add functionality for quest generation.
     [L] Create mad-lib type phrases for commoner jobs.
