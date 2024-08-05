@@ -85,9 +85,9 @@ class EnchantedForest:
     def _help_creature_death(self):
         print("""\nThe Tressym's soft cries tug at your conscience, yet a part of you steels against the plaintive mewling. The forest around you seems to hold its breath as you approach, the decision weighing heavily in your mind. You realize that freeing the creature might be beyond your current skill, or perhaps the danger of drawing the attention of something more sinister lurking within the forest looms too large in your thoughts.
 
-With a heavy heart, you opt for a merciful end to the Tressym's suffering. As you prepare to act, the creature's eyes meet yours, a glint of understanding—or perhaps resignation—flashing within. The deed is quick, and the Tressym's body relaxes as its spirit escapes the pain-ridden confines of the mortal realm. The air grows chill as the forest's whispers rise in a mournful dirge.
+        With a heavy heart, you opt for a merciful end to the Tressym's suffering. As you prepare to act, the creature's eyes meet yours, a glint of understanding—or perhaps resignation—flashing within. The deed is quick, and the Tressym's body relaxes as its spirit escapes the pain-ridden confines of the mortal realm. The air grows chill as the forest's whispers rise in a mournful dirge.
 
-As you stand, the weight of your choice settles around you like a cloak. Shadows seem to draw closer, a silent testament to the gravity of life and death decisions made under the canopy of the Enchanted Forest. You leave the scene with a somber respect for the harsh realities of nature, and perhaps, a reminder of the burdens adventurers must bear.""")
+        As you stand, the weight of your choice settles around you like a cloak. Shadows seem to draw closer, a silent testament to the gravity of life and death decisions made under the canopy of the Enchanted Forest. You leave the scene with a somber respect for the harsh realities of nature, and perhaps, a reminder of the burdens adventurers must bear.""")
         
         input("Press enter to continue...")
         
