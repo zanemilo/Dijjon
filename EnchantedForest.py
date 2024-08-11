@@ -139,13 +139,12 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
         
         print("You open the chest and retrieve ")
         for reward in rewards:
-            print(f"{reward}")
             player.get_item(1, reward)
                     
 
 
          
-        print("You adjust the stones in a creek, altering the flow and revealing a new path.")
+        print("After you adjusted the stones in a creek, the flow altered the forest around it revealing a new path.")
         self.tasks_completed += 1
 
     def find_path(self):  # FIX ME: Still needs to be wrote out and connected to whatever else it could be connected to

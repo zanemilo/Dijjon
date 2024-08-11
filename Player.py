@@ -239,11 +239,11 @@ class Player(Entity):
     def give_item(self, action, amount, item):
         """method for user character giving away, selling, dropping, donating an item"""
         if item not in self.inventory:
-            print('You do not have enough', item, f'to {action}!\n')
-        elif self.inventory[item] < amount or self.inventory[item] == 0:
-            print('You do not have enough', item, f'to {action}!\n')
+            print('You do not have enough', item.name, f'to {action}!\n')
+        elif self.inventory[str(item.name)] < amount or self.inventory[str(item.name)] <= 0:
+            print('You do not have enough', item.name, f'to {action}!\n')
         else:
-            self.inventory.pop(item) #this should fix the bug of keeping item in inv but removes all not some 
+            self.inventory[str(item.name)] -= amount #this should fix the bug of keeping item in inv but removes all not some 
             print(f"{self.name} {action} {amount} {item}\n")
 
     def show_inventory(self):
@@ -336,23 +336,23 @@ class Player(Entity):
 
 
 
-# Test Randomness into Player creation, can be used to build NPCs
-random_name_num = r.randint(0, len(cl.name_list) - 1)
-random_name = cl.name_list[random_name_num]
+# # Test Randomness into Player creation, can be used to build NPCs
+# random_name_num = r.randint(0, len(cl.name_list) - 1)
+# random_name = cl.name_list[random_name_num]
 
-random_race_num = r.randint(0, len(cl.races) - 1)
-random_race = cl.races[random_race_num]
+# random_race_num = r.randint(0, len(cl.races) - 1)
+# random_race = cl.races[random_race_num]
 
-random_class_num = r.randint(0, len(cl.classes) - 1)
-random_class = cl.classes[random_class_num]
+# random_class_num = r.randint(0, len(cl.classes) - 1)
+# random_class = cl.classes[random_class_num]
 
-# print(f"{random_name} {random_race} {random_class}")
+# # print(f"{random_name} {random_race} {random_class}")
 
-# Test instatiate testPlayer Player object
-testPlayer = Player(random_name, random_race, random_class)
+# # Test instatiate testPlayer Player object
+# testPlayer = Player(random_name, random_race, random_class)
 
-testPlayer.get_item(1, i.Item("Coins","Shiny gold coins", 1))
-testPlayer.inventory.update({"Apple" : "Turds"})
-testPlayer.show_inventory()
+# testPlayer.get_item(1, i.Item("Coins","Shiny gold coins", 1))
+# testPlayer.inventory.update({"Apple" : "Turds"})
+# testPlayer.show_inventory()
 
 
