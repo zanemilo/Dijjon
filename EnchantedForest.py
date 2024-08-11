@@ -12,6 +12,7 @@ from settings import Settings as s
 from core_library import classes as cls
 from core_library import name_list as nm
 from core_library import races as rc
+from core_library import reward_items_table as rew_tbl
 
 class EnchantedForest:
     def __init__(self):
@@ -108,14 +109,39 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
                \nWhat you will find will be worth the time
                \n""")
         puzzle_active = True
-        check = player.player_check_roll()
+        survival_check = player.player_check_roll('survival')
+        nature_check = player.player_check_roll('perception')
         while puzzle_active:
             print("The creek sits at your feet and as you look over the rocks in the creek bed\n")
-            if check >= 10:
-                print("")
-            
+            if survival_check >= 10:
+                print("Your hands move before your mind and you begin to arrange the stones letting your instincs guide you.\nA moment passes and the water begins to slowly but distincly swirl gainiing speed.\n The water continues swirling until it maintains speed and begins to glow a warm golden light.\nFrom the depths of the swirls a small shape emerges and bounces to the surface. A small chest awaits your retrieval.")
+                puzzle_active = False
+            elif nature_check >= 10:
+                print("Your mind aligns with the forest around you, focusing in not on a single thing but in everything at once.\nYour hands find themselves gliding through the creek and guiding the stones into place to create a perfect swirl.\nThe water continues swirling until it maintains speed and begins to glow a warm golden light.\nFrom the depths of the swirls a small shape emerges and bounces to the surface. A small chest awaits your retrieval.")
+                puzzle_active = False
+            else:
+                options = ['1','2','3']
+                answer = None
+                while answer not in options:
+                    answer = input("There seems to be a few manners in which to rearrange the stones. Will you:\n1. Build a partial dam with an opening on one end\n2. Chaotically toss the rocks about and let them fall where they may.\n 3. Create an alternating pattern with the stones.")
+                if answer == '1':
+                    print("You carefully and precisely place the final stone in place and you take a step back to take in your handy work.\nA moment passes and the water begins to slowly but distincly swirl gainiing speed.\n The water continues swirling until it maintains speed and begins to glow a warm golden light.\nFrom the depths of the swirls a small shape emerges and bounces to the surface. A small chest awaits your retrieval.")
+                    puzzle_active = False
+                elif answer == '2':
+                    lucky_roll = dr.roll_d100
+                    if lucky_roll == 100:
+                        print("After the chaos settles and you smile in your menical stone tossings, you notice that the water begins to slowly but distincly swirl gainiing speed.\n The water continues swirling until it maintains speed and begins to glow a warm golden light.\nFrom the depths of the swirls a small shape emerges and bounces to the surface. A small chest awaits your retrieval.")
+                        puzzle_active = False
+                elif answer == '3':
+                     print("After you place the last stone in place and examine your work it does not seem to resemble a swirl.")
 
-            answer = input()
+        rewards = [rew_tbl[r.randint(1, 10)], rew_tbl[r.randint(1, 10)]] 
+        
+        print("You open the chest and retrieve ")
+        for reward in rewards:
+            print(f"{reward}")
+            player.get_item(1, reward)
+                    
 
 
          
@@ -129,9 +155,9 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
         else:
             print("You need to engage more with the forest to find your way.")
 
-# master = m.Master() # Instantiate Master for testing"""
-# dummy_player = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player for testing
-# master.sheet(dummy_player) # character sheet style layout player info
+master = m.Master() # Instantiate Master for testing"""
+dummy_player = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player for testing
+master.sheet(dummy_player) # character sheet style layout player info
 
-# forest = EnchantedForest()
-# forest.walk_forest(dummy_player)
+forest = EnchantedForest()
+forest.solve_puzzle(dummy_player)
