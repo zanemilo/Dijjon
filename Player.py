@@ -7,6 +7,7 @@ import core_library as cl
 import random as r
 import dice_Roll as dr
 import master as m
+import Item as i
 from Visibility import Visibility
 from Entity import Entity  # using 'from Entity' due to probable cause of being mistaken as a module.
 
@@ -232,8 +233,8 @@ class Player(Entity):
         
     def get_item(self, amount, item):
         """add, append the item and amount into the self.inventory"""
-        self.inventory[item] += amount
-        print(f"{self.name} recieved {amount} {item}!\n")
+        self.inventory.update({str(item.name) : str(amount)})
+        print(f"{self.name} recieved {amount} {item.name}!\n")
     
     def give_item(self, action, amount, item):
         """method for user character giving away, selling, dropping, donating an item"""
@@ -335,21 +336,23 @@ class Player(Entity):
 
 
 
-# # Test Randomness into Player creation, can be used to build NPCs
-# random_name_num = r.randint(0, len(cl.name_list) - 1)
-# random_name = cl.name_list[random_name_num]
+# Test Randomness into Player creation, can be used to build NPCs
+random_name_num = r.randint(0, len(cl.name_list) - 1)
+random_name = cl.name_list[random_name_num]
 
-# random_race_num = r.randint(0, len(cl.races) - 1)
-# random_race = cl.races[random_race_num]
+random_race_num = r.randint(0, len(cl.races) - 1)
+random_race = cl.races[random_race_num]
 
-# random_class_num = r.randint(0, len(cl.classes) - 1)
-# random_class = cl.classes[random_class_num]
+random_class_num = r.randint(0, len(cl.classes) - 1)
+random_class = cl.classes[random_class_num]
 
-# print(f"{random_name_num} {random_race_num} {random_class_num}")
+# print(f"{random_name} {random_race} {random_class}")
 
-# # Test instatiate testPlayer Player object
-# testPlayer = Player(random_name, random_race, random_class)
+# Test instatiate testPlayer Player object
+testPlayer = Player(random_name, random_race, random_class)
 
-# testPlayer.display_info()
+testPlayer.get_item(1, i.Item("Coins","Shiny gold coins", 1))
+testPlayer.inventory.update({"Apple" : "Turds"})
+testPlayer.show_inventory()
 
 

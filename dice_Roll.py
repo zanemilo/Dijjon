@@ -42,4 +42,3 @@ def test_rolls():
     print(f"D20: {roll_d20()}")
     print(f"D100: {roll_d100()}")
 
-test_rolls()
