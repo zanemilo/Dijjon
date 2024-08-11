@@ -24,9 +24,10 @@ class EnchantedForest:
             print(f"\n{counter}. {options[i]}")
             counter += 1
         
-
-    def walk_forest(self, player):
+    def intro(self, player):
         """Entry Function for this quest. Acts as main function."""
+    def old_walk_forest(self, player):
+        """"""
         print("\n\nYou step into the vibrant, living forest, where the trees seem to whisper.")
         options = ['help', 'solve', 'continue']
         while not self.path_found:
@@ -36,11 +37,11 @@ class EnchantedForest:
                     self.help_creature(player)
                 elif option == 'solve':
                     print("\n\n solve puzzle AWT IMPLEMENTATION\n\n")
-                    self.walk_forest(player)
+                    self.old_walk_forest(player)
                     #self.solve_puzzle()
                 elif option == 'continue':
                     print("\n\n continue AWT IMPLEMENTATION\n\n")
-                    self.walk_forest(player)
+                    self.old_walk_forest(player)
                     #self.find_path()
                 else:
                     print("Invalid choice. Try again.")
@@ -95,7 +96,7 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
         
         self.tasks_completed += 1
 
-    def solve_puzzle(self):  # FIX ME: Still needs to be wrote out
+    def solve_puzzle(self, player):
 
         print() # Additional Flavor text here
         print("""As you are traveling through the woods you find yourself at the edge of a creek.
@@ -103,67 +104,16 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
                \nYou carefully brush aside the overgrowth and find these words burrowed into the surface: 
                \n
                \nIn the creek below, redirect the waters flow
-               \nSo the water swirls as an otter unfurls
+               \nMake the water swirl for treasure to unfurl
                \nWhat you will find will be worth the time
                \n""")
         puzzle_active = True
-
+        check = player.player_check_roll()
         while puzzle_active:
-
-            print(""" 
-            \nAs you shift your attention to the creek you notice that the creekbed is made up of large cobblestone.
-            \nYou can arrange the stones in one of the below options depicted:
-            \n
-            \n1.
-            \n
-            \n |    o   o       |
-            \n |    o      o     | 
-            \n  |   o   o   o     |
-            \n   |  o   o      o   |
-            \n    | o          o    |
-            \n    | o        o      |
-            \n   |  o o    o       |
-            \n  |   o     o       |
-            \n |    o   o     o  |
-            \n      
-            \n2.
-            \n
-            \n
-            \n |       o    o   |
-            \n |    o    o    o  | 
-            \n  |                 |
-            \n   |   o    o     o  |
-            \n    |                 |
-            \n    |  o    o     o   |
-            \n   |    o            |
-            \n  |         o       |
-            \n |    o         o  |
-            \n
-            \n3.
-            \n
-            \n |                |
-            \n |   o  o    o     | 
-            \n  |        o    o   |
-            \n   |          o      |
-            \n    |  o    o         |
-            \n    |            o    |
-            \n   |  o  o    o      |
-            \n  |         o     o |
-            \n |   o             |
-            \n
-            \n
-            \n4.
-            \n
-            \n |  o    o     o  |
-            \n |   o      o   o  | 
-            \n  |   o      o   o  |
-            \n   |   o    o   o    |
-            \n    |  o   o    o     |
-            \n    | o   o    o      |
-            \n   | o  o     o      |
-            \n  | o   o    o      |
-            \n |   o   o    o    |
-            \n""")
+            print("The creek sits at your feet and as you look over the rocks in the creek bed\n")
+            if check >= 10:
+                print("")
+            
 
             answer = input()
 
