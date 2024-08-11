@@ -27,6 +27,8 @@ class EnchantedForest:
         
     def intro(self, player):
         """Entry Function for this quest. Acts as main function."""
+        pass
+    
     def old_walk_forest(self, player):
         """"""
         print("\n\nYou step into the vibrant, living forest, where the trees seem to whisper.")
