@@ -5,16 +5,16 @@
 
 
 import random as r
-import Mob as mb
-import dice_Roll as dr
-import Player as p
+import entity.Mob as mb
+import scripts.dice_Roll as dr
+import entity.Player as p
 import master as m
-import combat as c
+import scripts.combat as c
 import resources.quests.EnchantedForest as EF
-from utils.settings import Settings as s
-from core_library import classes as cls
-from core_library import name_list as nm
-from core_library import races as rc
+from scripts.settings import Settings as s
+from resources.core_library import classes as cls
+from resources.core_library import name_list as nm
+from resources.core_library import races as rc
 
 last_var = None # var that stores the value of the last called variable in a new variable:
 

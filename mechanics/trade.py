@@ -2,8 +2,8 @@
 # Developed & designed by: Zane M Deso
 # Purpose: Used to handle any trade or bartering transaction.
 
-import core_library as cl
-import Item as it
+import resources.core_library as cl
+import mechanics.Item as it
 
 
 class Trade:

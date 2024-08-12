@@ -3,13 +3,13 @@
 # Purpose: Used to handle player creation, stats, attributes, status effect, and other associated player centered functions
 
 
-import core_library as cl
+import resources.core_library as cl
 import random as r
-import dice_Roll as dr
+import scripts.dice_Roll as dr
 import master as m
-import Item as i
-from Visibility import Visibility
-from Entity import Entity  # using 'from Entity' due to probable cause of being mistaken as a module.
+import mechanics.Item as i
+from environment.Visibility import Visibility
+from entity.Entity import Entity  # using 'from Entity' due to probable cause of being mistaken as a module.
 
 
 class Player(Entity):

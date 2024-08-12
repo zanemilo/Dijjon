@@ -3,14 +3,14 @@
 # Purpose: This class is a prototype class to handle fleshing out the intro bandit quest to demo Dijjon and test some game mechanics
 
 import random as r
-import Mob as mb
-import dice_Roll as dr
-import Player as p
+import entity.Mob as mb
+import utils.dice_Roll as dr
+import entity.Player as p
 import master as m
 from utils.settings import Settings as s
-from core_library import classes as cls
-from core_library import name_list as nm
-from core_library import races as rc
+from resources.core_library import classes as cls
+from resources.core_library import name_list as nm
+from resources.core_library import races as rc
 
 
 class BanditQuest:
