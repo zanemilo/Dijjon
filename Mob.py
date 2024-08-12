@@ -8,7 +8,7 @@ import random as r
 from core_library import monster_dict as md
 from core_library import name_list as nl
 from core_library import monster_type_list as mtl
-from settings import Settings as s
+from utils.settings import Settings as s
 from Entity import Entity
 
 

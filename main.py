@@ -10,8 +10,8 @@ import dice_Roll as dr
 import Player as p
 import master as m
 import combat as c
-import EnchantedForest as EF
-from settings import Settings as s
+import resources.quests.EnchantedForest as EF
+from utils.settings import Settings as s
 from core_library import classes as cls
 from core_library import name_list as nm
 from core_library import races as rc

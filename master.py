@@ -3,7 +3,7 @@
 # Purpose: This class is the main driver and will be the DM in a sense when it comes to making choices behind the scenes.
 
 import Player as p
-import settings
+import utils.settings as settings
 import random as r
 import dice_Roll as dr
 from core_library import races

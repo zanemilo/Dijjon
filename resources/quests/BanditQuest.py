@@ -7,7 +7,7 @@ import Mob as mb
 import dice_Roll as dr
 import Player as p
 import master as m
-from settings import Settings as s
+from utils.settings import Settings as s
 from core_library import classes as cls
 from core_library import name_list as nm
 from core_library import races as rc
