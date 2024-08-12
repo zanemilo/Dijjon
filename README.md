@@ -52,6 +52,9 @@ Current Sprint Goal
     [H] Refactor code into dedicated files for better readability and
         maintainability. (Look into master.py, a lot of the functions
         can be organized into char_class.py or race.py.)
+    [H] Text render (Renders fonts to screen)
+    [H] Game loop with input handling (Allow dynamic inputs)
+    [H] State tracking (Changes what is available per state)
 
 ### Medium Priority
 

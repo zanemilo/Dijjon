@@ -27,6 +27,10 @@ class EnchantedForest:
         
     def intro(self, player):
         """Entry Function for this quest. Acts as main function."""
+        print(F"{player.name} . . .")
+        input()
+        print(F"{player.name} . . . .")
+        input()
         pass
     
     def old_walk_forest(self, player):
