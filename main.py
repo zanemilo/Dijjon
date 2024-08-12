@@ -5,11 +5,11 @@
 
 
 import random as r
-import entity.Mob as mb
-import scripts.dice_Roll as dr
-import entity.Player as p
+import scripts.entity.Mob as mb
+import scripts.mechanics.dice_Roll as dr
+import scripts.entity.Player as p
 import master as m
-import scripts.combat as c
+import scripts.mechanics.combat as c
 import resources.quests.EnchantedForest as EF
 from scripts.settings import Settings as s
 from resources.core_library import classes as cls

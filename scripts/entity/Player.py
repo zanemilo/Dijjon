@@ -5,7 +5,7 @@
 
 import resources.core_library as cl
 import random as r
-import scripts.dice_Roll as dr
+import scripts.mechanics.dice_Roll as dr
 import master as m
 import mechanics.Item as i
 from environment.Visibility import Visibility
