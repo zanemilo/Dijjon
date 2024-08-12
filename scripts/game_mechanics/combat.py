@@ -3,7 +3,7 @@
 # Purpose: Combat takes care of all combat related scenarios including turn orders, actions, calling checks, rolls, tie breakers, win condition checking, and state tracking for comabt events.
 
 import random
-from entity.Player import Player
+from scripts.entity.Player import Player
 
 
 class Combat:

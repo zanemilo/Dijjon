@@ -3,7 +3,7 @@
 # Purpose: Used to handle any trade or bartering transaction.
 
 import resources.core_library as cl
-import game_mechanics.Item as it
+import scripts.game_mechanics.Item as it
 
 
 class Trade:

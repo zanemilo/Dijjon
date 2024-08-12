@@ -9,7 +9,7 @@ from resources.core_library import monster_dict as md
 from resources.core_library import name_list as nl
 from resources.core_library import monster_type_list as mtl
 from scripts.settings import Settings as s
-from entity.Entity import Entity
+from scripts.entity.Entity import Entity
 
 
 class Mob(Entity):
