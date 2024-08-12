@@ -5,7 +5,7 @@
 import scripts.entity.Player as p
 import scripts.settings as settings
 import random as r
-import scripts.mechanics.dice_Roll as dr
+import scripts.game_mechanics.dice_Roll as dr
 from resources.core_library import races
 from resources.core_library import classes
 

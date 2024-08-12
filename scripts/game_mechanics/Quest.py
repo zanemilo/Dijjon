@@ -3,7 +3,7 @@
 # Purpose: Used to handle quest instances dynamically as to remove need to hard code quests.
 
 
-import mechanics.Event as Event
+import game_mechanics.Event as Event
 
 
 class Quest(Event):

@@ -4,10 +4,10 @@
 
 import random as r
 import scripts.entity.Mob as mb
-import scripts.mechanics.dice_Roll as dr
+import scripts.game_mechanics.dice_Roll as dr
 import scripts.entity.Player as p
 import master as m
-import scripts.mechanics.combat as c
+import scripts.game_mechanics.combat as c
 from scripts.settings import Settings as s
 from resources.core_library import classes as cls
 from resources.core_library import name_list as nm
