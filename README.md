@@ -50,7 +50,8 @@ Current Sprint Goal
     [H] Finish Implementation of Combat Class.
     [H] Finish Implementation of First Bandit Quest Prototype.
     [H] Refactor code into dedicated files for better readability and
-        maintainability.
+        maintainability. (Look into master.py, a lot of the functions
+        can be organized into char_class.py or race.py.)
 
 ### Medium Priority
 

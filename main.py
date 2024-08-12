@@ -16,8 +16,6 @@ from resources.core_library import classes as cls
 from resources.core_library import name_list as nm
 from resources.core_library import races as rc
 
-last_var = None # var that stores the value of the last called variable in a new variable:
-
 def combat_sim(): # tested and works in main
     bandit = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player
     master.sheet(bandit) # character sheet style layout player info
