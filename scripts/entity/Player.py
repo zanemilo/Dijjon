@@ -5,9 +5,9 @@
 
 import resources.core_library as cl
 import random as r
-import scripts.mechanics.dice_Roll as dr
+import scripts.game_mechanics.dice_Roll as dr
 import master as m
-import mechanics.Item as i
+import game_mechanics.Item as i
 from environment.Visibility import Visibility
 from entity.Entity import Entity  # using 'from Entity' due to probable cause of being mistaken as a module.
 
