@@ -6,7 +6,7 @@ work of John Philip Swanson and takes the player through a dynamic version
 of the DnD 5e campaign he wrote.
 
 ### Author: Zane M Deso
-### Last Updated: June 25, 2024
+### Last Updated: 8/12/2024
 
 ## Table of Contents
 
@@ -88,13 +88,15 @@ Current Sprint Goal
     for NPCs.
     Quest System: Expand the quest system to include more complex and
     branching quests.
+    Race: Create dedicated race.py file that will handle race
+          functions and features.
 
 ### Character Development
 
     Character Classes: Enhance character class system with unique
-    abilities and progression paths.
+    abilities and progression paths. Creating unique classes!
     Entities and NPCs: Develop detailed attributes and behaviors
-    for entities.
+    for entities. Using AI->queue commands!
 
 ### Item and Inventory Management
 
@@ -110,8 +112,12 @@ Current Sprint Goal
 
 ### User Interface and Experience
 
+    GUI: Use a simple pyGame gui to display text, images and
+         stats much more gracefully.
     Settings and Customization: Update the settings module for
     more customization options.
+    Configuration: Implement a config file for key mapping, input-
+                    type, screen resolution, etc.
     Feedback System: Implement a system to collect player feedback.
 
 ### Technical Improvements
@@ -127,6 +133,9 @@ Current Sprint Goal
 
 ## Major Change Log
 
+    Major refactor on codebase: No need to clutter one folder with
+    all of the scripts so everything is now in dedicated folders.
+    (8/12/2024)
     Integrated DijjonAlphaDevelopment folder with Git: Enhanced
     tracking of progress.
     Refactoring player and NPC creation: Expanded classes and races,
