@@ -31,6 +31,8 @@ class EnchantedForest:
         input()
         print(F"{player.name} . . . .")
         input()
+        print(F"{player.name} wake up!")
+        input()
         pass
     
     def old_walk_forest(self, player):
