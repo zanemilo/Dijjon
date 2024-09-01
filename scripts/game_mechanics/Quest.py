@@ -111,7 +111,7 @@ class Quest(Event):
         while task["complete"] != True:
             i = 1
             if task["type"] in self.qtype:
-                while self.qtype[task["type"]](self) == False:  # Call the task type method call
+                while self.qtype[task["type"]](self, task_id) == False:  # Call the task type method call
                     while i <= len(task["narrative"]):
                         choice = None
                         while choice not in task["answers"][i]:
@@ -129,8 +129,7 @@ class Quest(Event):
                             i += 1
     
     def complete_task(self, task_id):
-        task = self.tasks[task_id]
-        task["complete"] = True
+        self.tasks[task_id]["complete"] = True
 
     def method_call1(self, task_id):
         print(f"method call 1 called")
@@ -143,9 +142,9 @@ class Quest(Event):
         print(f"setting task to complete")
         self.complete_task(task_id)
     
-    def find(self):
+    def find(self, task_id):
         print(f"find called")
-        return False
+        return True if self.tasks[task_id]["complete"] else False
 
     def kill(self):
         print(f"kill called")
