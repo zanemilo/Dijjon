@@ -231,6 +231,6 @@ tasks = {
 }
 quest = Quest("Test Quest", "This is a description for the test quest", qtype, tasks)  
 
-quest.run_task(1)
-quest.run_task(2)
+for i in range(1, 4):
+    quest.run_task(i)
 
