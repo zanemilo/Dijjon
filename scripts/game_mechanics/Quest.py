@@ -110,11 +110,11 @@ class Quest(Event):
         task = self.tasks[task_id]
         while task["complete"] != True:
             if task["type"] in self.qtype:
-                while self.qtype[task["type"]]() == False:  # Call the task type method call
+                while self.qtype[task["type"]](self) == False:  # Call the task type method call
                     i = 1
                     while i < len(task["narrative"]):
                         choice = None
-                        while choice not in task["answers"]:
+                        while choice not in task["answers"][i]:
                             print(task["narrative"][i])
                             j = 1
                             print("Select an option:\n")
@@ -122,8 +122,9 @@ class Quest(Event):
                                 print(f"{j}. {answer}")
                                 j += 1
                             choice = input()
-                        if task["script"][i] != None:
-                            task["script"][i]()
+                        if task["scripts"][i] != None:
+                            task["scripts"][i](self)
+                            i += 1
                         else:
                             i += 1
     
@@ -142,7 +143,7 @@ class Quest(Event):
     
     def find(self):
         print(f"find called")
-        return True
+        return False
 
     def kill(self):
         print(f"kill called")
