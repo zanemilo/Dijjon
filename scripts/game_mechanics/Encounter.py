@@ -3,7 +3,7 @@
 # Purpose: Used to handle quest instances dynamically as to remove need to hard code quests.
 
 
-import scripts.game_mechanics.Event as Event
+from Event import Event
 
 class Encounter(Event):
     def __init__(self, name, description, encounter_data):
