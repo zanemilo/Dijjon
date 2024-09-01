@@ -156,78 +156,79 @@ class Quest(Event):
 
 
 qtype = {"find": Quest.find, "kill": Quest.kill, "skill_check": Quest.skill_check,}
-tasks = { 1 : {
-                                                "name" : "Find Finn",
-                                                "type" : "find",
-                                                "complete" : False,
-                                                "narrative": {
-                                                1 : "lorem",
-                                                2 : "impsum",
-                                                3 : "lorem-impsum",
-                                                },
-                                                "answers": {
-                                                1 : ["lorem", ],
-                                                2 : ["impsum", "lorem",],
-                                                3 : ["lorem-impsum", "lorem",],
-                                                },
-                                                "scripts": {
-                                                1 : Quest.method_call1,
-                                                2 : None,
-                                                3 : Quest.method_call3,
-                                                },
-                                                "data": {
-                                                "pos": "town_square"
-                                                },
-                                              },
-                                              2 : {
-                                                "name" : "Kill 10 Goblins",
-                                                "type" : "kill",
-                                                "complete" : False,
-                                                "narrative": {
-                                                1 : "lorem",
-                                                2 : "impsum",
-                                                3 : "lorem-impsum",
-                                                },
-                                                "answers": {
-                                                1 : ["lorem", ],
-                                                2 : ["impsum", "lorem",],
-                                                3 : ["lorem-impsum", "lorem",],
-                                                },
-                                                "scripts": {
-                                                1 : Quest.method_call1,
-                                                2 : None,
-                                                3 : Quest.method_call3,
-                                                },
-                                                "data": {
-                                                "amount": "10",
-                                                "entity": "goblin"
-                                                },
-                                              },
-                                              3 : {
-                                                "name" : "Persuade Donnie",
-                                                "type" : "skill_check",
-                                                "complete" : False,
-                                                "narrative": {
-                                                1 : "lorem",
-                                                2 : "impsum",
-                                                3 : "lorem-impsum",
-                                                },
-                                                "answers": {
-                                                1 : ["lorem", ],
-                                                2 : ["impsum", "lorem",],
-                                                3 : ["lorem-impsum", "lorem",],
-                                                },
-                                                "scripts": {
-                                                1 : Quest.method_call1,
-                                                2 : None,
-                                                3 : Quest.method_call3,
-                                                },
-                                                "data": {
-                                                "skill": "persuasion",
-                                                "entity": "Donnie",
-                                                },
-                                              }
-                                            }
+tasks = {
+    1: {
+        "name": "Find Finn",
+        "type": "find",
+        "complete": False,
+        "narrative": {
+            1: "You arrive at the bustling town square. People are hurrying by, but you can't shake the feeling that Finn is nearby.",
+            2: "You catch a glimpse of someone matching Finn's description heading towards the old tavern.",
+            3: "The tavern door creaks as you step inside, the air thick with the smell of ale and the sound of quiet conversation.",
+        },
+        "answers": {
+            1: ["look around", "scan the crowd"],
+            2: ["follow", "head to tavern"],
+            3: ["enter", "step inside"],
+        },
+        "scripts": {
+            1: Quest.method_call1,
+            2: None,
+            3: Quest.method_call3,
+        },
+        "data": {
+            "pos": "town_square"
+        },
+    },
+    2: {
+        "name": "Kill 10 Goblins",
+        "type": "kill",
+        "complete": False,
+        "narrative": {
+            1: "The forest is dark and silent, save for the rustling of leaves underfoot. You know goblins are near.",
+            2: "You hear guttural voices ahead. The goblins have set up a camp in a small clearing.",
+            3: "The goblins are alerted to your presence and draw their crude weapons, ready to fight.",
+        },
+        "answers": {
+            1: ["advance", "move quietly"],
+            2: ["observe", "prepare to attack"],
+            3: ["fight", "engage"],
+        },
+        "scripts": {
+            1: Quest.method_call1,
+            2: None,
+            3: Quest.method_call3,
+        },
+        "data": {
+            "amount": 10,
+            "entity": "goblin"
+        },
+    },
+    3: {
+        "name": "Persuade Donnie",
+        "type": "skill_check",
+        "complete": False,
+        "narrative": {
+            1: "Donnie glares at you from across the table, his arms crossed defensively. He’s not going to be easy to persuade.",
+            2: "You present your case, carefully choosing your words to avoid triggering Donnie’s temper.",
+            3: "Donnie leans back, considering your words. You can tell he’s wavering, but you need to close the deal.",
+        },
+        "answers": {
+            1: ["start with empathy", "mention common goals"],
+            2: ["explain benefits", "highlight risks"],
+            3: ["offer compromise", "ensure trust"],
+        },
+        "scripts": {
+            1: Quest.method_call1,
+            2: None,
+            3: Quest.method_call3,
+        },
+        "data": {
+            "skill": "persuasion",
+            "entity": "Donnie",
+        },
+    }
+}
 quest = Quest("Test Quest", "This is a description for the test quest", qtype, tasks)  
 
 quest.run_task(1)
