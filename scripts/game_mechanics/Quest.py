@@ -29,14 +29,57 @@ class Quest(Event):
                                             #     2 : None,
                                             #     3 : method_object3,
                                             #     },
+                                            #     "data" {
+                                            #     "pos": "town_square"
+                                            #     },
                                             #   },
                                             #   2 : {
-                                            #     "name" : "Go to the well",
-                                            #     "year" : 2007
+                                            #     "name" : "Kill 10 Goblins",
+                                            #     "type" : "kill",
+                                            #     "complete" : False,
+                                            #     "narrative" {
+                                            #     1 : "lorem",
+                                            #     2 : "impsum",
+                                            #     3 : "lorem-impsum",
+                                            #     },
+                                            #     "answers" {
+                                            #     1 : ["lorem", ],
+                                            #     2 : ["impsum", "lorem",],
+                                            #     3 : ["lorem-impsum", "lorem",],
+                                            #     },
+                                            #     "scripts" {
+                                            #     1 : method_object1,
+                                            #     2 : None,
+                                            #     3 : method_object3,
+                                            #     },
+                                            #     "data" {
+                                            #     "amount": "10",
+                                            #     "entity": "goblin"
+                                            #     },
                                             #   },
                                             #   3 : {
-                                            #     "name" : "Linus",
-                                            #     "year" : 2011
+                                            #     "name" : "Persuade Donnie",
+                                            #     "type" : "skill_check",
+                                            #     "complete" : False,
+                                            #     "narrative" {
+                                            #     1 : "lorem",
+                                            #     2 : "impsum",
+                                            #     3 : "lorem-impsum",
+                                            #     },
+                                            #     "answers" {
+                                            #     1 : ["lorem", ],
+                                            #     2 : ["impsum", "lorem",],
+                                            #     3 : ["lorem-impsum", "lorem",],
+                                            #     },
+                                            #     "scripts" {
+                                            #     1 : method_object1,
+                                            #     2 : None,
+                                            #     3 : method_object3,
+                                            #     },
+                                            #     "data" {
+                                            #     "skill": "persuasion",
+                                            #     "entity": Donnie,
+                                            #     },
                                             #   }
                                             # } 
         
@@ -83,5 +126,7 @@ class Quest(Event):
                             task["script"][i]()
                         else:
                             i += 1
+    
+    
 
 
