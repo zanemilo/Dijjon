@@ -146,13 +146,13 @@ class Quest(Event):
         print(f"find called")
         return True if self.tasks[task_id]["complete"] else False
 
-    def kill(self):
+    def kill(self, task_id):
         print(f"kill called")
-        return True
+        return True if self.tasks[task_id]["complete"] else False
 
-    def skill_check(self):
+    def skill_check(self, task_id):
         print(f"skill_check called")
-        return True
+        return True if self.tasks[task_id]["complete"] else False
 
 
 qtype = {"find": Quest.find, "kill": Quest.kill, "skill_check": Quest.skill_check,}
@@ -232,4 +232,5 @@ tasks = {
 quest = Quest("Test Quest", "This is a description for the test quest", qtype, tasks)  
 
 quest.run_task(1)
+quest.run_task(2)
 
