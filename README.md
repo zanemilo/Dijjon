@@ -6,7 +6,7 @@ work of John Philip Swanson and takes the player through a dynamic version
 of the DnD 5e campaign he wrote.
 
 ### Author: Zane M Deso
-### Last Updated: 8/12/2024
+### Last Updated: 9/1/2024
 
 ## Table of Contents
 
@@ -29,15 +29,17 @@ Current Sprint Goal
 
     Flesh out EnchantedForest HardCoded Quest.
     Make functional puzzle aspect.
-    Implement continue function. (Idea here is to have beginning -> middle ->
-    end of the quest, although some quests do not warrant having to finish
-    objectives. This one the palyer could just mosey on by)
+    
 
 ## Previous Sprint Goal
 
     Create a start menu with some playable functionality.
     Plug in some of the hard-coded quests into the main game.
     Work on story points if time permits.
+
+    Implement continue function. (Idea here is to have beginning -> middle ->
+    end of the quest, although some quests do not warrant having to finish
+    objectives. This one the palyer could just mosey on by)
 
 ## Backlog
 ### High Priority
@@ -136,20 +138,23 @@ Current Sprint Goal
 
 ## Major Change Log
 
-    Major refactor on codebase: No need to clutter one folder with
-    all of the scripts so everything is now in dedicated folders.
-    (8/12/2024)
-    Integrated DijjonAlphaDevelopment folder with Git: Enhanced
-    tracking of progress.
-    Refactoring player and NPC creation: Expanded classes and races,
-    refactored to core library (1/6/2024).
-    Race and class selection enumeration: Improved user input
-    handling (Done).
-    Changed attribute name convention for "int" in Player class:
-    Resolved conflicts with int() function (Done).
-    Integrated repository with GitHub: Improved version control
-    and collaboration.
-
+    <ul>
+        <li>Implemented Quest Class to dynamically handle creating and 
+        playing quests. (9/1/2024)
+        <li>Major refactor on codebase: No need to clutter one folder with
+        all of the scripts so everything is now in dedicated folders.
+        (8/12/2024)
+        <li>Integrated DijjonAlphaDevelopment folder with Git: Enhanced
+        tracking of progress.
+        <li>Refactoring player and NPC creation: Expanded classes and races,
+        refactored to core library (1/6/2024).
+        <li>Race and class selection enumeration: Improved user input
+        handling (Done).
+        <li>Changed attribute name convention for "int" in Player class:
+        <li>Resolved conflicts with int() function (Done).
+        <li>Integrated repository with GitHub: Improved version control
+        and collaboration.
+    </ul>
 ## Story Arch Plans
 
 ### Branching Choices
