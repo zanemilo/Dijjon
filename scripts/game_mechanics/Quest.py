@@ -109,10 +109,10 @@ class Quest(Event):
     def run_task(self, task_id):
         task = self.tasks[task_id]
         while task["complete"] != True:
+            i = 1
             if task["type"] in self.qtype:
                 while self.qtype[task["type"]](self) == False:  # Call the task type method call
-                    i = 1
-                    while i < len(task["narrative"]):
+                    while i <= len(task["narrative"]):
                         choice = None
                         while choice not in task["answers"][i]:
                             print(task["narrative"][i])
