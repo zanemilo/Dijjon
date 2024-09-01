@@ -123,7 +123,7 @@ class Quest(Event):
                                 j += 1
                             choice = input()
                         if task["scripts"][i] != None:
-                            task["scripts"][i](self)
+                            task["scripts"][i](self, task_id)
                             i += 1
                         else:
                             i += 1
@@ -132,14 +132,16 @@ class Quest(Event):
         task = self.tasks[task_id]
         task["complete"] = True
 
-    def method_call1(self):
+    def method_call1(self, task_id):
         print(f"method call 1 called")
     
-    def method_call2(self):
+    def method_call2(self, task_id):
         print(f"method call 2 called")
 
-    def method_call3(self):
+    def method_call3(self, task_id):
         print(f"method call 3 called")
+        print(f"setting task to complete")
+        self.complete_task(task_id)
     
     def find(self):
         print(f"find called")
