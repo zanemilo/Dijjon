@@ -108,7 +108,7 @@ class Quest(Event):
 
     def run_task(self, task_id):
         task = self.tasks[task_id]
-        while self.tasks[task_id]["complete"] != True:
+        while task["complete"] != True:
             if task["type"] in self.qtype:
                 while self.qtype[task["type"]]() == False:  # Call the task type method call
                     i = 1
@@ -127,6 +127,106 @@ class Quest(Event):
                         else:
                             i += 1
     
-    
+    def complete_task(self, task_id):
+        task = self.tasks[task_id]
+        task["complete"] = True
 
+    def method_call1(self):
+        print(f"method call 1 called")
+    
+    def method_call2(self):
+        print(f"method call 2 called")
+
+    def method_call3(self):
+        print(f"method call 3 called")
+    
+    def find(self):
+        print(f"find called")
+        return True
+
+    def kill(self):
+        print(f"kill called")
+        return True
+
+    def skill_check(self):
+        print(f"skill_check called")
+        return True
+
+
+qtype = {"find": find, "kill": kill, "skill_check": skill_check,}
+tasks = { 1 : {
+                                                "name" : "Find Finn",
+                                                "type" : "find",
+                                                "complete" : False,
+                                                "narrative": {
+                                                1 : "lorem",
+                                                2 : "impsum",
+                                                3 : "lorem-impsum",
+                                                },
+                                                "answers": {
+                                                1 : ["lorem", ],
+                                                2 : ["impsum", "lorem",],
+                                                3 : ["lorem-impsum", "lorem",],
+                                                },
+                                                "scripts": {
+                                                1 : method_call1,
+                                                2 : None,
+                                                3 : method_object3,
+                                                },
+                                                "data": {
+                                                "pos": "town_square"
+                                                },
+                                              },
+                                              2 : {
+                                                "name" : "Kill 10 Goblins",
+                                                "type" : "kill",
+                                                "complete" : False,
+                                                "narrative": {
+                                                1 : "lorem",
+                                                2 : "impsum",
+                                                3 : "lorem-impsum",
+                                                },
+                                                "answers": {
+                                                1 : ["lorem", ],
+                                                2 : ["impsum", "lorem",],
+                                                3 : ["lorem-impsum", "lorem",],
+                                                },
+                                                "scripts": {
+                                                1 : method_call1,
+                                                2 : None,
+                                                3 : method_object3,
+                                                },
+                                                "data": {
+                                                "amount": "10",
+                                                "entity": "goblin"
+                                                },
+                                              },
+                                              3 : {
+                                                "name" : "Persuade Donnie",
+                                                "type" : "skill_check",
+                                                "complete" : False,
+                                                "narrative": {
+                                                1 : "lorem",
+                                                2 : "impsum",
+                                                3 : "lorem-impsum",
+                                                },
+                                                "answers": {
+                                                1 : ["lorem", ],
+                                                2 : ["impsum", "lorem",],
+                                                3 : ["lorem-impsum", "lorem",],
+                                                },
+                                                "scripts": {
+                                                1 : method_object1,
+                                                2 : None,
+                                                3 : method_object3,
+                                                },
+                                                "data": {
+                                                "skill": "persuasion",
+                                                "entity": Donnie,
+                                                },
+                                              }
+                                            }
+quest = Quest("Test Quest", "This is a description for the test quest", qtype, tasks)  
+
+quest.run_task(1)
 
