@@ -27,6 +27,7 @@ development will proceed in mini sprints.
 
 Current Sprint Goal
 
+    In Quest Class, integrate skill checks, combat, and the player
     Flesh out EnchantedForest HardCoded Quest.
     Make functional puzzle aspect.
     
