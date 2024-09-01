@@ -3,7 +3,7 @@
 # Purpose: Used to handle quest instances dynamically as to remove need to hard code quests.
 
 
-import scripts.game_mechanics.Event as Event
+from Event import Event
 
 
 class Quest(Event):
@@ -153,80 +153,80 @@ class Quest(Event):
         return True
 
 
-qtype = {"find": find, "kill": kill, "skill_check": skill_check,}
-tasks = { 1 : {
-                                                "name" : "Find Finn",
-                                                "type" : "find",
-                                                "complete" : False,
-                                                "narrative": {
-                                                1 : "lorem",
-                                                2 : "impsum",
-                                                3 : "lorem-impsum",
-                                                },
-                                                "answers": {
-                                                1 : ["lorem", ],
-                                                2 : ["impsum", "lorem",],
-                                                3 : ["lorem-impsum", "lorem",],
-                                                },
-                                                "scripts": {
-                                                1 : method_call1,
-                                                2 : None,
-                                                3 : method_object3,
-                                                },
-                                                "data": {
-                                                "pos": "town_square"
-                                                },
-                                              },
-                                              2 : {
-                                                "name" : "Kill 10 Goblins",
-                                                "type" : "kill",
-                                                "complete" : False,
-                                                "narrative": {
-                                                1 : "lorem",
-                                                2 : "impsum",
-                                                3 : "lorem-impsum",
-                                                },
-                                                "answers": {
-                                                1 : ["lorem", ],
-                                                2 : ["impsum", "lorem",],
-                                                3 : ["lorem-impsum", "lorem",],
-                                                },
-                                                "scripts": {
-                                                1 : method_call1,
-                                                2 : None,
-                                                3 : method_object3,
-                                                },
-                                                "data": {
-                                                "amount": "10",
-                                                "entity": "goblin"
-                                                },
-                                              },
-                                              3 : {
-                                                "name" : "Persuade Donnie",
-                                                "type" : "skill_check",
-                                                "complete" : False,
-                                                "narrative": {
-                                                1 : "lorem",
-                                                2 : "impsum",
-                                                3 : "lorem-impsum",
-                                                },
-                                                "answers": {
-                                                1 : ["lorem", ],
-                                                2 : ["impsum", "lorem",],
-                                                3 : ["lorem-impsum", "lorem",],
-                                                },
-                                                "scripts": {
-                                                1 : method_object1,
-                                                2 : None,
-                                                3 : method_object3,
-                                                },
-                                                "data": {
-                                                "skill": "persuasion",
-                                                "entity": Donnie,
-                                                },
-                                              }
-                                            }
-quest = Quest("Test Quest", "This is a description for the test quest", qtype, tasks)  
+# qtype = {"find": find, "kill": kill, "skill_check": skill_check,}
+# tasks = { 1 : {
+#                                                 "name" : "Find Finn",
+#                                                 "type" : "find",
+#                                                 "complete" : False,
+#                                                 "narrative": {
+#                                                 1 : "lorem",
+#                                                 2 : "impsum",
+#                                                 3 : "lorem-impsum",
+#                                                 },
+#                                                 "answers": {
+#                                                 1 : ["lorem", ],
+#                                                 2 : ["impsum", "lorem",],
+#                                                 3 : ["lorem-impsum", "lorem",],
+#                                                 },
+#                                                 "scripts": {
+#                                                 1 : method_call1,
+#                                                 2 : None,
+#                                                 3 : method_object3,
+#                                                 },
+#                                                 "data": {
+#                                                 "pos": "town_square"
+#                                                 },
+#                                               },
+#                                               2 : {
+#                                                 "name" : "Kill 10 Goblins",
+#                                                 "type" : "kill",
+#                                                 "complete" : False,
+#                                                 "narrative": {
+#                                                 1 : "lorem",
+#                                                 2 : "impsum",
+#                                                 3 : "lorem-impsum",
+#                                                 },
+#                                                 "answers": {
+#                                                 1 : ["lorem", ],
+#                                                 2 : ["impsum", "lorem",],
+#                                                 3 : ["lorem-impsum", "lorem",],
+#                                                 },
+#                                                 "scripts": {
+#                                                 1 : method_call1,
+#                                                 2 : None,
+#                                                 3 : method_object3,
+#                                                 },
+#                                                 "data": {
+#                                                 "amount": "10",
+#                                                 "entity": "goblin"
+#                                                 },
+#                                               },
+#                                               3 : {
+#                                                 "name" : "Persuade Donnie",
+#                                                 "type" : "skill_check",
+#                                                 "complete" : False,
+#                                                 "narrative": {
+#                                                 1 : "lorem",
+#                                                 2 : "impsum",
+#                                                 3 : "lorem-impsum",
+#                                                 },
+#                                                 "answers": {
+#                                                 1 : ["lorem", ],
+#                                                 2 : ["impsum", "lorem",],
+#                                                 3 : ["lorem-impsum", "lorem",],
+#                                                 },
+#                                                 "scripts": {
+#                                                 1 : method_object1,
+#                                                 2 : None,
+#                                                 3 : method_object3,
+#                                                 },
+#                                                 "data": {
+#                                                 "skill": "persuasion",
+#                                                 "entity": Donnie,
+#                                                 },
+#                                               }
+#                                             }
+# quest = Quest("Test Quest", "This is a description for the test quest", qtype, tasks)  
 
-quest.run_task(1)
+# quest.run_task(1)
 
