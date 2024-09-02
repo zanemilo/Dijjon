@@ -4,6 +4,7 @@
 
 
 from Event import Event
+from Temp import Temp
 
 
 class Quest(Event):
@@ -106,8 +107,8 @@ class Quest(Event):
                     3: ["enter", "step inside"],
                 },
                 "scripts": {
-                    1: Quest.method_call1,
-                    2: None,
+                    1: Quest.method_call1,  # Call class method
+                    2: Temp.blip,  # Call imported class method
                     3: Quest.method_call3,
                 },
                 "data": {
