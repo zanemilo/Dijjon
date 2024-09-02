@@ -44,14 +44,18 @@ class Quest(Event):
                 while self.qtype[task["type"]](self, task_id) == False:  # Call the task type method call
                     while i <= len(task["narrative"]):
                         choice = None
-                        while choice not in task["answers"][i]:
+                        number_answers = []
+                        for k in range(1, len(task["answers"][i]) + 1):
+                            print(len(task["answers"][i]))
+                            number_answers.append(str(k))
+                        while choice not in task["answers"][i] and choice not in number_answers:
                             print(task["narrative"][i])
                             j = 1
                             print("Select an option:\n")
                             for answer in task["answers"][i]:
                                 print(f"{j}. {answer}")
                                 j += 1
-                            choice = input()
+                            choice = str(input())
                         if task["scripts"][i] != None:
                             task["scripts"][i](self, task_id)
                             i += 1
@@ -97,8 +101,8 @@ class Quest(Event):
                     3: "The tavern door creaks as you step inside, the air thick with the smell of ale and the sound of quiet conversation.",
                 },
                 "answers": {
-                    1: ["look around", "scan the crowd"],
-                    2: ["follow", "head to tavern"],
+                    1: ["look around", "scan the crowd", "watch from afar", "gaze through the people", "peek about", "take a gander",],
+                    2: ["follow", "head to tavern", ],
                     3: ["enter", "step inside"],
                 },
                 "scripts": {
@@ -165,4 +169,4 @@ class Quest(Event):
             quest.run_task(i)
 
 # For Testing and example of how this class functions see test_class method
-# Quest.test_class(Quest)
+Quest.test_class(Quest)
