@@ -42,7 +42,7 @@ class Quest(Event):
         while task["complete"] != True:
             i = 1
             if task["type"] in self.qtype:
-                while self.qtype[task["type"]](self, task_id) == False:  # Call the task type method call
+                while self.qtype[task["type"]](self, task_id, self.tasks) == False:  # Call the task type method call
                     while i <= len(task["narrative"]):
                         choice = None
                         number_answers = []
@@ -56,35 +56,36 @@ class Quest(Event):
                                 print(f"{j}. {answer}")
                                 j += 1
                             choice = str(input())
+                            task.update({"choice": choice})
                         if task["scripts"][i] != None:
-                            task["scripts"][i](self, task_id)
+                            task["scripts"][i](self, task_id, self.tasks)
                             i += 1
                         else:
                             i += 1
     
-    def complete_task(self, task_id):
+    def complete_task(self, task_id, tasks):
         self.tasks[task_id]["complete"] = True
 
-    def method_call1(self, task_id):
+    def method_call1(self, task_id, tasks):
         print(f"method call 1 called")
     
-    def method_call2(self, task_id):
+    def method_call2(self, task_id, tasks):
         print(f"method call 2 called")
 
-    def method_call3(self, task_id):
+    def method_call3(self, task_id, tasks):
         print(f"method call 3 called")
         print(f"setting task to complete")
-        self.complete_task(task_id)
+        self.complete_task(task_id, tasks)
     
-    def find(self, task_id):
+    def find(self, task_id, tasks):
         print(f"find called")
         return True if self.tasks[task_id]["complete"] else False
 
-    def kill(self, task_id):
+    def kill(self, task_id, tasks):
         print(f"kill called")
         return True if self.tasks[task_id]["complete"] else False
 
-    def skill_check(self, task_id):
+    def skill_check(self, task_id, tasks):
         print(f"skill_check called")
         return True if self.tasks[task_id]["complete"] else False
 
@@ -111,7 +112,7 @@ class Quest(Event):
                     3: Quest.method_call3,
                 },
                 "data": {
-                    "pos": "town_square"
+                    "pos": "town_square",
                 },
             },
             2: {
@@ -135,7 +136,7 @@ class Quest(Event):
                 },
                 "data": {
                     "amount": 10,
-                    "entity": "goblin"
+                    "entity": "goblin",
                 },
             },
             3: {
