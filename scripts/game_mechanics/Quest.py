@@ -47,7 +47,6 @@ class Quest(Event):
                         choice = None
                         number_answers = []
                         for k in range(1, len(task["answers"][i]) + 1):
-                            print(len(task["answers"][i]))
                             number_answers.append(str(k))
                         while choice not in task["answers"][i] and choice not in number_answers:
                             print(task["narrative"][i])
