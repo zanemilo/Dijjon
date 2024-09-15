@@ -1,9 +1,7 @@
 # Dijjon Alpha
 
-This is the official documentation for Dijjon Beta, a text-based game set
-in the Fantasy RPG world of Dijjon. The game is inspired by the creative 
-work of John Philip Swanson and takes the player through a dynamic version
-of the DnD 5e campaign he wrote.
+This is the official documentation for Dijjon Alpha, a text-based game set
+in the Fantasy RPG world of Dijjon.
 
 ### Author: Zane M Deso
 ### Last Updated: 9/1/2024

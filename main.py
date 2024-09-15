@@ -1,6 +1,5 @@
 # Dijjon New Main
 # Developed & designed by: Zane M Deso
-# Content by: John P Swanson
 # Purpose: New Main will act as the entrance point for the program to run.
 
 
