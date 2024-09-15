@@ -162,9 +162,9 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
         else:
             print("You need to engage more with the forest to find your way.")
 
-master = m.Master() # Instantiate Master for testing"""
-dummy_player = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player for testing
-master.sheet(dummy_player) # character sheet style layout player info
+# master = m.Master() # Instantiate Master for testing"""
+# dummy_player = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player for testing
+# master.sheet(dummy_player) # character sheet style layout player info
 
-forest = EnchantedForest()
-forest.solve_puzzle(dummy_player)
+# forest = EnchantedForest()
+# forest.solve_puzzle(dummy_player)
