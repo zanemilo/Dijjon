@@ -2,95 +2,193 @@
 # Developed & designed by: Zane M Deso
 # Purpose: Used to handle quest instances dynamically as to remove need to hard code quests.
 
-
-from Event import Event
-from Temp import Temp
+from Event import Event  # Importing the Event class from Event module
+from Temp import Temp    # Importing the Temp class from Temp module
 
 
 class Quest(Event):
+    """
+    Quest Class for dynamically handling quest instances, inheriting from the Event class.
+
+    Attributes:
+        name (str): The name of the quest.
+        description (str): A description of the quest.
+        qtype (dict): Dictionary containing all possible quest/task types mapped to their corresponding methods.
+        tasks (dict): Dictionary containing the tasks associated with the quest.
+    """
+
     def __init__(self, name, description, qtype, tasks):
-        super().__init__(name, description)
-        self.qtype = qtype  # Dict of all possible quest/task types
-        self.tasks = tasks  # Dict of tasks 
-        
+        """
+        Initializes a new Quest instance with the given name, description, quest types, and tasks.
+
+        Args:
+            name (str): The name of the quest.
+            description (str): A brief description of the quest.
+            qtype (dict): A dictionary mapping quest/task types to their corresponding methods.
+            tasks (dict): A dictionary containing the tasks associated with the quest.
+        """
+        super().__init__(name, description)  # Initialize the parent Event class with name and description
+        self.qtype = qtype  # Dictionary of all possible quest/task types mapped to their methods
+        self.tasks = tasks  # Dictionary of tasks associated with the quest
     
-
-
     def run_task(self, task_id):
-        """# Note on calling methods from a dictionary: Credit to Praveen Gollakota on Stackoverflow, Feb 9, 2012
-    # https://stackoverflow.com/questions/9205081/is-there-a-way-to-store-a-function-in-a-list-or-dictionary-so-that-when-the-inde
+        """
+        Executes a task based on the provided task ID. Continuously runs until the task is marked as complete.
+
+        Args:
+            task_id (int): The identifier of the task to run.
         
-
-    # Functions are first class objects in Python and so you can dispatch using a dictionary. For example, if foo and bar are functions, and dispatcher is a dictionary like so.
-
-    # dispatcher = {'foo': foo, 'bar': bar}
-
-    # Note that the values are foo and bar which are the function objects, and NOT foo() and bar().
-
-    # To call foo, you can just do dispatcher['foo']()
-
-    # EDIT: If you want to run multiple functions stored in a list, you can possibly do something like this.
-
-    # dispatcher = {'foobar': [foo, bar], 'bazcat': [baz, cat]}
-
-    # def fire_all(func_list):
-    #     for f in func_list:
-    #         f()
-
-    # fire_all(dispatcher['foobar'])"""
+        Note:
+            This method utilizes a dispatcher pattern where quest/task types are mapped to their corresponding methods.
+            It handles user interactions by presenting narrative and choices, executing scripts based on player choices.
+        """
+        # Retrieve the task dictionary for the given task_id
         task = self.tasks[task_id]
+        
+        # Continue running the task until it is marked as complete
         while task["complete"] != True:
-            i = 1
+            i = 1  # Initialize the narrative step index
+            
+            # Check if the task type exists in the qtype dispatcher
             if task["type"] in self.qtype:
-                while self.qtype[task["type"]](self, task_id, self.tasks) == False:  # Call the task type method call
+                # Execute the method associated with the task type
+                while self.qtype[task["type"]](self, task_id, self.tasks) == False:
+                    # Iterate through the narrative steps of the task
                     while i <= len(task["narrative"]):
-                        choice = None
-                        number_answers = []
+                        choice = None  # Initialize the player's choice
+                        number_answers = []  # List to store valid numerical choices
+                        
+                        # Populate number_answers with string numbers corresponding to the answers
                         for k in range(1, len(task["answers"][i]) + 1):
                             number_answers.append(str(k))
+                        
+                        # Loop until the player makes a valid choice
                         while choice not in task["answers"][i] and choice not in number_answers:
+                            # Display the current narrative step
                             print(task["narrative"][i])
-                            j = 1
+                            j = 1  # Initialize the answer option index
                             print("Select an option:\n")
+                            
+                            # Display available answers/options for the current narrative step
                             for answer in task["answers"][i]:
                                 print(f"{j}. {answer}")
                                 j += 1
+                            
+                            # Prompt the player to make a choice
                             choice = str(input())
+                            
+                            # Update the task with the player's choice
                             task.update({"choice": choice})
+                        
+                        # Check if there is a script associated with the chosen answer
                         if task["scripts"][i] != None:
+                            # Execute the associated script/method
                             task["scripts"][i](self, task_id, self.tasks)
-                            i += 1
+                            i += 1  # Move to the next narrative step
                         else:
-                            i += 1
-    
+                            i += 1  # Move to the next narrative step without executing a script
+
     def complete_task(self, task_id, tasks):
-        self.tasks[task_id]["complete"] = True
+        """
+        Marks a task as complete.
+
+        Args:
+            task_id (int): The identifier of the task to mark as complete.
+            tasks (dict): The dictionary containing all tasks.
+        """
+        self.tasks[task_id]["complete"] = True  # Set the 'complete' flag to True for the specified task
 
     def method_call1(self, task_id, tasks):
+        """
+        Placeholder method representing the first type of method call during a task.
+
+        Args:
+            task_id (int): The identifier of the current task.
+            tasks (dict): The dictionary containing all tasks.
+        """
         print(f"method call 1 called")
     
     def method_call2(self, task_id, tasks):
+        """
+        Placeholder method representing the second type of method call during a task.
+
+        Args:
+            task_id (int): The identifier of the current task.
+            tasks (dict): The dictionary containing all tasks.
+        """
         print(f"method call 2 called")
 
     def method_call3(self, task_id, tasks):
+        """
+        Placeholder method representing the third type of method call during a task.
+
+        Args:
+            task_id (int): The identifier of the current task.
+            tasks (dict): The dictionary containing all tasks.
+        """
         print(f"method call 3 called")
         print(f"setting task to complete")
-        self.complete_task(task_id, tasks)
+        self.complete_task(task_id, tasks)  # Mark the task as complete
     
     def find(self, task_id, tasks):
+        """
+        Method to handle 'find' type tasks.
+
+        Args:
+            task_id (int): The identifier of the current task.
+            tasks (dict): The dictionary containing all tasks.
+
+        Returns:
+            bool: True if the task is complete, False otherwise.
+        """
         print(f"find called")
         return True if self.tasks[task_id]["complete"] else False
 
     def kill(self, task_id, tasks):
+        """
+        Method to handle 'kill' type tasks.
+
+        Args:
+            task_id (int): The identifier of the current task.
+            tasks (dict): The dictionary containing all tasks.
+
+        Returns:
+            bool: True if the task is complete, False otherwise.
+        """
         print(f"kill called")
         return True if self.tasks[task_id]["complete"] else False
 
     def skill_check(self, task_id, tasks):
+        """
+        Method to handle 'skill_check' type tasks.
+
+        Args:
+            task_id (int): The identifier of the current task.
+            tasks (dict): The dictionary containing all tasks.
+
+        Returns:
+            bool: True if the task is complete, False otherwise.
+        """
         print(f"skill_check called")
         return True if self.tasks[task_id]["complete"] else False
 
     def test_class(self):
-        qtype = {"find": Quest.find, "kill": Quest.kill, "skill_check": Quest.skill_check,}
+        """
+        Test method to demonstrate the functionality of the Quest class.
+
+        Creates a test quest with predefined task types and tasks, then runs each task.
+
+        Note:
+            This method is for testing and demonstration purposes to show how the Quest class functions.
+        """
+        # Define a dispatcher mapping task types to their corresponding methods
+        qtype = {
+            "find": Quest.find, 
+            "kill": Quest.kill, 
+            "skill_check": Quest.skill_check,
+        }
+        
+        # Define a dictionary of tasks associated with the quest
         tasks = {
             1: {
                 "name": "Find Finn",
@@ -102,13 +200,13 @@ class Quest(Event):
                     3: "The tavern door creaks as you step inside, the air thick with the smell of ale and the sound of quiet conversation.",
                 },
                 "answers": {
-                    1: ["look around", "scan the crowd", "watch from afar", "gaze through the people", "peek about", "take a gander",],
-                    2: ["follow", "head to tavern", ],
+                    1: ["look around", "scan the crowd", "watch from afar", "gaze through the people", "peek about", "take a gander"],
+                    2: ["follow", "head to tavern"],
                     3: ["enter", "step inside"],
                 },
                 "scripts": {
-                    1: Quest.method_call1,  # Call class method
-                    2: Temp.blip,  # Call imported class method
+                    1: Quest.method_call1,  # Call class method for script step 1
+                    2: Temp.blip,  # Call method from imported Temp class for script step 2
                     3: Quest.method_call3,
                 },
                 "data": {
@@ -164,10 +262,13 @@ class Quest(Event):
                 },
             }
         }
+        
+        # Create a Quest instance with a name, description, quest types, and tasks
         quest = Quest("Test Quest", "This is a description for the test quest", qtype, tasks)  
 
+        # Iterate through task IDs 1 to 3 and run each task
         for i in range(1, 4):
             quest.run_task(i)
 
 # For Testing and example of how this class functions see test_class method
-Quest.test_class(Quest)
+Quest.test_class(Quest)  # Calls the test_class method of Quest to demonstrate functionality
