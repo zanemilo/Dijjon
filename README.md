@@ -191,21 +191,11 @@ Interact with Tests (If Prompted)
 
 Some tests may require user interaction, such as inputting actions during combat simulations. When running such tests, you might see prompts like:
 
-java
 
     Hero, choose an action (attack, defend, etc.):
 
     Enter the requested input to proceed with the tests.
 
-Example Output
-
-After running the tests, you should see output similar to the following:
-
-Ran 4 tests in 14.185s
-
-OK
-
-This indicates that all tests have passed successfully.
 Notes
 
     Ensure Dependencies Are Installed:
