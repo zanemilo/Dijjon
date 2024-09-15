@@ -33,7 +33,31 @@ class EnchantedForest:
         input()
         print(F"{player.name} wake up!")
         input()
-        pass
+        if player.check_roll('perception') >= 15:
+            print(F"From the looming void, light reaches your vision. . . Daylight.\nYou notice a figure above you, humanoid-like.\nYour vision clears and you see a petite gnomish woman. Your know her.\nGreselda.")
+            input()
+        else:
+            print(F"As you stir from the looming darkness your vision remains blurred, you wince at the daylight.")
+            input()
+        options = ['Swing your fist as hard as you can in the direction of the tugging. [Attack Roll]', 'Take a closer look', 'Lay completely still.', 'Scream as loud as you can!','1','2', '3', '4']
+        answer = None
+        while answer not in options:
+            print(F"You feel something tugging at your body. What do you do?")
+            self.display_options(options[0:4])
+            answer = input()
+            if answer not in options:
+                print("Invalid option")
+            elif answer == options[0] or answer == '1':
+                print("Attack: AWT Implementation")
+            elif answer == options[1] or answer == '2':
+                print("Closer Look: AWT Implementation")
+            elif answer == options[2] or answer == '3':
+                print("Stay Still: AWT Implementation")
+            elif answer == options[3] or answer == '4':
+                print("Scream: AWT Implementation")
+            
+                
+        self.find_path(player)
     
     def old_walk_forest(self, player):
         """"""
@@ -155,7 +179,8 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
         print("After you adjusted the stones in a creek, the flow altered the forest around it revealing a new path.")
         self.tasks_completed += 1
 
-    def find_path(self):  # FIX ME: Still needs to be wrote out and connected to whatever else it could be connected to
+    def find_path(self, player):  # FIX ME: Still needs to be wrote out and connected to whatever else it could be connected to
+        print("TO BE IMPLEMENTED")
         if self.tasks_completed >= 3:
             print("The heart of the forest opens before you, revealing the ancient being.")
             self.path_found = True

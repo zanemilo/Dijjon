@@ -60,7 +60,7 @@ while main_game_loop:
     input("What would you like to do? (Pick an option above...)")
     print("JK there was only one option.")
     forest = EF.EnchantedForest()
-    forest.walk_forest(player)
+    forest.intro(player)
 
     
     input("End of loop reach.") # hold here

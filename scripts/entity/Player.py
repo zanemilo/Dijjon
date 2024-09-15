@@ -315,8 +315,8 @@ class Player(Entity):
         """Display player's info"""
         print(f"Name: {self.get_name()}\nRace: {self.get_race()}\nCharacter class: {self.get_char_class()}\nGold: {self.get_gold()}\nArmor Class: {self.get_arm_c()}\nHP: {self.get_hp()}\nMax HP: {self.get_hpMax()}\nSpeed: {self.get_spd()}\nXP: {self.get_xp()}\nLevel: {self.get_lvl()}\nStr: {self.get_str()}\nDex: {self.get_dex()}\nCon: {self.get_con()}\nInt: {self.get_intel()}\nWis: {self.get_wis()}\nCha: {self.get_cha()}\n")
 
-    def player_check_roll(self, check_type):
-        """Takes stat as an args and rolls a d20 + the instances stat associated modifier"""
+    def check_roll(self, check_type):
+        """Takes stat as an args and rolls a d20 + the instances stat associated modifier. -> int of sum of entity roll"""
 
         check_type = check_type.lower()
         valid_types = [
