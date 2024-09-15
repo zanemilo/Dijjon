@@ -137,23 +137,23 @@ Current Sprint Goal
 
 ## Major Change Log
 
-    <ul>
-        <li>Implemented Quest Class to dynamically handle creating and 
-        playing quests. (9/1/2024)
-        <li>Major refactor on codebase: No need to clutter one folder with
-        all of the scripts so everything is now in dedicated folders.
-        (8/12/2024)
-        <li>Integrated DijjonAlphaDevelopment folder with Git: Enhanced
-        tracking of progress.
-        <li>Refactoring player and NPC creation: Expanded classes and races,
-        refactored to core library (1/6/2024).
-        <li>Race and class selection enumeration: Improved user input
-        handling (Done).
-        <li>Changed attribute name convention for "int" in Player class:
-        <li>Resolved conflicts with int() function (Done).
-        <li>Integrated repository with GitHub: Improved version control
-        and collaboration.
-    </ul>
+<ul>
+    <li>Implemented Quest Class to dynamically handle creating and 
+    playing quests. (9/1/2024)
+    <li>Major refactor on codebase: No need to clutter one folder with
+    all of the scripts so everything is now in dedicated folders.
+    (8/12/2024)
+    <li>Integrated DijjonAlphaDevelopment folder with Git: Enhanced
+    tracking of progress.
+    <li>Refactoring player and NPC creation: Expanded classes and races,
+    refactored to core library (1/6/2024).
+    <li>Race and class selection enumeration: Improved user input
+    handling (Done).
+    <li>Changed attribute name convention for "int" in Player class:
+    <li>Resolved conflicts with int() function (Done).
+    <li>Integrated repository with GitHub: Improved version control
+    and collaboration.
+</ul>
 
 
 ## Testing
