@@ -138,6 +138,8 @@ Current Sprint Goal
 ## Major Change Log
 
 <ul>
+    <li>Created base level unit tests, plans to expand and
+    automate (9/15/2024)
     <li>Implemented Quest Class to dynamically handle creating and 
     playing quests. (9/1/2024)
     <li>Major refactor on codebase: No need to clutter one folder with
