@@ -163,13 +163,12 @@ Running Tests
 
 To run the tests, follow these steps:
 <ul>
-    <li>Navigate to the Project Root Directory
-
-    <li>Open your terminal or command prompt and navigate to the root directory of the project:
-
-    <li>bash
+<li>Navigate to the Project Root Directory
+<li>Open your terminal or command prompt and navigate to the root directory of the project:
+<li>bash
 </ul>
-                cd path/to/DijjonAlphaDevelopment
+
+```cd path/to/DijjonAlphaDevelopment```
 
 Replace path/to/DijjonAlphaDevelopment with the actual path to your project directory.
 
@@ -177,9 +176,9 @@ Run Tests Using Unittest
 
 Use the following command to discover and run all tests:
 
-bash
+<i>using bash</i>
 
-python -m unittest discover -s scripts/tests -p 'test_*.py'
+```python -m unittest discover -s scripts/tests -p 'test_*.py'```
 
 Explanation of the command:
 
