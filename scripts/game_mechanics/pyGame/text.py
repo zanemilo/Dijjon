@@ -1,5 +1,5 @@
 import pygame
-from Button import Button  # Ensure you have a Button class implemented in Button.py
+from Button import Button
 
 # ------------------------------------------------------------------------------
 # TextRenderer Class
