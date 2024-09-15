@@ -2,8 +2,8 @@
 # Developed & designed by: Zane M Deso
 # Purpose: Used to handle quest instances dynamically as to remove need to hard code quests.
 
-from Event import Event  # Importing the Event class from Event module
-from Temp import Temp    # Importing the Temp class from Temp module
+from Event import Event 
+from Temp import Temp   
 
 
 class Quest(Event):

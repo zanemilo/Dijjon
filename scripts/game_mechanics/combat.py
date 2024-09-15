@@ -2,8 +2,8 @@
 # Developed & designed by: Zane M Deso
 # Purpose: Combat takes care of all combat related scenarios including turn orders, actions, calling checks, rolls, tie breakers, win condition checking, and state tracking for combat events.
 
-import random  # Importing the random module for generating random numbers
-from scripts.entity.Player import Player  # Importing the Player class from the entity module
+import random  
+from scripts.entity.Player import Player 
 
 
 class Combat:

@@ -2,7 +2,7 @@
 # Developed & designed by: Zane M Deso
 # Purpose: Used to handle quest instances dynamically as to remove need to hard code quests.
 
-from Event import Event  # Importing the Event base class from the Event module
+from Event import Event 
 
 
 class Encounter(Event):

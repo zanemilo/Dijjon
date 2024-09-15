@@ -2,17 +2,17 @@
 # Developed & designed by: Zane M Deso
 # Purpose: New Main will act as the entrance point for the program to run.
 
-import random as r  # Importing the random module and aliasing it as 'r' for shorthand usage
-import scripts.entity.Mob as mb  # Importing the Mob class from scripts.entity module and aliasing it as 'mb'
-import scripts.game_mechanics.dice_Roll as dr  # Importing the dice_Roll module from scripts.game_mechanics and aliasing it as 'dr'
-import scripts.entity.Player as p  # Importing the Player class from scripts.entity module and aliasing it as 'p'
-import master as m  # Importing the Master class from the master module and aliasing it as 'm'
-import scripts.game_mechanics.combat as c  # Importing the combat module from scripts.game_mechanics and aliasing it as 'c'
-import resources.quests.EnchantedForest as EF  # Importing the EnchantedForest module from resources.quests and aliasing it as 'EF'
-from scripts.settings import Settings as s  # Importing the Settings class from scripts.settings module and aliasing it as 's'
-from resources.core_library import classes as cls  # Importing the classes list from resources.core_library module and aliasing it as 'cls'
-from resources.core_library import name_list as nm  # Importing the name_list from resources.core_library module and aliasing it as 'nm'
-from resources.core_library import races as rc  # Importing the races list from resources.core_library module and aliasing it as 'rc'
+import random as r  
+import scripts.entity.Mob as mb  
+import scripts.game_mechanics.dice_Roll as dr 
+import scripts.entity.Player as p 
+import master as m  
+import scripts.game_mechanics.combat as c 
+import resources.quests.EnchantedForest as EF  
+from scripts.settings import Settings as s  
+from resources.core_library import classes as cls  
+from resources.core_library import name_list as nm  
+from resources.core_library import races as rc 
 
 
 def combat_sim():
