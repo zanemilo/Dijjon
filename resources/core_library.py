@@ -6,7 +6,6 @@
 import scripts.game_mechanics.Item as i
 import scripts.game_mechanics.dice_Roll as dice_Roll
 
-
 # Creates instances of Items class with name, description, and value as arguments
 inn_items = {
     "Oats": i.Item(
@@ -39,35 +38,65 @@ inn_items = {
         "The clear and unremarkable appearance of the water in the mug was a refreshing contrast to the chaos of the world around it.",
         0
     ),
+    "Cheese": i.Item(
+        "Cheese",
+        "A wedge of aged cheese, its rich aroma hints at a sharp and tangy flavor.",
+        2
+    ),
+    "Stew": i.Item(
+        "Stew",
+        "A hearty bowl of stew filled with tender meat and root vegetables, warming you from within.",
+        4
+    ),
+    "Fruit": i.Item(
+        "Fruit",
+        "A selection of fresh fruits, their vibrant colors and sweet scents inviting a taste.",
+        1
+    ),
+    "Mead": i.Item(
+        "Mead",
+        "A honeyed mead that offers a sweet and smooth drinking experience.",
+        3
+    ),
 }
 
-# List of available races (Original names replaced with unique alternatives)
+# List of available races
 races = [
-    "Drakari",        # Replaces "Dragonborn"
-    "Stonekin",       # Replaces "Dwarf"
-    "Sylphari",       # Replaces "Elf"
-    "Frostling",      # Replaces "Gnome"
-    "Halfian",        # Replaces "Half-Elf"
-    "Minfolk",        # Replaces "Halfling"
-    "Orcane",         # Replaces "Half-Orc"
-    "Humara",         # Replaces "Human"
-    "Shadeborn",      # Replaces "Tiefling"
+    "Drakari",
+    "Stonekin",
+    "Sylphari",
+    "Frostling",
+    "Halfian",
+    "Minfolk",
+    "Orcane",
+    "Humara",
+    "Shadeborn",
+    "Aetherborn",
+    "Lumidar",
+    "Feykin",
+    "Tauren",
+    "Merfolk",
 ]
 
-# List of available classes (Original names replaced with unique alternatives)
+# List of available classes
 classes = [
-    "Berserker",      # Replaces "Barbarian"
-    "Minstrel",       # Replaces "Bard"
-    "Diviner",        # Replaces "Cleric"
-    "Naturebinder",   # Replaces "Druid"
-    "Warrior",        # Replaces "Fighter"
-    "Ascetic",        # Replaces "Monk"
-    "Knight",         # Replaces "Paladin"
-    "Pathfinder",     # Replaces "Ranger"
-    "Shadow",         # Replaces "Rogue"
-    "Mage",           # Replaces "Sorcerer"
-    "Enchanter",      # Replaces "Warlock"
-    "Spellbinder",    # Replaces "Wizard"
+    "Berserker",
+    "Minstrel",
+    "Diviner",
+    "Naturebinder",
+    "Warrior",
+    "Ascetic",
+    "Knight",
+    "Pathfinder",
+    "Shadow",
+    "Mage",
+    "Enchanter",
+    "Spellbinder",
+    "Artificer",
+    "Warden",
+    "Shaman",
+    "Psion",
+    "Reaver",
 ]
 
 # Creates instances of Melee_Item class with name, description, value, damage, damage_type, poisoned, enchant as arguments
@@ -126,6 +155,51 @@ melee_items = {
         False,
         None
     ),
+    "Flail": i.Melee_Item(
+        "Flail",
+        "A flail, a weapon of unpredictable arcs and crushing blows.",
+        7,
+        dice_Roll.roll_d8(),
+        "Bludgeoning",
+        False,
+        None
+    ),
+    "Halberd": i.Melee_Item(
+        "Halberd",
+        "A halberd, combining the reach of a spear with the chopping power of an axe.",
+        10,
+        dice_Roll.roll_d10(),
+        "Slashing",
+        False,
+        None
+    ),
+    "Rapier": i.Melee_Item(
+        "Rapier",
+        "A rapier, slender and sharp, perfect for swift and precise strikes.",
+        6,
+        dice_Roll.roll_d8(),
+        "Piercing",
+        False,
+        None
+    ),
+    "Warhammer": i.Melee_Item(
+        "Warhammer",
+        "A warhammer, designed to crush armor and bone alike.",
+        9,
+        dice_Roll.roll_d8(),
+        "Bludgeoning",
+        False,
+        None
+    ),
+    "Quarterstaff": i.Melee_Item(
+        "Quarterstaff",
+        "A quarterstaff, simple yet versatile, favored by monks and travelers.",
+        2,
+        dice_Roll.roll_d6(),
+        "Bludgeoning",
+        False,
+        None
+    ),
 }
 
 # Random names
@@ -148,6 +222,11 @@ name_list = [
     "Nadia", "Niamh", "Nyla", "Orin", "Pasha", "Rafael", "Raya", "Ren",
     "Rhian", "Sage", "Selene", "Seren", "Sylvan", "Talia", "Tavi", "Vera",
     "Wren", "Zayn",
+    "Zephyr", "Rowan", "Kieran", "Elowen", "Arwen", "Lysander", "Evander",
+    "Cassiopeia", "Orla", "Lucius", "Cyrus", "Daphne", "Evelyn", "Gideon",
+    "Isadora", "Julian", "Leona", "Magnus", "Naomi", "Oliver", "Penelope",
+    "Quentin", "Rosalie", "Sebastian", "Thea", "Ulric", "Viola", "Willem",
+    "Xanthe", "Yvette", "Zachariah",
 ]
 
 # Commoner jobs
@@ -157,16 +236,21 @@ jobs = [
     'Potter', 'Brewer', 'Butcher', 'Mason', 'Scribe', 'Tanner',
     'Herbalist', 'Messenger', 'Stablehand', 'Servant', 'Street Vendor',
     'Town Crier', 'Cartographer', 'Guard', 'Town Guard', 'Jeweler',
-    'Weaver', 'Bard', 'Sailor',
+    'Weaver', 'Bard', 'Sailor', 'Alchemist', 'Chandler', 'Chronicler',
+    'Clothier', 'Cobbler', 'Fletcher', 'Glassblower', 'Locksmith',
+    'Silversmith', 'Wainwright', 'Apothecary', 'Bookbinder', 'Dyer',
+    'Falconer', 'Goldsmith', 'Shepherd', 'Spice Trader', 'Tax Collector',
+    'Tutor',
 ]
 
 # Monster types
 monster_type_list = [
     "aberration", "beast", "celestial", "construct", "dragon",
     "elemental", "fey", "giant", "humanoid", "monstrosity",
+    "ooze", "undead", "plant", "fiend",
 ]
 
-# Monsters with types as values (Original names replaced with unique alternatives)
+# Monsters with types as values
 monster_dict = {
     # Aberrations
     "Zyphor": "aberration",
@@ -278,6 +362,40 @@ monster_dict = {
     "Rust Monster": "monstrosity",
     "Umber Hulk": "monstrosity",
     "Hook Horror": "monstrosity",
+    # Oozes
+    "Gelatinous Cube": "ooze",
+    "Black Pudding": "ooze",
+    "Gray Ooze": "ooze",
+    "Ochre Jelly": "ooze",
+    "Slithering Tracker": "ooze",
+    # Undead
+    "Zombie": "undead",
+    "Skeleton": "undead",
+    "Ghoul": "undead",
+    "Wight": "undead",
+    "Vampire": "undead",
+    "Lich": "undead",
+    "Ghost": "undead",
+    "Specter": "undead",
+    "Banshee": "undead",
+    "Wraith": "undead",
+    # Plants
+    "Shambling Mound": "plant",
+    "Twig Blight": "plant",
+    "Myconid": "plant",
+    "Treant": "plant",
+    "Vine Blight": "plant",
+    # Fiends
+    "Imp": "fiend",
+    "Barbed Devil": "fiend",
+    "Pit Fiend": "fiend",
+    "Balor": "fiend",
+    "Cambion": "fiend",
+    "Succubus": "fiend",
+    "Marilith": "fiend",
+    "Horned Devil": "fiend",
+    "Glabrezu": "fiend",
+    "Quasit": "fiend",
 }
 
 # Nested dict containing master list of locations
@@ -315,6 +433,36 @@ locations = {
             "inn": "The Whispering Willow",
             "general_store": "Mystic Emporium",
         },
+        {
+            "name": "Sunvale",
+            "size": "small",
+            "inn": "The Rising Sun Inn",
+            "general_store": "Sunvale Supplies",
+        },
+        {
+            "name": "Shadowport",
+            "size": "large",
+            "inn": "The Moonlit Maiden",
+            "general_store": "Shadowport Market",
+        },
+        {
+            "name": "Eagle's Peak",
+            "size": "medium",
+            "inn": "The Soaring Eagle",
+            "general_store": "Peak Provisions",
+        },
+        {
+            "name": "Verdant Grove",
+            "size": "small",
+            "inn": "The Green Leaf",
+            "general_store": "Grove Goods",
+        },
+        {
+            "name": "Ironforge",
+            "size": "large",
+            "inn": "The Hammered Anvil",
+            "general_store": "Forge Finds",
+        },
     ],
     # Cave locations
     'caves': [
@@ -338,6 +486,26 @@ locations = {
             "name": "Echoing Abyss",
             "size": "large",
         },
+        {
+            "name": "Dragon's Maw",
+            "size": "large",
+        },
+        {
+            "name": "Serpent's Tunnels",
+            "size": "medium",
+        },
+        {
+            "name": "Forgotten Mine",
+            "size": "small",
+        },
+        {
+            "name": "Ancient Catacombs",
+            "size": "large",
+        },
+        {
+            "name": "Glittering Caverns",
+            "size": "medium",
+        },
     ],
     # Bandit camp locations
     'bandit camps': [
@@ -360,6 +528,26 @@ locations = {
         {
             "name": "Daggerfall Outpost",
             "size": "large",
+        },
+        {
+            "name": "Crimson Camp",
+            "size": "medium",
+        },
+        {
+            "name": "Shadow Hideaway",
+            "size": "small",
+        },
+        {
+            "name": "Ironclaw Base",
+            "size": "large",
+        },
+        {
+            "name": "Silent Knoll",
+            "size": "medium",
+        },
+        {
+            "name": "Broken Blade Camp",
+            "size": "small",
         },
     ],
     # Roadside locations
@@ -424,6 +612,26 @@ locations = {
             "name": "Riverside Retreat",
             "size": "small",
         },
+        {
+            "name": "Forest's Edge",
+            "size": "small",
+        },
+        {
+            "name": "Desert Rose Inn",
+            "size": "small",
+        },
+        {
+            "name": "Mountain Pass Lodge",
+            "size": "small",
+        },
+        {
+            "name": "The Old Mill",
+            "size": "small",
+        },
+        {
+            "name": "Windy Plains Outpost",
+            "size": "small",
+        },
     ],
 }
 
@@ -438,7 +646,7 @@ factions = {
         'rival_factions': ['cult_of_the_shadow', 'brigands_of_the_crimson_eye'],
         'neutral_factions': [],
     },
-    'circle_of_enchanters': {  # Renamed from 'circle_of_mages'
+    'circle_of_enchanters': {
         'name': 'Circle of Enchanters',
         'alignment': 'Neutral',
         'description': 'The Circle of Enchanters is a secretive faction of spellcasters who seek knowledge and the understanding of magical forces. They maintain balance and neutrality in their pursuits.',
@@ -477,12 +685,36 @@ factions = {
         'allied_factions': ['circle_of_enchanters'],
         'rival_factions': ['guild_of_artisans'],
         'neutral_factions': [],
-    }
+    },
+    'wardens_of_nature': {
+        'name': 'Wardens of Nature',
+        'alignment': 'Neutral Good',
+        'description': 'The Wardens of Nature are guardians of the natural world, protecting forests, rivers, and wildlife from harm and exploitation.',
+        'allied_factions': ['order_of_the_silver_shield'],
+        'rival_factions': ['iron_fist_clan'],
+        'neutral_factions': ['circle_of_enchanters'],
+    },
+    'iron_fist_clan': {
+        'name': 'Iron Fist Clan',
+        'alignment': 'Lawful Evil',
+        'description': 'The Iron Fist Clan is a militaristic faction seeking to impose their rule through strength and discipline, valuing order above all.',
+        'allied_factions': [],
+        'rival_factions': ['wardens_of_nature', 'brigands_of_the_crimson_eye'],
+        'neutral_factions': ['cabal_of_the_arcane_eye'],
+    },
+    'seekers_of_the_lost': {
+        'name': 'Seekers of the Lost',
+        'alignment': 'Chaotic Good',
+        'description': 'Adventurers and explorers dedicated to uncovering lost knowledge and ancient artifacts for the benefit of all.',
+        'allied_factions': ['guild_of_artisans', 'wardens_of_nature'],
+        'rival_factions': ['cult_of_the_shadow'],
+        'neutral_factions': ['circle_of_enchanters'],
+    },
 }
 
 # Reward Items Table:
 # This table contains various items that can be used as rewards for players in the game.
-# Each item has a unique identifier (1-10) and includes a name, description, and value.
+# Each item has a unique identifier (1-15) and includes a name, description, and value.
 reward_items_table = {
     1: i.Item(
         "Health Potion",
@@ -534,11 +766,36 @@ reward_items_table = {
         "An elixir that grants invisibility for 1 hour.",
         100
     ),
+    11: i.Item(
+        "Boots of Swiftness",
+        "Boots that increase the wearer's speed.",
+        180
+    ),
+    12: i.Item(
+        "Amulet of Protection",
+        "An amulet that grants a bonus to defense.",
+        220
+    ),
+    13: i.Item(
+        "Potion of Strength",
+        "A potion that temporarily increases strength.",
+        90
+    ),
+    14: i.Item(
+        "Lantern of Revealing",
+        "A lantern that reveals hidden or invisible creatures and objects.",
+        130
+    ),
+    15: i.Item(
+        "Gloves of Dexterity",
+        "Gloves that enhance the wearer's dexterity.",
+        160
+    ),
 }
 
 # Magical Items Table:
 # This table contains various magical weapons that can be used as rare and powerful rewards for players in the game.
-# Each item has a unique identifier (1-10) and includes a name, description, value, damage, damage type, poisoned, and enchant.
+# Each item has a unique identifier (1-15) and includes a name, description, value, damage, damage type, poisoned, and enchant.
 magical_items_table = {
     1: i.Melee_Item(
         "Blazing Edge",
@@ -629,5 +886,50 @@ magical_items_table = {
         "Slashing",
         False,
         "Radiant"
+    ),
+    11: i.Melee_Item(
+        "Shadowfang",
+        "A dagger that grants stealth abilities and deals extra damage when attacking from shadows.",
+        1600,
+        dice_Roll.roll_d4(),
+        "Piercing",
+        False,
+        "Shadow"
+    ),
+    12: i.Melee_Item(
+        "Earthshaker Maul",
+        "A massive maul that can create tremors upon striking the ground.",
+        2100,
+        dice_Roll.roll_d12(),
+        "Bludgeoning",
+        False,
+        "Earthquake"
+    ),
+    13: i.Melee_Item(
+        "Lifedrinker Sword",
+        "A cursed sword that drains the life of enemies to heal the wielder.",
+        2500,
+        dice_Roll.roll_d8(),
+        "Slashing",
+        False,
+        "Life Steal"
+    ),
+    14: i.Melee_Item(
+        "Stormcaller Spear",
+        "A spear that can summon storms and deal lightning damage.",
+        1900,
+        dice_Roll.roll_d6(),
+        "Piercing",
+        False,
+        "Lightning"
+    ),
+    15: i.Melee_Item(
+        "Soul Reaver",
+        "A blade that can capture the souls of defeated enemies.",
+        3000,
+        dice_Roll.roll_d10(),
+        "Slashing",
+        False,
+        "Soul Capture"
     ),
 }
