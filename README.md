@@ -154,6 +154,72 @@ Current Sprint Goal
         <li>Integrated repository with GitHub: Improved version control
         and collaboration.
     </ul>
+
+
+## Testing
+
+We have implemented unit tests to ensure the game's functionality and reliability. This section provides instructions on how to run the tests.
+Running Tests
+
+To run the tests, follow these steps:
+<ul>
+    <li>Navigate to the Project Root Directory
+
+    <li>Open your terminal or command prompt and navigate to the root directory of the project:
+
+    <li>bash
+</ul>
+                cd path/to/DijjonAlphaDevelopment
+
+Replace path/to/DijjonAlphaDevelopment with the actual path to your project directory.
+
+Run Tests Using Unittest
+
+Use the following command to discover and run all tests:
+
+bash
+
+python -m unittest discover -s scripts/tests -p 'test_*.py'
+
+Explanation of the command:
+
+    python -m unittest: Runs Python's built-in unittest module as a script.
+    discover: Tells unittest to discover tests automatically.
+    -s scripts/tests: Specifies the start directory for test discovery.
+    -p 'test_*.py': Sets the pattern to match test files (e.g., test_main.py).
+
+Interact with Tests (If Prompted)
+
+Some tests may require user interaction, such as inputting actions during combat simulations. When running such tests, you might see prompts like:
+
+java
+
+    Hero, choose an action (attack, defend, etc.):
+
+    Enter the requested input to proceed with the tests.
+
+Example Output
+
+After running the tests, you should see output similar to the following:
+
+Ran 4 tests in 14.185s
+
+OK
+
+This indicates that all tests have passed successfully.
+Notes
+
+    Ensure Dependencies Are Installed:
+        Make sure you have all necessary dependencies installed, and that your Python environment is correctly set up.
+        If you are using a virtual environment, activate it before running the tests.
+
+    Python Version:
+        The project is developed using Python 3. Ensure that you are using a compatible Python interpreter.
+
+Future Improvements
+
+We aim to enhance our testing suite by automating user interactions to make the tests fully automated. This will improve efficiency and allow integration with continuous integration pipelines.
+
 ## Story Arch Plans
 
 ### Branching Choices

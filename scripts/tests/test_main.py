@@ -1,9 +1,9 @@
 import unittest
-from ..entity import Player as p
-from ..game_mechanics import combat as c
+import scripts.entity.Player as p
+from scripts.game_mechanics.combat import Combat as c
 import random as r
-from ...resources.core_library import classes as cls
-from ...resources.core_library import races as rc
+from resources.core_library import classes as cls
+from resources.core_library import races as rc
 
 class TestMainFunctions(unittest.TestCase):
     def setUp(self):
@@ -18,7 +18,7 @@ class TestMainFunctions(unittest.TestCase):
         """
         Test the combat simulation between the player and a bandit.
         """
-        combat = c.Combat([self.player, self.bandit])
+        combat = c([self.player, self.bandit])
         combat.start_combat()
 
         # Assert that the combat concluded with at least one participant alive
