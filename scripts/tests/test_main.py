@@ -1,6 +1,6 @@
 import unittest
-import scripts.entity.Player as p
-from scripts.game_mechanics.combat import Combat as c
+from entity.Player import Player as p
+from game_mechanics.combat import Combat as c
 import random as r
 from resources.core_library import classes as cls
 from resources.core_library import races as rc
