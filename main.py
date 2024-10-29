@@ -1,6 +1,6 @@
 # Dijjon New Main
 # Developed & designed by: Zane M Deso
-# Purpose: New Main will act as the entrance point for the program to run.
+# Purpose: main will act as the entrance point for the program to run.
 
 import random as r  
 import scripts.entity.Mob as mb  

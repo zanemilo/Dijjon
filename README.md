@@ -25,6 +25,11 @@ development will proceed in mini sprints.
 
 Current Sprint Goal
 
+    Primary concern is to fix import statements
+    and refactor to avoid circular imports.
+    As a rule of thumb, do not have master or player import
+    Leave imports to main to delegate or a middle man class.
+    
     In Quest Class, integrate skill checks, combat, and the player
     Flesh out EnchantedForest HardCoded Quest.
     Make functional puzzle aspect.

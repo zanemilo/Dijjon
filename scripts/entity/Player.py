@@ -5,7 +5,7 @@
 
 
 import random as r
-from ...master import Master as m
+from ... import master
 from ...scripts.game_mechanics import Item as i
 from ...scripts.game_mechanics import dice_Roll as dr
 from scripts.environment.Visibility import Visibility
