@@ -29,7 +29,8 @@ Current Sprint Goal
     and refactor to avoid circular imports.
     As a rule of thumb, do not have master or player import
     Leave imports to main to delegate or a middle man class.
-    
+    Perhaps use PYTHONPATH?
+
     In Quest Class, integrate skill checks, combat, and the player
     Flesh out EnchantedForest HardCoded Quest.
     Make functional puzzle aspect.
