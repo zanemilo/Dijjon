@@ -1,8 +1,8 @@
 import unittest
 import core.master as m
 from scripts.entities.Player import Player
-from core.core_library import classes as cls
-from core.core_library import races as rc
+from systems.core_library import classes as cls
+from systems.core_library import races as rc
 import random as r
 
 class TestMasterFunctions(unittest.TestCase):

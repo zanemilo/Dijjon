@@ -3,16 +3,9 @@
 # Purpose: Placeholder Quest/Event/Location Idea
 
 import random as r
-import scripts.entities.Mob as mb
-import scripts.game_mechanics.dice_Roll as dr
-import scripts.entities.Player as p
-import core.master as m
-import scripts.game_mechanics.combat as c
-from src.core.settings import Settings as s
-from core.core_library import classes as cls
-from core.core_library import name_list as nm
-from core.core_library import races as rc
-from core.core_library import reward_items_table as rew_tbl
+
+from systems.core_library import reward_items_table as rew_tbl
+from ..systems import dice_Roll as dr
 
 class EnchantedForest:
     def __init__(self):

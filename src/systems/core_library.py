@@ -3,8 +3,10 @@
 # Purpose: Used to store all in-game content. Implementation of a helper class to access each list/dict accordingly is required.
 # Perhaps using Master to navigate the tables would be best.
 
-import scripts.game_mechanics.Item as i
-import scripts.game_mechanics.dice_Roll as dice_Roll
+
+from Item import Item as i
+import dice_Roll
+
 
 # Creates instances of Items class with name, description, and value as arguments
 inn_items = {

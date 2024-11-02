@@ -2,8 +2,6 @@
 # Developed & designed by: Zane M Deso
 # Purpose: Used to handle settings for the game.
 
-import random as r
-
 
 class Settings:
     """A class to store all settings for Dijjon"""

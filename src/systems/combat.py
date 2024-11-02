@@ -2,8 +2,8 @@
 # Developed & designed by: Zane M Deso
 # Purpose: Combat takes care of all combat related scenarios including turn orders, actions, calling checks, rolls, tie breakers, win condition checking, and state tracking for combat events.
 
-import random  
-from scripts.entities.Player import Player 
+import random
+import dice_Roll as dr 
 
 
 class Combat:
@@ -154,3 +154,58 @@ class Combat:
         else:
             # If the hit roll is below target's armor class, attack misses
             print(f"{attacker.get_name()} misses the attack!")
+
+    def combat_simulation(self, entity_one, entity_two):
+        """
+        Simulate a turn-based combat scenario between two entities.
+
+        This function handles the flow of combat, alternating turns between the two entities
+        until one of them is defeated.
+
+        Args:
+            entity_one (Player): The first entity participating in combat.
+            entity_two (Player): The second entity participating in combat.
+        """
+        print("Starting combat simulation...")  # Announce the start of combat simulation
+        while entity_one.get_hp() > 0 and entity_two.get_hp() > 0:
+            # Entity One's turn
+            print(f"{entity_one.get_name()}'s turn:")  # Announce whose turn it is
+            action = input("Choose an action (attack): ")  # Prompt for action
+            if action.lower() == "attack":
+                # Calculate attack roll: d20 + strength modifier
+                attack_roll = dr.roll_d20() + entity_one.get_modifier(entity_one.get_str())
+                print(f"{entity_one.get_name()} rolls {attack_roll} to attack.")  # Display the attack roll
+                # Check if the attack hits based on target's armor class
+                if attack_roll >= entity_two.get_arm_c():
+                    # Calculate damage: d6 + strength modifier
+                    damage = dr.roll_d6() + entity_one.get_modifier(entity_one.get_str())
+                    print(f"{entity_one.get_name()} hits {entity_two.get_name()} for {damage} damage!")  # Announce damage
+                    entity_two.set_hp(entity_two.get_hp() - damage)  # Deduct damage from target's HP
+                else:
+                    print(f"{entity_one.get_name()} misses the attack.")  # Announce miss
+
+            # Check if Entity Two is still alive
+            if entity_two.get_hp() <= 0:
+                print(f"{entity_two.get_name()} has been defeated!")  # Announce defeat
+                break  # Exit combat if Entity Two is defeated
+
+            # Entity Two's turn
+            print(f"{entity_two.get_name()}'s turn:")  # Announce whose turn it is
+            action = input("Choose an action (attack): ")  # Prompt for action
+            if action.lower() == "attack":
+                # Calculate attack roll: d20 + strength modifier
+                attack_roll = dr.roll_d20() + entity_two.get_modifier(entity_two.get_str())
+                print(f"{entity_two.get_name()} rolls {attack_roll} to attack.")  # Display the attack roll
+                # Check if the attack hits based on target's armor class
+                if attack_roll >= entity_one.get_arm_c():
+                    # Calculate damage: d6 + strength modifier
+                    damage = dr.roll_d6() + entity_two.get_modifier(entity_two.get_str())
+                    print(f"{entity_two.get_name()} hits {entity_one.get_name()} for {damage} damage!")  # Announce damage
+                    entity_one.set_hp(entity_one.get_hp() - damage)  # Deduct damage from target's HP
+                else:
+                    print(f"{entity_two.get_name()} misses the attack.")  # Announce miss
+
+            # Check if Entity One is still alive
+            if entity_one.get_hp() <= 0:
+                print(f"{entity_one.get_name()} has been defeated!")  # Announce defeat
+                break  # Exit combat if Entity One is defeated

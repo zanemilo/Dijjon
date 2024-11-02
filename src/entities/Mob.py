@@ -4,12 +4,13 @@
 # EDIT: Refactoring to be child to Entity class.
 
 import random as r
+import Entity
 
-from core.core_library import monster_dict as md
-from core.core_library import name_list as nl
-from core.core_library import monster_type_list as mtl
+from systems.core_library import monster_dict as md
+from systems.core_library import name_list as nl
+from systems.core_library import monster_type_list as mtl
 from src.core.settings import Settings as s
-from scripts.entities.Entity import Entity
+
 
 
 class Mob(Entity):
