@@ -3,10 +3,10 @@
 # Purpose: Used to store all in-game content. Implementation of a helper class to access each list/dict accordingly is required.
 # Perhaps using Master to navigate the tables would be best.
 
-
-from Item import Item as i
-import dice_Roll
-
+import sys
+sys.path.append("..")  # Adds the parent directory to the Python module search path
+from systems import Item as i
+from systems import dice_Roll
 
 # Creates instances of Items class with name, description, and value as arguments
 inn_items = {

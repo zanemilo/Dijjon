@@ -3,9 +3,9 @@
 # Purpose: Placeholder Quest/Event/Location Idea
 
 import random as r
-
-from systems.core_library import reward_items_table as rew_tbl
-from ..systems import dice_Roll as dr
+import sys
+sys.path.append("..")  # Adds the parent directory to the Python module search path
+from systems.core_library import reward_items_table
 
 class EnchantedForest:
     def __init__(self):
@@ -153,14 +153,14 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
                     print("You carefully and precisely place the final stone in place and you take a step back to take in your handy work.\nA moment passes and the water begins to slowly but distincly swirl gainiing speed.\n The water continues swirling until it maintains speed and begins to glow a warm golden light.\nFrom the depths of the swirls a small shape emerges and bounces to the surface. A small chest awaits your retrieval.")
                     puzzle_active = False
                 elif answer == '2':
-                    lucky_roll = dr.roll_d100
+                    lucky_roll = r.randrange(1, 100)
                     if lucky_roll == 100:
                         print("After the chaos settles and you smile in your menical stone tossings, you notice that the water begins to slowly but distincly swirl gainiing speed.\n The water continues swirling until it maintains speed and begins to glow a warm golden light.\nFrom the depths of the swirls a small shape emerges and bounces to the surface. A small chest awaits your retrieval.")
                         puzzle_active = False
                 elif answer == '3':
                      print("After you place the last stone in place and examine your work it does not seem to resemble a swirl.")
 
-        rewards = [rew_tbl[r.randint(1, 10)], rew_tbl[r.randint(1, 10)]] 
+        rewards = [reward_items_table[r.randint(1, 10)], reward_items_table[r.randint(1, 10)]] 
         
         print("You open the chest and retrieve ")
         for reward in rewards:
@@ -180,6 +180,8 @@ As you stand, the weight of your choice settles around you like a cloak. Shadows
         else:
             print("You need to engage more with the forest to find your way.")
 
+# consider using below as assert for testing later on
+# Otherwise this is deprecated.
 # master = m.Master() # Instantiate Master for testing"""
 # dummy_player = p.Player('Bandit', r.choice(list(rc)), r.choice(list(cls)), is_enemy=True) # instantiate a new player for testing
 # master.sheet(dummy_player) # character sheet style layout player info

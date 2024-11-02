@@ -3,14 +3,15 @@
 # Purpose: Used to handle player creation, stats, attributes, status effect, and other associated player centered functions
 
 
-
 import random as r
+import sys
+sys.path.append("..")  # Adds the parent directory to the Python module search path
 
-from scripts.game_mechanics import Item as i
-from scripts.game_mechanics import dice_Roll as dr
-from scripts.environment.Visibility import Visibility
-from scripts.entities.Entity import Entity  # using 'from Entity' due to probable cause of being mistaken as a module.
+from systems import Item as i
+from systems import dice_Roll as dr
 from systems import core_library as cl
+from entities.effects.environment.Visibility import Visibility
+from entities.Entity import Entity  # using 'from Entity' due to probable cause of being mistaken as a module.
 
 
 class Player(Entity):
@@ -337,23 +338,23 @@ class Player(Entity):
 
 
 
-# Test Randomness into Player creation, can be used to build NPCs
-random_name_num = r.randint(0, len(cl.name_list) - 1)
-random_name = cl.name_list[random_name_num]
+# # Test Randomness into Player creation, can be used to build NPCs
+# random_name_num = r.randint(0, len(cl.name_list) - 1)
+# random_name = cl.name_list[random_name_num]
 
-random_race_num = r.randint(0, len(cl.races) - 1)
-random_race = cl.races[random_race_num]
+# random_race_num = r.randint(0, len(cl.races) - 1)
+# random_race = cl.races[random_race_num]
 
-random_class_num = r.randint(0, len(cl.classes) - 1)
-random_class = cl.classes[random_class_num]
+# random_class_num = r.randint(0, len(cl.classes) - 1)
+# random_class = cl.classes[random_class_num]
 
-# print(f"{random_name} {random_race} {random_class}")
+# # print(f"{random_name} {random_race} {random_class}")
 
-# Test instatiate testPlayer Player object
-testPlayer = Player(random_name, random_race, random_class)
+# # Test instatiate testPlayer Player object
+# testPlayer = Player(random_name, random_race, random_class)
 
-testPlayer.get_item(1, i.Item("Coins","Shiny gold coins", 1))
-testPlayer.inventory.update({"Apple" : "Turds"})
-testPlayer.show_inventory()
+# testPlayer.get_item(1, i.Item("Coins","Shiny gold coins", 1))
+# testPlayer.inventory.update({"Apple" : "Turds"})
+# testPlayer.show_inventory()
 
 

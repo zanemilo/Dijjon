@@ -3,7 +3,11 @@
 # Purpose: Combat takes care of all combat related scenarios including turn orders, actions, calling checks, rolls, tie breakers, win condition checking, and state tracking for combat events.
 
 import random
-import dice_Roll as dr 
+import sys
+sys.path.append("..")  # Adds the parent directory to the Python module search path
+
+from systems import dice_Roll as dr
+
 
 
 class Combat:

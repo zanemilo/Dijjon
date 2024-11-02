@@ -4,8 +4,10 @@
 # EDIT: Refactoring to be child to Entity class.
 
 import random as r
-import Entity
 
+import sys
+sys.path.append("..")  # Adds the parent directory to the Python module search path
+from entities.Entity import Entity
 from systems.core_library import monster_dict as md
 from systems.core_library import name_list as nl
 from systems.core_library import monster_type_list as mtl
