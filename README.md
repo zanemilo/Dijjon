@@ -171,44 +171,44 @@ Current Sprint Goal
 
 Code base made to align more so with the following codebase directory struct
 
-Dijjon/
-├── assets/
-│   ├── audio/                # For storing any sound/music files
-│   ├── fonts/                # For font resources
-│   ├── images/               # Restructured image assets here
-│   │   ├── characters/
-│   │   ├── enemies/
-│   │   ├── environment/
-│   │   └── ui/
-│   └── levels/
-│       └── tilesets/
-├── docs/
-├── src/
-│   ├── core/
-│   │   ├── config.py         # New, consolidated config file
-│   │   ├── constants.py      # Constants and universal settings
-│   │   ├── main.py           # Renamed main game loop
-│   │   └── settings.py
-│   ├── entities/
-│   │   ├── player.py         # From `scripts/entity/Player.py`
-│   │   ├── enemy.py          # From `scripts/entity/Mob.py`
-│   │   ├── npc.py
-│   │   └── effects/          # Special effects like lycan, vampire
-│   ├── systems/
-│   │   ├── ai/
-│   │   ├── audio/
-│   │   ├── events/
-│   │   ├── graphics/
-│   │   ├── input/
-│   │   ├── physics/
-│   │   ├── rendering.py
-│   │   └── ui.py
-│   └── world/
-│       ├── dungeon/
-│       └── environment.py
-├── tests/
-├── tools/
-└── README.md
+    Dijjon/
+    ├── assets/
+    │   ├── audio/                # For storing any sound/music files
+    │   ├── fonts/                # For font resources
+    │   ├── images/               # Restructured image assets here
+    │   │   ├── characters/
+    │   │   ├── enemies/
+    │   │   ├── environment/
+    │   │   └── ui/
+    │   └── levels/
+    │       └── tilesets/
+    ├── docs/
+    ├── src/
+    │   ├── core/
+    │   │   ├── config.py         # New, consolidated config file
+    │   │   ├── constants.py      # Constants and universal settings
+    │   │   ├── main.py           # Renamed main game loop
+    │   │   └── settings.py
+    │   ├── entities/
+    │   │   ├── player.py         # From `scripts/entity/Player.py`
+    │   │   ├── enemy.py          # From `scripts/entity/Mob.py`
+    │   │   ├── npc.py
+    │   │   └── effects/          # Special effects like lycan, vampire
+    │   ├── systems/
+    │   │   ├── ai/
+    │   │   ├── audio/
+    │   │   ├── events/
+    │   │   ├── graphics/
+    │   │   ├── input/
+    │   │   ├── physics/
+    │   │   ├── rendering.py
+    │   │   └── ui.py
+    │   └── world/
+    │       ├── dungeon/
+    │       └── environment.py
+    ├── tests/
+    ├── tools/
+    └── README.md
 
 
 
