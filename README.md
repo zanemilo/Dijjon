@@ -4,7 +4,7 @@ This is the official documentation for Dijjon Alpha, a text-based game set
 in the Fantasy RPG world of Dijjon.
 
 ### Author: Zane M Deso
-### Last Updated: 10/31/2024
+### Last Updated: 11/2/2024
 
 ## Table of Contents
 
@@ -27,8 +27,9 @@ Current Sprint Goal
 
     Primary concern is to fix import statements
     and refactor to avoid circular imports.
-    As a rule of thumb, do not have master or player import
+    As a rule of thumb,
     Leave imports to main to delegate or a middle man class.
+
     UPDATE: Refactor complete see change log.
     AWT updated import statements and consolidation of 
     class concerns to avoid ciruclar import.
@@ -148,6 +149,7 @@ Current Sprint Goal
 <ul>
     <li>Refactored codebase to align with better practices
     for directory design flow. See refactor below. (11/2/2024)
+    main is functional after merging with Master.
     <li>Created base level unit tests, plans to expand and
     automate (9/15/2024)
     <li>Implemented Quest Class to dynamically handle creating and 
