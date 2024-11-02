@@ -17,7 +17,7 @@ from systems.core_library import races
 from world import EnchantedForest as EF
 
 
-def class_list(self):  # passed testing in new main
+def class_list():  # passed testing in new main
         """
         Display a numbered list of available character classes.
 
@@ -28,7 +28,7 @@ def class_list(self):  # passed testing in new main
             print(f'{num}. {class_type}')  # Print each class with its corresponding number
             num += 1  # Increment the counter
 
-def race_list(self):  # passed testing in new main
+def race_list():  # passed testing in new main
     """
     Display a numbered list of available character races.
 
@@ -39,7 +39,7 @@ def race_list(self):  # passed testing in new main
         print(f'{num}. {race_type}')  # Print each race with its corresponding number
         num += 1  # Increment the counter
 
-def get_valid_class(self):  # passed testing in new main
+def get_valid_class():  # passed testing in new main
     """
     Prompt the user to select a valid character class from the available options.
 
@@ -50,7 +50,7 @@ def get_valid_class(self):  # passed testing in new main
     """
     valid = False  # Flag to indicate if a valid class has been chosen
     while not valid:
-        self.class_list()  # Display the list of available classes
+        class_list()  # Display the list of available classes
         class_name = input(f"Type in your character's class from the options above:\n")  # Prompt user for input
         class_name = class_name.title()  # Capitalize the first letter of each word in the class name
         if class_name in classes:
@@ -59,7 +59,7 @@ def get_valid_class(self):  # passed testing in new main
             print(f"Invalid class name: {class_name}\n")  # Inform the user of invalid input
     return class_name  # Return the valid class name
 
-def get_valid_race(self):  # passed testing in new main
+def get_valid_race():  # passed testing in new main
     """
     Prompt the user to select a valid character race from the available options.
 
@@ -70,7 +70,7 @@ def get_valid_race(self):  # passed testing in new main
     """
     valid = False  # Flag to indicate if a valid race has been chosen
     while not valid:
-        self.race_list()  # Display the list of available races
+        race_list()  # Display the list of available races
         race_name = input(f"Type in your character's race from the options above:\n")  # Prompt user for input
         race_name = race_name.title()  # Capitalize the first letter of each word in the race name
         if race_name in races:
@@ -79,7 +79,7 @@ def get_valid_race(self):  # passed testing in new main
             print(f"Invalid race name: {race_name}\n")  # Inform the user of invalid input
     return race_name  # Return the valid race name
 
-def valid_class(self, class_name):  # passed testing in new main
+def valid_class(class_name):  # passed testing in new main
     """
     Check if the provided class name is valid.
 
@@ -94,7 +94,7 @@ def valid_class(self, class_name):  # passed testing in new main
     elif class_name not in classes:
         return False  # Return False if class name is invalid
 
-def valid_race(self, race_name):  # passed testing in new main
+def valid_race(race_name):  # passed testing in new main
     """
     Check if the provided race name is valid.
 
@@ -109,7 +109,7 @@ def valid_race(self, race_name):  # passed testing in new main
     elif race_name not in races:
         return False  # Return False if race name is invalid
     
-def get_name(self):  # passed testing in new main
+def get_name():  # passed testing in new main
         """
         Prompt the user to enter a name for their character.
 
@@ -119,7 +119,7 @@ def get_name(self):  # passed testing in new main
         name = input("Enter your name:\n")  # Prompt user for character name
         return name.title()  # Capitalize the first letter of each word in the name
 
-def opposing_check(self, entity_one, enitity_two, check_type):  # passed testing in new main
+def opposing_check(entity_one, enitity_two, check_type):  # passed testing in new main
         """
         Conduct a check between two opposing Player instances based on a specific check type.
 
@@ -132,16 +132,16 @@ def opposing_check(self, entity_one, enitity_two, check_type):  # passed testing
             str: The name of the entity that wins the check.
         """
         # Perform a check for entity one using their roll for the specified check type
-        e_one_roll = self.check(check_type, entity_one.player_check_roll(check_type))  # FIX ME: To adjust this once I have used inheritance correctly,
+        e_one_roll = check(check_type, entity_one.player_check_roll(check_type))  # FIX ME: To adjust this once I have used inheritance correctly,
         # Perform a check for entity two using their roll for the specified check type
-        e_two_roll = self.check(check_type, enitity_two.player_check_roll(check_type))  # just use the check_roll method associated from the parent class
+        e_two_roll = check(check_type, enitity_two.player_check_roll(check_type))  # just use the check_roll method associated from the parent class
 
         if e_one_roll < e_two_roll:
             return enitity_two.get_name()  # Return entity two's name if they win the check
         elif e_two_roll < e_one_roll:
             return entity_one.get_name()  # Return entity one's name if they win the check
         elif e_one_roll == e_two_roll:
-            return self.opposing_check(entity_one, enitity_two, check_type)  # Repeat the check in case of a tie
+            return opposing_check(entity_one, enitity_two, check_type)  # Repeat the check in case of a tie
 
 def combat_sim():
     """
@@ -157,7 +157,7 @@ def combat_sim():
     bandit = p.Player('Bandit', r.choice(list(races)), r.choice(list(classes)), is_enemy=True)
     
     # Display the bandit's character sheet using the Master class
-    master.sheet(bandit)
+    sheet(bandit)
     
     # Setup combat scenario with the player and the bandit
     combat = c.Combat([player, bandit])
@@ -165,7 +165,7 @@ def combat_sim():
     # Run the combat simulation
     combat.start_combat()
 
-def check(self, check_type, player_roll, bias=r.randint(1, 18)):  # passed testing in new main
+def check(check_type, player_roll, bias=r.randint(1, 18)):  # passed testing in new main
         """
         Handle validating different types of checks and calculate the Difficulty Class (DC).
 
@@ -212,18 +212,18 @@ def skill_check_test():
     bandit = p.Player('Bandit', r.choice(list(races)), r.choice(list(classes)), is_enemy=True)
     
     # Display the bandit's character sheet using the Master class
-    master.sheet(bandit)
+    sheet(bandit)
     
     # Perform a dexterity check for the player and print the result
-    dex_passed = master.check("dex", player.player_check_roll("dex"))
+    dex_passed = check("dex", player.player_check_roll("dex"))
     print(f'Did {player.get_name()} pass the dex Check?: {dex_passed}')
     
     # Perform an investigation check for the player and print the result
-    investigation_passed = master.check("investigation", player.player_check_roll("investigation"))
+    investigation_passed = check("investigation", player.player_check_roll("investigation"))
     print(f'Did {player.get_name()} pass the investigation Check?: {investigation_passed}')
     
     # Conduct an opposing strength check between the player and the bandit and print the winner
-    winner = master.opposing_check(player, bandit, "str")
+    winner = opposing_check(player, bandit, "str")
     print(f'The winner of the opposing check is: {winner}')
 
 
@@ -239,21 +239,21 @@ def create_player():
     5. Displays the player's character sheet.
     """
     # Prompt the user to enter a name for the character
-    player_name = master.get_name()
+    player_name = get_name()
     
     # Prompt the user to select a valid race from the available options
-    player_race = master.get_valid_race()
+    player_race = get_valid_race()
     
     # Prompt the user to select a valid class from the available options
-    player_class = master.get_valid_class()
+    player_class = get_valid_class()
     
     # Instantiate a new player with the provided name, race, and class
     new_player = p.Player(player_name, player_race, player_class)
     
     # Display the new player's character sheet using the Master class
-    master.sheet(new_player)
+    sheet(new_player)
 
-def sheet(self, character):  # passed testing in new main
+def sheet(character):  # passed testing in new main
         """
         Generate and display the character sheet for a given character.
 
@@ -317,10 +317,10 @@ master = m.Master()
 main_game_loop = True
 
 # Instantiate the player by prompting for name, race, and class
-player = p.Player(master.get_name(), master.get_valid_race(), master.get_valid_class())
+player = p.Player(get_name(), get_valid_race(), get_valid_class())
 
 # Display the player's character sheet using the Master class
-master.sheet(player)
+sheet(player)
 
 # # # _________TESTS__________# # #
 # Uncomment the following lines to run tests for skill checks and combat simulation
