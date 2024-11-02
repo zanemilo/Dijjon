@@ -29,7 +29,9 @@ Current Sprint Goal
     and refactor to avoid circular imports.
     As a rule of thumb, do not have master or player import
     Leave imports to main to delegate or a middle man class.
-    Perhaps use PYTHONPATH?
+    UPDATE: Refactor complete see change log.
+    AWT updated import statements and consolidation of 
+    class concerns to avoid ciruclar import.
 
     In Quest Class, integrate skill checks, combat, and the player
     Flesh out EnchantedForest HardCoded Quest.
@@ -144,6 +146,8 @@ Current Sprint Goal
 ## Major Change Log
 
 <ul>
+    <li>Refactored codebase to align with better practices
+    for directory design flow. See refactor below. (11/2/2024)
     <li>Created base level unit tests, plans to expand and
     automate (9/15/2024)
     <li>Implemented Quest Class to dynamically handle creating and 
@@ -162,6 +166,50 @@ Current Sprint Goal
     <li>Integrated repository with GitHub: Improved version control
     and collaboration.
 </ul>
+
+### Refactor (11/2/2024)
+
+Code base made to align more so with the following codebase directory struct
+
+Dijjon/
+├── assets/
+│   ├── audio/                # For storing any sound/music files
+│   ├── fonts/                # For font resources
+│   ├── images/               # Restructured image assets here
+│   │   ├── characters/
+│   │   ├── enemies/
+│   │   ├── environment/
+│   │   └── ui/
+│   └── levels/
+│       └── tilesets/
+├── docs/
+├── src/
+│   ├── core/
+│   │   ├── config.py         # New, consolidated config file
+│   │   ├── constants.py      # Constants and universal settings
+│   │   ├── main.py           # Renamed main game loop
+│   │   └── settings.py
+│   ├── entities/
+│   │   ├── player.py         # From `scripts/entity/Player.py`
+│   │   ├── enemy.py          # From `scripts/entity/Mob.py`
+│   │   ├── npc.py
+│   │   └── effects/          # Special effects like lycan, vampire
+│   ├── systems/
+│   │   ├── ai/
+│   │   ├── audio/
+│   │   ├── events/
+│   │   ├── graphics/
+│   │   ├── input/
+│   │   ├── physics/
+│   │   ├── rendering.py
+│   │   └── ui.py
+│   └── world/
+│       ├── dungeon/
+│       └── environment.py
+├── tests/
+├── tools/
+└── README.md
+
 
 
 ## Testing
