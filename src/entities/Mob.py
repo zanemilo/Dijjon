@@ -5,11 +5,11 @@
 
 import random as r
 
-from resources.core_library import monster_dict as md
-from resources.core_library import name_list as nl
-from resources.core_library import monster_type_list as mtl
-from scripts.settings import Settings as s
-from scripts.entity.Entity import Entity
+from core.core_library import monster_dict as md
+from core.core_library import name_list as nl
+from core.core_library import monster_type_list as mtl
+from src.core.settings import Settings as s
+from scripts.entities.Entity import Entity
 
 
 class Mob(Entity):

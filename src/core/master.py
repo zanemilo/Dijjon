@@ -2,12 +2,12 @@
 # Developed & designed by: Zane M Deso
 # Purpose: This class is the main driver and will be the DM in a sense when it comes to making choices behind the scenes.
 
-import scripts.entity.Player as p 
-import scripts.settings as settings 
+import scripts.entities.Player as p 
+import src.core.settings as settings 
 import random as r  
 import scripts.game_mechanics.dice_Roll as dr 
-from resources.core_library import races 
-from resources.core_library import classes 
+from core.core_library import races 
+from core.core_library import classes 
 
 
 class Master:

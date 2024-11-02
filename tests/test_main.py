@@ -2,9 +2,9 @@ import unittest
 import random as r
 
 from game_mechanics.combat import Combat as c
-from scripts.entity.Player import Player as p
-from resources.core_library import classes as cls
-from resources.core_library import races as rc
+from scripts.entities.Player import Player as p
+from core.core_library import classes as cls
+from core.core_library import races as rc
 
 class TestMainFunctions(unittest.TestCase):
     def setUp(self):

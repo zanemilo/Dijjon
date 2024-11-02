@@ -2,7 +2,7 @@
 # Developed & designed by: Zane M Deso
 # Purpose: Used to handle any trade or bartering transaction.
 
-import resources.core_library as cl 
+import core.core_library as cl 
 import scripts.game_mechanics.Item as it 
 
 

@@ -4,12 +4,12 @@
 
 import random as r
 import scripts.game_mechanics.dice_Roll as dr
-import scripts.entity.Player as p
-import master as m
-from scripts.settings import Settings as s
-from resources.core_library import classes as cls
-from resources.core_library import name_list as nm
-from resources.core_library import races as rc
+import scripts.entities.Player as p
+import core.master as m
+from src.core.settings import Settings as s
+from core.core_library import classes as cls
+from core.core_library import name_list as nm
+from core.core_library import races as rc
 
 
 class BanditQuest:

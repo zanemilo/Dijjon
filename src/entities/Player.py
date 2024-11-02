@@ -5,12 +5,12 @@
 
 
 import random as r
-from ... import master
-from ...scripts.game_mechanics import Item as i
-from ...scripts.game_mechanics import dice_Roll as dr
+
+from scripts.game_mechanics import Item as i
+from scripts.game_mechanics import dice_Roll as dr
 from scripts.environment.Visibility import Visibility
-from scripts.entity.Entity import Entity  # using 'from Entity' due to probable cause of being mistaken as a module.
-from ...resources import core_library as cl
+from scripts.entities.Entity import Entity  # using 'from Entity' due to probable cause of being mistaken as a module.
+from core import core_library as cl
 
 
 class Player(Entity):
