@@ -53,7 +53,6 @@ class QuestManager:
             # Apply outcome logic
             random_event["outcome"]()
 
-
     def complete_task(self):
         """Mark the current task as complete and check if the quest is finished."""
         self.quest.complete_task(self.current_task_id, self.quest.tasks)
