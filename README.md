@@ -4,7 +4,7 @@ This is the official documentation for Dijjon Alpha, a text-based game set
 in the Fantasy RPG world of Dijjon.
 
 ### Author: Zane M Deso
-### Last Updated: 11/2/2024
+### Last Updated: 12/16/2024
 
 ## Table of Contents
 
@@ -25,6 +25,9 @@ development will proceed in mini sprints.
 
 Current Sprint Goal
 
+    Complete a simple and self honorary Year in review for the development of
+    the game so far.
+
     Primary concern is to fix import statements
     and refactor to avoid circular imports.
     As a rule of thumb,
@@ -37,6 +40,12 @@ Current Sprint Goal
     In Quest Class, integrate skill checks, combat, and the player
     Flesh out EnchantedForest HardCoded Quest.
     Make functional puzzle aspect.
+
+    Integrate text renderer (GUI via pygame) with Quest system
+    allowing player to make options and read outcomes in a 
+    game window instead of in terminal.
+
+    Add VERY basic visual/sound elements (Background imgs, ambience, SFX, simple music)
     
 
 ## Previous Sprint Goal
