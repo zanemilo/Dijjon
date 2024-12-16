@@ -2,8 +2,7 @@
 # Developed & designed by: Zane M Deso
 # Purpose: Used to handle quest instances dynamically as to remove need to hard code quests.
 
-from .Event import Event 
-from .Temp import Temp   
+from Event import Event  
 
 
 class Quest(Event):
@@ -182,6 +181,8 @@ class Quest(Event):
             This method is for testing and demonstration purposes to show how the Quest class functions.
         """
         # Define a dispatcher mapping task types to their corresponding methods
+        # FIX ME: This may better serve as a library of questtypes and associated
+        # methods to observe specific quest completion requirements
         qtype = {
             "find": Quest.find, 
             "kill": Quest.kill, 
@@ -206,7 +207,7 @@ class Quest(Event):
                 },
                 "scripts": {
                     1: Quest.method_call1,  # Call class method for script step 1
-                    2: Temp.blip,  # Call method from imported Temp class for script step 2
+                    2: Quest.method_call2,  # Call method from imported Temp class for script step 2
                     3: Quest.method_call3,
                 },
                 "data": {
@@ -270,5 +271,5 @@ class Quest(Event):
         for i in range(1, 4):
             quest.run_task(i)
 
-# For Testing and example of how this class functions see test_class method
-Quest.test_class(Quest)  # Calls the test_class method of Quest to demonstrate functionality
+# # For Testing and example of how this class functions see test_class method
+# Quest.test_class(Quest)  # Calls the test_class method of Quest to demonstrate functionality
