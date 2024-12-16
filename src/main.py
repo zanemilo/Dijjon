@@ -51,10 +51,13 @@ def get_valid_class():  # passed testing in new main
     valid = False  # Flag to indicate if a valid class has been chosen
     while not valid:
         class_list()  # Display the list of available classes
-        class_name = input(f"Type in your character's class from the options above:\n")  # Prompt user for input
+        class_name = input(f"Type in your character's class or input the number the your selection from the list above:\n")  # Prompt user for input
         class_name = class_name.title()  # Capitalize the first letter of each word in the class name
         if class_name in classes:
             valid = True  # Set flag to True if class is valid
+        elif len(classes) - int(class_name) >= 0:
+            class_name = classes[int(class_name) - 1]
+            valid = True  # Set flag to True if correct race option number is entered
         else:
             print(f"Invalid class name: {class_name}\n")  # Inform the user of invalid input
     return class_name  # Return the valid class name
@@ -71,10 +74,13 @@ def get_valid_race():  # passed testing in new main
     valid = False  # Flag to indicate if a valid race has been chosen
     while not valid:
         race_list()  # Display the list of available races
-        race_name = input(f"Type in your character's race from the options above:\n")  # Prompt user for input
+        race_name = input(f"Type in your character's race or input the number the your selection from the list above:\n")  # Prompt user for input
         race_name = race_name.title()  # Capitalize the first letter of each word in the race name
         if race_name in races:
             valid = True  # Set flag to True if race is valid
+        elif len(races) - int(race_name) >= 0:
+            race_name = races[int(race_name) - 1]
+            valid = True  # Set flag to True if correct race option number is entered
         else:
             print(f"Invalid race name: {race_name}\n")  # Inform the user of invalid input
     return race_name  # Return the valid race name
@@ -340,13 +346,12 @@ while main_game_loop:
 
     # Display the main menu options to the player
     print("This is the hardcoded main menu.")
+    print("--------------------------------")
     print("1. Enter the Enchanted Forest\n ")
     
     # Prompt the player to choose an option from the main menu
     user_choice = input("What would you like to do? (Pick an option above...)\n")
     
-    # Inform the player about the available options (currently only one option)
-    print("JK there was only one option.")
     
     # Instantiate the EnchantedForest scenario
     forest = EF.EnchantedForest()
