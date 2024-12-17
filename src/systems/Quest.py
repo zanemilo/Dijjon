@@ -2,7 +2,7 @@
 # Developed & designed by: Zane M Deso
 # Purpose: Used to handle quest instances dynamically as to remove need to hard code quests.
 
-from Event import Event  
+from .Event import Event  
 
 
 class Quest(Event):

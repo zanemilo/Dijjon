@@ -371,24 +371,55 @@ while main_game_loop:
     if player is None:
         create_player()
 
-    # Display the main menu options to the player
-    print("This is the hardcoded main menu.")
-    print("--------------------------------")
-    print("1. Enter the Enchanted Forest\n ")
+    # # Display the main menu options to the player
+    # print("This is the hardcoded main menu.")
+    # print("--------------------------------")
+    # print("1. Enter the Enchanted Forest\n ")
     
-    # Prompt the player to choose an option from the main menu
-    user_choice = input("What would you like to do? (Pick an option above...)\n")
+    # # Prompt the player to choose an option from the main menu
+    # user_choice = input("What would you like to do? (Pick an option above...)\n")
     
     
-    # Instantiate the EnchantedForest scenario
-    forest = EF.EnchantedForest()
+    # # Instantiate the EnchantedForest scenario
+    # forest = EF.EnchantedForest()
     
-    # Begin the introduction to the Enchanted Forest with the player character
-    forest.intro(player)
+    # # Begin the introduction to the Enchanted Forest with the player character
+    # forest.intro(player)
 
+    # if not quest_manager.is_quest_complete:
+    #     quest_manager.render_current_narrative()
+    #     pygame.display.flip()
+    #     quest_manager.advance_step(1)
+    # # Pause the loop to hold here until the player presses Enter
+    # input("End of loop reached.")  # Hold here to prevent the loop from restarting immediately
+
+
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Clear the screen
+    screen.fill((0, 0, 0))
+
+    # Check if the quest is complete
     if not quest_manager.is_quest_complete:
+        # Render the current quest narrative
         quest_manager.render_current_narrative()
-        pygame.display.flip()
+        
+        # Simulate user selecting an option (Replace this with button logic)
+        
         quest_manager.advance_step(1)
-    # Pause the loop to hold here until the player presses Enter
-    input("End of loop reached.")  # Hold here to prevent the loop from restarting immediately
+    else:
+        text_renderer.reset("Quest Complete! Congratulations!")
+        while not text_renderer.finished:
+            screen.fill((0, 0, 0))
+            text_renderer.update()
+            text_renderer.draw()
+            pygame.display.flip()
+        running = False
+
+    # Update display
+    pygame.display.flip()
+
+pygame.quit()

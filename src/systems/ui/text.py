@@ -1,5 +1,6 @@
 import pygame
-from Button import Button
+from .Button import Button
+
 
 # ------------------------------------------------------------------------------
 # TextRenderer Class
@@ -119,109 +120,109 @@ def display_options(options, font_name, font_size, color, hover_color):
     return buttons
 
 # ------------------------------------------------------------------------------
-# Main Game Code
+# EXAMPLE Main Game Code
 # ------------------------------------------------------------------------------
 
-# Constants for the game window dimensions
-LENGTH = 800
-WIDTH = 600
+# # Constants for the game window dimensions
+# LENGTH = 800
+# WIDTH = 600
 
-# Initialize Pygame
-pygame.init()
-# Set up the display window
-screen = pygame.display.set_mode((LENGTH, WIDTH))
-pygame.display.set_caption('RPG Text Renderer')  # Window title
+# # Initialize Pygame
+# pygame.init()
+# # Set up the display window
+# screen = pygame.display.set_mode((LENGTH, WIDTH))
+# pygame.display.set_caption('RPG Text Renderer')  # Window title
 
-# Define color constants using RGB tuples
-WHITE = (255, 255, 255)
-GRAY = (150, 150, 150)
-DARK_GRAY = (50, 50, 50)
-BLACK = (0, 0, 0)
+# # Define color constants using RGB tuples
+# WHITE = (255, 255, 255)
+# GRAY = (150, 150, 150)
+# DARK_GRAY = (50, 50, 50)
+# BLACK = (0, 0, 0)
 
-# Font settings
-font_name = None  # Use default font provided by Pygame
-font_size = 24  # Font size for button text
+# # Font settings
+# font_name = None  # Use default font provided by Pygame
+# font_size = 24  # Font size for button text
 
-# Define the player's name
-player_name = "Player"
+# # Define the player's name
+# player_name = "Player"
 
-# Define the list of options presented to the player
-options = [
-    'Swing your fist as hard as you can in the direction of the tugging. [Attack Roll]', 
-    'Take a closer look', 
-    'Lay completely still.', 
-    'Scream as loud as you can!'
-]
+# # Define the list of options presented to the player
+# options = [
+#     'Swing your fist as hard as you can in the direction of the tugging. [Attack Roll]', 
+#     'Take a closer look', 
+#     'Lay completely still.', 
+#     'Scream as loud as you can!'
+# ]
 
-# Create Button objects for each option
-buttons = display_options(options, font_name, 24, (100, 50, 50), (90, 39, 40))
+# # Create Button objects for each option
+# buttons = display_options(options, font_name, 24, (100, 50, 50), (90, 39, 40))
 
-# Create an instance of TextRenderer for the introductory text
-intro_text = f"{player_name} . . ."
-text_renderer = TextRenderer(
-    screen=screen,
-    text=intro_text,
-    font_name=font_name,
-    font_size=36,  # Larger font size for the intro text
-    color=(200, 200, 200),  # Light gray color for the text
-    position=(LENGTH * 0.1125, WIDTH * 0.175),  # Position calculated as a percentage of window size
-    typing_speed=100  # 100 milliseconds between each character
-)
+# # Create an instance of TextRenderer for the introductory text
+# intro_text = f"{player_name} . . ."
+# text_renderer = TextRenderer(
+#     screen=screen,
+#     text=intro_text,
+#     font_name=font_name,
+#     font_size=36,  # Larger font size for the intro text
+#     color=(200, 200, 200),  # Light gray color for the text
+#     position=(LENGTH * 0.1125, WIDTH * 0.175),  # Position calculated as a percentage of window size
+#     typing_speed=100  # 100 milliseconds between each character
+# )
 
 # ------------------------------------------------------------------------------
 # Main Game Loop
 # ------------------------------------------------------------------------------
 
-# Flag to control the main game loop
-running = True
-# Variable to store the player's selected option
-selected_option = None
+# # Flag to control the main game loop
+# running = True
+# # Variable to store the player's selected option
+# selected_option = None
 
-while running:
-    # Event handling loop
-    for event in pygame.event.get():
-        # If the player closes the window, exit the game loop
-        if event.type == pygame.QUIT:
-            running = False
+# while running:
+#     # Event handling loop
+#     for event in pygame.event.get():
+#         # If the player closes the window, exit the game loop
+#         if event.type == pygame.QUIT:
+#             running = False
 
-        # Check for button clicks only after the text has been fully rendered
-        if text_renderer.finished:
-            for i, button in enumerate(buttons):
-                if button.is_clicked(event):
-                    # Store the selected option based on which button was clicked
-                    selected_option = options[i]
-                    print(f"Selected Option: {selected_option}")
-                    # Placeholder for further actions based on the selected option
-                    if i == 0:
-                        print("Attack: AWT Implementation")
-                        # Add your attack logic here
-                    elif i == 1:
-                        print("Closer Look: AWT Implementation")
-                        # Add logic for taking a closer look
-                    elif i == 2:
-                        print("Stay Still: AWT Implementation")
-                        # Add logic for staying still
-                    elif i == 3:
-                        print("Scream: AWT Implementation")
-                        # Add logic for screaming
+#         # Check for button clicks only after the text has been fully rendered
+#         if text_renderer.finished:
+#             for i, button in enumerate(buttons):
+#                 if button.is_clicked(event):
+#                     # Store the selected option based on which button was clicked
+#                     selected_option = options[i]
+#                     print(f"Selected Option: {selected_option}")
+#                     # Placeholder for further actions based on the selected option
+#                     if i == 0:
+#                         print("Attack: AWT Implementation")
+#                         # Add your attack logic here
+#                     elif i == 1:
+#                         print("Closer Look: AWT Implementation")
+#                         # Add logic for taking a closer look
+#                     elif i == 2:
+#                         print("Stay Still: AWT Implementation")
+#                         # Add logic for staying still
+#                     elif i == 3:
+#                         print("Scream: AWT Implementation")
+#                         # Add logic for screaming
 
-    # Fill the entire screen with black to clear previous frames
-    screen.fill(BLACK)
+#     # Fill the entire screen with black to clear previous frames
+#     screen.fill(BLACK)
 
-    # Update the TextRenderer to handle the typewriter effect
-    text_renderer.update()
-    # Draw the currently displayed portion of the text
-    text_renderer.draw()
+#     # Update the TextRenderer to handle the typewriter effect
+#     text_renderer.update()
+#     # Draw the currently displayed portion of the text
+#     text_renderer.draw()
 
-    # After the text has been fully rendered, draw the option buttons
-    if text_renderer.finished:
-        for button in buttons:
-            button.draw(screen)
+#     # After the text has been fully rendered, draw the option buttons
+#     if text_renderer.finished:
+#         for button in buttons:
+#             button.draw(screen)
 
-    # Update the full display surface to the screen
-    pygame.display.flip()
+#     # Update the full display surface to the screen
+#     pygame.display.flip()
 
 
-pygame.quit()
+# pygame.quit()
 
   
