@@ -3,7 +3,7 @@
 # Purpose: main will act as the entrance point for the program to run.
 
 import random as r  
-
+import pygame
 import core.master as m  
 
 
@@ -14,8 +14,25 @@ from systems.combat import Combat as c
 from systems.core_library import classes 
 from systems.core_library import name_list  
 from systems.core_library import races
+from systems.ui.text import TextRenderer
+from systems.Quest import Quest
+from systems.QuestManager import QuestManager
 from world import EnchantedForest as EF
 
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption('Dijjon')
+
+# TextRenderer setup
+text_renderer = TextRenderer(
+    screen=screen,
+    text="",
+    font_name=None,
+    font_size=24,
+    color=(255, 255, 255),  # White text
+    position=(50, 100),
+    typing_speed=50  # Speed of typing effect
+)
 
 def class_list():  # passed testing in new main
         """
@@ -282,21 +299,6 @@ def sheet(character):  # passed testing in new main
             "XP": character.xp,
         }
 
-        # This may be redundant, will need to test
-        # EDIT: This is absolutely redundant, will replace sheet function ahead.
-        stats["STR"] = character.str
-        stats["DEX"] = character.dex
-        stats["CON"] = character.con
-        stats["INT"] = character.intel
-        stats["WIS"] = character.wis
-        stats["CHA"] = character.cha
-        stats["HP"] = character.hp
-        stats["AC"] = character.arm_c
-        stats["GP"] = character.gold
-        stats["SPD"] = character.spd
-        stats["LEVEL"] = character.lvl
-        stats["XP"] = character.xp
-
         # Display the character sheet with formatted statistics
         print(f"""\n
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -315,6 +317,31 @@ def sheet(character):  # passed testing in new main
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         \n\n\n\n""")
 
+
+# Sample Quest Data
+qtype = {
+    "find": Quest.find,
+    "kill": Quest.kill,
+    "skill_check": Quest.skill_check,
+}
+
+tasks = {
+    1: {
+        "name": "Find Finn",
+        "type": "find",
+        "complete": False,
+        "narrative": {
+            1: "You arrive at the bustling town square...",
+            2: "Finn is nowhere to be seen.",
+        },
+        "answers": {1: ["Look around"], 2: ["Ask someone nearby"]},
+        "scripts": {1: None, 2: None},
+    }
+}
+
+# Instantiate Quest and QuestManager
+quest = Quest("Find Finn", "Locate Finn in the town square", qtype, tasks)
+quest_manager = QuestManager(quest, text_renderer, screen)
 
 # Instantiate the Master class to manage game mechanics and interactions
 master = m.Master()
@@ -358,6 +385,10 @@ while main_game_loop:
     
     # Begin the introduction to the Enchanted Forest with the player character
     forest.intro(player)
-    
+
+    if not quest_manager.is_quest_complete:
+        quest_manager.render_current_narrative()
+        pygame.display.flip()
+        quest_manager.advance_step(1)
     # Pause the loop to hold here until the player presses Enter
     input("End of loop reached.")  # Hold here to prevent the loop from restarting immediately

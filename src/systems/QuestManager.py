@@ -1,19 +1,31 @@
 import random
+import pygame
 
 class QuestManager:
     """
     Manages the quest, including the current state, task execution,
     branching decisions, and randomization.
     """
-    def __init__(self, quest):
+    def __init__(self, quest, text_renderer, screen):
         self.quest = quest
         self.current_task_id = 1
         self.current_step = 1
         self.is_quest_complete = False
+        self.text_renderer = text_renderer  # Integrate TextRenderer
+        self.screen = screen  # Screen for Pygame rendering
 
     def get_current_narrative(self):
         """Get the current narrative text for the quest."""
         return self.quest.tasks[self.current_task_id]["narrative"][self.current_step]
+
+    def render_current_narrative(self):
+        current_narrative = self.get_current_narrative()
+        self.text_renderer.reset(current_narrative)
+        while not self.text_renderer.finished:
+            self.screen.fill((0, 0, 0))
+            self.text_renderer.update()
+            self.text_renderer.draw()
+            pygame.display.flip()
 
     def get_current_options(self):
         """Get the current options for the quest."""
