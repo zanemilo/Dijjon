@@ -3,7 +3,8 @@
 This is the official documentation for Dijjon Alpha, a text-based game set
 in the Fantasy RPG world of Dijjon.
 
-### Author: Zane M Deso
+## Author: Zane M Deso
+
 ### Last Updated: 12/16/2024
 
 ## Table of Contents
