@@ -60,6 +60,7 @@ Current Sprint Goal
     objectives. This one the palyer could just mosey on by)
 
 ## Backlog
+
 ### High Priority
 
     [H] Make functional intro quest line
@@ -222,8 +223,6 @@ Code base made to align more so with the following codebase directory struct
     ├── tools/
     └── README.md
 
-
-
 ## Testing
 
 We have implemented unit tests to ensure the game's functionality and reliability. This section provides instructions on how to run the tests.
@@ -258,7 +257,6 @@ Explanation of the command:
 Interact with Tests (If Prompted)
 
 Some tests may require user interaction, such as inputting actions during combat simulations. When running such tests, you might see prompts like:
-
 
     Hero, choose an action (attack, defend, etc.):
 
@@ -316,3 +314,4 @@ We aim to enhance our testing suite by automating user interactions to make the 
 
     Environmental Changes: Reflect player actions in the game world.
     NPC Adaptations: Change NPC strategies based on player reputation.
+    
