@@ -25,8 +25,8 @@ Current Sprint Goal
 
     Primary Goals:
 
-    Complete a reflective "Year in Review" of the game’s development progress.
-    Refactor import statements to avoid circular imports:
+        Complete a reflective "Year in Review" of the game’s development progress.
+        Refactor import statements to avoid circular imports:
         All imports now delegated to main.py or middle-man modules to ensure clarity and consistency.
         Refactor complete; see Change Log.
 
