@@ -21,6 +21,14 @@ in the Fantasy RPG world of Dijjon.
 
 Dijjon Alpha is a text-based fantasy RPG that combines RNG mechanics with dynamic storytelling. No two playthroughs are alike, offering unique encounters and outcomes with each session. The game incorporates Agile development practices, structured around focused mini-sprints for iterative progress.
 
+# Why I’m Making This Game
+
+Dijjon is more than just a game to me; it’s a deeply personal project that combines my love for storytelling, my fascination with systems, and my desire to create something meaningful. Growing up, video games were my escape, a source of wonder and connection to stories that stayed with me long after the credits rolled. They offered moments of joy, introspection, and even a sense of purpose during times when life felt overwhelming.
+
+This game is my way of channeling that inspiration into something new. It’s a chance to create a world where players can lose themselves in a story that resonates emotionally and challenges them to think about choices, consequences, and the complexity of relationships. I want Dijjon to be a space where creativity meets mechanics, where every interaction feels alive, and every decision matters.
+
+At its core, this project is about expression—about finding a way to share my love for games and storytelling while building something I can be proud of. It’s a personal journey, one fueled by a passion for crafting experiences that might inspire others the way games once inspired me.
+
 Current Sprint Goal
 
     Primary Goals:
