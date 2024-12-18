@@ -19,10 +19,7 @@ in the Fantasy RPG world of Dijjon.
 
 ## Introduction
 
-Dijjon (current working name) is a text-based game that incorporates RNG into
-every interaction, encounter, and outcome, ensuring that no two playthroughs
-are the same. As of June 16, 2024, Agile practices have been enacted, and
-development will proceed in mini sprints.
+Dijjon Alpha is a text-based fantasy RPG that combines RNG mechanics with dynamic storytelling. No two playthroughs are alike, offering unique encounters and outcomes with each session. The game incorporates Agile development practices, structured around focused mini-sprints for iterative progress.
 
 Current Sprint Goal
 
@@ -314,4 +311,3 @@ We aim to enhance our testing suite by automating user interactions to make the 
 
     Environmental Changes: Reflect player actions in the game world.
     NPC Adaptations: Change NPC strategies based on player reputation.
-    
