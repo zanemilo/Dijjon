@@ -5,7 +5,7 @@ in the Fantasy RPG world of Dijjon.
 
 ## Author: Zane M Deso
 
-### Last Updated: 12/16/2024
+### Last Updated: 12/18/2024
 
 ## Table of Contents
 
@@ -271,38 +271,79 @@ We aim to enhance our testing suite by automating user interactions to make the 
 
 ### Branching Choices
 
-    Key Decision Points: Define moral, strategic, and
-    information-based decisions.
-    Consequences and Repercussions: Implement immediate, delayed,
-    and subtle changes.
+    Key Decision Points:
+        Decisions during pivotal scenes such as The Incident at Hollowreach Citadel (Act One) directly influence trust dynamics, alliances, and reputation.
+        Player choices in moments of chaos (e.g., saving lives, pursuing evidence, or aligning loyalties) determine early allegiances with Zyrian or Drajhan factions.
+        Choices during interactions with major NPCs (e.g., Prince Veylen Drevaris, Myrra, Kelgar) affect their trust and potential outcomes in later acts.
+    Consequences and Repercussions:
+        Immediate: Choices in Act One will impact early trust dynamics and NPC behavior.
+        Long-Term: State allegiances and rivalries evolve, potentially altering the game's ending and global narrative.
 
 ### Random Elements
 
-    Random Encounters: Introduce variability in challenges and
-    opportunities.
-    Luck-Based Elements: Incorporate dice rolls for certain outcomes.
+    Dynamic Encounters:
+
+    Replace Enchanted Forest static elements with more modular, scene-based encounters from the Hollowreach Citadel Incident, refugee exodus, and The Sunken Hold quest.
+    Implement random NPC behaviors during chaos scenes. For instance:
+        Refugees may betray the player for resources.
+        Soldiers may desert or remain loyal based on player choices.
+
+    Luck-Based Outcomes:
+
+        Introduce RNG-based skill checks during pivotal scenes, e.g., defusing a dangerous situation or evading pursuit by Black Vanguard forces.
+        Ensure randomness impacts scene flow without negating player agency.
 
 ### Character Development and Relationships
 
-    Emotional Ties: Affect NPC relationships based on player decisions.
-    Reputation: Influence NPC interactions based on player's reputation.
+    Dynamic NPC Relationships:
+
+    Replace generic relationships from Enchanted Forest with detailed arcs based on decisions tied to main characters like Myrra, Kelgar, and Ashki.
+    Introduce shifting alliances with major NPC factions:
+        Black Vanguard Extremists (Drajh).
+        Azure Order Radicals (Zyra).
+    Develop a dynamic relationship with Prince Veylen Drevaris, reflecting player alignment, diplomacy, or enmity.
+
+    Player Reputation:
+
+        Expand on state-wide perception mechanics:
+            Zyra and Drajh citizens, soldiers, and leadership will react differently based on actions taken during and after The First Fragment.
 
 ### Time-Sensitive Quests
 
-    Seasonal and Time-Based Events: Include quests available during
-    specific in-game times.
-    Missable Quests: Opportunities that disappear if not acted upon.
+    Act One ("The First Fragment") has limited time to investigate the Hollowreach explosion.
+    Act Two introduces time-sensitive survival scenarios, such as securing resources for refugees before supplies run out.
+    Act Three involves critical deadlines tied to the relic’s activation at the Citadel of Eternity.
 
 ### Tracking Past Choices
 
-    State Tracking: Log decisions and their outcomes.
-    Dialogue Changes: Alter NPC dialogues based on player history.
+    State Tracking:
+
+    Log all key choices during story events, such as:
+        The player’s response to chaos at Hollowreach Citadel.
+        Actions taken during the refugee exodus and confrontations with the Archdemon.
+    Use logs to dynamically alter future NPC behavior and dialogue.
+
+    Dialogue Changes:
+
+        Refine dialogues for major NPCs to reflect decisions tied to their trust and reputation mechanics.
+        Example: General Vyrne's reaction to the player saving her life versus pursuing clues in Act One.
 
 ### Multiple Endings
 
-    Cumulative Decisions: Plan multiple endings based on player choices.
+    Reconciliation Ending 
+    Domination Ending
+    Destruction Ending 
+    Unstable Peace Ending
 
 ### Feedback and Adaptation
 
-    Environmental Changes: Reflect player actions in the game world.
-    NPC Adaptations: Change NPC strategies based on player reputation.
+    Environmental Changes:
+
+    Tie world-building elements directly to key events:
+        Example: Demon-corrupted zones expand as time progresses in Act Two unless the player takes proactive measures.
+
+    Faction Adaptation:
+
+        Major factions dynamically respond to player choices:
+            The Black Vanguard may grow stronger if the player neglects counteracting their propaganda.
+            The Azure Order might turn on the player if perceived as a threat to Zyrian sovereignty.
