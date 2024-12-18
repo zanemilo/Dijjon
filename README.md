@@ -23,27 +23,22 @@ Dijjon Alpha is a text-based fantasy RPG that combines RNG mechanics with dynami
 
 Current Sprint Goal
 
-    Complete a simple and self honorary Year in review for the development of
-    the game so far.
+    Primary Goals:
 
-    Primary concern is to fix import statements
-    and refactor to avoid circular imports.
-    As a rule of thumb,
-    Leave imports to main to delegate or a middle man class.
+    Complete a reflective "Year in Review" of the game’s development progress.
+    Refactor import statements to avoid circular imports:
+        All imports now delegated to main.py or middle-man modules to ensure clarity and consistency.
+        Refactor complete; see Change Log.
 
-    UPDATE: Refactor complete see change log.
-    AWT updated import statements and consolidation of 
-    class concerns to avoid ciruclar import.
+    Key Development Tasks:
 
-    In Quest Class, integrate skill checks, combat, and the player
-    Flesh out EnchantedForest HardCoded Quest.
-    Make functional puzzle aspect.
-
-    Integrate text renderer (GUI via pygame) with Quest system
-    allowing player to make options and read outcomes in a 
-    game window instead of in terminal.
-
-    Add VERY basic visual/sound elements (Background imgs, ambience, SFX, simple music)
+        Integrate skill checks, combat systems, and player mechanics into the Quest class.
+        Fully implement the Enchanted Forest hardcoded quest, adding functional puzzle elements.
+        Connect the text renderer (pygame GUI) with the quest system to shift gameplay from terminal to an interactive game window.
+        Introduce basic audio-visual elements for immersion:
+            Background images.
+            Ambient sound effects.
+            Simple music loops.
     
 
 ## Previous Sprint Goal
