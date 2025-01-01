@@ -31,6 +31,12 @@ class QuestManager:
         """Get the current options for the quest."""
         return self.quest.tasks[self.current_task_id]["answers"][self.current_step]
     
+    def set_current_options(self, options : list):
+        """Set the current options for the quest."""
+        if options != self.quest.tasks[self.current_task_id]["answers"]:
+            self.quest.tasks[self.current_task_id]["answers"][self.current_step] = options
+        return self.quest.tasks[self.current_task_id]["answers"][self.current_step]
+    
     def advance_step(self, choice):
         """
         Advance the step in the current task, handling branching based on player choice.
