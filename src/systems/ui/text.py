@@ -62,6 +62,12 @@ class TextRenderer:
                     self.text_index += 1
                     self.last_update_time = current_time  # Reset the timer
                 else:
+                    # Render the text surface with the current displayed_text
+                    text_surface = self.font.render(self.displayed_text, True, self.color)
+                    # Get the rectangle area for positioning
+                    text_rect = text_surface.get_rect(topleft=self.position)
+                    # Blit the text surface onto the screen at the specified position
+                    self.screen.blit(text_surface, text_rect)
                     # All characters have been displayed
                     self.finished = True
 

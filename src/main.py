@@ -345,7 +345,7 @@ tasks = {
             1: "You arrive at the bustling town square...",
             2: "Finn is nowhere to be seen.",
         },
-        "answers": {1: ["Look around"], 2: ["Ask someone nearby"]},
+        "answers": {1: ["Look around", "Or not"], 2: ["Ask someone nearby"]},
         "scripts": {1: None, 2: None},
     }
 }
@@ -354,28 +354,29 @@ tasks = {
 quest = Quest("Find Finn", "Locate Finn in the town square", qtype, tasks)
 quest_manager = QuestManager(quest, text_renderer, screen)
 
-# Instantiate the Master class to manage game mechanics and interactions
-master = m.Master()
+master = m.Master()  # Instantiate the Master class to manage game mechanics and interactions
 
-# Button Manager setup
 button_manager = ButtonManager(screen)
 button_manager.create_buttons(quest_manager.get_current_options())
 
-# Initialize the main game loop flag to True to start the game
+player = p.Player(get_name(), get_valid_race(), get_valid_class())  # Instantiate the player by prompting for name, race, and class
+sheet(player)  # Display stats to terminal
+
 running = True
+text_rendering_complete = False
+text_renderer.reset(quest_manager.get_current_narrative())
 
-# Instantiate the player by prompting for name, race, and class
-player = p.Player(get_name(), get_valid_race(), get_valid_class())
-
-# Display the player's character sheet using the Master class
-sheet(player)
-
-# Main game loop
 while running:
-    # Check if the player exists; if not, prompt to create a new player
+    # Ensure player is created before continuing
     if player is None:
-        create_player()
+        try:
+            create_player()
+        except Exception as e:
+            print(f"Error creating player: {e}")
+            running = False
+            break
 
+    # Handle events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -383,28 +384,33 @@ while running:
         # Handle button clicks
         button_index = button_manager.handle_event(event)
         if button_index is not None:
-            quest_manager.advance_step(button_index + 1)
-            button_manager.create_buttons(quest_manager.get_current_answers())
+            quest_manager.advance_step(button_index)
+            options = quest_manager.get_current_options()
+            button_manager.create_buttons(options)  # Update buttons if options exist
+            # Update narrative text after advancing quest
+            text_renderer.reset(quest_manager.get_current_narrative())
+            
 
+    # Clear the screen
     screen.fill((0, 0, 0))
-
+    # Always draw buttons and update display
+    button_manager.draw_buttons()
+    # Render quest narrative and buttons
     if not quest_manager.is_quest_complete:
-        # Render the current quest narrative
-        quest_manager.render_current_narrative()
-        button_manager.draw_buttons()
-        
-        # Simulate user selecting an option (Replace this with button logic)
-        # quest_manager.advance_step(1)
-
-    else:
-        text_renderer.reset("Quest Complete! Congratulations!")
-        while not text_renderer.finished:
-            screen.fill((0, 0, 0))
             text_renderer.update()
             text_renderer.draw()
-            pygame.display.flip()
-        running = False
+            text_rendering_complete = True
+    else:
+        text_renderer.reset("Quest Complete! Congratulations!")
+        text_renderer.update()
+        text_renderer.draw()
+        text_rendering_complete = True
 
+    
+    text_renderer.update()
+    text_renderer.draw()
     pygame.display.flip()
 
+# Quit pygame
 pygame.quit()
+
