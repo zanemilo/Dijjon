@@ -164,8 +164,8 @@ def save_tasks_py(serialized_tasks, output_path):
 
 def main():
     # Define directories
-    input_directory = 'C:/Users/zanem/DijjonAlphaDevelopment/assets/resources/act1'  # Update this path as needed
-    output_file = 'C:/Users/zanem/DijjonAlphaDevelopment/assets/resources/tasks.py'  # Desired output path
+    input_directory = 'C:/Users/zanem/DijjonAlphaDevelopment/assets/resources/act3'  # Update this path as needed
+    output_file = 'C:/Users/zanem/DijjonAlphaDevelopment/assets/resources/a_tasks.py'  # Desired output path
 
     # Find all .py files matching the pattern act_*_s_*.py
     search_pattern = os.path.join(input_directory, 'act_*_s_*.py')
