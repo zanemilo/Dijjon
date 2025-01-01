@@ -365,6 +365,7 @@ sheet(player)  # Display stats to terminal
 running = True
 text_rendering_complete = False
 text_renderer.reset(quest_manager.get_current_narrative())
+options = quest_manager.get_current_options()
 
 while running:
     # Ensure player is created before continuing
@@ -385,12 +386,17 @@ while running:
         button_index = button_manager.handle_event(event)
         if button_index is not None:
             quest_manager.advance_step(button_index)
+            prev_options = options
             options = quest_manager.get_current_options()
-            button_manager.create_buttons(options)  # Update buttons if options exist
+             # Update buttons only if options change
+            if options != prev_options:
+                try:
+                    button_manager.create_buttons(options)
+                except Exception as e:
+                    print(f"Error updating buttons: {e}")
             # Update narrative text after advancing quest
             text_renderer.reset(quest_manager.get_current_narrative())
             
-
     # Clear the screen
     screen.fill((0, 0, 0))
     # Always draw buttons and update display
@@ -399,18 +405,12 @@ while running:
     if not quest_manager.is_quest_complete:
             text_renderer.update()
             text_renderer.draw()
-            text_rendering_complete = True
     else:
         text_renderer.reset("Quest Complete! Congratulations!")
         text_renderer.update()
         text_renderer.draw()
-        text_rendering_complete = True
 
-    
-    text_renderer.update()
-    text_renderer.draw()
     pygame.display.flip()
 
-# Quit pygame
 pygame.quit()
 
