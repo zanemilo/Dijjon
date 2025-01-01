@@ -15,8 +15,8 @@ from systems.core_library import classes
 from systems.core_library import name_list  
 from systems.core_library import races
 from systems.ui.text import TextRenderer
-from systems.Button import Button as b
-from systems.ButtonManager import ButtonManager as bm
+from systems.Button import Button
+from systems.ButtonManager import ButtonManager
 from systems.Quest import Quest
 from systems.QuestManager import QuestManager
 from world import EnchantedForest as EF
@@ -358,8 +358,8 @@ quest_manager = QuestManager(quest, text_renderer, screen)
 master = m.Master()
 
 # Button Manager setup
-button_manager = bm.ButtonManager(screen)
-button_manager.create_buttons(quest_manager.get_current_answers())
+button_manager = ButtonManager(screen)
+button_manager.create_buttons(quest_manager.get_current_options())
 
 # Initialize the main game loop flag to True to start the game
 running = True
@@ -391,9 +391,10 @@ while running:
     if not quest_manager.is_quest_complete:
         # Render the current quest narrative
         quest_manager.render_current_narrative()
+        button_manager.draw_buttons()
         
         # Simulate user selecting an option (Replace this with button logic)
-        quest_manager.advance_step(1)
+        # quest_manager.advance_step(1)
 
     else:
         text_renderer.reset("Quest Complete! Congratulations!")
@@ -404,7 +405,6 @@ while running:
             pygame.display.flip()
         running = False
 
-    # Update display
     pygame.display.flip()
 
 pygame.quit()
