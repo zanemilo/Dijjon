@@ -153,7 +153,7 @@ def save_task_dict(act_num, scene_num, task_dict, output_directory):
 
 def main():
     # Define directories
-    input_directory = 'C:/Users/zanem/DijjonAlphaDevelopment/assets/resources/act1'  # Directory containing scene files
+    input_directory = 'C:/Users/zanem/DijjonAlphaDevelopment/assets/resources/act2'  # Directory containing scene files
     output_directory = input_directory  # Directory to save processed task files
 
     # Create output directory if it doesn't exist
