@@ -69,7 +69,7 @@ def process_scene_with_openai(scene_content, debug_file="debug_response_dijjon.t
     Returns the processed JSON response.
     """
     prompt = f"""
-    You are an assistant helping to build a dynamic quest system for a game. Given the following scene content, extract the necessary information and format it into a Python dictionary structure as shown below. Ensure the response is strictly in valid JSON format without any additional text.
+    You are an assistant helping to build a dynamic quest system for a game. Given the following scene content, extract the necessary information and format it into a Python dictionary structure as shown below. Ensure the response is strictly in valid JSON format without any additional text. Use double quotes for all property names and string values.
 
     Scene Content:
     \"\"\"
@@ -80,7 +80,7 @@ def process_scene_with_openai(scene_content, debug_file="debug_response_dijjon.t
     {{
         "name": "<Task Name>",
         "type": "<Task Type>",
-        "complete": False,
+        "complete": false,
         "narrative": {{
             1: "<Narrative step 1>",
             2: "<Narrative step 2>",
@@ -92,9 +92,9 @@ def process_scene_with_openai(scene_content, debug_file="debug_response_dijjon.t
             3: ["<Option 1>", "<Option 2>", ...]
         }},
         "scripts": {{
-            1: "Quest.method_call1",
-            2: "Quest.method_call2",
-            3: "Quest.method_call3"
+            1": Quest.method_call1,
+            2: Quest.method_call2,
+            3: Quest.method_call3
         }},
         "data": {{
             "<key1>": "<value1>",
@@ -102,6 +102,7 @@ def process_scene_with_openai(scene_content, debug_file="debug_response_dijjon.t
         }}
     }}
     """
+
 
     try:
         response = client.chat.completions.create(
@@ -145,7 +146,7 @@ def save_task_dict(act_num, scene_num, task_dict, output_directory):
     file_path = os.path.join(output_directory, filename)
     try:
         with open(file_path, 'w', encoding='utf-8') as file:
-            file.write(f"task = {json.dumps(task_dict, indent=4)}\n")
+            file.write(f"task = {repr(task_dict)}\n")
         print(f"Saved: {file_path}")
     except Exception as e:
         print(f"Error saving task dictionary: {e}")
