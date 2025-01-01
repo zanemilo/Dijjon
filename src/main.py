@@ -15,6 +15,8 @@ from systems.core_library import classes
 from systems.core_library import name_list  
 from systems.core_library import races
 from systems.ui.text import TextRenderer
+from systems.Button import Button as b
+from systems.ButtonManager import ButtonManager as bm
 from systems.Quest import Quest
 from systems.QuestManager import QuestManager
 from world import EnchantedForest as EF
@@ -317,6 +319,15 @@ def sheet(character):  # passed testing in new main
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         \n\n\n\n""")
 
+# # # _________TESTS__________# # #
+# Uncomment the following lines to run tests for skill checks and combat simulation
+
+# test skill check outcomes in main
+# skill_check_test()
+
+# test combat scenario in main
+# combat_sim()
+# # # _________TESTS___END____# # #
 
 # Sample Quest Data
 qtype = {
@@ -346,8 +357,12 @@ quest_manager = QuestManager(quest, text_renderer, screen)
 # Instantiate the Master class to manage game mechanics and interactions
 master = m.Master()
 
+# Button Manager setup
+button_manager = bm.ButtonManager(screen)
+button_manager.create_buttons(quest_manager.get_current_answers())
+
 # Initialize the main game loop flag to True to start the game
-main_game_loop = True
+running = True
 
 # Instantiate the player by prompting for name, race, and class
 player = p.Player(get_name(), get_valid_race(), get_valid_class())
@@ -355,61 +370,31 @@ player = p.Player(get_name(), get_valid_race(), get_valid_class())
 # Display the player's character sheet using the Master class
 sheet(player)
 
-# # # _________TESTS__________# # #
-# Uncomment the following lines to run tests for skill checks and combat simulation
-
-# test skill check outcomes in main
-# skill_check_test()
-
-# test combat scenario in main
-# combat_sim()
-# # # _________TESTS___END____# # #
-
-# Start the main game loop
-while main_game_loop:
+# Main game loop
+while running:
     # Check if the player exists; if not, prompt to create a new player
     if player is None:
         create_player()
-
-    # # Display the main menu options to the player
-    # print("This is the hardcoded main menu.")
-    # print("--------------------------------")
-    # print("1. Enter the Enchanted Forest\n ")
-    
-    # # Prompt the player to choose an option from the main menu
-    # user_choice = input("What would you like to do? (Pick an option above...)\n")
-    
-    
-    # # Instantiate the EnchantedForest scenario
-    # forest = EF.EnchantedForest()
-    
-    # # Begin the introduction to the Enchanted Forest with the player character
-    # forest.intro(player)
-
-    # if not quest_manager.is_quest_complete:
-    #     quest_manager.render_current_narrative()
-    #     pygame.display.flip()
-    #     quest_manager.advance_step(1)
-    # # Pause the loop to hold here until the player presses Enter
-    # input("End of loop reached.")  # Hold here to prevent the loop from restarting immediately
-
-
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    # Clear the screen
+        # Handle button clicks
+        button_index = button_manager.handle_event(event)
+        if button_index is not None:
+            quest_manager.advance_step(button_index + 1)
+            button_manager.create_buttons(quest_manager.get_current_answers())
+
     screen.fill((0, 0, 0))
 
-    # Check if the quest is complete
     if not quest_manager.is_quest_complete:
         # Render the current quest narrative
         quest_manager.render_current_narrative()
         
         # Simulate user selecting an option (Replace this with button logic)
-        
         quest_manager.advance_step(1)
+
     else:
         text_renderer.reset("Quest Complete! Congratulations!")
         while not text_renderer.finished:
