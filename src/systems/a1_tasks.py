@@ -1,8 +1,10 @@
+from systems.Quest import Quest
+
 tasks = {
     # Act 1 - Scene 1: The Summit at Hollowreach Citadel
     1: {
         "name": "The Summit at Hollowreach Citadel",
-        "type": "Dynamic Quest",
+        "type": "skill_check",
         "complete": False,
         "narrative": {
             1: (
@@ -56,9 +58,9 @@ tasks = {
             ],
         },
         "scripts": {
-            1: Quest.explore_areas,
-            2: Quest.handle_explosion,
-            3: Quest.make_critical_choice,
+            1: Quest.method_call1,
+            2: Quest.method_call1,
+            3: Quest.method_call1,
         },
         "data": {
             'Branching Choices': [
@@ -84,7 +86,7 @@ tasks = {
     # Act 1 - Scene 2: The Ember of Discord - Fallout and Propaganda
     2: {
         "name": "The Ember of Discord - Fallout and Propaganda",
-        "type": "Dynamic Quest",
+        "type": "skill_check",
         "complete": False,
         "narrative": {
             1: (
@@ -129,9 +131,9 @@ tasks = {
             ],
         },
         "scripts": {
-            1: Quest.spread_propaganda,
-            2: Quest.question_narrative,
-            3: Quest.remain_neutral,
+            1: Quest.method_call1,
+            2: Quest.method_call1,
+            3: Quest.method_call1,
         },
         "data": {
             'Environment': 'Zyra and Drajh are key locations with distinct atmospheres and political tensions.',
@@ -143,7 +145,7 @@ tasks = {
     # Act 1 - Scene 3: The First Skirmish
     3: {
         "name": "The First Skirmish",
-        "type": "Battle Quest",
+        "type": "kill",
         "complete": False,
         "narrative": {
             1: (
@@ -186,9 +188,9 @@ tasks = {
             ],
         },
         "scripts": {
-            1: Quest.defend_line,
-            2: Quest.lead_charge,
-            3: Quest.scout_ahead,
+            1: Quest.method_call1,
+            2: Quest.method_call1,
+            3: Quest.method_call1,
         },
         "data": {
             'climactic_event': 'The rift opens, unleashing demons.',
@@ -209,7 +211,7 @@ tasks = {
     # Act 1 - Scene 4: Refugee Exodus and Rift Encounter
     4: {
         "name": "Refugee Exodus and Rift Encounter",
-        "type": "Dynamic Quest",
+        "type": "skill_check",
         "complete": False,
         "narrative": {
             1: (
@@ -267,7 +269,7 @@ tasks = {
     # Act 1 - Scene 5: The Sunken Hold
     5: {
         "name": "The Sunken Hold",
-        "type": "Dynamic Quest",
+        "type": "skill_check",
         "complete": False,
         "narrative": {
             1: (
@@ -326,7 +328,7 @@ tasks = {
     # Act 1 - Scene 6: The Broken Path
     6: {
         "name": "The Broken Path",
-        "type": "Branch Continuation",
+        "type": "skill_check",
         "complete": False,
         "narrative": {
             1: (

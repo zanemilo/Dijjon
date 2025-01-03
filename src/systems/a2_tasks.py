@@ -1,8 +1,10 @@
+from systems.Quest import Quest
+
 tasks = {
     # Act 2 - Scene 1: The Rift's Threshold
     1: {
         "name": "The Rift's Threshold",
-        "type": "Branch Continuation",
+        "type": "skill_check",
         "complete": False,
         "narrative": {
             1: (
@@ -53,7 +55,7 @@ tasks = {
     # Act 2 - Scene 2: Descent into the Abyss
     2: {
         "name": "Descent into the Abyss",
-        "type": "Branch Continuation",
+        "type": "skill_check",
         "complete": False,
         "narrative": {
             1: (
@@ -86,8 +88,8 @@ tasks = {
         },
         "scripts": {
             1: Quest.method_call1,
-            2: Quest.method_call2,
-            3: Quest.method_call3,
+            2: Quest.method_call1,
+            3: Quest.method_call1,
         },
         "data": {
             'Environment': 'The Rift twists reality, shifting gravity and creating illusions.',
@@ -100,7 +102,7 @@ tasks = {
     # Act 2 - Scene 3: The Heart of Corruption
     3: {
         "name": "The Heart of Corruption",
-        "type": "Dynamic Quest",
+        "type": "skill_check",
         "complete": False,
         "narrative": {
             1: (

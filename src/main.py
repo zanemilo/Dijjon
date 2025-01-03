@@ -19,6 +19,9 @@ from systems.Button import Button
 from systems.ButtonManager import ButtonManager
 from systems.Quest import Quest
 from systems.QuestManager import QuestManager
+from systems.a1_tasks import tasks as a1_tasks
+from systems.a2_tasks import tasks as a2_tasks
+from systems.a3_tasks import tasks as a3_tasks
 from world import EnchantedForest as EF
 
 pygame.init()
@@ -336,19 +339,7 @@ qtype = {
     "skill_check": Quest.skill_check,
 }
 
-tasks = {
-    1: {
-        "name": "Find Finn",
-        "type": "find",
-        "complete": False,
-        "narrative": {
-            1: "You arrive at the bustling town square...",
-            2: "Finn is nowhere to be seen.",
-        },
-        "answers": {1: ["Look around", "Or not"], 2: ["Ask someone nearby"]},
-        "scripts": {1: None, 2: None},
-    }
-}
+tasks = a1_tasks
 
 # Instantiate Quest and QuestManager
 quest = Quest("Find Finn", "Locate Finn in the town square", qtype, tasks)

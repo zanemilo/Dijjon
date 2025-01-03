@@ -1,3 +1,5 @@
+from systems.Quest import Quest
+
 tasks = {
     # Act 3 - Scene 1: The Shattered Plain
     1: {
