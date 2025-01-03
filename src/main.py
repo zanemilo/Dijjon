@@ -25,7 +25,7 @@ from systems.a3_tasks import tasks as a3_tasks
 from world import EnchantedForest as EF
 
 pygame.init()
-screen = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((1920, 1080))
 pygame.display.set_caption('Dijjon')
 
 # TextRenderer setup

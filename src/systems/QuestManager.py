@@ -40,7 +40,8 @@ class QuestManager:
     def advance_step(self, choice):
         """
         Advance the step in the current task, handling branching based on player choice.
-        
+        Does not currently handle advancing task_ids. Requires implementation.
+
         Args:
             choice (int): The index of the player's chosen option.
         """
