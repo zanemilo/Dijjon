@@ -1,4 +1,8 @@
+
+import random as r
+
 from ..core import settings
+from ..entities import PlayerFactory as pf
 
 class InteractionManager:
     """
@@ -41,7 +45,7 @@ class InteractionManager:
 
             return passed_check  # Return the result of the check
         
-    def skill_check_test(self):
+    def skill_check_test(self, player):
         """
         Tests various skill checks and opposing checks between the player and a bandit.
         Used for a means to quickly test fucntionality in main.
@@ -53,7 +57,7 @@ class InteractionManager:
         4. Determines and prints the winner of a strength-based opposing check between the player and the bandit.
         """
         # Instantiate a new bandit player with random race and class, marked as an enemy
-        bandit = p.Player('Bandit', r.choice(list(races)), r.choice(list(classes)), is_enemy=True)
+        bandit = pf.create_player(npc=True, enemy=True)
         
         # Display the bandit's character sheet using the Master class
         bandit.sheet()
@@ -63,7 +67,7 @@ class InteractionManager:
         print(f'Did {player.get_name()} pass the dex Check?: {dex_passed}')
         
         # Perform an investigation check for the player and print the result
-        investigation_passed = check("investigation", player.player_check_roll("investigation"))
+        investigation_passed = self.check("investigation", player.player_check_roll("investigation"))
         print(f'Did {player.get_name()} pass the investigation Check?: {investigation_passed}')
         
         # Conduct an opposing strength check between the player and the bandit and print the winner

@@ -7,6 +7,7 @@ import sys
 sys.path.append("..")  # Adds the parent directory to the Python module search path
 
 from systems import dice_Roll as dr
+from ..entities import PlayerFactory as pf
 
 
 
@@ -213,3 +214,25 @@ class Combat:
             if entity_one.get_hp() <= 0:
                 print(f"{entity_one.get_name()} has been defeated!")  # Announce defeat
                 break  # Exit combat if Entity One is defeated
+    
+    def combat_sim(self, player):
+        """
+        Simulates a combat scenario between the player and a bandit.
+
+        Steps:
+        1. Instantiates a bandit player with random race and class.
+        2. Displays the bandit's character sheet.
+        3. Sets up a combat scenario between the player and the bandit.
+        4. Initiates and runs the combat.
+        """
+        # Instantiate a new bandit player with random race and class, marked as an enemy
+        bandit = pf.create_player(npc=True, enemy=True)
+        
+        # Display the bandit's character sheet using the Master class
+        bandit.sheet()
+        
+        # Setup combat scenario with the player and the bandit
+        combat = Combat([player, bandit])
+        
+        # Run the combat simulation
+        combat.start_combat()
