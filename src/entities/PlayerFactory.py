@@ -1,7 +1,10 @@
 
 import random as r
-from Player import Player as p
-from ..systems.core_library import race_list, class_list, races, classes, name_list
+import sys
+sys.path.append("..")  # Adds the parent directory to the Python module search path
+
+from entities.Player import Player
+from systems.core_library import race_list, class_list, races, classes, name_list
 
 class PlayerFactory:
 
@@ -36,14 +39,14 @@ class PlayerFactory:
             player_class = self.get_valid_class()
             
             # Instantiate a new player with the provided name, race, and class
-            new_player = p.Player(player_name, player_race, player_class)
+            new_player = Player(player_name, player_race, player_class)
         if npc:
             if enemy:
                 # Instantiate a new enemy npc with the randomly selected name, race, and class
-                new_player = p.Player(r.choice(list(name_list)), r.choice(list(races)), r.choice(list(classes)), is_enemy=True)
+                new_player = Player(r.choice(list(name_list)), r.choice(list(races)), r.choice(list(classes)), is_enemy=True)
             else:
                 # Instantiate a new npc with the randomly selected name, race, and class
-                new_player = p.Player(r.choice(list(name_list)), r.choice(list(races)), r.choice(list(classes)))
+                new_player = Player(r.choice(list(name_list)), r.choice(list(races)), r.choice(list(classes)))
         
         return new_player
     
@@ -58,9 +61,11 @@ class PlayerFactory:
         """
         choices = ['y', 'yes', '1', 1, 'n', 'no', '2', 2]
         valid = False
+        
         while not valid:
             name = input("Please enter a name for your character:\n")
             if name:
+                choice = None
                 while choice not in choices:
                     print("\n1. Yes\n2. No\n")
                     choice = input(f"Please confirm that you would like your character to be named {name}:\n")
@@ -92,7 +97,7 @@ class PlayerFactory:
                 print(f"Invalid class name: {class_name}\n")  # Inform the user of invalid input
         return class_name  # Return the valid class name
 
-    def get_valid_race():  # passed testing in new main
+    def get_valid_race(self):  # passed testing in new main
         """
         Prompt the user to select a valid character race from the available options.
 
@@ -115,7 +120,7 @@ class PlayerFactory:
                 print(f"Invalid race name: {race_name}\n")  # Inform the user of invalid input
         return race_name  # Return the valid race name
 
-    def valid_class(class_name):  # passed testing in new main
+    def valid_class(self, class_name):  # passed testing in new main
         """
         Check if the provided class name is valid.
 
@@ -130,7 +135,7 @@ class PlayerFactory:
         elif class_name not in classes:
             return False  # Return False if class name is invalid
 
-    def valid_race(race_name):  # passed testing in new main
+    def valid_race(self, race_name):  # passed testing in new main
         """
         Check if the provided race name is valid.
 

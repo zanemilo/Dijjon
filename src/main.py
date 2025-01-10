@@ -5,7 +5,7 @@
 import random as r  
 import pygame
 
-from entities import PlayerFactory as pf
+from entities.PlayerFactory import PlayerFactory
 from systems.ui.text import TextRenderer
 from systems.ButtonManager import ButtonManager
 from systems.Quest import Quest
@@ -42,6 +42,7 @@ tasks = a1_tasks
 quest = Quest("Find Finn", "Locate Finn in the town square", qtype, tasks)
 quest_manager = QuestManager(quest, text_renderer, screen)
 
+player_factory = PlayerFactory()
 
 button_manager = ButtonManager(screen)
 button_manager.create_buttons(quest_manager.get_current_options())
@@ -56,7 +57,7 @@ while running:
     # Ensure player is created before continuing
     if not player:
         try:
-            pf.create_player()
+           player = player_factory.create_player()
         except Exception as e:
             print(f"Error creating player: {e}")
             running = False
