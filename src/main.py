@@ -11,7 +11,7 @@ from entities import Mob as mb
 from entities import Player as p  
 from src.core.settings import Settings as settings
 from systems.combat import Combat as c
-from systems.core_library import classes 
+from systems.core_library import classes, name_list, races, get_valid_class, get_valid_race
 from systems.core_library import name_list  
 from systems.core_library import races
 from systems.ui.text import TextRenderer
@@ -38,114 +38,7 @@ text_renderer = TextRenderer(
     position=(50, 100),
     typing_speed=50  # Speed of typing effect
 )
-
-def class_list():  # passed testing in new main
-        """
-        Display a numbered list of available character classes.
-
-        This function iterates through the 'classes' dictionary and prints each class with a corresponding number.
-        """
-        num = 1  # Initialize a counter to number the classes
-        for class_type in classes:
-            print(f'{num}. {class_type}')  # Print each class with its corresponding number
-            num += 1  # Increment the counter
-
-def race_list():  # passed testing in new main
-    """
-    Display a numbered list of available character races.
-
-    This function iterates through the 'races' dictionary and prints each race with a corresponding number.
-    """
-    num = 1  # Initialize a counter to number the races
-    for race_type in races:
-        print(f'{num}. {race_type}')  # Print each race with its corresponding number
-        num += 1  # Increment the counter
-
-def get_valid_class():  # passed testing in new main
-    """
-    Prompt the user to select a valid character class from the available options.
-
-    This function repeatedly prompts the user until a valid class name is entered.
-
-    Returns:
-        str: The validated class name selected by the user.
-    """
-    valid = False  # Flag to indicate if a valid class has been chosen
-    while not valid:
-        class_list()  # Display the list of available classes
-        class_name = input(f"Type in your character's class or input the number the your selection from the list above:\n")  # Prompt user for input
-        class_name = class_name.title()  # Capitalize the first letter of each word in the class name
-        if class_name in classes:
-            valid = True  # Set flag to True if class is valid
-        elif len(classes) - int(class_name) >= 0:
-            class_name = classes[int(class_name) - 1]
-            valid = True  # Set flag to True if correct race option number is entered
-        else:
-            print(f"Invalid class name: {class_name}\n")  # Inform the user of invalid input
-    return class_name  # Return the valid class name
-
-def get_valid_race():  # passed testing in new main
-    """
-    Prompt the user to select a valid character race from the available options.
-
-    This function repeatedly prompts the user until a valid race name is entered.
-
-    Returns:
-        str: The validated race name selected by the user.
-    """
-    valid = False  # Flag to indicate if a valid race has been chosen
-    while not valid:
-        race_list()  # Display the list of available races
-        race_name = input(f"Type in your character's race or input the number the your selection from the list above:\n")  # Prompt user for input
-        race_name = race_name.title()  # Capitalize the first letter of each word in the race name
-        if race_name in races:
-            valid = True  # Set flag to True if race is valid
-        elif len(races) - int(race_name) >= 0:
-            race_name = races[int(race_name) - 1]
-            valid = True  # Set flag to True if correct race option number is entered
-        else:
-            print(f"Invalid race name: {race_name}\n")  # Inform the user of invalid input
-    return race_name  # Return the valid race name
-
-def valid_class(class_name):  # passed testing in new main
-    """
-    Check if the provided class name is valid.
-
-    Args:
-        class_name (str): The class name to validate.
-
-    Returns:
-        bool: True if the class name is valid, False otherwise.
-    """
-    if class_name in classes:
-        return True  # Return True if class name is valid
-    elif class_name not in classes:
-        return False  # Return False if class name is invalid
-
-def valid_race(race_name):  # passed testing in new main
-    """
-    Check if the provided race name is valid.
-
-    Args:
-        race_name (str): The race name to validate.
-
-    Returns:
-        bool: True if the race name is valid, False otherwise.
-    """
-    if race_name in races:
-        return True  # Return True if race name is valid
-    elif race_name not in races:
-        return False  # Return False if race name is invalid
     
-def get_name():  # passed testing in new main
-        """
-        Prompt the user to enter a name for their character.
-
-        Returns:
-            str: The name entered by the user, properly formatted.
-        """
-        name = input("Enter your name:\n")  # Prompt user for character name
-        return name.title()  # Capitalize the first letter of each word in the name
 
 def opposing_check(entity_one, enitity_two, check_type):  # passed testing in new main
         """

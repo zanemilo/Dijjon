@@ -36,6 +36,16 @@ class Entity:
         """Sets the name of the entity."""
         self.name = name
 
+    def init_name():  # passed testing in new main
+        """
+        Prompt the user to enter a name for their character.
+
+        Returns:
+            str: The name entered by the user, properly formatted.
+        """
+        name = input("Enter your name:\n")  # Prompt user for character name
+        return name.title()  # Capitalize the first letter of each word in the name
+
     def get_hp(self):
         """Returns the current hit points of the entity."""
         return self.hp
