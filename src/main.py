@@ -5,12 +5,8 @@
 import random as r  
 import pygame
 
-from entities import Mob as mb, Player as p, PlayerFactory as pf
-from src.core.settings import Settings as settings
-from systems.combat import Combat as c
-from systems.core_library import classes, name_list, races, get_valid_class, get_valid_race
+from entities import PlayerFactory as pf
 from systems.ui.text import TextRenderer
-from systems.Button import Button
 from systems.ButtonManager import ButtonManager
 from systems.Quest import Quest
 from systems.QuestManager import QuestManager
