@@ -229,6 +229,7 @@ def check(check_type, player_roll, bias=r.randint(1, 18)):  # passed testing in 
 def skill_check_test():
     """
     Tests various skill checks and opposing checks between the player and a bandit.
+    Used for a means to quickly test fucntionality in main.
 
     Steps:
     1. Instantiates a bandit player with random race and class.
