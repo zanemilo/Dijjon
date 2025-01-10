@@ -352,7 +352,7 @@ monster_dict = {
     "Lizardfolk": "humanoid",
     "Kenku": "humanoid",
     "Gnoll": "humanoid",
-    "Yuan-ti": "humanoid",
+    "Yin-ta": "humanoid",
     # Monstrosities
     "Kraken": "monstrosity",
     "Gorgon": "monstrosity",

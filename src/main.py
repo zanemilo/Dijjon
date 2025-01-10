@@ -185,7 +185,7 @@ def combat_sim():
     bandit = p.Player('Bandit', r.choice(list(races)), r.choice(list(classes)), is_enemy=True)
     
     # Display the bandit's character sheet using the Master class
-    sheet(bandit)
+    bandit.sheet()
     
     # Setup combat scenario with the player and the bandit
     combat = c.Combat([player, bandit])
@@ -240,7 +240,7 @@ def skill_check_test():
     bandit = p.Player('Bandit', r.choice(list(races)), r.choice(list(classes)), is_enemy=True)
     
     # Display the bandit's character sheet using the Master class
-    sheet(bandit)
+    bandit.sheet()
     
     # Perform a dexterity check for the player and print the result
     dex_passed = check("dex", player.player_check_roll("dex"))
@@ -253,7 +253,6 @@ def skill_check_test():
     # Conduct an opposing strength check between the player and the bandit and print the winner
     winner = opposing_check(player, bandit, "str")
     print(f'The winner of the opposing check is: {winner}')
-
 
 def create_player():
     """
@@ -279,48 +278,7 @@ def create_player():
     new_player = p.Player(player_name, player_race, player_class)
     
     # Display the new player's character sheet using the Master class
-    sheet(new_player)
-
-def sheet(character):  # passed testing in new main
-        """
-        Generate and display the character sheet for a given character.
-
-        Args:
-            character (Player): The player character for whom the sheet is being generated.
-        """
-        # Dictionary of character instance's stats used for sheet to pull updated info
-        stats = {
-            "STR": character.str,
-            "DEX": character.dex,
-            "CON": character.con,
-            "INT": character.intel,
-            "WIS": character.wis,
-            "CHA": character.cha,
-            "HP": character.hp,
-            "AC": character.arm_c,
-            "GP": character.gold,
-            "SPD": character.spd,
-            "LEVEL": character.lvl,
-            "XP": character.xp,
-        }
-
-        # Display the character sheet with formatted statistics
-        print(f"""\n
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        | NAME: {character.name.upper().center(39)}   |
-        | RACE: {character.race.upper().center(39)}   |
-        | CLASS: {character.char_class.upper().center(38)}   |
-        | LEVEL: {stats['LEVEL']}{' '*(2-len(str(stats['LEVEL'])))}                                       |
-        |                                                 |
-        | STR: {stats['STR']}{' '*(2-len(str(stats['STR'])))} | DEX: {stats['DEX']}{' '*(2-len(str(stats['DEX'])))} | CON: {stats['CON']}{' '*(2-len(str(stats['CON'])))} | INT: {stats['INT']}{' '*(2-len(str(stats['INT'])))} | WIS: {stats['WIS']}{' '*(2-len(str(stats['WIS'])))} | 
-        | CHA: {stats['CHA']}{' '*(2-len(str(stats['CHA'])))} |                                       |
-        | ARMOR CLASS: {stats['AC']}{' '*(2-len(str(stats['AC'])))} | SPEED: {stats['SPD']}{' '*(2-len(str(stats['SPD'])))}                     |
-        |                                                 |
-        | HIT POINTS: {stats['HP']}{' '*(2-len(str(stats['HP'])))} | SPELL SLOTS: {'0'+' '*(2-len('2'))}                |
-        |                                                 |
-        | GOLD: {stats['GP']}{' '*(2-len(str(stats['GP'])))} | XP: {stats['XP']}{' '*(2-len(str(stats['XP'])))}                               |
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        \n\n\n\n""")
+    new_player.sheet()
 
 # # # _________TESTS__________# # #
 # Uncomment the following lines to run tests for skill checks and combat simulation
@@ -351,7 +309,7 @@ button_manager = ButtonManager(screen)
 button_manager.create_buttons(quest_manager.get_current_options())
 
 player = p.Player(get_name(), get_valid_race(), get_valid_class())  # Instantiate the player by prompting for name, race, and class
-sheet(player)  # Display stats to terminal
+player.sheet()  # Display stats to terminal
 
 running = True
 text_rendering_complete = False

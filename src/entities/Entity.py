@@ -87,6 +87,47 @@ class Entity:
             print(f"Status Effects: {', '.join([f'{effect} ({duration} turns)' for effect, duration in self.status_effects.items()])}")
         else:
             print("Status Effects: None")
+    
+    def sheet(self):  # passed testing in new main
+        """
+        Generate and display the character sheet for a given character.
+
+        Args:
+            character (Player): The player character for whom the sheet is being generated.
+        """
+        # Dictionary of character instance's stats used for sheet to pull updated info
+        stats = {
+            "STR": self.str,
+            "DEX": self.dex,
+            "CON": self.con,
+            "INT": self.intel,
+            "WIS": self.wis,
+            "CHA": self.cha,
+            "HP": self.hp,
+            "AC": self.arm_c,
+            "GP": self.gold,
+            "SPD": self.spd,
+            "LEVEL": self.lvl,
+            "XP": self.xp,
+        }
+
+        # Display the character sheet with formatted statistics
+        print(f"""\n
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        | NAME: {self.name.upper().center(39)}   |
+        | RACE: {self.race.upper().center(39)}   |
+        | CLASS: {self.char_class.upper().center(38)}   |
+        | LEVEL: {stats['LEVEL']}{' '*(2-len(str(stats['LEVEL'])))}                                       |
+        |                                                 |
+        | STR: {stats['STR']}{' '*(2-len(str(stats['STR'])))} | DEX: {stats['DEX']}{' '*(2-len(str(stats['DEX'])))} | CON: {stats['CON']}{' '*(2-len(str(stats['CON'])))} | INT: {stats['INT']}{' '*(2-len(str(stats['INT'])))} | WIS: {stats['WIS']}{' '*(2-len(str(stats['WIS'])))} | 
+        | CHA: {stats['CHA']}{' '*(2-len(str(stats['CHA'])))} |                                       |
+        | ARMOR CLASS: {stats['AC']}{' '*(2-len(str(stats['AC'])))} | SPEED: {stats['SPD']}{' '*(2-len(str(stats['SPD'])))}                     |
+        |                                                 |
+        | HIT POINTS: {stats['HP']}{' '*(2-len(str(stats['HP'])))} | SPELL SLOTS: {'0'+' '*(2-len('2'))}                |
+        |                                                 |
+        | GOLD: {stats['GP']}{' '*(2-len(str(stats['GP'])))} | XP: {stats['XP']}{' '*(2-len(str(stats['XP'])))}                               |
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        \n\n\n\n""")
 
 # Example of creating an Entity and manipulating its properties
 # entity = Entity("Test Entity", 100, 15, 30, 200, 5)
