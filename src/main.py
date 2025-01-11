@@ -58,6 +58,7 @@ while running:
     if not player:
         try:
            player = player_factory.create_player()
+           player.display_info()
         except Exception as e:
             print(f"Error creating player: {e}")
             running = False

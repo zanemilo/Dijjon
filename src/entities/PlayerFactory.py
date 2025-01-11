@@ -73,6 +73,7 @@ class PlayerFactory:
                     valid = True
             else:
                 print(f"Invalid name: {name}, please enter a valid name.")
+        return name
 
     def get_valid_class(self):  # passed testing in new main
         """

@@ -31,12 +31,12 @@ class Player(Entity):
         self.xp = xp
         self.lvl = lvl
 
-        self.str = str + dr.roll_stats() + self.race.str + self.char_class.str
-        self.dex = dex + dr.roll_stats() + self.race.dex + self.char_class.dex
-        self.con = con + dr.roll_stats() + self.race.con + self.char_class.con
-        self.intel = intel + dr.roll_stats() + self.race.intel + self.char_class.intel
-        self.wis = wis + dr.roll_stats() + self.race.wis + self.char_class.wis
-        self.cha = cha + dr.roll_stats() + self.race.cha + self.char_class.cha
+        self.str = str + dr.roll_stats() + self.char_class.str
+        self.dex = dex + dr.roll_stats() + self.char_class.dex
+        self.con = con + dr.roll_stats() + self.char_class.con
+        self.intel = intel + dr.roll_stats() + self.char_class.intel
+        self.wis = wis + dr.roll_stats() + self.char_class.wis
+        self.cha = cha + dr.roll_stats() + self.char_class.cha
 
         self.hp = hp + self.get_modifier(self.con)
         self.hpMax = hpMax + self.get_modifier(self.con)
