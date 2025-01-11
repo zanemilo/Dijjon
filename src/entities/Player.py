@@ -24,23 +24,35 @@ class Player(Entity):
         self.name = name
         self.race = Race(race)
         self.char_class = CharClass(char_class)
+
         self.gold = gold
         self.arm_c = arm_c
         self.spd = spd
         self.xp = xp
         self.lvl = lvl
-        self.str = str + dr.roll_stats() + r.randint(-1, 2)
-        self.dex = dex + dr.roll_stats() + r.randint(-1, 2)
-        self.con = con + dr.roll_stats() + r.randint(-1, 2)
-        self.intel = intel + dr.roll_stats() + r.randint(-1, 2)
-        self.wis = wis + dr.roll_stats() + r.randint(-1, 2)
-        self.cha = cha + dr.roll_stats() + r.randint(-1, 2)
+
+        self.str = str + dr.roll_stats() + self.race.str + self.char_class.str
+        self.dex = dex + dr.roll_stats() + self.race.dex + self.char_class.dex
+        self.con = con + dr.roll_stats() + self.race.con + self.char_class.con
+        self.intel = intel + dr.roll_stats() + self.race.intel + self.char_class.intel
+        self.wis = wis + dr.roll_stats() + self.race.wis + self.char_class.wis
+        self.cha = cha + dr.roll_stats() + self.race.cha + self.char_class.cha
+
         self.hp = hp + self.get_modifier(self.con)
         self.hpMax = hpMax + self.get_modifier(self.con)
+
+        self.abilities = self.race.abilities + self.char_class.abilities
+        self.skills = self.race.skills + self.char_class.skills
+        self.feats = self.race.feats + self.char_class.feats
+        self.spells = self.race.spells + self.char_class.spells
+        self.proficiencies = self.race.proficiencies + self.char_class.proficiencies
+        self.resistances = self.race.resistances
+
         self.is_enemy = is_enemy
         self.special_senses = special_senses
         self.visibility_conditions = visibility_conditions
         self.visibility = Visibility(special_senses=special_senses)
+        self.disposition = self.race.disposition
         self.inventory = {}
         self.equipment_slots = {
             'head': None,
@@ -95,9 +107,13 @@ class Player(Entity):
             effect_func(intensity)
             self.display_updated_status()
 
-    def display_updated_status(self):
-        """Display the updated player status."""
-        print(f"Updated Player Status - HP: {self.hp}, Speed: {self.spd}, Visibility: {self.visibility.check_visibility()}")
+    def display_info(self):
+        """Display player's info."""
+        print(f"Name: {self.name}\nRace: {self.race.race}\nCharacter Class: {self.char_class.char_class}\n")
+        print(f"HP: {self.hp}/{self.hpMax}\nArmor Class: {self.arm_c}\nSpeed: {self.spd}\nGold: {self.gold}")
+        print(f"Stats: STR: {self.str}, DEX: {self.dex}, CON: {self.con}, INT: {self.intel}, WIS: {self.wis}, CHA: {self.cha}")
+        print(f"Abilities: {self.abilities}\nSkills: {self.skills}\nFeats: {self.feats}\nSpells: {self.spells}\nProficiencies: {self.proficiencies}")
+        print(f"Disposition: {self.disposition}\n")
 
     def apply_environment_effect(self, condition):
         self.visibility.update_visibility(condition)
@@ -315,10 +331,6 @@ class Player(Entity):
         else:
             print(f'Error: Skill "{skill}" not found in the mapping.')
 
-    def display_info(self):
-        """Display player's info"""
-        print(f"Name: {self.get_name()}\nRace: {self.get_race()}\nCharacter class: {self.get_char_class()}\nGold: {self.get_gold()}\nArmor Class: {self.get_arm_c()}\nHP: {self.get_hp()}\nMax HP: {self.get_hpMax()}\nSpeed: {self.get_spd()}\nXP: {self.get_xp()}\nLevel: {self.get_lvl()}\nStr: {self.get_str()}\nDex: {self.get_dex()}\nCon: {self.get_con()}\nInt: {self.get_intel()}\nWis: {self.get_wis()}\nCha: {self.get_cha()}\n")
-
     def check_roll(self, check_type):
         """Takes stat as an args and rolls a d20 + the instances stat associated modifier. -> int of sum of entity roll"""
 
@@ -338,6 +350,17 @@ class Player(Entity):
         
         return int(sum_of_player_roll)
 
+    def calculate_damage_resistance(self, damage_type, damage_amount):
+        """Calculate damage taken based on resistances."""
+        if damage_type in self.resistances:
+            resistance_multiplier = self.resistances[damage_type]
+            damage_amount *= resistance_multiplier
+            print(f"Resistance applied: {damage_type} damage reduced to {damage_amount}.")
+        return damage_amount
+    
+    def check_disposition(self, target_race):
+        """Check the player's disposition towards another race."""
+        return self.disposition.get(target_race, 0)
 
 
 # # Test Randomness into Player creation, can be used to build NPCs

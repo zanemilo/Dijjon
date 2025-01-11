@@ -29,8 +29,7 @@ class Race:
         if race in race_stats:
             return race_stats[race].get(stat, None)  # Returns None if the stat is not defined
 
-# Example Usage
-test_race = Race('Lumidar')
+# test_race = Race('Humara')
 
-print(f"Race: {test_race.race}\nAbilities: {test_race.abilities}\nSkills: {test_race.skills}\nResistances: {test_race.resistances}")
-print(f"Movement: {test_race.movement}\nVisibility: {test_race.visibility}\nDisposition: {test_race.disposition}")
+# print(f"Race: {test_race.race}\nAbilities: {test_race.abilities}\nSkills: {test_race.skills}\nResistances: {test_race.resistances}")
+# print(f"Movement: {test_race.movement}\nVisibility: {test_race.visibility}\nDisposition: {test_race.disposition}")
