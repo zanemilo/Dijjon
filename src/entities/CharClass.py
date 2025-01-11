@@ -14,24 +14,24 @@ class CharClass:
     def __init__(self, char_class, level=1, abilities=[], skills=[], feats=[], spells=[], proficiencies=[], resource_points=0):
         self.char_class = char_class
         self.level = level
-        self.abilities = abilities
-        self.skills = skills
-        self.feats = feats
-        self.spells = spells
-        self.proficiencies = proficiencies
-        self.resource_points = resource_points
+        self.abilities = self.get_stat('abilities', char_class)
+        self.skills = self.get_stat('skills', char_class)
+        self.feats = self.get_stat('feats', char_class)
+        self.spells = self.get_stat('spells', char_class)
+        self.proficiencies = self.get_stat('proficiencies', char_class)
+        self.resource_points = self.get_stat('resource_points', char_class)
         
-        self.str = self.get_attr('str', char_class)
-        self.dex = self.get_attr('dex', char_class)
-        self.con = self.get_attr('con', char_class)
-        self.intel = self.get_attr('int', char_class)
-        self.wis = self.get_attr('wis', char_class)
-        self.cha = self.get_attr('cha', char_class)
+        self.str = self.get_stat('str', char_class)
+        self.dex = self.get_stat('dex', char_class)
+        self.con = self.get_stat('con', char_class)
+        self.intel = self.get_stat('int', char_class)
+        self.wis = self.get_stat('wis', char_class)
+        self.cha = self.get_stat('cha', char_class)
 
-    def get_attr(self, attr : str, char_class : str):
+    def get_stat(self, stat : str, char_class : str):
         """Returns character classes attributes given params."""
         if char_class in class_stats:
-            return class_stats[char_class][attr]
+            return class_stats[char_class][stat]
     
 test = CharClass('Psion')
 
