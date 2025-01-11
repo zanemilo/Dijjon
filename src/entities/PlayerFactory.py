@@ -67,8 +67,8 @@ class PlayerFactory:
             if name:
                 choice = None
                 while choice not in choices:
-                    print("\n1. Yes\n2. No\n")
-                    choice = input(f"Please confirm that you would like your character to be named {name}:\n")
+                    print(f"Please confirm that you would like your character to be named {name}:\n")
+                    choice = input("\n1. Yes\n2. No\n")
                 if choice.lower() in choices[:4]:
                     valid = True
             else:

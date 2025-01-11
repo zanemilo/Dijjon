@@ -11,6 +11,8 @@ from systems import Item as i
 from systems import dice_Roll as dr
 from systems import core_library as cl
 from entities.effects.environment.Visibility import Visibility
+from entities.Race import Race
+from entities.CharClass import CharClass
 from entities.Entity import Entity  # using 'from Entity' due to probable cause of being mistaken as a module.
 
 
@@ -20,8 +22,8 @@ class Player(Entity):
     def __init__(self, name, race, char_class, gold = 10, arm_c = 10, spd = 30, xp = 0, lvl = 1, str = 0, dex = 0, con = 0, intel = 0, wis = 0, cha = 0,  hp = 6, hpMax = 6, is_enemy = False, visibility_conditions=None, special_senses=[], **kwargs):
         super().__init__(name, hp, arm_c, spd, xp, lvl, is_enemy)
         self.name = name
-        self.race = race
-        self.char_class = char_class
+        self.race = Race(race)
+        self.char_class = CharClass(char_class)
         self.gold = gold
         self.arm_c = arm_c
         self.spd = spd
