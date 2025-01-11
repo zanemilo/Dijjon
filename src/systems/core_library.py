@@ -105,6 +105,220 @@ races = [
     "Merfolk",
 ]
 
+race_stats = {
+    "Drakari": {
+        "abilities": ["Dragon's Breath", "Scales of Protection"],
+        "skills": ["Intimidation", "Survival"],
+        "feats": ["Draconic Heritage"],
+        "spells": ["Burning Hands", "Dragon's Roar"],
+        "resistances": {"fire": 0.5},
+        "proficiencies": ["Heavy Armor", "Greatswords"],
+        "movement": 30,
+        "visibility": {"darkvision": 120},
+        "disposition": {
+            "Stonekin": 5,
+            "Sylphari": -10,
+            "Frostling": -5
+        }
+    },
+    "Stonekin": {
+        "abilities": ["Stone Form", "Earthen Resilience"],
+        "skills": ["Athletics", "Nature"],
+        "feats": ["Earthbound"],
+        "spells": [],
+        "resistances": {"bludgeoning": 0.5},
+        "proficiencies": ["Heavy Armor", "Hammers"],
+        "movement": 25,
+        "visibility": {"darkvision": 60},
+        "disposition": {
+            "Drakari": 5,
+            "Frostling": 0,
+            "Humara": -5
+        }
+    },
+    "Sylphari": {
+        "abilities": ["Wind Step", "Aerial Grace"],
+        "skills": ["Acrobatics", "Perception"],
+        "feats": [],
+        "spells": ["Gust", "Feather Fall"],
+        "resistances": {"lightning": 0.5},
+        "proficiencies": ["Light Armor", "Bows"],
+        "movement": 35,
+        "visibility": {"darkvision": 30},
+        "disposition": {
+            "Drakari": -10,
+            "Frostling": 5,
+            "Minfolk": 10
+        }
+    },
+    "Frostling": {
+        "abilities": ["Frozen Resilience", "Glacial Presence"],
+        "skills": ["Arcana", "Athletics"],
+        "feats": [],
+        "spells": ["Ice Knife", "Frost Shield"],
+        "resistances": {"cold": 0.5},
+        "proficiencies": ["Light Armor", "Spears"],
+        "movement": 30,
+        "visibility": {"darkvision": 60},
+        "disposition": {
+            "Drakari": -5,
+            "Humara": 0,
+            "Merfolk": 10
+        }
+    },
+    "Halfian": {
+        "abilities": ["Lucky", "Nimble"],
+        "skills": ["Stealth", "Deception"],
+        "feats": [],
+        "spells": [],
+        "resistances": {},
+        "proficiencies": ["Simple Weapons", "Shortswords"],
+        "movement": 25,
+        "visibility": {"darkvision": 0},
+        "disposition": {
+            "Sylphari": 10,
+            "Tauren": -5,
+            "Shadeborn": 5
+        }
+    },
+    "Minfolk": {
+        "abilities": ["Quick Reflexes", "Agile Mind"],
+        "skills": ["Acrobatics", "Sleight of Hand"],
+        "feats": [],
+        "spells": [],
+        "resistances": {},
+        "proficiencies": ["Daggers", "Crossbows"],
+        "movement": 30,
+        "visibility": {"darkvision": 0},
+        "disposition": {
+            "Sylphari": 10,
+            "Humara": 5,
+            "Orcane": -5
+        }
+    },
+    "Orcane": {
+        "abilities": ["Savage Attack", "Unyielding"],
+        "skills": ["Athletics", "Intimidation"],
+        "feats": [],
+        "spells": [],
+        "resistances": {"poison": 0.5},
+        "proficiencies": ["Heavy Weapons", "Medium Armor"],
+        "movement": 30,
+        "visibility": {"darkvision": 60},
+        "disposition": {
+            "Drakari": 5,
+            "Shadeborn": -10,
+            "Humara": -5
+        }
+    },
+    "Humara": {
+        "abilities": ["Adaptable", "Resilient"],
+        "skills": ["Any"],
+        "feats": [],
+        "spells": [],
+        "resistances": {},
+        "proficiencies": ["Any"],
+        "movement": 30,
+        "visibility": {"darkvision": 0},
+        "disposition": {
+            "Drakari": 0,
+            "Frostling": 0,
+            "Merfolk": 0
+        }
+    },
+    "Shadeborn": {
+        "abilities": ["Shadowmeld", "Silent Step"],
+        "skills": ["Stealth", "Perception"],
+        "feats": [],
+        "spells": ["Darkness", "Shadow Blade"],
+        "resistances": {"necrotic": 0.5},
+        "proficiencies": ["Daggers", "Light Armor"],
+        "movement": 30,
+        "visibility": {"darkvision": 120},
+        "disposition": {
+            "Drakari": -5,
+            "Humara": 5,
+            "Orcane": -10
+        }
+    },
+    "Aetherborn": {
+        "abilities": ["Ethereal Step", "Void Resistance"],
+        "skills": ["Arcana", "Insight"],
+        "feats": [],
+        "spells": ["Blink", "Misty Step"],
+        "resistances": {"force": 0.5},
+        "proficiencies": ["Light Armor", "Staffs"],
+        "movement": 30,
+        "visibility": {"darkvision": 60},
+        "disposition": {
+            "Shadeborn": -10,
+            "Lumidar": 5,
+            "Feykin": 0
+        }
+    },
+    "Lumidar": {
+        "abilities": ["Radiant Aura", "Light Manipulation"],
+        "skills": ["Perception", "Stealth"],
+        "feats": [],
+        "spells": ["Daylight", "Illusory Light"],
+        "resistances": {"radiant": 0.5, "necrotic": 1.5},
+        "proficiencies": ["Light Armor", "Shortbows"],
+        "movement": 35,
+        "visibility": {"darkvision": 60},
+        "disposition": {
+            "Drakari": -10,
+            "Humara": 5,
+            "Merfolk": 0
+        }
+    },
+    "Feykin": {
+        "abilities": ["Fey Charm", "Trickster"],
+        "skills": ["Deception", "Nature"],
+        "feats": [],
+        "spells": ["Charm Person", "Invisibility"],
+        "resistances": {"charm": 0.5},
+        "proficiencies": ["Bows", "Daggers"],
+        "movement": 30,
+        "visibility": {"darkvision": 60},
+        "disposition": {
+            "Drakari": 0,
+            "Humara": 10,
+            "Sylphari": 5
+        }
+    },
+    "Tauren": {
+        "abilities": ["Horns", "Stampede"],
+        "skills": ["Athletics", "Intimidation"],
+        "feats": [],
+        "spells": [],
+        "resistances": {"bludgeoning": 0.5},
+        "proficiencies": ["Heavy Armor", "Maces"],
+        "movement": 30,
+        "visibility": {"darkvision": 30},
+        "disposition": {
+            "Drakari": 5,
+            "Humara": 0,
+            "Halfian": -5
+        }
+    },
+    "Merfolk": {
+        "abilities": ["Aquatic Adaptation", "Underwater Breathing"],
+        "skills": ["Athletics", "Perception"],
+        "feats": [],
+        "spells": ["Water Breathing", "Create Water"],
+        "resistances": {"cold": 0.5},
+        "proficiencies": ["Spears", "Nets"],
+        "movement": 30,
+        "visibility": {"darkvision": 60},
+        "disposition": {
+            "Drakari": 0,
+            "Frostling": 10,
+            "Sylphari": 5
+        }
+    }
+}
+
+
 # List of available classes
 classes = [
     "Berserker",
