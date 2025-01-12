@@ -59,12 +59,33 @@ class DialogueManager:
 
         return choice - 1  # Return zero-based index for processing
 
+    def run_script(self, step, choice):
+        """
+        Dynamically calls the script associated with the current narrative step.
+
+        Args:
+            step (int): The current narrative step index.
+
+        Returns:
+            None
+        """
+        script = self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step)
+
+        if script:
+            print(f"Running script for step {step}...")
+            # Execute the script function, passing the quest manager and other relevant data
+            script(task_id=self.quest_manager.current_task_id, tasks=self.quest_manager.quest.tasks, choice=choice)
+        else:
+            print(f"No script defined for step {step}.")
+
     def run_dialogue_event(self):
         """
         Manages the full dialogue event, interacting with QuestManager for progression.
         """
         self.running = True
         while self.running and not self.quest_manager.is_quest_complete:
+            current_step = self.quest_manager.current_step
+
             # Display the current narrative
             self.display_narrative()
 
@@ -76,6 +97,9 @@ class DialogueManager:
                 selected_option = options[player_choice_index]
 
                 print(f"\nYou selected: {selected_option}")
+
+                # Run the script for the current step
+                self.run_script(current_step, player_choice_index)
 
                 # Pass the player's choice to QuestManager for processing
                 next_narrative = self.quest_manager.advance_step(player_choice_index)

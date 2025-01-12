@@ -1,5 +1,84 @@
 from systems.Quest import Quest
 
+def step_1_script(task_id, tasks, choice=None, player=None):
+    """
+    Handles all branching logic for Step 1 based on the player's choice.
+
+    Args:
+        task_id (int): The current task ID.
+        tasks (dict): The tasks dictionary containing narrative, answers, and other data.
+        choice (int, optional): The player's chosen option. Defaults to None.
+        player (Player, optional): The player instance for handling checks and updates.
+    """
+    if choice == 0:  # Survey the crowd
+        success = player.check_roll("perception")
+        if success >= 12:
+            tasks[task_id]["narrative"][2] = (
+                "Your eyes scan the hall, noting the subtle shifts in posture and expression. To the left, a Zyrian ambassador "
+                "stands rigid, their jeweled robes catching the flickering light. They speak in hushed tones to a delegate from the "
+                "Northern Clans, whose darting gaze suggests a wariness unspoken. Nearby, a Drajhan knight adjusts their ceremonial "
+                "bracers with deliberate care. You catch snippets of tense conversations, realizing the summit teeters on a knife's edge."
+            )
+            tasks[task_id]["answers"][2] = [
+                "Move closer to the Zyrian ambassador and their uneasy companion.",
+                "Approach the Drajhan knight to gauge their perspective.",
+                "Blend into the crowd, observing without drawing attention.",
+            ]
+        else:
+            tasks[task_id]["narrative"][2] = (
+                "The grand hall is a sea of indistinct murmurs and shifting silhouettes. Despite your efforts to focus, the tension "
+                "in the air is too overwhelming, leaving you with only vague impressions of unease among the delegates."
+            )
+            tasks[task_id]["answers"][2] = [
+                "Take a deep breath and refocus.",
+                "Approach the nearest group and engage in conversation.",
+            ]
+
+    elif choice == 1:  # Approach the Zyrian mage
+        tasks[task_id]["narrative"][2] = (
+            "You stride toward the Zyrian mage, their piercing gaze locking onto you the moment you draw near. Clad in flowing robes "
+            "etched with runes that pulse faintly, they radiate an aura of authority.\n\n"
+            "'So,' they begin, their voice smooth and calculated, 'another player in this delicate game. Tell me, stranger, what brings "
+            "you to Hollowreach? The pursuit of peace, or the scent of power?'\n\n"
+            "Their words hang in the air, inviting your response."
+        )
+        tasks[task_id]["answers"][2] = [
+            "(Diplomatic) 'Peace is fragile. I came to strengthen its foundation.'",
+            "(Direct) 'I came to listen, not to play games.'",
+            "(Wary) 'Perhaps the same thing that brought you here. Power.'",
+        ]
+
+    elif choice == 2:  # Investigate the back corridor
+        success = player.check_roll("stealth")
+        if success >= 15:
+            tasks[task_id]["narrative"][2] = (
+                "The shadows deepen as you slip into the back corridor, the hum of the reception hall fading into silence. Two figures "
+                "stand cloaked in the flickering light of a lone sconce, their voices sharp and urgent.\n\n"
+                "'...can't trust him,' one hisses, their gloved hand gesturing emphatically. 'If he learns the truth, it’s over.'\n\n"
+                "The second figure stiffens, their eyes darting toward you. But your movements remain silent and unseen, allowing you to "
+                "remain hidden as their conversation continues."
+            )
+            tasks[task_id]["answers"][2] = [
+                "Eavesdrop further.",
+                "Step forward and confront them.",
+                "Return to the reception hall quietly.",
+            ]
+        else:
+            tasks[task_id]["narrative"][2] = (
+                "The shadows deepen as you slip into the back corridor, the hum of the reception hall fading into silence. Two figures "
+                "stand cloaked in the flickering light of a lone sconce, their voices sharp and urgent.\n\n"
+                "As you approach, your foot scuffs against a loose stone. The sound echoes, and both figures turn toward you sharply.\n\n"
+                "'You,' one says, stepping forward. 'What do you think you heard? Speak quickly.'"
+            )
+            tasks[task_id]["answers"][2] = [
+                "Lie: 'Nothing. I was simply exploring the citadel.'",
+                "Deflect: 'Should I have heard something?'",
+                "Confront: 'Enough to know you're hiding something.'",
+            ]
+
+    else:
+        print("Invalid choice or no choice provided. Unable to proceed.")
+
 tasks = {
     # Act 1 - Scene 1: The Summit at Hollowreach Citadel
     1: {
@@ -49,6 +128,9 @@ tasks = {
         },
         "answers": {
             1: [
+                "Enter '1' to continue . . .",
+            ],
+            2: [
                 "Reception Area: (Defiant) – 'We don’t need to arrest you. Your own kind will turn soon enough.'",
                 "Reception Area: (Diplomatic) – 'I came to listen, not start a fight.'",
                 "Reception Area: (Suspicious) – 'You sound nervous. What are you hiding?'",
@@ -61,14 +143,14 @@ tasks = {
                 "Delegate from the Northern Clans: (Urgent) – 'We need immediate action to prevent further chaos.'",
                 "Ambassador Saelros: (Calm) – 'Let us maintain order and find the truth behind this attack.'",
             ],
-            2: [
+            3: [
                 "As Diplomat’s Aide: 'Ambassador, the Drajhan envoy appears unsettled. Shall I intervene?'",
                 "As Guard: 'General, I noticed movement along the north corridor. Do I investigate?'",
                 "As Servant: 'The chalice... it’s enchanted? Are we certain it’s safe?'",
                 "As Spy: 'I have information that could lead us to the perpetrator. Should I share it?'",
                 "As Healer: 'Several delegates are injured. Where should I prioritize my efforts?'",
             ],
-            3: [
+            4: [
                 "Branch A1 – Save General Vyrne: 'Stay with me, General! The shard can wait—we need to get you out of here!'",
                 "Branch A2 – Save General Vyrne: 'We must evacuate the general to ensure the military remains intact.'",
                 "Branch B1 – Pursue Suspicion: 'Seal the exits! Don’t let them escape!'",
@@ -78,7 +160,7 @@ tasks = {
             ],
         },
         "scripts": {
-            1: Quest.method_call1,
+            1: step_1_script,
             2: Quest.method_call1,
             3: Quest.method_call1,
         },
