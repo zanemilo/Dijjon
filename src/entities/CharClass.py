@@ -33,6 +33,6 @@ class CharClass:
         if char_class in class_stats:
             return class_stats[char_class][stat]
     
-test = CharClass('Psion')
+# test = CharClass('Psion')
 
-print(f"{test.str},{test.dex},{test.con},{test.intel},{test.wis},{test.cha}\n{test.abilities}\n{test.skills}\n{test.proficiencies}")
+# print(f"{test.str},{test.dex},{test.con},{test.intel},{test.wis},{test.cha}\n{test.abilities}\n{test.skills}\n{test.proficiencies}")

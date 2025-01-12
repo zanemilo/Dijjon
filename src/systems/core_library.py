@@ -1,7 +1,7 @@
 # Dijjon Core Library File
 # Developed & designed by: Zane M Deso
-# Purpose: Used to store all in-game content. Implementation of a helper class to access each list/dict accordingly is required.
-# Perhaps using Master to navigate the tables would be best.
+# Purpose: Used to store all in-game content.
+
 
 import sys
 sys.path.append("..")  # Adds the parent directory to the Python module search path

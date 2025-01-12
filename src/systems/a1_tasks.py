@@ -8,19 +8,39 @@ tasks = {
         "complete": False,
         "narrative": {
             1: (
+                "The world of Dijjon had always been one of tension, a taut string pulled between the opposing "
+                "forces of Zyra and Drajh. For centuries, the river known as the Vale of Dusk divided their lands—a "
+                "shimmering silver lifeline carved into a wounded earth. On one side, the magocrats of Zyra shaped "
+                "the elements themselves, their floating cities a testament to ambition and control. On the other, the "
+                "Drajhan theocracy, resolute and unyielding, found divine purpose in iron discipline and unwavering "
+                "faith. "
+                "Both nations claimed righteousness. Both nations claimed power. Neither could lay claim to peace. "
+                "Fields once golden with wheat now lay scorched by arcane fire, while forests stood lifeless, their ashen "
+                "boughs reaching skyward like the hands of the damned. Yet even in the shadow of war, life endured. "
+                "Farmers toiled in battered fields, merchants whispered rumors of old grudges reigniting, and travelers "
+                "clutched their blades, wary of the creatures that prowled the night. "
+                "At the heart of it all stood Hollowreach Citadel, a fortress of neutrality perched atop the cliffs of the Vale. "
+                "Its ancient walls bore the weight of countless failed treaties, etched with glyphs of fleeting truces and shattered promises. "
+                "It was here, amid the uneasy murmurs of diplomats and the flickering light of stained-glass windows, that the latest "
+                "attempt at peace would take place. "
+                "For now, the world watched, holding its breath. But for how long could the string of tension hold before it snapped?"
+            ),
+            2: (
                 "The protagonist arrives at Hollowreach Citadel, a majestic fortress nestled in the Vale of Dusk. "
                 "The reception area is grand, adorned with banners representing various factions. As the protagonist "
                 "enters the antechamber, they notice subtle tensions among the delegates. Conversations reveal underlying "
                 "alliances and past grievances. In the back corridor, whispers hint at a possible betrayal planned against the "
                 "summit."
+
+
             ),
-            2: (
+            3: (
                 "Midway through the peace negotiations, a sudden explosion rocks the citadel. Smoke fills the air as "
                 "debris falls from the ceiling. Chaos ensues as guards scramble to secure the area and civilians flee in panic. "
                 "Amidst the turmoil, the protagonist witnesses the aftermath of the attack, with key figures either injured or "
                 "missing."
             ),
-            3: (
+            4: (
                 "In the midst of the chaos, the protagonist faces a critical decision that will shape the course of events: "
                 "1) Save General Althera Vyrne, a respected military leader whose survival is crucial for maintaining order; "
                 "2) Pursue a suspicious figure seen fleeing the scene, potentially the mastermind behind the attack; or "
