@@ -3,6 +3,9 @@ sys.path.append("..")  # Adds the parent directory to the Python module search p
 
 from systems.Quest import Quest
 
+def update():
+    return tasks
+
 def step_1_script(task_id, tasks, choice=None, player=None):
     """
     Handles all branching logic for Step 1 based on the player's choice.
@@ -15,6 +18,7 @@ def step_1_script(task_id, tasks, choice=None, player=None):
     """
     if choice == 0:  # Survey the crowd
         success = player.check_roll("perception")
+        print(success)
         if success >= 12:
             tasks[task_id]["narrative"][2] = (
                 "Your eyes scan the hall, noting the subtle shifts in posture and expression. To the left, a Zyrian ambassador "
@@ -81,6 +85,7 @@ def step_1_script(task_id, tasks, choice=None, player=None):
 
     else:
         print("Invalid choice or no choice provided. Unable to proceed.")
+    return tasks
 
 tasks = {
     # Act 1 - Scene 1: The Summit at Hollowreach Citadel
@@ -163,8 +168,8 @@ tasks = {
             ],
         },
         "scripts": {
-            1: step_1_script,
-            2: Quest.method_call1,
+            1: None,
+            2: step_1_script,
             3: Quest.method_call1,
         },
         "data": {

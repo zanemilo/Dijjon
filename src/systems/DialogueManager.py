@@ -101,9 +101,11 @@ class DialogueManager:
         script = self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step)
 
         if script:
+            tasks = self.quest_manager.quest.tasks
             print(f"Running script for step {step}...")
+            print(f"questmanager.quest.tasks: {tasks}")
             # Execute the script function, passing the quest manager and other relevant data
-            script(task_id=self.quest_manager.current_task_id, tasks=self.quest_manager.quest.tasks, choice=choice, player=player)
+            script(task_id=self.quest_manager.current_task_id, tasks=tasks, choice=choice, player=player)
         else:
             print(f"No script defined for step {step}.")
 
@@ -128,9 +130,12 @@ class DialogueManager:
                 print(f"\nYou selected: {selected_option}")
                 time.sleep(.3)
                 
-
-                # Run the script for the current step
-                self.run_script(current_step, player_choice_index, player)
+                try:
+                    # Run the script for the current step
+                    new_tasks = self.run_script(current_step, player_choice_index, player)
+                    self.quest_manager.quest.update_tasks(new_tasks)  # Update Task dict of current quest
+                except Exception as e:
+                    print(f"Error running script for step {self.quest_manager.current_step}: {e}")
 
                 # Pass the player's choice to QuestManager for processing
                 next_narrative = self.quest_manager.advance_step(player_choice_index)

@@ -15,6 +15,7 @@ from systems.a1_tasks import tasks as a1_tasks
 from systems.a2_tasks import tasks as a2_tasks
 from systems.a3_tasks import tasks as a3_tasks
 
+
 pygame.init()
 # screen = pygame.display.set_mode((800, 600))
 screen = None
