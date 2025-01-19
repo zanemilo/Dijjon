@@ -126,8 +126,7 @@ class Quest(Event):
             tasks (dict): The dictionary containing all tasks.
         """
         print(f"method call 3 called")
-        print(f"setting task to complete")
-        self.complete_task(task_id, tasks)  # Mark the task as complete
+        
     
     def find(self, task_id, tasks):
         """
