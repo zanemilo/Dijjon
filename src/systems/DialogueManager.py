@@ -2,6 +2,9 @@
 # Author: Zane M Deso
 # Purpose: Handle Dialogue events in terminal during Dijjon development.
 import textwrap
+import time
+import os
+import platform
 
 class DialogueManager:
     """
@@ -28,11 +31,31 @@ class DialogueManager:
         current_narrative = self.quest_manager.get_current_narrative()
         border = "=" * 72
         wrapped_text = textwrap.fill(current_narrative, width=70)  # Wrap text to 70 chars
-        
+        line = ''
         print(f"\n{border}")
+        time.sleep(.175)
+        # for i in current_narrative:  # FIXME: This is a custome line by line displayer. Needs to have been wrapping before implementation.
+        #     if len(line) < 70:
+        #         line = line + i
+        #     else:
+        #         print(line + i)
+        #         time.sleep(.175)
+        #         line = ''
         print(f"\n{wrapped_text}\n")
+        time.sleep(.175)
         print(border)
+        time.sleep(.175)
 
+    def clear_terminal(self):
+        """
+        Clears the terminal screen for a clean display.
+        Works on both Windows and Unix-based systems (Linux/MacOS).
+        """
+        time.sleep(.175)
+        if platform.system() == "Windows":
+            os.system("cls")  # Windows clear command
+        else:
+            os.system("clear")  # Unix-based systems clear command
 
     def display_options(self):
         """
@@ -42,6 +65,7 @@ class DialogueManager:
         print("\nChoose an option:")
         for i, option in enumerate(options, 1):
             print(f"{i}: {option}")
+            time.sleep(.175)
 
     def get_player_choice(self):
         """
@@ -90,7 +114,7 @@ class DialogueManager:
         self.running = True
         while self.running and not self.quest_manager.is_quest_complete:
             current_step = self.quest_manager.current_step
-
+            self.clear_terminal()
             # Display the current narrative
             self.display_narrative()
 
@@ -102,6 +126,8 @@ class DialogueManager:
                 selected_option = options[player_choice_index]
 
                 print(f"\nYou selected: {selected_option}")
+                time.sleep(.3)
+                
 
                 # Run the script for the current step
                 self.run_script(current_step, player_choice_index, player)
