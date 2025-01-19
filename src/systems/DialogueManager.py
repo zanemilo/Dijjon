@@ -23,11 +23,14 @@ class DialogueManager:
     def display_narrative(self):
         """
         Fetches and displays the current narrative text from QuestManager.
+        Formats the output for better readability in the terminal.
         """
         current_narrative = self.quest_manager.get_current_narrative()
-        print("\n" + "-" * 80)
-        print(current_narrative)
-        print("-" * 80)
+        border = "=" * 72
+        print(f"\n{border}")
+        print(f"\n{current_narrative.center(72)}\n")
+        print(border)
+
 
     def display_options(self):
         """
