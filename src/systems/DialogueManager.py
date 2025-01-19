@@ -1,7 +1,7 @@
 # DialogueManager
 # Author: Zane M Deso
 # Purpose: Handle Dialogue events in terminal during Dijjon development.
-
+import textwrap
 
 class DialogueManager:
     """
@@ -27,8 +27,10 @@ class DialogueManager:
         """
         current_narrative = self.quest_manager.get_current_narrative()
         border = "=" * 72
+        wrapped_text = textwrap.fill(current_narrative, width=70)  # Wrap text to 70 chars
+        
         print(f"\n{border}")
-        print(f"\n{current_narrative.center(72)}\n")
+        print(f"\n{wrapped_text}\n")
         print(border)
 
 
