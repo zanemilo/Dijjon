@@ -107,7 +107,7 @@ class Quest(Event):
         """
         print(f"method call 1 called")
     
-    def method_call2(self, task_id, tasks, choice=None, player=None):
+    def method_call2(task_id, tasks, choice=None, player=None):
         """
         Placeholder method representing the second type of method call during a task.
 
@@ -117,7 +117,7 @@ class Quest(Event):
         """
         print(f"method call 2 called")
 
-    def method_call3(self, task_id, tasks, choice=None, player=None):
+    def method_call3(task_id, tasks, choice=None, player=None):
         """
         Placeholder method representing the third type of method call during a task.
 
