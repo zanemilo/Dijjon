@@ -1,3 +1,6 @@
+import sys
+sys.path.append("..")  # Adds the parent directory to the Python module search path
+
 from systems.Quest import Quest
 
 def step_1_script(task_id, tasks, choice=None, player=None):

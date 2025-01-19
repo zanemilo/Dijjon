@@ -64,7 +64,7 @@ if not player:
         except Exception as e:
             print(f"Error creating player: {e}")
 
-dialogue_manager.run_dialogue_event()
+dialogue_manager.run_dialogue_event(player)
 
 # while running:
     # Ensure player is created before continuing
