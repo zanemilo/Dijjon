@@ -881,242 +881,722 @@ monster_dict = {
     "Quasit": "fiend",
 }
 
-# Nested dict containing master list of locations
-# Towns, caves, bandit camps, and roadside locations
-locations = { 
+new_locations = {
     # Town locations
     'towns': [
         {
             "name": "Smallville",
             "size": "small",
+            "description": "A quiet, humble village nestled in the rolling hills. Known for its peaceful atmosphere and strong sense of community.",
             "inn": "The Cozy Hearth",
             "general_store": "Peddler's Corner",
+            "flags": {
+                "visited": False,
+                "event_triggered": False
+            },
+            "npcs": []
         },
         {
             "name": "Midtown",
             "size": "medium",
+            "description": "A bustling trade town at the crossroads of several major routes. The aroma of fresh-baked goods and the sound of merchants bartering fills the air.",
             "inn": "The Golden Griffin",
             "general_store": "Market Bazaar",
+            "flags": {
+                "visited": False,
+                "event_triggered": False
+            },
+            "npcs": []
         },
         {
             "name": "Grand City",
             "size": "large",
+            "description": "A sprawling metropolis surrounded by towering walls. The heart of commerce and governance in the region, teeming with intrigue and opportunity.",
             "inn": "The Royal Retreat",
             "general_store": "Emporium of Wonders",
+            "flags": {
+                "visited": False,
+                "event_triggered": False
+            },
+            "npcs": []
         },
         {
             "name": "Riverside",
             "size": "small",
+            "description": "A quaint riverside village where life flows as steadily as the gentle current. Renowned for its fishing festivals and hearty riverfolk.",
             "inn": "The Rusty Anchor",
             "general_store": "River's Edge Trading Post",
+            "flags": {
+                "visited": False,
+                "event_triggered": False
+            },
+            "npcs": [
+                {"name": "Hedric the Fisherman", "role": "Elder Villager", "description": "An old but wise fisherman, known for his tales of river spirits."}
+            ]
         },
         {
             "name": "Misty Hollow",
             "size": "medium",
+            "description": "Nestled in a dense forest, Misty Hollow is cloaked in perpetual fog. Locals whisper of shadowy figures that linger just out of sight.",
             "inn": "The Whispering Willow",
             "general_store": "Mystic Emporium",
+            "flags": {
+                "visited": False,
+                "event_triggered": False
+            },
+            "npcs": [
+                {"name": "Elenna Farseer", "role": "Seer", "description": "A mysterious woman who claims to interpret the whispers of the mist."}
+            ]
         },
         {
             "name": "Sunvale",
             "size": "small",
+            "description": "A sunny hamlet surrounded by golden fields. Known for its warm-hearted folk and sunflower festivals.",
             "inn": "The Rising Sun Inn",
             "general_store": "Sunvale Supplies",
+            "flags": {
+                "visited": False,
+                "event_triggered": False
+            },
+            "npcs": [
+                {"name": "Tarin Brightfield", "role": "Blacksmith", "description": "A cheerful smith whose laughter echoes through the village."}
+            ]
         },
         {
             "name": "Shadowport",
             "size": "large",
+            "description": "A sprawling, dark harbor town with an undercurrent of danger. Smugglers and rogues frequent its shadowy docks.",
             "inn": "The Moonlit Maiden",
             "general_store": "Shadowport Market",
+            "flags": {
+                "visited": False,
+                "event_triggered": False
+            },
+            "npcs": [
+                {"name": "Captain Thane", "role": "Pirate Lord", "description": "The feared but respected leader of the Shadowport docks."}
+            ]
         },
         {
             "name": "Eagle's Peak",
             "size": "medium",
+            "description": "Perched high in the mountains, this town offers breathtaking views and hosts the annual Skyborn Festival.",
             "inn": "The Soaring Eagle",
             "general_store": "Peak Provisions",
+            "flags": {
+                "visited": False,
+                "event_triggered": False
+            },
+            "npcs": [
+                {"name": "Highkeeper Aeron", "role": "Priest", "description": "Caretaker of the temple dedicated to the sky gods."}
+            ]
         },
         {
             "name": "Verdant Grove",
             "size": "small",
+            "description": "A serene village surrounded by lush greenery. The people here live in harmony with nature and protect sacred groves.",
             "inn": "The Green Leaf",
             "general_store": "Grove Goods",
+            "flags": {
+                "visited": False,
+                "event_triggered": False
+            },
+            "npcs": [
+                {"name": "Sylra Greenthorn", "role": "Herbalist", "description": "A kind soul who brews potions using ancient herbal recipes."}
+            ]
         },
         {
             "name": "Ironforge",
             "size": "large",
+            "description": "A massive industrial city powered by roaring furnaces. Its streets are lined with blacksmiths and artificers.",
             "inn": "The Hammered Anvil",
             "general_store": "Forge Finds",
-        },
+            "flags": {
+                "visited": False,
+                "event_triggered": False
+            },
+            "npcs": [
+                {"name": "Vorrik Ironhand", "role": "Master Smith", "description": "A gruff but skilled blacksmith, revered for crafting legendary weapons."}
+            ]
+        }
     ],
+
     # Cave locations
-    'caves': [
+        'caves': [
         {
             "name": "Shadowfang Cavern",
             "size": "small",
+            "description": "A dark and narrow cave where shadows seem to move on their own. Whispers echo faintly in the distance.",
+            "flags": {
+                "trap_disarmed": False,
+                "explored": False
+            },
+            "npcs": [
+                {"name": "Thalra Shadowstep", "role": "Rogue", "description": "A shadowy figure searching for a cursed dagger said to be hidden in the cave."}
+            ]
         },
         {
             "name": "Crystal Depths",
             "size": "large",
+            "description": "A magnificent cavern filled with luminescent crystals. Their soft glow lights the way, but the air feels heavy with danger.",
+            "flags": {
+                "trap_disarmed": False,
+                "explored": False
+            },
+            "npcs": [
+                {"name": "Gilda Brightstone", "role": "Miner", "description": "An ambitious miner drawn to the crystals' beauty but unaware of the lurking dangers."}
+            ]
+        },
+        {
+            "name": "The Abyssal Gate",
+            "size": "large",
+            "description": "A foreboding portal deep within a cavern that hums with otherworldly energy. Legends say it leads to another plane.",
+            "flags": {
+                "gate_activated": False,
+                "enemy_vanquished": False
+            },
+            "npcs": [
+                {"name": "High Seer Aldric", "role": "Scholar", "description": "A frail scholar hoping to study the portal but unprepared for its guardians."}
+            ]
         },
         {
             "name": "Whispering Grotto",
             "size": "medium",
+            "description": "A cavern where the wind carries whispers of ancient secrets. The walls seem to shimmer faintly, hiding unseen dangers.",
+            "flags": {
+                "echo_trap_triggered": False,
+                "hidden_chamber_found": False
+            },
+            "npcs": [
+                {"name": "Lyra Windspeaker", "role": "Bard", "description": "A traveling bard seeking inspiration from the grotto's mysterious whispers."}
+            ]
         },
         {
             "name": "Mossy Hollows",
             "size": "small",
+            "description": "A damp cave overgrown with moss and fungi. The air is thick with the smell of decay and earthy growth.",
+            "flags": {
+                "trap_disarmed": False,
+                "explored": False
+            },
+            "npcs": [
+                {"name": "Fynra Greenroot", "role": "Herbalist", "description": "A reclusive herbalist harvesting rare plants for her potions."}
+            ]
         },
         {
             "name": "Echoing Abyss",
             "size": "large",
+            "description": "A cavern with an endless echo, making it hard to distinguish reality from illusion. It is said that time itself warps here.",
+            "flags": {
+                "time_distortion_detected": False,
+                "artifact_found": False
+            },
+            "npcs": [
+                {"name": "Korin Timebinder", "role": "Chronomancer", "description": "A rogue mage investigating the abyss' time-warping properties."}
+            ]
         },
         {
             "name": "Dragon's Maw",
             "size": "large",
+            "description": "A cavern shaped like a massive dragon's head. The bones of ancient creatures lie scattered on the floor.",
+            "flags": {
+                "dragon_awakened": False,
+                "hoard_claimed": False
+            },
+            "npcs": [
+                {"name": "Draknor", "role": "Dragon", "description": "A slumbering dragon who guards a treasure hoard deep within the maw."}
+            ]
         },
         {
             "name": "Serpent's Tunnels",
             "size": "medium",
+            "description": "A labyrinth of twisting tunnels that resemble a snake’s coils. Venomous creatures lurk in the shadows.",
+            "flags": {
+                "serpents_defeated": False,
+                "treasure_found": False
+            },
+            "npcs": [
+                {"name": "Nerithis", "role": "Serpent Cultist", "description": "A fanatical cultist protecting the sacred serpent altar."}
+            ]
         },
         {
             "name": "Forgotten Mine",
             "size": "small",
+            "description": "An abandoned mine where the tools of old laborers still rest. A faint smell of brimstone lingers in the air.",
+            "flags": {
+                "mine_cleared": False,
+                "hidden_vein_discovered": False
+            },
+            "npcs": [
+                {"name": "Jorin Hammerfall", "role": "Ex-Miner", "description": "A former miner seeking closure after losing his crew to a cave-in."}
+            ]
         },
         {
             "name": "Ancient Catacombs",
             "size": "large",
+            "description": "A labyrinth of burial chambers filled with the remains of forgotten kings. The air is thick with the weight of history.",
+            "flags": {
+                "undead_vanquished": False,
+                "relic_retrieved": False
+            },
+            "npcs": [
+                {"name": "Esmira Lightbringer", "role": "Paladin", "description": "A devout paladin on a quest to banish the undead from the catacombs."}
+            ]
         },
         {
             "name": "Glittering Caverns",
             "size": "medium",
-        },
+            "description": "A breathtaking cave with walls that glisten as if encrusted with diamonds. The beauty hides treacherous paths and deadly traps.",
+            "flags": {
+                "gem_collected": False,
+                "trap_disarmed": False
+            },
+            "npcs": [
+                {"name": "Zerik Gemcutter", "role": "Treasure Hunter", "description": "A daring treasure hunter willing to risk everything for glittering riches."}
+            ]
+        }
     ],
+
     # Bandit camp locations
     'bandit camps': [
         {
             "name": "Raven's Roost",
             "size": "small",
+            "description": "A hidden camp perched high in the cliffs, accessible only by a narrow path. Bandit lookouts keep watch day and night.",
+            "flags": {
+                "bandits_defeated": False,
+                "loot_collected": False
+            },
+            "npcs": [
+                {"name": "Garin Stormeye", "role": "Bandit Leader", "description": "A sharp-eyed rogue who commands the roost with cunning and cruelty."}
+            ]
         },
         {
             "name": "Serpent's Hideout",
             "size": "large",
+            "description": "A sprawling encampment deep in the woods, fortified with crude barricades and traps. The air is thick with the scent of smoke.",
+            "flags": {
+                "bandits_defeated": False,
+                "loot_collected": False
+            },
+            "npcs": [
+                {"name": "Korra Venomfang", "role": "Bandit Alchemist", "description": "A devious alchemist who creates potent poisons to guard the hideout."}
+            ]
         },
         {
             "name": "Blackthorn Encampment",
             "size": "medium",
+            "description": "Nestled in a dense thicket of blackthorn trees, this camp is a natural fortress with spiked barricades and thorny defenses.",
+            "flags": {
+                "bandits_defeated": False,
+                "loot_collected": False
+            },
+            "npcs": [
+                {"name": "Tharik Blackthorn", "role": "Bandit Captain", "description": "A ruthless captain who uses the forest's natural defenses to his advantage."}
+            ]
         },
         {
             "name": "Viper's Den",
             "size": "small",
+            "description": "A hidden underground lair where venomous creatures roam freely. The bandits use the natural dangers to ward off intruders.",
+            "flags": {
+                "bandits_defeated": False,
+                "loot_collected": False
+            },
+            "npcs": [
+                {"name": "Zethis Fang", "role": "Venom Master", "description": "A cunning bandit who uses trained vipers to protect the den."}
+            ]
         },
         {
             "name": "Daggerfall Outpost",
             "size": "large",
+            "description": "A heavily fortified outpost built on the ruins of an old watchtower. It serves as a strategic base for raiding nearby towns.",
+            "flags": {
+                "bandits_defeated": False,
+                "loot_collected": False
+            },
+            "npcs": [
+                {"name": "Captain Valrik", "role": "Outpost Commander", "description": "A seasoned warrior who trains bandits to become disciplined raiders."}
+            ]
         },
         {
             "name": "Crimson Camp",
             "size": "medium",
+            "description": "An encampment stained red by the bandits' ruthless deeds. Bloodied banners fly high as a warning to intruders.",
+            "flags": {
+                "bandits_defeated": False,
+                "loot_collected": False
+            },
+            "npcs": [
+                {"name": "Ildra Bloodbane", "role": "Bandit Warlord", "description": "A fearsome leader known for her brutality and skill with a blade."}
+            ]
         },
         {
             "name": "Shadow Hideaway",
             "size": "small",
+            "description": "A secluded cave that blends into the shadows of the surrounding cliffs. Bandits here excel in stealth and ambush tactics.",
+            "flags": {
+                "bandits_defeated": False,
+                "loot_collected": False
+            },
+            "npcs": [
+                {"name": "Nyra Shadowcloak", "role": "Assassin", "description": "A silent and deadly assassin who strikes from the shadows."}
+            ]
         },
         {
             "name": "Ironclaw Base",
             "size": "large",
+            "description": "A sprawling camp built with reinforced walls and steel gates. The bandits here are heavily armed and well-organized.",
+            "flags": {
+                "bandits_defeated": False,
+                "loot_collected": False
+            },
+            "npcs": [
+                {"name": "Rorik Ironclaw", "role": "Warlord", "description": "A hulking brute who rules the base with an iron fist and unmatched strength."}
+            ]
         },
         {
-            "name": "Silent Knoll",
-            "size": "medium",
+        "name": "Silent Knoll",
+        "size": "medium",
+        "description": "A quiet hilltop camp overlooking a major trade route. Its eerie silence is broken only by the sound of bandits sharpening their blades.",
+        "flags": {
+            "bandits_defeated": False,
+            "loot_collected": False
         },
-        {
-            "name": "Broken Blade Camp",
-            "size": "small",
+        "npcs": [
+            {"name": "Eris Daggerhand", "role": "Scoutmaster", "description": "A master of ambushes who ensures no caravan escapes unscathed."}
+        ]
+    },
+    {
+        "name": "Broken Blade Camp",
+        "size": "small",
+        "description": "A derelict camp where discarded weapons litter the ground. Despite its state, the bandits here are desperate and dangerous.",
+        "flags": {
+            "bandits_defeated": False,
+            "loot_collected": False
         },
-    ],
+        "npcs": [
+            {"name": "Rykard Shattersteel", "role": "Veteran Fighter", "description": "A grizzled veteran who has seen too many battles but refuses to back down."}
+        ]
+    }
+],
     # Roadside locations
     'roadside locations': [
         {
             "name": "Crossroads Rest",
             "size": "small",
+            "description": "A quiet waystation where weary travelers pause to rest. A weathered signpost points in four directions.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Old Marris", "role": "Caretaker", "description": "A kind old man who maintains the waystation and shares tales of passing adventurers."}
+            ]
         },
         {
             "name": "Wagon Wheel Waystation",
             "size": "small",
+            "description": "A bustling roadside stop with a creaky windmill and a smithy for repairing wagons and gear.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Lerik Ironspoke", "role": "Blacksmith", "description": "A hardworking blacksmith who specializes in fixing wagon wheels and crafting tools."}
+            ]
         },
         {
             "name": "Traveller's Haven",
             "size": "small",
+            "description": "A small inn at the edge of a dense forest, offering refuge for travelers before they venture deeper into the wilderness.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Elyra Dawnshade", "role": "Innkeeper", "description": "A gentle innkeeper who serves hearty meals and has a knack for calming nervous travelers."}
+            ]
         },
         {
             "name": "Hillside Retreat",
             "size": "small",
+            "description": "A cozy roadside lodge perched on a hill, offering breathtaking views of the valley below.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Farrah Hillwatcher", "role": "Host", "description": "A friendly host who loves sharing stories about the valley's history."}
+            ]
         },
         {
             "name": "Wayfarer's Rest",
             "size": "small",
+            "description": "A rustic stop for travelers, known for its hot stew and roaring fireplace.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Tobin Hearthstone", "role": "Cook", "description": "A jovial cook who takes pride in his signature stew, said to rejuvenate weary adventurers."}
+            ]
         },
         {
             "name": "Lone Pine Inn",
             "size": "small",
+            "description": "A solitary inn nestled beside a towering pine tree. Travelers swear the tree hums in the wind.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Iris Windsong", "role": "Innkeeper", "description": "A mysterious innkeeper who claims to hear the tree’s whispers and shares cryptic advice."}
+            ]
         },
         {
             "name": "Misty Meadows",
             "size": "small",
+            "description": "A foggy field where an old tavern offers respite to lost travelers. The meadows hold an eerie calm.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Gareth Fogwalker", "role": "Guide", "description": "A seasoned guide who knows the meadows' hidden paths and dangers."}
+            ]
         },
         {
             "name": "Sunset Oasis",
             "size": "small",
+            "description": "An inviting inn located in the heart of a golden plain, famous for its stunning sunsets and warm hospitality.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Solara Brightvale", "role": "Innkeeper", "description": "A radiant innkeeper who welcomes all with a kind smile and a warm meal."}
+            ]
         },
         {
             "name": "Twin Oaks Tavern",
             "size": "small",
+            "description": "A quaint tavern surrounded by two towering oak trees. The atmosphere is lively and welcoming.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Davin Oakroot", "role": "Tavern Owner", "description": "A jolly tavern owner who entertains patrons with tales of the twin oaks’ origins."}
+            ]
         },
         {
             "name": "Roaming Rendezvous",
             "size": "small",
+            "description": "A mobile caravan-turned-tavern that sets up shop wherever travelers gather.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Mira Nomadheart", "role": "Caravan Leader", "description": "A free-spirited leader who shares stories and songs of her travels."}
+            ]
         },
         {
             "name": "Silent Springs",
             "size": "small",
+            "description": "A tranquil rest stop near a bubbling spring, known for its soothing waters and serene environment.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Lirien Watersong", "role": "Caretaker", "description": "A calm caretaker who offers refreshing spring water to passing travelers."}
+            ]
         },
         {
             "name": "Starlight Rest Stop",
             "size": "small",
+            "description": "A serene stop under open skies, perfect for stargazing. It’s said that falling stars grant wishes here.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Astren Skysoul", "role": "Stargazer", "description": "A mystic who guides travelers in reading the stars."}
+            ]
         },
         {
             "name": "Hidden Hollow",
             "size": "small",
+            "description": "A secluded retreat nestled in a forested hollow. The air is filled with the scent of wildflowers.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Meyra Bloomfield", "role": "Healer", "description": "A gentle healer who uses herbs from the hollow to craft remedies."}
+            ]
         },
         {
             "name": "Golden Fields Inn",
             "size": "small",
+            "description": "An inn surrounded by golden wheat fields, known for its fresh bread and cheerful atmosphere.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Harlin Goldenharvest", "role": "Baker", "description": "A jovial baker who offers free samples to weary travelers."}
+            ]
         },
         {
             "name": "Riverside Retreat",
             "size": "small",
+            "description": "A peaceful lodge overlooking a calm river, perfect for fishing and reflection.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Wendall Riversage", "role": "Angler", "description": "A friendly angler who shares tips and stories about the river."}
+            ]
         },
         {
             "name": "Forest's Edge",
             "size": "small",
+            "description": "A rustic cabin at the edge of a dense forest, offering safety before venturing into the unknown.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Kaelen Woodshade", "role": "Woodsman", "description": "A seasoned woodsman who warns travelers of dangers in the forest."}
+            ]
         },
         {
             "name": "Desert Rose Inn",
             "size": "small",
+            "description": "An oasis of comfort in the arid desert, known for its refreshing drinks and cool shade.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Selah Sandbloom", "role": "Innkeeper", "description": "A hospitable innkeeper who provides shelter from the desert’s heat."}
+            ]
         },
         {
             "name": "Mountain Pass Lodge",
             "size": "small",
+            "description": "A sturdy lodge built into the mountainside, offering refuge to travelers braving the treacherous pass.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Dorn Stonepath", "role": "Guide", "description": "A rugged guide who helps travelers navigate the mountain pass safely."}
+            ]
         },
         {
             "name": "The Old Mill",
             "size": "small",
+            "description": "An abandoned mill converted into a makeshift shelter. Its creaking blades whisper of bygone days.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Edrin Wheelwright", "role": "Historian", "description": "A wandering historian seeking to uncover the mill’s secrets."}
+            ]
         },
         {
             "name": "Windy Plains Outpost",
             "size": "small",
-        },
+            "description": "A small outpost on a windswept plain, serving as a checkpoint for caravans and travelers alike.",
+            "flags": {
+                "visited": False,
+                "special_event_triggered": False
+            },
+            "npcs": [
+                {"name": "Captain Darric Gale", "role": "Outpost Guard", "description": "A diligent guard who ensures the safety of travelers passing through."}
+            ]
+        }
     ],
+    # Story-critical locations
+    'story_locations': [
+        {
+            "name": "Ebonspire Keep",
+            "size": "large",
+            "description": "The ruined stronghold of the antagonist, shrouded in mystery and brimming with danger. This marks the climax of the journey.",
+            "flags": {
+                "final_battle_triggered": False,
+                "allies_recruited": False
+            },
+            "npcs": []
+        },
+        {
+            "name": "Twilight Sanctuary",
+            "size": "medium",
+            "description": "An ancient temple hidden within the mountains. Its walls whisper secrets of the past and hold powerful artifacts.",
+            "flags": {
+                "artifact_collected": False,
+                "ritual_completed": False
+            },
+            "npcs": []
+        },
+        {
+            "name": "Blightwatch Outpost",
+            "size": "medium",
+            "description": "A reclaimed military post now serving as a rallying point for allies. Key for Act I progression.",
+            "flags": {
+                "outpost_reclaimed": False,
+                "key_found": False
+            },
+            "npcs": []
+        },
+        {
+            "name": "Shattered Grove",
+            "size": "large",
+            "description": "A corrupted forest pulsing with dark magic. Its heart holds the key to cleansing the land.",
+            "flags": {
+                "grove_cleansed": False,
+                "npc_saved": False
+            },
+            "npcs": []
+        },
+        {
+            "name": "Stormhaven Port",
+            "size": "large",
+            "description": "A bustling harbor town, central for trade and a pivotal transition to the next act.",
+            "flags": {
+                "ship_acquired": False,
+                "pirates_defeated": False
+            },
+            "npcs": []
+        },
+        {
+            "name": "Ashen Vale",
+            "size": "large",
+            "description": "A desolate battlefield filled with ancient relics. The truth behind the war lies buried here.",
+            "flags": {
+                "visions_seen": False,
+                "artifact_discovered": False
+            },
+            "npcs": []
+        },
+        {
+            "name": "Silent Peaks Monastery",
+            "size": "small",
+            "description": "A secluded sanctuary where wisdom is passed down. Key to the protagonist’s growth and training.",
+            "flags": {
+                "training_completed": False,
+                "mentor_met": False
+            },
+            "npcs": []
+        }
+    ]
 }
+
 
 # Factions dictionary: Players, NPCs, or locations can adapt beliefs, join, or represent factions
 # They will also have varying levels of hostility or helpfulness to certain factions who are rivals or allies
