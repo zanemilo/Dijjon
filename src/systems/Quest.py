@@ -97,7 +97,7 @@ class Quest(Event):
         """
         self.tasks[task_id]["complete"] = True  # Set the 'complete' flag to True for the specified task
 
-    def method_call1(self, task_id, tasks, choice=None, player=None):
+    def method_call1(task_id, tasks, choice=None, player=None):
         """
         Placeholder method representing the first type of method call during a task.
 
