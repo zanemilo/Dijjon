@@ -150,7 +150,7 @@ Current Sprint Goal
     and collaboration.
 </ul>
 
-### Refactor (11/2/2024)
+### Codebase Structure
 
 Code base made to align more so with the following codebase directory struct
 
