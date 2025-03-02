@@ -29,6 +29,11 @@ This game is my way of channeling that inspiration into something new. It’s a 
 
 At its core, this project is about expression—about finding a way to share my love for games and storytelling while building something I can be proud of. It’s a personal journey, one fueled by a passion for crafting experiences that might inspire others the way games once inspired me.
 
+## Key Features
+
+### Custom Engine Architecture
+- **Modular Design:** The codebase is organized into dedicated modules (e.g., `Quest`, `QuestManager`, `DialogueManager`, `InteractionManager`) to separate concerns and enhance maintainability.
+- **Agile & Iterative Development:** The project employs mini-sprints to continuously integrate new features, refactor code, and refine gameplay mechanics.
 Current Sprint Goal
 
     Primary Goals:
@@ -48,62 +53,27 @@ Current Sprint Goal
             Ambient sound effects.
             Simple music loops.
     
+### Dynamic Quest & Narrative Mechanics
+- **Branching Quest System:** The quest engine dynamically handles quest instances and branching storylines through a modular dispatcher system. Quests are defined as collections of narrative tasks, each with multiple possible outcomes based on player choices.
+- **Robust Internal Logic:**  
+  - **Task Execution:** Quests are broken down into steps that execute scripted actions based on user input.
+  - **Skill Checks & Randomization:** Integrated logic for dice rolls and dynamic skill checks ensures that outcomes reflect both player decisions and RNG mechanics.
+  - **Dialogue Management:** A dedicated dialogue system presents narrative text with clear formatting and timed output for a more immersive terminal experience.
 
-## Previous Sprint Goal
+### Planned Enhancements
+- **Visual & GUI Upgrades:** While current development focuses on internal logic and text-based mechanics, future iterations will transition into rich visual experiences:
+  - **Interactive GUI:** Plans to integrate a full Pygame-based GUI that will replace terminal interactions with dynamic windows, interactive menus, and visual storytelling.
+  - **Audio-Visual Integration:** Future enhancements include background imagery, ambient sound effects, and music loops to further immerse the player in the world of Dijjon.
+- **Extended Gameplay Systems:** Additional features such as an enhanced combat system, AI-driven NPC behavior, and a more complex quest generation system are already planned.
 
-    Create a start menu with some playable functionality.
-    Plug in some of the hard-coded quests into the main game.
-    Work on story points if time permits.
+## Technical Highlights
 
-    Implement continue function. (Idea here is to have beginning -> middle ->
-    end of the quest, although some quests do not warrant having to finish
-    objectives. This one the palyer could just mosey on by)
-
-## Backlog
-
-### High Priority
-
-    [H] Make functional intro quest line
-    [H] Inject encounters into hardcoded quests to add dynamic feel to
-        'traveling', 'exploring', or 'continuing'
-    [H] Refactor Player class to be a child of an Entity class; set NPCs
-        and Mobs as children of the Entity class.
-    [H] Finish Implementation of Combat Class.
-    [H] Finish Implementation of First Bandit Quest Prototype.
-    [H] Refactor code into dedicated files for better readability and
-        maintainability. (Look into master.py, a lot of the functions
-        can be organized into char_class.py or race.py.)
-    [H] Text render (Renders fonts to screen)
-    [H] Game loop with input handling (Allow dynamic inputs)
-    [H] State tracking (Changes what is available per state)
-
-### Medium Priority
-
-    [M] Integrate Quest Journal with Quests.
-    [M] Improve UI functionality for the quest journal.
-    [M] Enhance menu functions for better user experience.
-    [M] Build compositional relationships within the Player class.
-    [M] Implement character classes and abilities with a
-        CharacterClassFactory.
-
-### Low Priority
-
-    [L] Incorporate Party Level + Size to Solo Monster Hash Lookup Table
-        for balanced solo monster encounters.
-    [L] Track map expansion using nodes.
-    [L] Add functionality for quest generation.
-    [L] Create mad-lib type phrases for commoner jobs.
-    [L] Improve Player Inventory UI.
-    [L] Add optional check types based on location or event type.
-    [L] Enhance roll_stats function in dice_Roll file.
-    [L] Add accessors and mutators to each class.
-    [L] Implement enchants to Melee_Items class.
-
-## Bugs to Fix
-
-    [M] Fix the give_item function to properly update or remove items in
-        the player's inventory.
-
+- **Custom Quest Engine:**  
+  The `Quest` class, along with its manager modules, implements a dispatcher pattern to execute narrative tasks dynamically. This allows for highly flexible story progression that can adapt to player choices.
+  
+- **Interaction Management:**  
+  The `InteractionManager` orchestrates skill checks and opposing roll logic, ensuring that all in-game challenges are resolved with clear, reproducible outcomes based on both player stats and random factors.
+  
 ## Roadmap
 
 ### Core Game Mechanics
@@ -223,135 +193,3 @@ Code base made to align more so with the following codebase directory struct
     ├── tools/
     └── README.md
 
-## Testing
-
-We have implemented unit tests to ensure the game's functionality and reliability. This section provides instructions on how to run the tests.
-Running Tests
-
-To run the tests, follow these steps:
-<ul>
-<li>Navigate to the Project Root Directory
-<li>Open your terminal or command prompt and navigate to the root directory of the project:
-<li>bash
-</ul>
-
-```cd path/to/DijjonAlphaDevelopment```
-
-Replace path/to/DijjonAlphaDevelopment with the actual path to your project directory.
-
-Run Tests Using Unittest
-
-Use the following command to discover and run all tests:
-
-<i>using bash</i>
-
-```python -m unittest discover -s scripts/tests -p 'test_*.py'```
-
-Explanation of the command:
-
-    python -m unittest: Runs Python's built-in unittest module as a script.
-    discover: Tells unittest to discover tests automatically.
-    -s scripts/tests: Specifies the start directory for test discovery.
-    -p 'test_*.py': Sets the pattern to match test files (e.g., test_main.py).
-
-Interact with Tests (If Prompted)
-
-Some tests may require user interaction, such as inputting actions during combat simulations. When running such tests, you might see prompts like:
-
-    Hero, choose an action (attack, defend, etc.):
-
-    Enter the requested input to proceed with the tests.
-
-Notes
-
-    Ensure Dependencies Are Installed:
-        Make sure you have all necessary dependencies installed, and that your Python environment is correctly set up.
-        If you are using a virtual environment, activate it before running the tests.
-
-    Python Version:
-        The project is developed using Python 3. Ensure that you are using a compatible Python interpreter.
-
-Future Improvements
-
-We aim to enhance our testing suite by automating user interactions to make the tests fully automated. This will improve efficiency and allow integration with continuous integration pipelines.
-
-## Story Arch Plans
-
-### Branching Choices
-
-    Key Decision Points:
-        Decisions during pivotal scenes such as The Incident at Hollowreach Citadel (Act One) directly influence trust dynamics, alliances, and reputation.
-        Player choices in moments of chaos (e.g., saving lives, pursuing evidence, or aligning loyalties) determine early allegiances with Zyrian or Drajhan factions.
-        Choices during interactions with major NPCs (e.g., Prince Veylen Drevaris, Myrra, Kelgar) affect their trust and potential outcomes in later acts.
-    Consequences and Repercussions:
-        Immediate: Choices in Act One will impact early trust dynamics and NPC behavior.
-        Long-Term: State allegiances and rivalries evolve, potentially altering the game's ending and global narrative.
-
-### Random Elements
-
-    Dynamic Encounters:
-
-    Replace Enchanted Forest static elements with more modular, scene-based encounters from the Hollowreach Citadel Incident, refugee exodus, and The Sunken Hold quest.
-    Implement random NPC behaviors during chaos scenes. For instance:
-        Refugees may betray the player for resources.
-        Soldiers may desert or remain loyal based on player choices.
-
-    Luck-Based Outcomes:
-
-        Introduce RNG-based skill checks during pivotal scenes, e.g., defusing a dangerous situation or evading pursuit by Black Vanguard forces.
-        Ensure randomness impacts scene flow without negating player agency.
-
-### Character Development and Relationships
-
-    Dynamic NPC Relationships:
-
-    Replace generic relationships from Enchanted Forest with detailed arcs based on decisions tied to main characters like Myrra, Kelgar, and Ashki.
-    Introduce shifting alliances with major NPC factions:
-        Black Vanguard Extremists (Drajh).
-        Azure Order Radicals (Zyra).
-    Develop a dynamic relationship with Prince Veylen Drevaris, reflecting player alignment, diplomacy, or enmity.
-
-    Player Reputation:
-
-        Expand on state-wide perception mechanics:
-            Zyra and Drajh citizens, soldiers, and leadership will react differently based on actions taken during and after The First Fragment.
-
-### Time-Sensitive Quests
-
-    Act One ("The First Fragment") has limited time to investigate the Hollowreach explosion.
-    Act Two introduces time-sensitive survival scenarios, such as securing resources for refugees before supplies run out.
-    Act Three involves critical deadlines tied to the relic’s activation at the Citadel of Eternity.
-
-### Tracking Past Choices
-
-    State Tracking:
-
-    Log all key choices during story events, such as:
-        The player’s response to chaos at Hollowreach Citadel.
-        Actions taken during the refugee exodus and confrontations with the Archdemon.
-    Use logs to dynamically alter future NPC behavior and dialogue.
-
-    Dialogue Changes:
-
-        Refine dialogues for major NPCs to reflect decisions tied to their trust and reputation mechanics.
-        Example: General Vyrne's reaction to the player saving her life versus pursuing clues in Act One.
-
-### Multiple Endings
-
-    Reconciliation Ending 
-    Domination Ending
-    Destruction Ending 
-    Unstable Peace Ending
-
-### Feedback and Adaptation
-
-    Environmental Changes:
-
-    Tie world-building elements directly to key events:
-        Example: Demon-corrupted zones expand as time progresses in Act Two unless the player takes proactive measures.
-
-    Faction Adaptation:
-
-        Major factions dynamically respond to player choices:
-            The Black Vanguard may grow stronger if the player neglects counteracting their propaganda.
-            The Azure Order might turn on the player if perceived as a threat to Zyrian sovereignty.
