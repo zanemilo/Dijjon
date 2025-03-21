@@ -52,17 +52,15 @@ class QuestManager:
         if not self.quest or not self.quest.tasks:
             raise ValueError("Quest or tasks are not initialized.")
         
-        if self.current_task_id not in self.quest.tasks:
-            raise KeyError(f"Invalid task ID: {self.current_task_id}")
+        task = self.quest.tasks.get(self.current_task_id, {})
+        answers = task.get("answers", {})
+
+        # Safely get the answers for the current step
+        options = answers.get(self.current_step, None)
+        if not options or not isinstance(options, list):
+            raise ValueError(f"Task {self.current_task_id} does not have valid answers for step {self.current_step}.")
         
-        task = self.quest.tasks[self.current_task_id]
-        if "answers" not in task or not isinstance(task["answers"], list):
-            raise ValueError(f"Task {self.current_task_id} does not have valid answers.")
-        
-        if self.current_step >= len(task["answers"]):
-            raise IndexError(f"Step {self.current_step} is out of bounds for the answers.")
-        
-        return task["answers"][self.current_step]
+        return options
     
     def set_current_options(self, options : list):
         """Set the current options for the quest."""
