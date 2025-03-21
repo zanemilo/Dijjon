@@ -13,10 +13,31 @@ class QuestManager:
         self.is_quest_complete = False
         self.text_renderer = text_renderer  # Integrate TextRenderer
         self.screen = screen  # Screen for Pygame rendering
-
+    
     def get_current_narrative(self):
-        """Get the current narrative text for the quest."""
-        return self.quest.tasks[self.current_task_id]["narrative"][self.current_step]
+        """
+        Retrieves the current narrative step for the active quest and task.
+        This method checks if a quest and its associated tasks are available. 
+        It then attempts to retrieve the narrative for the current task and 
+        ensures the current step is valid within the narrative.
+        Returns:
+            str: The narrative text for the current step if available. 
+                 Returns "No quest or tasks available." if there is no active 
+                 quest or tasks. Returns "Invalid narrative step." if the 
+                 narrative is not a list or the current step is out of bounds.
+        """
+        if not self.quest or not self.quest.tasks:
+            return "No quest or tasks available."
+
+        # Safely get the task using .get() with a default empty dictionary
+        task = self.quest.tasks.get(self.current_task_id, {})
+        narrative = task.get("narrative", [])
+
+        # Ensure current_step is within bounds
+        if not isinstance(narrative, list) or self.current_step >= len(narrative):
+            return "Invalid narrative step."
+
+        return narrative[self.current_step]
 
     def render_current_narrative(self):
         current_narrative = self.get_current_narrative()
