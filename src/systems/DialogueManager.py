@@ -105,20 +105,22 @@ class DialogueManager:
         if self.quest_manager.current_task_id not in self.quest_manager.quest.tasks:
             print(f"Error: Task ID {self.quest_manager.current_task_id} is not valid.")
             return
-            if callable(script):
-                script(task_id=self.quest_manager.current_task_id, tasks=tasks, choice=choice, player=player)
-            else:
-                print(f"Script for step {step} is not callable.")
-        script = self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step)
-
-        if script:
+        if callable(script):
+            script(task_id=self.quest_manager.current_task_id, tasks=tasks, choice=choice, player=player)
+        else:
+            print(f"Script for step {step} is not callable.")
+        if not self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step):
+            print(f"No script defined for step {step}.")
+            return
+        else:
             tasks = self.quest_manager.quest.tasks
             print(f"Running script for step {step}...")
+            script = self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step)
             print(f"questmanager.quest.tasks: {tasks}")
             # Execute the script function, passing the quest manager and other relevant data
             script(task_id=self.quest_manager.current_task_id, tasks=tasks, choice=choice, player=player)
-        else:
-            print(f"No script defined for step {step}.")
+            
+        
 
     def run_dialogue_event(self, player=None):
         """
