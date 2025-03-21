@@ -49,8 +49,20 @@ class QuestManager:
             pygame.display.flip()
 
     def get_current_options(self):
-        """Get the current options for the quest."""
-        return self.quest.tasks[self.current_task_id]["answers"][self.current_step]
+        if not self.quest or not self.quest.tasks:
+            raise ValueError("Quest or tasks are not initialized.")
+        
+        if self.current_task_id not in self.quest.tasks:
+            raise KeyError(f"Invalid task ID: {self.current_task_id}")
+        
+        task = self.quest.tasks[self.current_task_id]
+        if "answers" not in task or not isinstance(task["answers"], list):
+            raise ValueError(f"Task {self.current_task_id} does not have valid answers.")
+        
+        if self.current_step >= len(task["answers"]):
+            raise IndexError(f"Step {self.current_step} is out of bounds for the answers.")
+        
+        return task["answers"][self.current_step]
     
     def set_current_options(self, options : list):
         """Set the current options for the quest."""
