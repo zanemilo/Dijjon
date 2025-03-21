@@ -98,6 +98,17 @@ class DialogueManager:
         Returns:
             None
         """
+        if not self.quest_manager.quest or not self.quest_manager.quest.tasks:
+            print("Error: Quest or tasks are not properly initialized.")
+            return
+
+        if self.quest_manager.current_task_id not in self.quest_manager.quest.tasks:
+            print(f"Error: Task ID {self.quest_manager.current_task_id} is not valid.")
+            return
+            if callable(script):
+                script(task_id=self.quest_manager.current_task_id, tasks=tasks, choice=choice, player=player)
+            else:
+                print(f"Script for step {step} is not callable.")
         script = self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step)
 
         if script:

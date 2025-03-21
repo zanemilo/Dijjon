@@ -37,7 +37,7 @@ class QuestManager:
             self.quest.tasks[self.current_task_id]["answers"][self.current_step] = options
         return self.quest.tasks[self.current_task_id]["answers"][self.current_step]
     
-    def advance_step(self, choice):
+    def advance_step(self, choice, branching=False):
         """
         Advance the step in the current task, handling branching based on player choice.
         Does not currently handle advancing task_ids. Requires implementation.
@@ -45,11 +45,9 @@ class QuestManager:
         Args:
             choice (int): The index of the player's chosen option.
         """
-        print(f"Current Task ID: {self.current_task_id}")
-        print(f"Tasks: {self.quest.tasks}")
-        branching = False
+       
+       # Check if a random event should occur
         try:
-            # Check if a random event should occur
             random_event_chance = self.quest.tasks[self.current_task_id].get("random_event_chance", 0)
             if random.random() < random_event_chance:
                 self.trigger_random_event()

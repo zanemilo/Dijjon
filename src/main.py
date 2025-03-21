@@ -17,12 +17,12 @@ from systems.a3_tasks import tasks as a3_tasks
 
 
 pygame.init()
-# screen = pygame.display.set_mode((800, 600))
+# screen = pygame.display.set_mode((800, 600)) COMMENTED OUT FOR TESTING
 screen = None
 pygame.display.set_caption('Dijjon')
 
 # TextRenderer setup
-# text_renderer = TextRenderer(
+# text_renderer = TextRenderer( COMMENTED OUT FOR TESTING
 #     screen=screen,
 #     text="",
 #     font_name=None,
@@ -33,16 +33,17 @@ pygame.display.set_caption('Dijjon')
 # )
 text_renderer = None
     
-# Sample Quest Data
+# Setup Quest type dictionary
 qtype = {
     "find": Quest.find,
     "kill": Quest.kill,
     "skill_check": Quest.skill_check,
 }
 
+# Load tasks for Act I
 tasks = a1_tasks
 
-# Instantiate Quest and QuestManager
+# Instantiate Quest, QuestManager, and other required managers.
 quest = Quest("Act I - Scene I", "The Summit at Hollowreach Citadel", qtype, tasks)
 quest_manager = QuestManager(quest, text_renderer, screen)
 
@@ -54,10 +55,11 @@ button_manager.create_buttons(quest_manager.get_current_options())
 player = None # FIX ME: TO be replaced when load functionality is implemented.
 # running = True
 # text_rendering_complete = False
-# text_renderer.reset(quest_manager.get_current_narrative())
+# text_renderer.reset(quest_manager.get_current_narrative()) COMMENTED OUT FOR TESTING
 options = quest_manager.get_current_options()
 # Instantiate and run the DialogueManager
 dialogue_manager = DialogueManager(quest_manager)
+
 if not player:
         try:
            player = player_factory.create_player()
@@ -67,7 +69,7 @@ if not player:
 
 dialogue_manager.run_dialogue_event(player)
 
-# while running:
+# while running:                                     COMMENTED OUT FOR TESTING
     # Ensure player is created before continuing
     # if not player:
     #     try:
