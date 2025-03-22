@@ -149,7 +149,6 @@ class DialogueManager:
                     self.quest_manager.quest.update_tasks(new_tasks)  # Update Task dict of current quest
                 except Exception as e:
                     print(f"Error running script for step {self.quest_manager.current_step}: {e}\nDefaulting to current Questmanager.tasks...")
-                    self.quest_manager.quest.update_tasks(self.quest_manager.quest.tasks)
 
                 # Pass the player's choice to QuestManager for processing
                 next_narrative = self.quest_manager.advance_step(player_choice_index)
