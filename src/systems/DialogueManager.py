@@ -96,7 +96,7 @@ class DialogueManager:
             step (int): The current narrative step index.
 
         Returns:
-            None
+            dict: The updated tasks dict after running the script.
         """
         if not self.quest_manager.quest or not self.quest_manager.quest.tasks:
             print("Error: Quest or tasks are not properly initialized.")
@@ -118,8 +118,8 @@ class DialogueManager:
             script = self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step)
             print(f"questmanager.quest.tasks: {tasks}")
             # Execute the script function, passing the quest manager and other relevant data
-            script(task_id=self.quest_manager.current_task_id, tasks=tasks, choice=choice, player=player)
-            
+            return script(task_id=self.quest_manager.current_task_id, tasks=tasks, choice=choice, player=player)
+
         
 
     def run_dialogue_event(self, player=None):
@@ -148,7 +148,8 @@ class DialogueManager:
                     new_tasks = self.run_script(current_step, player_choice_index, player)
                     self.quest_manager.quest.update_tasks(new_tasks)  # Update Task dict of current quest
                 except Exception as e:
-                    print(f"Error running script for step {self.quest_manager.current_step}: {e}")
+                    print(f"Error running script for step {self.quest_manager.current_step}: {e}\nDefaulting to current Questmanager.tasks...")
+                    self.quest_manager.quest.update_tasks(self.quest_manager.quest.tasks)
 
                 # Pass the player's choice to QuestManager for processing
                 next_narrative = self.quest_manager.advance_step(player_choice_index)

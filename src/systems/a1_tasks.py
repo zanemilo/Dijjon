@@ -171,7 +171,7 @@ tasks = {
             ],
         },
         "scripts": {
-            1: None,
+            1: step_1_script,
             2: step_1_script,
             3: Quest.method_call1,
         },

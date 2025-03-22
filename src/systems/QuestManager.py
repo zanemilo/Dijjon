@@ -30,8 +30,8 @@ class QuestManager:
             return "No quest or tasks available."
 
         # Safely get the task using .get() with a default empty dictionary
-        task = self.quest.tasks.get(self.current_task_id, {})
-        narrative = task.get("narrative", [])
+        task = self.quest.tasks.get(self.current_task_id, 'no task')
+        narrative = task.get("narrative", 'no narrative')
 
         # Ensure current_step is within bounds
         if not isinstance(narrative, list) or self.current_step >= len(narrative):
