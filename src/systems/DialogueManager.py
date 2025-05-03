@@ -132,8 +132,8 @@ class DialogueManager:
                 
                 try:
                     # Run the script for the current step
-                    new_tasks = self.run_script(current_step, player_choice_index, player)
-                    self.quest_manager.quest.update_tasks(new_tasks)  # Update Task dict of current quest
+                    self.run_script(current_step, player_choice_index, player)
+                    
                 except Exception as e:
                     print(f"Error running script for step {self.quest_manager.current_step}: {e}")
 

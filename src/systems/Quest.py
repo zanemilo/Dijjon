@@ -30,8 +30,9 @@ class Quest(Event):
         self.qtype = qtype  # Dictionary of all possible quest/task types mapped to their methods
         self.tasks = tasks  # Dictionary of tasks associated with the quest
     
-    def update_tasks(self, new_tasks):
-        self.tasks = new_tasks
+    def update_tasks(self, new_tasks=None):
+        if new_tasks:
+            self.tasks = new_tasks
         return self.tasks
     
     def run_task(self, task_id):
