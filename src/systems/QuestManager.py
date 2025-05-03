@@ -99,12 +99,12 @@ class QuestManager:
         # except TypeError as e:
         #     print(f"Error QuestManager.advance_step(): {e}")
 
-        # if branching:
-        #     if choice in branching:
-        #         self.current_task_id = branching[choice]
-        #         self.current_step = 1
-        #     else:
-        #         self.current_step += 1
+        if branching:
+            if choice in branching:
+                self.current_task_id = branching[choice]
+                self.current_step = 1
+        else:
+            self.current_step += 1
         try:
             if self.current_step > len(self.quest.tasks[self.current_task_id]["narrative"]):
                 self.complete_task()
