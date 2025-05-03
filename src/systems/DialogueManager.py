@@ -159,6 +159,7 @@ class DialogueManager:
 
                 # Pass the player's choice to QuestManager for processing
                 next_narrative = self.quest_manager.advance_step(player_choice_index)
+                print(f"next_narrative: {next_narrative}")
                 if next_narrative is None:
                     self.running = False
 

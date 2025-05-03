@@ -89,22 +89,22 @@ class QuestManager:
         """
        
        # Check if a random event should occur
-        try:
-            random_event_chance = self.quest.tasks[self.current_task_id].get("random_event_chance", 0)
-            if random.random() < random_event_chance:
-                self.trigger_random_event()
-                return None
-            # Normal branching logic
-            branching = self.quest.tasks[self.current_task_id].get("branching", {})
-        except TypeError as e:
-            print(f"Error QuestManager.advance_step(): {e}")
+        # try:
+        #     random_event_chance = self.quest.tasks[self.current_task_id].get("random_event_chance", 0)
+        #     if random.random() < random_event_chance:
+        #         self.trigger_random_event()
+        #         return None
+        #     # Normal branching logic
+        #     branching = self.quest.tasks[self.current_task_id].get("branching", {})
+        # except TypeError as e:
+        #     print(f"Error QuestManager.advance_step(): {e}")
 
-        if branching:
-            if choice in branching:
-                self.current_task_id = branching[choice]
-                self.current_step = 1
-            else:
-                self.current_step += 1
+        # if branching:
+        #     if choice in branching:
+        #         self.current_task_id = branching[choice]
+        #         self.current_step = 1
+        #     else:
+        #         self.current_step += 1
         try:
             if self.current_step > len(self.quest.tasks[self.current_task_id]["narrative"]):
                 self.complete_task()
