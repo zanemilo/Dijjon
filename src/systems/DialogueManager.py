@@ -145,7 +145,11 @@ class DialogueManager:
                 
                 try:
                     # Run the script for the current step
-                    self.run_script(current_step, player_choice_index, player)
+                    new_tasks = self.run_script(current_step, player_choice_index, player)
+
+                    if new_tasks:
+                        # Invoke Game update_tasks method to update the tasks
+                        self.game.update_tasks(new_tasks)
                     
                 except Exception as e:
                     print(f"Error running script for step {self.quest_manager.current_step}: {e}\nDefaulting to current Questmanager.tasks...")
