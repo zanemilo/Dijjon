@@ -12,7 +12,7 @@ class DialogueManager:
     Delivers dialogue text and manages player input for branching options in the terminal.
     """
 
-    def __init__(self, quest_manager):
+    def __init__(self, game, quest_manager):
         """
         Initializes the DialogueManager.
 
@@ -22,6 +22,7 @@ class DialogueManager:
         self.quest_manager = quest_manager  # Reference to QuestManager instance
         self.running = False  # Indicates if the dialogue event is active
         self.selected_option = None  # The player's selected option
+        self.game = game
 
     def display_narrative(self):
         """

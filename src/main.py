@@ -48,7 +48,7 @@ class Game:
         self.button_manager = ButtonManager(self.screen)
         self.button_manager.create_buttons(self.quest_manager.get_current_options())
 
-        self.dialogue_manager = DialogueManager(self.quest_manager)
+        self.dialogue_manager = DialogueManager(game=self, quest_manager=self.quest_manager)
 
     def update_tasks(self, new_tasks):
         """Update the tasks and refresh dependent systems."""
