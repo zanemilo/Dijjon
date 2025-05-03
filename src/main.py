@@ -29,7 +29,7 @@ class Game:
             font_size=24,
             color=(255, 255, 255),  # White text
             position=(50, 100),
-            typing_speed=50  # Speed of typing effect
+            typing_speed=50 # Typing speed in milliseconds
         )
 
         self.qtype = {
@@ -53,7 +53,7 @@ class Game:
     def update_tasks(self, new_tasks):
         """Update the tasks and refresh dependent systems."""
         self.tasks = new_tasks
-        self.quest.update_tasks(self.tasks)  # Assuming Quest has an update_tasks method
+        self.quest.update_tasks(self.tasks)
         
 
     def run(self):
