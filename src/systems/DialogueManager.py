@@ -99,6 +99,7 @@ class DialogueManager:
         Returns:
             dict: The updated tasks dict after running the script.
         """
+        script = self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step)
         if not self.quest_manager.quest or not self.quest_manager.quest.tasks:
             print("Error: Quest or tasks are not properly initialized.")
             return
