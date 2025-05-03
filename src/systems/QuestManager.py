@@ -14,10 +14,10 @@ class QuestManager:
         self.text_renderer = text_renderer  # Integrate TextRenderer
         self.screen = screen  # Screen for Pygame rendering
     
-    def update_tasks(self, new_tasks=None):
-        if new_tasks:
-            self.tasks = new_tasks
-        return self.tasks
+    def update_quest(self, new_quest=None):
+        if new_quest:
+            self.quest = new_quest
+        return self.quest
 
     def get_current_narrative(self):
         """

@@ -54,6 +54,7 @@ class Game:
         """Update the tasks and refresh dependent systems."""
         self.tasks = new_tasks
         self.quest.update_tasks(self.tasks)
+        self.quest_manager.update_quest(self.quest)
         
 
     def run(self):
