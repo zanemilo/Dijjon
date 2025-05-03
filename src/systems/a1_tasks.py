@@ -15,6 +15,9 @@ def step_1_script(task_id, tasks, choice=None, player=None):
         tasks (dict): The tasks dictionary containing narrative, answers, and other data.
         choice (int, optional): The player's chosen option. Defaults to None.
         player (Player, optional): The player instance for handling checks and updates.
+
+        Returns:
+            dict: The updated tasks dictionary.
     """
     if choice == 0:  # Survey the crowd
         success = player.check_roll("perception")
