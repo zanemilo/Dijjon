@@ -14,6 +14,11 @@ class QuestManager:
         self.text_renderer = text_renderer  # Integrate TextRenderer
         self.screen = screen  # Screen for Pygame rendering
     
+    def update_tasks(self, new_tasks=None):
+        if new_tasks:
+            self.tasks = new_tasks
+        return self.tasks
+
     def get_current_narrative(self):
         """
         Retrieves the current narrative step for the active quest and task.
