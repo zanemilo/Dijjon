@@ -11,7 +11,7 @@ from entities.Entity import Entity
 from systems.core_library import monster_dict as md
 from systems.core_library import name_list as nl
 from systems.core_library import monster_type_list as mtl
-from src.core.settings import Settings as s
+from core.settings import Settings as s
 
 
 
