@@ -45,7 +45,7 @@ class QuestManager:
             print(f"Error QuestManager.get_current_narrative(): {e}")
 
         # Ensure current_step is within bounds
-        if not isinstance(narrative, (list, tuple, dict)) or self.current_step >= len(narrative):
+        if not isinstance(narrative, (list, tuple, dict)) or self.current_step > len(narrative):
             return "Invalid narrative step."
 
         return narrative[self.current_step]
