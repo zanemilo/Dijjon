@@ -28,12 +28,11 @@ class Settings:
         return self.current_difficulty
     
     def set_loc_diff(self, difficulty):
-        
-        valid_difficulties = [0, 1, 2, 3, 4, 5]
+        """Change location difficulty"""
 
-        if difficulty in valid_difficulties:
+        if difficulty in range(0, 6):
             self.current_difficulty = difficulty
-        elif difficulty not in valid_difficulties:
+        elif difficulty not in range(0, 6):
             print(f'Error: Location difficulty arg out of range (0-5)\nLocation difficulty remains unchanged.')
         
 
