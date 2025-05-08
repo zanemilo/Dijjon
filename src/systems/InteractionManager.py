@@ -92,8 +92,8 @@ class InteractionManager:
             The name of the winning entity.
         """
         while True:
-            roll_one = entity_one.player_check_roll(check_type)
-            roll_two = entity_two.player_check_roll(check_type)
+            roll_one = entity_one.check_roll(check_type)
+            roll_two = entity_two.check_roll(check_type)
             if roll_one > roll_two:
                 return entity_one.get_name()
             if roll_two > roll_one:
