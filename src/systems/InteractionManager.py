@@ -35,7 +35,10 @@ class InteractionManager:
         Initialize the InteractionManager.
         No internal state is required.
         """
-        pass
+        self.player_factory = PlayerFactory()
+        self.mob_factory = MobFactory()
+        self.player = self.player_factory.create_player()
+
 
     def check(
         self,
@@ -103,7 +106,8 @@ class InteractionManager:
         This method is for quick functionality testing and prints results.
         """
         # Create a random bandit NPC
-        bandit = create_player(npc=True, enemy=True)
+        
+        bandit = self.player_factory.create_player(npc=True, enemy=True)
         bandit.sheet()
 
         # Dexterity check
@@ -123,6 +127,6 @@ class InteractionManager:
 
 # Example usage:
 skill_check = InteractionManager()
-skill_check.skill_check_test()
+skill_check.skill_check_test(skill_check.player)
 
 
