@@ -111,12 +111,12 @@ class InteractionManager:
         bandit.sheet()
 
         # Dexterity check
-        dex_roll = player.player_check_roll('dex')
+        dex_roll = player.check_roll('dex')
         dex_passed = self.check('dex', dex_roll)
         print(f"{player.get_name()} dex check ({dex_roll}) passed? {dex_passed}")
 
         # Investigation check
-        inv_roll = player.player_check_roll('investigation')
+        inv_roll = player.check_roll('investigation')
         inv_passed = self.check('investigation', inv_roll)
         print(f"{player.get_name()} investigation check ({inv_roll}) passed? {inv_passed}")
 
