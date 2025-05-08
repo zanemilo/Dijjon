@@ -1,80 +1,153 @@
-# Dijjon Mob Class
-# Developed & designed by: Zane M Deso
-# Purpose: This class is in charge of building and tearing down Mobs as needed for encounters, battle, filling dungeons, etc.
-# EDIT: Refactoring to be child to Entity class.
+"""
+Module: Mob
+Defines the `Mob` class, a subclass of `Entity`, representing non-player creatures with RPG attributes.
+"""
 
-import random as r
+import random
+from typing import Optional, Dict
 
-import sys
-sys.path.append("..")  # Adds the parent directory to the Python module search path
 from entities.Entity import Entity
-from systems.core_library import monster_dict as md
-from systems.core_library import name_list as nl
-from systems.core_library import monster_type_list as mtl
-from core.settings import Settings as s
-
+from systems.core_library import monster_dict as md, name_list as nl
 
 
 class Mob(Entity):
-    """Mob Class handles Mob instances and random generation"""
+    """
+    Represents a non-player creature with RPG-style attributes.
 
-    # if no arguement is given, the mob will have the default randomized name, mob, mob type, etc.
-    def __init__(self, name=None, mob=None, hp=None, arm_c=None, spd=30, xp=None, lvl=None, is_enemy=True):
-        super().__init__(name, hp, arm_c, spd, xp, lvl, is_enemy)
+    Attributes:
+        name (str): The given or randomly chosen name of the mob.
+        mob (str): The key identifying the species of the creature.
+        mob_type (Any): Metadata or type information fetched from `monster_dict`.
+        lvl (int): Level of the mob, affecting difficulty and stats.
+        max_hp (int): Maximum health points.
+        hp (int): Current health points.
+        arm_c (int): Armor class, reducing incoming damage.
+        spd (int): Movement speed.
+        xp (int): Experience awarded when defeated.
+        is_enemy (bool): Flag indicating hostility.
+    """
 
-        # instastiate the variables so we can pass them to the self.info dictionary below
-        # also we must use the __init__ method to choose each new isntances variables uniquely
-        # as the class arguments are only checked once when the class itself if initialized
-        self.name = name if name is not None else r.choice(nl)
-        self.mob = mob if mob is not None else r.choice(list(md.keys()))
-        self.hp = hp if hp is not None else r.randint(10, 30)
-        self.arm_c = arm_c if arm_c is not None else r.randint(10, 15) 
-        self.spd = spd
-        self.xp = xp if xp is not None else r.randint(10, 30)
-        self.lvl = lvl if lvl is not None else r.randint(1, 3)
-        self.mobtype = md[f'{self.mob}']  # mob type based of mob selected
-        self.max_hp = self.hp  # set max health (maybe make this a tuple? not sure if I need to)
-        self.is_enemy = is_enemy  # Default to enemy
-        
-        # FIX ME: Mob Class requires accessors and mutators.
+    def __init__(
+        self,
+        name: Optional[str] = None,
+        mob: Optional[str] = None,
+        hp: Optional[int] = None,
+        arm_c: Optional[int] = None,
+        spd: Optional[int] = None,
+        xp: Optional[int] = None,
+        lvl: Optional[int] = None,
+        is_enemy: bool = True
+    ) -> None:
+        """
+        Initialize a `Mob` instance, randomizing any attributes not provided.
 
-    def get_hp(self):
-        return super().get_hp()
-    
-    def get_name(self):
-        return super().get_name()
-    
-    def set_hp(self, hp):
-        return super().set_hp(hp)
-    
-    def set_name(self, name):
-        return super().set_name(name)
+        Args:
+            name: Custom name; defaults to a random choice from `name_list`.
+            mob: Species key; defaults to a random key from `monster_dict`.
+            hp: Initial and maximum HP; defaults to a random value.
+            arm_c: Armor class; defaults to a random value.
+            spd: Speed; defaults to base speed if not provided.
+            xp: Experience value; defaults to a random value.
+            lvl: Creature level; defaults to a small random level.
+            is_enemy: Hostility flag.
+        """
+        # Assign a random name if none is provided
+        self.name = name or random.choice(nl)
+        # Assign a random species key if none is provided
+        self.mob = mob or random.choice(list(md.keys()))
+        # Retrieve species metadata from the dictionary
+        self.mob_type = md[self.mob]
 
+        # Determine level, defaulting to 1–3 randomly
+        self.lvl = lvl or random.randint(1, 3)
+        # Determine maximum HP, then set current HP to max
+        self.max_hp = hp or random.randint(10, 30)
+        self.hp = self.max_hp
+        # Determine armor class, defaulting to 10–15 randomly
+        self.arm_c = arm_c or random.randint(10, 15)
+        # Set movement speed, defaulting to 30
+        self.spd = spd or 30
+        # Determine XP reward, defaulting to 10–30 randomly
+        self.xp = xp or random.randint(10, 30)
+        # Set hostility flag
+        self.is_enemy = is_enemy
 
-# test instances of Mob class
+        # Initialize base Entity with these attributes
+        super().__init__(
+            name=self.name,
+            hp=self.hp,
+            arm_c=self.arm_c,
+            spd=self.spd,
+            xp=self.xp,
+            lvl=self.lvl,
+            is_enemy=self.is_enemy
+        )
 
-# yuan_ti = Mob(mob='Yuan-ti', hp=60, arm_c=25)
+    def __repr__(self) -> str:
+        """
+        Return an unambiguous string representation for debugging.
+        """
+        return (
+            f"<Mob name={self.name!r} species={self.mob!r} "
+            f"type={self.mob_type!r} lvl={self.lvl} "
+            f"hp={self.hp}/{self.max_hp} arm_c={self.arm_c} "
+            f"spd={self.spd} xp={self.xp} enemy={self.is_enemy}>"
+        )
 
-# print(f'{yuan_ti.name, yuan_ti.info}')
+    @property
+    def is_alive(self) -> bool:
+        """
+        Check if the mob is still alive.
 
-# new_mob1 = Mob()
+        Returns:
+            True if HP > 0, False otherwise.
+        """
+        return self.hp > 0
 
-# print(new_mob1.info)
+    def take_damage(self, amount: int) -> None:
+        """
+        Inflict damage on the mob, reducing HP but not below zero.
 
-# new_mob2 = Mob()
+        Args:
+            amount: The amount of damage to apply.
+        """
+        # Ensure HP doesn't go negative
+        self.hp = max(self.hp - amount, 0)
 
-# print(new_mob2.info)
+    def heal(self, amount: int) -> None:
+        """
+        Heal the mob, increasing HP but not above `max_hp`.
 
-# tests what the default output for name choice would be
-# print(r.choice(nl))
+        Args:
+            amount: The amount of HP to restore.
+        """
+        # Ensure HP doesn't exceed maximum
+        self.hp = min(self.hp + amount, self.max_hp)
 
-# tests what the default output for mob choice would be
-# test_mob = r.choice(list(md.keys()))
-# print(test_mob)
+    def to_dict(self) -> Dict[str, object]:
+        """
+        Serialize the mob's stats to a dictionary.
 
-# tests what the default output for mobtype choice should be
-# mobtype = md[f'{test_mob}']
-# print(f'{test_mob} | Monster Type: {mobtype.title()}')
+        Returns:
+            A dict containing key attributes for inspection or storage.
+        """
+        return {
+            "name": self.name,
+            "species": self.mob,
+            "type": self.mob_type,
+            "level": self.lvl,
+            "hp": self.hp,
+            "max_hp": self.max_hp,
+            "armor_class": self.arm_c,
+            "speed": self.spd,
+            "xp": self.xp,
+            "is_enemy": self.is_enemy,
+        }
 
-   
-   
+    def display_info(self) -> None:
+        """
+        Print a formatted summary of the mob's current stats to stdout.
+        """
+        info = self.to_dict()
+        for key, val in info.items():
+            print(f"{key:12}: {val}")
