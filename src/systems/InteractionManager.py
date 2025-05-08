@@ -130,7 +130,7 @@ class InteractionManager:
 
 
 # Example usage:
-skill_check = InteractionManager()
+skill_check = InteractionManager(test=True)
 skill_check.skill_check_test(skill_check.player)
 
 
