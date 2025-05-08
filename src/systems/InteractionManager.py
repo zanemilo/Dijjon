@@ -30,15 +30,18 @@ class InteractionManager:
         'str', 'dex', 'con', 'int', 'wis', 'cha'
     }
 
-    def __init__(self) -> None:
+    def __init__(self, test=False) -> None:
         """
         Initialize the InteractionManager.
         No internal state is required.
         """
+        self.test = test
         self.player_factory = PlayerFactory()
         self.mob_factory = MobFactory()
-        self.player = self.player_factory.create_player()
         self.settings = Settings()
+        if test:
+            self.player = self.player_factory.create_player()
+        
 
 
     def check(
