@@ -125,8 +125,8 @@ class Entity:
         print(f"""\n
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         | NAME: {self.name.upper().center(39)}   |
-        | RACE: {self.race.upper().center(39)}   |
-        | CLASS: {self.char_class.upper().center(38)}   |
+        | RACE: {str(self.race).upper().center(39)}   |
+        | CLASS: {str(self.char_class).upper().center(38)}   |
         | LEVEL: {stats['LEVEL']}{' '*(2-len(str(stats['LEVEL'])))}                                       |
         |                                                 |
         | STR: {stats['STR']}{' '*(2-len(str(stats['STR'])))} | DEX: {stats['DEX']}{' '*(2-len(str(stats['DEX'])))} | CON: {stats['CON']}{' '*(2-len(str(stats['CON'])))} | INT: {stats['INT']}{' '*(2-len(str(stats['INT'])))} | WIS: {stats['WIS']}{' '*(2-len(str(stats['WIS'])))} | 
