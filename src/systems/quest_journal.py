@@ -1,120 +1,133 @@
 # Dijjon quest_journal Class
 # Developed & designed by: Zane M Deso
 # Purpose: Used to handle quest creation, rewards, main objectives, task, each task status, completion requirement and other associated player centered functions.
-# EDIT: This is going to re-hashed to be able to parse tasks data struct gracefully.
 
-class QuestJournal():
-    def __init__(self, quest_name, objective, completion, reward, priority='misc', task=''):
-        """Quest Class for handling building quest and tracking quest progress."""
+from typing import Dict, List, Optional, Any
 
-        self.quest_name = quest_name
-        self.objective = objective
-        self.task = task
-        self.reward = reward
-        self.completion = completion
-        self.priority = priority
+from Quest import Quest
 
-        self.info = {
-            'quest Name' : self.quest_name,
-            'objective' : self.objective,
-            'task' : self.task,
-            'reward' : self.reward,
-            'completion' : self.completion,
+
+class QuestJournal:
+    """
+    Journal for tracking multiple quests, organized by priority.
+
+    Attributes:
+        _journal (Dict[str, List[Quest]]): Quests grouped under 'primary', 'secondary', and 'misc'.
+    """
+
+    def __init__(self) -> None:
+        """
+        Initialize an empty QuestJournal with predefined priority buckets.
+        """
+        # Prepare empty lists for each priority category
+        self._journal: Dict[str, List[Quest]] = {
+            'primary': [],
+            'secondary': [],
+            'misc': []
         }
 
-        self.quests = {  
-                                # This dict separates each quest type where primary is non optional, secondary is usually 
-                                # a requirment to complete before finishing primary and misc is completely optional
-            'primary' : {},
-            'secondary' : {},
-            'misc' : {}
+    def add_quest(self, quest: Quest) -> None:
+        """
+        Add a Quest to the journal under its priority.
+
+        Args:
+            quest: Instance of Quest, which must have a valid `priority` attribute.
+
+        Raises:
+            ValueError: If quest.priority is not one of the journal categories.
+        """
+        prio = quest.priority
+        if prio not in self._journal:
+            raise ValueError(f"Unknown quest priority '{prio}'")
+        self._journal[prio].append(quest)
+
+    def remove_quest(self, name: str) -> bool:
+        """
+        Remove a quest by its name across all priority groups.
+
+        Args:
+            name: The unique name of the quest to remove.
+
+        Returns:
+            True if removed successfully; False if no matching quest found.
+        """
+        for prio, quests in self._journal.items():
+            for i, q in enumerate(quests):
+                if q.name == name:
+                    del quests[i]
+                    return True
+        return False
+
+    def find_quest(self, name: str) -> Optional[Quest]:
+        """
+        Find and return a Quest by name.
+
+        Args:
+            name: The unique name of the quest to locate.
+
+        Returns:
+            The Quest instance if found; otherwise, None.
+        """
+        for quests in self._journal.values():
+            for q in quests:
+                if q.name == name:
+                    return q
+        return None
+
+    def mark_complete(self, name: str) -> bool:
+        """
+        Mark the specified quest as complete (all its tasks).
+
+        Args:
+            name: The unique name of the quest to mark complete.
+
+        Returns:
+            True if quest found and marked; False otherwise.
+        """
+        quest = self.find_quest(name)
+        if not quest:
+            return False
+        # Mark all tasks as complete
+        for idx, task in enumerate(quest.tasks):
+            quest.complete_task(idx)
+        return True
+
+    def get_quests_by_priority(self, priority: str) -> List[Quest]:
+        """
+        Retrieve the list of quests for a given priority.
+
+        Args:
+            priority: One of 'primary', 'secondary', or 'misc'.
+
+        Returns:
+            List of Quest instances under that priority.
+
+        Raises:
+            ValueError: If priority is invalid.
+        """
+        if priority not in self._journal:
+            raise ValueError(f"Unknown quest priority '{priority}'")
+        return list(self._journal[priority])
+
+    def get_all_quests(self) -> Dict[str, List[Quest]]:
+        """
+        Get the full journal of quests, grouped by priority.
+
+        Returns:
+            A dict mapping each priority to its list of quests.
+        """
+        # Return a shallow copy to prevent external mutation
+        return {prio: list(qs) for prio, qs in self._journal.items()}
+
+    def to_dict(self) -> Dict[str, Any]:
+        """
+        Serialize the journal to plain data structures.
+
+        Returns:
+            Dict where keys are priorities and values are lists of quest dicts.
+        """
+        return {
+            prio: [q.to_dict() for q in quests]
+            for prio, quests in self._journal.items()
         }
-
-
-    def get_all_quest_status(self):
-        """Return all quest status"""
-        print(f'{self.quests}')
-        return self.quests
-
-    def add_quest_tracker(self, priority):
-        """Used during instatiation to place into proper priority tracker ['primary', 'secondary', or 'misc']"""
-        if priority == 'primary':
-            self.quests['primary'] = self.info
-        elif priority == 'secondary':
-            self.quests['secondary'] = self.info
-        elif priority == 'misc':
-            self.quests['misc'] = self.info
-        else:
-            print(f'Error while adding {self.quest_name} to quest tracker')
-            print(priority)
-
-     # Accessor functions
-    def get_quest_name(self):
-        """Return the quest name."""
-        return self.quest_name
-
-    def get_objective(self):
-        """Return the quest objective."""
-        return self.objective
-
-    def get_task(self):
-        """Return the current task for the quest."""
-        return self.task
-
-    def get_reward(self):
-        """Return the quest reward."""
-        return self.reward
-
-    def get_completion(self):
-        """Return the completion status of the quest."""
-        return self.completion
-
-    def get_priority(self):
-        """Return the priority of the quest."""
-        return self.priority
-
-    def get_info(self):
-        """Return a dictionary containing quest information."""
-        return self.info
-
-    def get_all_quests(self):
-        """Return the dictionary containing all quests."""
-        return self.quests
-
-    # Mutator functions
-    def set_task(self, new_task):
-        """Set a new task for the quest."""
-        self.task = new_task
-        self.info['task'] = new_task
-
-    def set_completion(self, new_completion):
-        """Set the completion status of the quest."""
-        self.completion = new_completion
-        self.info['completion'] = new_completion
-
-    def set_priority(self, new_priority):
-        """Set the priority of the quest."""
-        self.priority = new_priority
-        self.info['priority'] = new_priority
-
-    def set_reward(self, new_reward):
-        """Set a new reward for the quest."""
-        self.reward = new_reward
-        self.info['reward'] = new_reward
-
-    def test_functionality():
-    # # test quest instances
-        starter_quest = QuestJournal('Humble Beginnings', 'Find your way to the docks.', False, 'Big Fish', 'primary')
-        starter_quest.add_quest_tracker(starter_quest.priority)     
-        print(starter_quest.get_info())
-
-        find_boat_quest = QuestJournal('Find a boat', 'Find a Boat', False, 'Boat', 'secondary')
-        find_boat_quest.add_quest_tracker(find_boat_quest.priority)  
-        print(find_boat_quest.get_info())
-
-        next_quest = QuestJournal('Second is the Worst', 'Navigate the open sea.', False, 'Pearl', 'primary')
-        next_quest.add_quest_tracker(next_quest.priority)
-        print(next_quest.get_info())
-
-
 
