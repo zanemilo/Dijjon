@@ -10,7 +10,7 @@ import sys
 # Ensure parent directory is on the search path for imports
 sys.path.append("..")
 
-from core import settings
+from core.settings import Settings
 from entities.PlayerFactory import PlayerFactory
 from entities.MobFactory import MobFactory
 from entities.Player import Player
@@ -38,6 +38,7 @@ class InteractionManager:
         self.player_factory = PlayerFactory()
         self.mob_factory = MobFactory()
         self.player = self.player_factory.create_player()
+        self.settings = Settings()
 
 
     def check(
@@ -67,7 +68,7 @@ class InteractionManager:
         # Determine bias for DC calculation
         bias_value = bias if bias is not None else random.randint(1, 18)
         # Compute difficulty class
-        dc = bias_value + settings.current_difficulty + settings.location_difficulty
+        dc = bias_value + self.settings.current_difficulty + self.settings.location_difficulty
         return player_roll >= dc
 
     def opposing_check(

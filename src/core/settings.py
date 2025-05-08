@@ -18,12 +18,10 @@ class Settings:
     
     def set_diff(self, difficulty):
         """Change current difficulty"""
-        
-        valid_difficulties = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-        if difficulty in valid_difficulties:
+        if difficulty in range(1, 11):
             self.current_difficulty = difficulty
-        elif difficulty not in valid_difficulties:
+        else:
             print(f'Error: Difficulty arg out of range (1-10)\nDifficulty remains unchanged.')
 
     def get_loc_diff(self):
