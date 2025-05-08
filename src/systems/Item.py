@@ -10,7 +10,7 @@ class Item():
         self.desc = desc
         self.val = val
     # FIX ME: Create class methods here
-    # Item Class requires accessors and mutator methods
+
 
 
 class Melee_Item(Item):
@@ -22,4 +22,4 @@ class Melee_Item(Item):
         self.poisoned = poisoned
         self.enchant = enchant
     # FIX ME: Create class methods here
-    # Item Class requires accessors and mutator methods
+    
