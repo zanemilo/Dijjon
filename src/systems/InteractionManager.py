@@ -128,9 +128,17 @@ class InteractionManager:
         winner = self.opposing_check(player, bandit, 'str')
         print(f"Opposed strength winner: {winner}")
 
+    def _test(self) -> None:
+        """
+        Run a test of the InteractionManager's functionality.
+        This is a placeholder for unit tests or manual testing.
+        """
+        # Example test case: create a player and run a skill check
+        IM = InteractionManager(test=True)
+        IM.skill_check_test(IM.player)
 
-# Example usage:
-skill_check = InteractionManager(test=True)
-skill_check.skill_check_test(skill_check.player)
 
+    
+# Run tests:
+# InteractionManager._test(InteractionManager)
 
