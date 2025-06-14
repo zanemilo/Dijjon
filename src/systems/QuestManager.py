@@ -113,6 +113,17 @@ class QuestManager:
             print(f"Error QuestManager.advance_step(): {e}")
 
         return self.get_current_narrative()
+    
+    def advance_scene(self):
+        """
+        Advance to the next scene in the tasks.
+        This method increments the current task ID and resets the step count.
+        """
+        self.current_task_id += 1
+        self.current_step = 1
+        if self.current_task_id > len(self.quest.tasks):
+            return False  # No more scenes to advance to
+        
 
     def trigger_random_event(self):
         """Trigger a random event and handle its outcome."""

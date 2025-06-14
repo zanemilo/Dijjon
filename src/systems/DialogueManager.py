@@ -178,15 +178,20 @@ class DialogueManager:
 
                 #print(f"next_narrative: {next_narrative}")
 
-                # FIXME: Need to handle when the current task narrative is finished,
-
-                # First, check for remaining scenes in current act.
-                # If scenes are remaining, load the next scene's narrative.
-
-                # Else, the next tasks narrative should be loaded.
-                # Example: a1_tasks final narrative is finished, the next task a2_tasks should be loaded.
-
                 if next_narrative is None:
-                    self.game.update_tasks()
+                    next_scene = self.quest_manager.advance_scene()
+                    if next_scene:
+                        print(f"\nAdvancing to next scene: {self.quest_manager.get_current_narrative()}")
+                        time.sleep(.3)
+                    else:
+                        print("\nNo more scenes available. Advancing act.")
+                        next_act = self.game.quest_manager.advance_act()
+                        if next_act:
+                            print(f"\nAdvancing to next act: {self.game.quest_manager.get_current_narrative()}")
+                            time.sleep(.3)
+                        else:
+                            print("\nNo more acts available. Ending dialogue.")
+                            self.running = False
+                        
 
         print("\nDialogue concluded.")

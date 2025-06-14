@@ -65,7 +65,12 @@ class Game:
         self.quest_manager.update_quest(self.quest)
         
     def next_act(self):
-        """Advance to the next act and update tasks accordingly."""
+        """Advance to the next act and update tasks accordingly.
+        This method marks the current quest as complete, archives it, and sets up the next act.
+        It also updates the quest manager with the new quest instance.
+        Returns:
+            Quest: The new Quest instance for the next act."""
+        
         # Mark the current quest as complete & archive it
         self.quest.complete = True
         self.completed_tasks.append(self.quest.tasks)
@@ -77,7 +82,7 @@ class Game:
             else: # Determine next act
                 next_act = task
                 break
-
+        
         # Update the tasks based on the next act
         self.update_tasks(next_act)
 
@@ -86,6 +91,7 @@ class Game:
 
         # Update the quest manager with the new quest
         self.quest_manager.update_quest(self.quest)
+        return self.quest
 
         
         
