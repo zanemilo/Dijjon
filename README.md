@@ -5,7 +5,7 @@ in the Fantasy RPG world of Dijjon.
 
 ## Author: Zane Milo Deso
 
-### Last Updated: 3/21/2025
+### Last Updated: 6/14/2025
 
 ## Table of Contents
 
@@ -52,7 +52,7 @@ Current Sprint Goal
             Simple music loops.
     
 ### Dynamic Quest & Narrative Mechanics
-- **Branching Quest System:** The quest engine dynamically handles quest instances and branching storylines through a modular dispatcher system. Quests are defined as collections of narrative tasks, each with multiple possible outcomes based on player choices.
+- **Branching Quest System:** The quest engine is planned to dynamically handle quest instances and branching storylines through a modular dispatcher system. Quests are defined as collections of narrative tasks, each with multiple possible outcomes based on player choices.
 - **Robust Internal Logic:**  
   - **Task Execution:** Quests are broken down into steps that execute scripted actions based on user input.
   - **Skill Checks & Randomization:** Integrated logic for dice rolls and dynamic skill checks ensures that outcomes reflect both player decisions and RNG mechanics.
@@ -61,7 +61,7 @@ Current Sprint Goal
 ### Planned Enhancements
 - **Visual & GUI Upgrades:** While current development focuses on internal logic and text-based mechanics, future iterations will transition into rich visual experiences:
   - **Interactive GUI:** Plans to integrate a full Pygame-based GUI that will replace terminal interactions with dynamic windows, interactive menus, and visual storytelling.
-  - **Audio-Visual Integration:** Future enhancements include background imagery, ambient sound effects, and music loops to further immerse the player in the world of Dijjon.
+  - **Audio-Visual Integration:** Future enhancements include background imagery, ambient sound effects, and music loops to further immerse the player in the world of Dijjon. Potentially, voice acted introduction and key dialogues.
 - **Extended Gameplay Systems:** Additional features such as an enhanced combat system, AI-driven NPC behavior, and a more complex quest generation system are already planned.
 
 ## Technical Highlights
@@ -82,6 +82,14 @@ Current Sprint Goal
     branching quests.
     Race: Create dedicated race.py file that will handle race
           functions and features.
+    Exploration: Implement a more detailed exploration system with
+    environmental interactions and dynamic events. This will allow
+    players to interact with the world in meaningful ways, such as
+    discovering hidden areas, solving puzzles, and encountering
+    random events that can affect their journey. They will be able
+    to explore the world of Dijjon in a more immersive way, with
+    detailed environments and interactive elements, such as merchants,
+    NPCs, and more.
 
 ### Character Development
 
@@ -100,7 +108,7 @@ Current Sprint Goal
 
     Environment: Define more environments and locations for
     exploration.
-    Mob Generation: Dynamically create challenges for players.
+    Mob & Event Generation: Dynamically create challenges for players.
 
 ### User Interface and Experience
 
@@ -115,7 +123,8 @@ Current Sprint Goal
 ### Technical Improvements
 
     Code Refactoring: Regularly review and refactor the codebase.
-    Testing and Debugging: Increase focus on testing all modules.
+    Testing and Debugging: Use unit tests to ensure code quality
+    via assertions, mock objects, and test cases.
 
 ### Documentation and Help System
 
@@ -126,8 +135,13 @@ Current Sprint Goal
 ## Major Change Log
 
 <ul>
+    <li>Refactored import statements to avoid circular imports:
+    All imports now delegated to main
+    <li>Implemented a new `Quest` class to handle quest
+    management and dynamic task execution. (6/14/2025)
+    Minor narrative flow required to be fully functional.
     <li>Refactored codebase to align with better practices
-    for directory design flow. See refactor below. (11/2/2024)
+    for directory design flow. (11/2/2024)
     main is functional after merging with Master.
     <li>Created base level unit tests, plans to expand and
     automate (9/15/2024)
