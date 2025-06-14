@@ -64,7 +64,7 @@ class Game:
         self.quest.update_tasks(self.tasks)
         self.quest_manager.update_quest(self.quest)
         
-    def next_act(self):
+    def advance_act(self):
         """Advance to the next act and update tasks accordingly.
         This method marks the current quest as complete, archives it, and sets up the next act.
         It also updates the quest manager with the new quest instance.
@@ -94,7 +94,6 @@ class Game:
         self.quest_manager.update_quest(self.quest)
         return self.quest
 
-        
         
 
     def run(self):
