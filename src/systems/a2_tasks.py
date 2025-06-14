@@ -96,8 +96,8 @@ tasks = {
         },
         "scripts": {
             1: Quest.method_call1,
-            2: Quest.method_call1,
-            3: Quest.method_call1,
+            2: Quest.method_call2,
+            3: Quest.method_call3,
         },
         "data": {
             'Environment': 'The Rift twists reality, shifting gravity and creating illusions.',
