@@ -185,7 +185,7 @@ class DialogueManager:
                         time.sleep(.3)
                     else:
                         print("\nNo more scenes available. Advancing act.")
-                        next_act = self.game.quest_manager.advance_act()
+                        next_act = self.game.advance_act()
                         if next_act:
                             print(f"\nAdvancing to next act: {self.game.quest_manager.get_current_narrative()}")
                             time.sleep(.3)
