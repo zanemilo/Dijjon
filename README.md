@@ -163,7 +163,7 @@ Current Sprint Goal
 
 ### Codebase Structure
 
-Code base made to align more so with the following codebase directory struct
+Code base -- Certain folders to be implemented in the future if not active yet.
 
     Dijjon/
     ├── assets/
