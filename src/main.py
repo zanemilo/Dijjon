@@ -87,6 +87,7 @@ class Game:
         self.update_tasks(next_act)
 
         # Create new Quest instance for the next act & Set self.quest to the new Quest instance
+        # FIXME: THe quest name and description should be dynamic based on the act
         self.quest = Quest("Act II - Scene I", "The Rift's Threshold", self.qtype, self.tasks)
 
         # Update the quest manager with the new quest
