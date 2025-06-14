@@ -179,8 +179,9 @@ class DialogueManager:
                 #print(f"next_narrative: {next_narrative}")
 
                 if next_narrative is None:
-                    next_scene = self.quest_manager.advance_scene()
-                    if next_scene:
+                    next_scene = self.quest_manager.advance_scene()  ## FIXME: This is not functioning as expected
+                    if next_scene:                                   ## It is advancing the scene, but posting it is advancing to next act.
+                                                                     ## Managed to advance up to ACT I, Scene III, but not beyond.
                         print(f"\nAdvancing to next scene: {self.quest_manager.get_current_narrative()}")
                         time.sleep(.3)
                     else:
