@@ -38,6 +38,14 @@ class Game:
             "skill_check": Quest.skill_check,
         }
 
+        self.all_tasks = [
+            a1_tasks,
+            a2_tasks,
+            a3_tasks,
+        ]
+
+        self.completed_tasks = []
+
         self.tasks = a1_tasks  # Default tasks
         self.quest = Quest("Act I - Scene I", "The Summit at Hollowreach Citadel", self.qtype, self.tasks)
         self.quest_manager = QuestManager(self.quest, self.text_renderer, self.screen)
@@ -55,6 +63,31 @@ class Game:
         self.tasks = new_tasks
         self.quest.update_tasks(self.tasks)
         self.quest_manager.update_quest(self.quest)
+        
+    def next_act(self):
+        """Advance to the next act and update tasks accordingly."""
+        # Mark the current quest as complete & archive it
+        self.quest.complete = True
+        self.completed_tasks.append(self.quest.tasks)
+
+        # Detect current act
+        for task in self.all_tasks:
+            if self.quest.tasks == task:
+                pass
+            else: # Determine next act
+                next_act = task
+                break
+
+        # Update the tasks based on the next act
+        self.update_tasks(next_act)
+
+        # Create new Quest instance for the next act & Set self.quest to the new Quest instance
+        self.quest = Quest("Act II - Scene I", "The Rift's Threshold", self.qtype, self.tasks)
+
+        # Update the quest manager with the new quest
+        self.quest_manager.update_quest(self.quest)
+
+        
         
 
     def run(self):

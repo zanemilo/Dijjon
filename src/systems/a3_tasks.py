@@ -4,7 +4,7 @@ tasks = {
     # Act 3 - Scene 1: The Shattered Plain
     1: {
         "name": "The Shattered Plain",
-        "type": "Dynamic Quest",
+        "type": "skill_check",
         "complete": False,
         "narrative": {
             1: (

@@ -22,7 +22,7 @@ def step_1_script(task_id, tasks, choice=None, player=None):
     if choice == 0:  # Survey the crowd
         success = player.check_roll("perception")
         print(success)
-        if success >= 12:
+        if success >= 5:
             tasks[task_id]["narrative"][2] = (
                 "Your eyes scan the hall, noting the subtle shifts in posture and expression. To the left, a Zyrian ambassador "
                 "stands rigid, their jeweled robes catching the flickering light. They speak in hushed tones to a delegate from the "
@@ -34,15 +34,7 @@ def step_1_script(task_id, tasks, choice=None, player=None):
                 "Approach the Drajhan knight to gauge their perspective.",
                 "Blend into the crowd, observing without drawing attention.",
             ]
-        else:
-            tasks[task_id]["narrative"][2] = (
-                "The grand hall is a sea of indistinct murmurs and shifting silhouettes. Despite your efforts to focus, the tension "
-                "in the air is too overwhelming, leaving you with only vague impressions of unease among the delegates."
-            )
-            tasks[task_id]["answers"][2] = [
-                "Take a deep breath and refocus.",
-                "Approach the nearest group and engage in conversation.",
-            ]
+        
 
     elif choice == 1:  # Approach the Zyrian mage
         tasks[task_id]["narrative"][2] = (
@@ -116,6 +108,7 @@ tasks = {
                 "For now, the world watched, holding its breath. But for how long could the string of tension hold before it snapped?"
             ),
             2: (
+                ""
                 "The protagonist arrives at Hollowreach Citadel, a majestic fortress nestled in the Vale of Dusk. "
                 "The reception area is grand, adorned with banners representing various factions. As the protagonist "
                 "enters the antechamber, they notice subtle tensions among the delegates. Conversations reveal underlying "
@@ -171,9 +164,10 @@ tasks = {
             ],
         },
         "scripts": {
-            1: Quest.method_call1,
-            2: step_1_script,
+            1: step_1_script,
+            2: Quest.method_call1,
             3: Quest.method_call1,
+            4: Quest.method_call1,
         },
         "data": {
             'Branching Choices': [

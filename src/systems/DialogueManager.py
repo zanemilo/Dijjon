@@ -99,19 +99,29 @@ class DialogueManager:
         Returns:
             dict: The updated tasks dict after running the script.
         """
-        script = self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step)
+        try:
+            script = self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step)
+        except KeyError as e:
+            print(f"Error: Script for step {step} not found in current task. {e}")
+            return
+        
         tasks = self.quest_manager.quest.tasks
+
+        # Ensure the quest and tasks are properly initialized
         if not self.quest_manager.quest or not self.quest_manager.quest.tasks:
             print("Error: Quest or tasks are not properly initialized.")
             return
-
+        
+        # Ensure the current task ID is valid
         if self.quest_manager.current_task_id not in self.quest_manager.quest.tasks:
             print(f"Error: Task ID {self.quest_manager.current_task_id} is not valid.")
             return
-        if callable(script):
+        if callable(script): # Check if the script is callable
             script(task_id=self.quest_manager.current_task_id, tasks=tasks, choice=choice, player=player)
         else:
             print(f"Script for step {step} is not callable.")
+
+        # Check if the script exists for the current step
         if not self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step):
             print(f"No script defined for step {step}.")
             return
@@ -130,14 +140,20 @@ class DialogueManager:
         Manages the full dialogue event, interacting with QuestManager for progression.
         """
         self.running = True
+
         while self.running and not self.quest_manager.is_quest_complete:
             current_step = self.quest_manager.current_step
+
             #self.clear_terminal()
-            # Display the current narrative
+            
             self.display_narrative()
 
             # Display and process options if available
-            options = self.quest_manager.get_current_options()
+            try:
+                options = self.quest_manager.get_current_options()
+            except KeyError as e:
+                print(f"Error: {e}. No options available for current step.")
+
             if options:
                 self.display_options()
                 player_choice_index = self.get_player_choice()
@@ -159,8 +175,18 @@ class DialogueManager:
 
                 # Pass the player's choice to QuestManager for processing
                 next_narrative = self.quest_manager.advance_step(player_choice_index)
-                print(f"next_narrative: {next_narrative}")
+
+                #print(f"next_narrative: {next_narrative}")
+
+                # FIXME: Need to handle when the current task narrative is finished,
+
+                # First, check for remaining scenes in current act.
+                # If scenes are remaining, load the next scene's narrative.
+
+                # Else, the next tasks narrative should be loaded.
+                # Example: a1_tasks final narrative is finished, the next task a2_tasks should be loaded.
+
                 if next_narrative is None:
-                    self.running = False
+                    self.game.update_tasks()
 
         print("\nDialogue concluded.")
