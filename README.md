@@ -8,12 +8,11 @@ in the Fantasy RPG world of Dijjon.
 ### Last Updated: 6/14/2025
 
 ## Table of Contents
-
-    Introduction
-    The Why
-    Key Features
-    Roadmap
-    Major Change Log
+- [Introduction](#introduction)
+- [Why I’m Making This Game](#why-im-making-this-game)
+- [Key Features](#key-features)
+- [Roadmap](#roadmap)
+- [Major Change Log](#major-change-log)
 
 ## Introduction
 
