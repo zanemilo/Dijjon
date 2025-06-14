@@ -85,6 +85,14 @@ tasks = {
                 "Establish protective barriers and defend against Rift threats, sustaining injuries and depleting resources.",
                 "Solve puzzles and explore hidden passages, uncovering relics but escalating instability."
             ],
+            3: [
+        
+            "Time itself warps around the party—each step forward snaps them back through fractured echoes, collapsing light-bridges beckoning with false exits as they race on.",
+        
+            "Behind hastily woven wards, the air trembles with distant screams; shadows ooze through the cracks, leaving the group bruised and their supplies steadily drained.",
+        
+            "Deeper tunnels pulse with half-formed visions; relics whisper forgotten memories, and Ashki's gaze darkens with obsession as phantom voices lure her further into the Rift's heart."
+            ],
         },
         "scripts": {
             1: Quest.method_call1,
@@ -129,6 +137,11 @@ tasks = {
                 "Destroy the Heart, causing massive instability but scattering enemies.",
                 "Seal the Heart, stabilizing the Rift but drawing future power struggles.",
                 "Harness the Heart, gaining immense power but risking corruption."
+            ],
+            3: [
+                "With the Heart shattered, reality fractures and the group escapes through a collapsing corridor, forever changed by the sacrifice.",
+                "The seal's glow fades into silence as the team steps into a calm beyond the Rift, their resolve tested but their bond unbroken.",
+                "Empowered by the Heart's essence, Ashki stands between worlds as the Rift reshapes itself, and the group braces for her next command."
             ],
         },
         "scripts": {
