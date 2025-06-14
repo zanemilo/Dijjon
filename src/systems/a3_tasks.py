@@ -36,6 +36,12 @@ tasks = {
                 "Claim the Rift - Gain powerful abilities at great risk.",
                 "Eliminate Leaders - Decimate enemies but risk faction collapse."
             ],
+            3: [
+                "Survivors scatter, leaving the Rift unchallenged, but Myrra vows to return.",
+                "Hold the Rift's perimeter against waves of enemies, but Kelgar warns of exhaustion.",
+                "Gain access to powerful abilities but trigger instability, Ashki's ambition grows.",
+                "Defeat rival leaders, scattering their forces, but the Azure Order vows revenge."
+            ],
         },
         "scripts": {
             1: Quest.method_call1,
@@ -92,6 +98,12 @@ tasks = {
                 "Use the Rift and unleash instability but gain power.",
                 "Defeat Factions and scatter enemies, risking internal collapse."
             ],
+            3: [
+                "Survivors escape, leaving the Rift unstable, Myrra vows to return.",
+                "The line holds, but Kelgar warns of exhaustion and future threats.",
+                "Ashki's power surges, reshaping the Rift but risking corruption.",
+                "Enemies scatter, but the Azure Order vows revenge against the protagonist."
+            ],
         },
         "scripts": {
             1: Quest.method_call1,
@@ -132,6 +144,18 @@ tasks = {
                 "Enforce Control through strength and fear.",
                 "Embrace Chaos and risk destabilization.",
                 "Walk Away and let the world shape its own fate."
+            ],
+            2: [
+                "Rebuild the Plain, restoring order and hope.",
+                "Dominate the factions, establishing a new regime.",
+                "Embrace chaos, allowing the Rift's power to reshape reality.",
+                "Walk away, leaving the world to its own devices."
+            ],
+            3: [
+                "Rebuilding Peace - Survivors unite, rebuilding the Plain with Myrra’s leadership.",
+                "Dominion - The protagonist rules with an iron fist, controlling the Rift’s power.",
+                "Chaos Unleashed - The Rift’s energy reshapes reality, leading to unpredictable outcomes.",
+                "Abandonment - The protagonist leaves, allowing factions to fight for control."
             ],
         },
         "scripts": {
