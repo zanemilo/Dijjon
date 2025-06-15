@@ -116,10 +116,9 @@ class DialogueManager:
         if self.quest_manager.current_task_id not in self.quest_manager.quest.tasks:
             print(f"Error: Task ID {self.quest_manager.current_task_id} is not valid.")
             return
-        if callable(script): # Check if the script is callable
-            script(task_id=self.quest_manager.current_task_id, tasks=tasks, choice=choice, player=player)
-        else:
+        if not callable(script): # Check if the script is callable
             print(f"Script for step {step} is not callable.")
+            return
 
         # Check if the script exists for the current step
         if not self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step):
