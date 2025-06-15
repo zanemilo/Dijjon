@@ -178,17 +178,26 @@ class DialogueManager:
 
                 #print(f"next_narrative: {next_narrative}")
 
-                if next_narrative is None:
-                    next_scene = self.quest_manager.advance_scene()  ## FIXME: This is not functioning as expected
+                # if next_narrative is None: # this check needs to be different, since scene and steps work as expected, then narr will be none
+                                           # so we check if curr narr step + 1 is greater than the length of the current task's narrative
+                                           # if so, we check if task scene + 1 is greater than the length of the tasks, if so, we advance the act.
+                if self.quest_manager.current_step + 1 > len(self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["narrative"]):
+                    try:                                               
+                        next_scene = self.quest_manager.advance_scene()  ## FIXME: This is not functioning as expected
+                    except KeyError as e:
+                        print(f"Error advancing scene: {e}. No more scenes available.")
                     if next_scene:                                   ## It is advancing the scene, but posting it is advancing to next act.
-                                                                     ## Managed to advance up to ACT I, Scene III, but not beyond.
+                                                                     ## Managed to advance up to ACT I but not to the next scene
                         print(f"\nAdvancing to next scene: {self.quest_manager.get_current_narrative()}")
                         time.sleep(.3)
                     else:
                         print("\nNo more scenes available. Advancing act.")
                         next_act = self.game.advance_act()
                         if next_act:
-                            print(f"\nAdvancing to next act: {self.game.quest_manager.get_current_narrative()}")
+                            # try:
+                            #     print(f"\nAdvancing to next act: {self.game.quest_manager.get_current_narrative()}")
+                            # except KeyError as e:
+                            #     print(f"Error advancing act - DM - {self.quest_manager}, {self.quest_manager.quest}: {e}. No more acts available.")
                             time.sleep(.3)
                         else:
                             print("\nNo more acts available. Ending dialogue.")

@@ -490,3 +490,5 @@ tasks = {
         },
     },
 }
+
+# print(tasks[6]["narrative"][2]) # task_id/scene 6, narrative step 2
