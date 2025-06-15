@@ -143,7 +143,7 @@ class DialogueManager:
         while self.running and not self.quest_manager.is_quest_complete:
             current_step = self.quest_manager.current_step
 
-            #self.clear_terminal()
+            self.clear_terminal()
             
             self.display_narrative()
 
