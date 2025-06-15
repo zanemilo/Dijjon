@@ -127,9 +127,9 @@ class DialogueManager:
             return
         else:
             tasks = self.quest_manager.quest.tasks
-            print(f"Running script for step {step}...")
+            #print(f"Running script for step {step}...") #DEBUG
             script = self.quest_manager.quest.tasks[self.quest_manager.current_task_id]["scripts"].get(step)
-            print(f"questmanager.quest.tasks: {tasks}")
+            #print(f"questmanager.quest.tasks: {tasks}") #DEBUG
             # Execute the script function, passing the quest manager and other relevant data
             return script(task_id=self.quest_manager.current_task_id, tasks=tasks, choice=choice, player=player)
 

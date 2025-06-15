@@ -102,10 +102,6 @@ class Game:
         return True
 
 
-        
-
-        
-
     def run(self):
         """Main game loop."""
         running = True
