@@ -119,11 +119,14 @@ class QuestManager:
         Advance to the next scene in the tasks.
         This method increments the current task ID and resets the step count.
         """
-        self.current_task_id += 1
-        self.current_step = 1
-        if self.current_task_id > len(self.quest.tasks):
-            return False  # No more scenes to advance to
-        
+        next_id = self.current_task_id + 1
+        if next_id <= len(self.quest.tasks):
+            self.current_task_id = next_id
+            self.current_step = 1
+            return True
+        else:
+            return False
+
 
     def trigger_random_event(self):
         """Trigger a random event and handle its outcome."""

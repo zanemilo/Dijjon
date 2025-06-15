@@ -70,29 +70,39 @@ class Game:
         It also updates the quest manager with the new quest instance.
         Returns:
             Quest: The new Quest instance for the next act."""
-        
-        # Mark the current quest as complete & archive it
-        self.quest.complete = True
-        self.completed_tasks.append(self.quest.tasks)
-
-        # Detect current act
+        ## FIXME: AWT FIX
+        # 1) figure out which act we're on
         for task in self.all_tasks:
             if self.quest.tasks == task:
                 pass
-            else: # Determine next act
+            else:
                 next_act = task
                 break
-        
-        # Update the tasks based on the next act
+        idx = self.all_tasks.index(self.tasks)
+        if idx < len(self.all_tasks) - 1:
+            next_act = self.all_tasks[idx + 1]
+        else:
+            return False   # no more acts
+
+        # 2) swap in the tasks and Quest/QuestManager
         self.update_tasks(next_act)
-
-        # Create new Quest instance for the next act & Set self.quest to the new Quest instance
-        # FIXME: THe quest name and description should be dynamic based on the act
-        self.quest = Quest("Act II - Scene I", "The Rift's Threshold", self.qtype, self.tasks)
-
-        # Update the quest manager with the new quest
+        self.quest = Quest(
+            f"Act {idx+2} – Scene 1",  # FIXME: Need to dynamically set the act name/desc etc
+            "…description…",
+            self.qtype,
+            self.tasks
+        )
         self.quest_manager.update_quest(self.quest)
-        return self.quest
+
+        # reset the QuestManager’s pointers for the new act
+        self.quest_manager.current_task_id = 1
+        self.quest_manager.current_step   = 1
+        self.quest_manager.is_quest_complete = False
+
+        return True
+
+
+        
 
         
 
