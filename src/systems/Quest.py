@@ -135,7 +135,7 @@ class Quest(Event):
     
     def find(self, task_id, tasks):
         """
-        Method to handle 'find' type tasks.
+        Method to handle 'find' type tasks as in quest specific.
 
         Args:
             task_id (int): The identifier of the current task.
@@ -149,7 +149,7 @@ class Quest(Event):
 
     def kill(self, task_id, tasks):
         """
-        Method to handle 'kill' type tasks.
+        Method to handle 'kill' type tasksas in quest specific.
 
         Args:
             task_id (int): The identifier of the current task.

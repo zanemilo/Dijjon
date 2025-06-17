@@ -1,5 +1,5 @@
 import pygame
-from .Button import Button
+from Button import Button
 
 
 # ------------------------------------------------------------------------------
@@ -125,9 +125,9 @@ def display_options(options, font_name, font_size, color, hover_color):
         buttons.append(button)
     return buttons
 
-# ------------------------------------------------------------------------------
-# EXAMPLE Main Game Code
-# ------------------------------------------------------------------------------
+# # ------------------------------------------------------------------------------
+# # EXAMPLE Main Game Code
+# # ------------------------------------------------------------------------------
 
 # # Constants for the game window dimensions
 # LENGTH = 800
@@ -175,9 +175,9 @@ def display_options(options, font_name, font_size, color, hover_color):
 #     typing_speed=100  # 100 milliseconds between each character
 # )
 
-# ------------------------------------------------------------------------------
-# Main Game Loop
-# ------------------------------------------------------------------------------
+# # ------------------------------------------------------------------------------
+# # Main Game Loop
+# # ------------------------------------------------------------------------------
 
 # # Flag to control the main game loop
 # running = True
