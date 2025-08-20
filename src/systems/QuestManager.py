@@ -61,17 +61,35 @@ class QuestManager:
 
     def get_current_options(self):
         if not self.quest or not self.quest.tasks:
-            raise ValueError("Quest or tasks are not initialized.")
-        
+            # No quest loaded -> no buttons
+            return []
+
         task = self.quest.tasks.get(self.current_task_id, {})
         answers = task.get("answers", {})
 
-        # Safely get the answers for the current step
-        options = answers.get(self.current_step, None)
+        options = answers.get(self.current_step)
+
+        # If options are missing or malformed, try to advance scene once
         if not options or not isinstance(options, list):
-            raise ValueError(f"Task {self.current_task_id} does not have valid answers for step {self.current_step}.")
-        
+            narrative = task.get("narrative", [])
+            # If we're beyond the end of this task, advance to the next one
+            if isinstance(narrative, (list, tuple, dict)) and self.current_step > len(narrative):
+                if self.advance_scene():
+                    # After advancing, try again (once) on the new task/step
+                    next_task = self.quest.tasks.get(self.current_task_id, {})
+                    next_answers = next_task.get("answers", {})
+                    options = next_answers.get(self.current_step, [])
+                    return options if isinstance(options, list) else []
+                else:
+                    # No more tasks -> no buttons
+                    self.is_quest_complete = True
+                    return []
+
+            # Otherwise, just return an empty set of buttons (don’t crash the UI)
+            return []
+
         return options
+
     
     def set_current_options(self, options : list):
         """Set the current options for the quest."""
@@ -105,11 +123,20 @@ class QuestManager:
                 self.current_step = 1
         else:
             self.current_step += 1
+
         try:
+            # If we've stepped past the narrative, finish this task
             if self.current_step > len(self.quest.tasks[self.current_task_id]["narrative"]):
                 self.complete_task()
-                return None
-        except TypeError as e:
+
+                # Try to move to the next task; if none, mark quest complete
+                if self.advance_scene():
+                    # we are now at step 1 of the next task
+                    return self.get_current_narrative()
+                else:
+                    self.is_quest_complete = True
+                    return None
+        except (TypeError, KeyError) as e:
             print(f"Error QuestManager.advance_step(): {e}")
 
         return self.get_current_narrative()

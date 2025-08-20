@@ -1,5 +1,9 @@
 import pygame
-from Button import Button
+import sys
+
+sys.path.append("..")  # Adds the parent directory to the Python module search path
+
+from systems.ui.Button import Button
 
 
 # ------------------------------------------------------------------------------
@@ -8,94 +12,197 @@ from Button import Button
 
 class TextRenderer:
     """
-    A class to handle rendering text with a typewriter effect in Pygame.
+    Typewriter + word-wrapped text renderer for Pygame.
 
-    Attributes:
-        screen (pygame.Surface): The Pygame surface where text will be rendered.
-        text (str): The complete text to display with the typewriter effect.
-        font (pygame.font.Font): The font used for rendering the text.
-        color (tuple): RGB color of the text.
-        position (tuple): (x, y) position on the screen where text starts.
-        typing_speed (int): Time in milliseconds between each character display.
-        displayed_text (str): The portion of text currently displayed.
-        text_index (int): Index of the next character to display.
-        last_update_time (int): Timestamp of the last character update.
-        finished (bool): Flag indicating if the entire text has been displayed.
+    Usage:
+        tr = TextRenderer(
+            screen=screen,
+            text="",
+            font_name=None,         # use default pygame font by default
+            font_size=24,
+            color=(255,255,255),
+            position=(50, 100),
+            typing_speed=50,        # ms per character
+            line_spacing=6,
+            max_width=None,         # if None, uses screen.get_width() - position[0] - right_margin
+            right_margin=50,
+            align="left"            # "left", "center", "right"
+        )
+        tr.reset("Your long paragraph ...")
+        ...
+        tr.update()
+        tr.draw()
     """
 
-    def __init__(self, screen, text, font_name, font_size, color, position, typing_speed):
-        """
-        Initializes the TextRenderer with the given parameters.
-
-        Args:
-            screen (pygame.Surface): The surface to render text on.
-            text (str): The full text to display.
-            font_name (str or None): The name/path of the font file. None for default font.
-            font_size (int): Size of the font.
-            color (tuple): RGB color tuple for the text.
-            position (tuple): (x, y) position for the text on the screen.
-            typing_speed (int): Delay in milliseconds between each character.
-        """
+    def __init__(
+        self,
+        screen,
+        text="",
+        font_name=None,
+        font_size=24,
+        color=(255, 255, 255),
+        position=(50, 100),
+        typing_speed=50,
+        line_spacing=6,
+        max_width=None,
+        right_margin=50,
+        align="left",
+    ):
         self.screen = screen
-        self.text = text
+        self.text = text or ""
         self.font = pygame.font.Font(font_name, font_size)
         self.color = color
-        self.position = position
-        self.typing_speed = typing_speed  # Time in milliseconds between characters
-        self.displayed_text = ''  # Text currently displayed on the screen
-        self.text_index = 0  # Index of the next character to display
-        self.last_update_time = pygame.time.get_ticks()  # Time when the last character was added
-        self.finished = False  # Indicates whether the entire text has been displayed
+        self.x, self.y = position
+        self.typing_speed = max(1, int(typing_speed))
+        self.line_spacing = line_spacing
+        self.right_margin = right_margin
+        self.align = align
+
+        scr_w = self.screen.get_width()
+        self.max_width = max_width if max_width is not None else max(10, scr_w - self.x - self.right_margin)
+
+        # typewriter state
+        self.display_char_count = 0
+        self.last_update_time = 0
+        self.finished = False
+
+        # cache of wrapped lines for the CURRENT visible substring
+        self._wrapped_lines = []
+
+        # initialize with current text
+        self._recompute_wrapping()
+
+    # -----------------------------
+    # Public API (used by main.py)
+    # -----------------------------
+    def reset(self, new_text: str):
+        """Reset to a new text and restart the typewriter effect."""
+        self.text = new_text or ""
+        self.display_char_count = 0
+        self.last_update_time = 0
+        self.finished = False
+        self._recompute_wrapping()
 
     def update(self):
-        """
-        Updates the displayed_text by adding one character at a time based on typing_speed.
-        Should be called every frame in the game loop.
-        """
-        if not self.finished:
-            current_time = pygame.time.get_ticks()
-            # Check if enough time has passed to add the next character
-            if current_time - self.last_update_time > self.typing_speed:
-                if self.text_index < len(self.text):
-                    # Append the next character to displayed_text
-                    self.displayed_text += self.text[self.text_index]
-                    self.text_index += 1
-                    self.last_update_time = current_time  # Reset the timer
-                else:
-                    # Render the text surface with the current displayed_text
-                    text_surface = self.font.render(self.displayed_text, True, self.color)
-                    # Get the rectangle area for positioning
-                    text_rect = text_surface.get_rect(topleft=self.position)
-                    # Blit the text surface onto the screen at the specified position
-                    self.screen.blit(text_surface, text_rect)
-                    # All characters have been displayed
-                    self.finished = True
+        """Advance the typewriter effect based on elapsed time."""
+        if self.finished:
+            return
+        now = pygame.time.get_ticks()
+        if self.last_update_time == 0:
+            self.last_update_time = now
+            return
+
+        elapsed = now - self.last_update_time
+        # how many characters to reveal since last tick
+        chars_to_add = elapsed // self.typing_speed
+        if chars_to_add > 0:
+            self.display_char_count = min(len(self.text), self.display_char_count + chars_to_add)
+            self.last_update_time = now
+            self.finished = (self.display_char_count >= len(self.text))
+            # recompute wrapping for the visible substring
+            self._recompute_wrapping()
 
     def draw(self):
-        """
-        Renders the currently displayed text onto the screen.
-        Should be called every frame in the game loop after update().
-        """
-        # Render the text surface with the current displayed_text
-        text_surface = self.font.render(self.displayed_text, True, self.color)
-        # Get the rectangle area for positioning
-        text_rect = text_surface.get_rect(topleft=self.position)
-        # Blit the text surface onto the screen at the specified position
-        self.screen.blit(text_surface, text_rect)
+        """Render the currently visible, word-wrapped text."""
+        line_y = self.y
+        for surf, rect in self._line_surfaces(self._wrapped_lines):
+            rect.topleft = (self._aligned_x(rect.width), line_y)
+            self.screen.blit(surf, rect)
+            line_y += rect.height + self.line_spacing
 
-    def reset(self, new_text=None):
-        """
-        Resets the TextRenderer to display new text.
+    # -----------------------------
+    # Internals
+    # -----------------------------
+    def _visible_text(self) -> str:
+        # Respect explicit newlines; typewriter reveals through them
+        return self.text[: self.display_char_count]
 
-        Args:
-            new_text (str, optional): New text to display. If None, retains the current text.
+    def _recompute_wrapping(self):
+        vt = self._visible_text()
+        self._wrapped_lines = self._wrap_text(vt, self.max_width)
+
+    def _wrap_text(self, text: str, max_width: int):
         """
-        if new_text:
-            self.text = new_text
-        self.displayed_text = ''
-        self.text_index = 0
-        self.last_update_time = pygame.time.get_ticks()
-        self.finished = False
+        Wrap text by words to fit within max_width (in pixels).
+        Preserves explicit '\n' as hard breaks.
+        """
+        lines = []
+        font = self.font
+
+        for paragraph in text.split("\n"):
+            if not paragraph:
+                # Preserve blank line
+                lines.append("")
+                continue
+
+            words = paragraph.split(" ")
+            cur_line = ""
+            for w in words:
+                candidate = w if not cur_line else (cur_line + " " + w)
+                if font.size(candidate)[0] <= max_width:
+                    cur_line = candidate
+                else:
+                    # If a single long token itself exceeds width, hard-break within the token
+                    if not cur_line:
+                        cur_line = self._hard_break_long_token(w, max_width)
+                        # _hard_break_long_token returns a list of segments except possibly last short piece
+                        *full_segs, tail = cur_line
+                        lines.extend(full_segs)
+                        cur_line = tail
+                    else:
+                        lines.append(cur_line)
+                        # start a new line with current word; if it still doesn't fit, hard-break it
+                        if font.size(w)[0] <= max_width:
+                            cur_line = w
+                        else:
+                            segs = self._hard_break_long_token(w, max_width)
+                            *full_segs, tail = segs
+                            lines.extend(full_segs)
+                            cur_line = tail
+
+            if cur_line:
+                lines.append(cur_line)
+
+        return lines
+
+    def _hard_break_long_token(self, token: str, max_width: int):
+        """
+        Break a single overlong token (e.g., a long URL or unspaced hyphen string)
+        into chunks that fit the width. Returns list of pieces; caller will place all
+        but the last as fixed lines, and keep the last as the current line.
+        """
+        pieces = []
+        start = 0
+        while start < len(token):
+            lo, hi = start + 1, len(token)
+            best = start + 1
+            # binary search the longest slice that fits
+            while lo <= hi:
+                mid = (lo + hi) // 2
+                if self.font.size(token[start:mid])[0] <= max_width:
+                    best = mid
+                    lo = mid + 1
+                else:
+                    hi = mid - 1
+            pieces.append(token[start:best])
+            start = best
+        return pieces
+
+    def _line_surfaces(self, lines):
+        for line in lines:
+            surf = self.font.render(line, True, self.color)
+            yield surf, surf.get_rect()
+
+    def _aligned_x(self, line_width: int) -> int:
+        if self.align == "left":
+            return self.x
+        elif self.align == "center":
+            return self.x + (self.max_width - line_width) // 2
+        elif self.align == "right":
+            return self.x + (self.max_width - line_width)
+        else:
+            return self.x
+
 
 # ------------------------------------------------------------------------------
 # display_options Function

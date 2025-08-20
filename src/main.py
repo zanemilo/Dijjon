@@ -4,6 +4,7 @@
 
 import random as r  
 import pygame
+import time
 
 from entities.PlayerFactory import PlayerFactory
 from systems.ui.text import TextRenderer
@@ -115,7 +116,9 @@ class Game:
                 print(f"Error creating player: {e}")
                 running = False
 
-        self.dialogue_manager.run_dialogue_event(self.player)
+        # Comment out below line to run in pygame window
+        # Note: Player factory will at the moment remain in console.
+        #self.dialogue_manager.run_dialogue_event(self.player)
 
         while running:
             for event in pygame.event.get():
@@ -124,11 +127,17 @@ class Game:
 
                 # Handle button clicks
                 button_index = self.button_manager.handle_event(event)
+                # FIXME: This all needs to be refactored to include the steps below:
+                # 1. UIState / next() in QM
+                # 2.Update Game.run() to use next() and UIState
+                # 3. Remover legacy per-frame UI resets
+                # 4. Ensure QM has references to player and/or call game.advance_act()
+                # 5. Test/Clean up
                 if button_index is not None:
                     self.quest_manager.advance_step(button_index)
                     self.button_manager.create_buttons(self.quest_manager.get_current_options())
                     self.text_renderer.reset(self.quest_manager.get_current_narrative())
-
+            
             # Clear the screen
             self.screen.fill((0, 0, 0))
 
@@ -136,6 +145,7 @@ class Game:
             if not self.quest_manager.is_quest_complete:
                 self.text_renderer.update()
                 self.text_renderer.draw()
+                
             else:
                 self.text_renderer.reset("Quest Complete! Congratulations!")
                 self.text_renderer.update()
