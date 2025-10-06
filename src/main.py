@@ -32,7 +32,7 @@ class Game:
             font_size=24,
             color=(255, 255, 255),  # White text
             position=(50, 100),
-            typing_speed=80 # Typing speed in milliseconds
+            typing_speed=16 # Typing speed in milliseconds
         )
 
         self.qtype = {
@@ -54,6 +54,12 @@ class Game:
 
         self.sfx = {
             'bg':'assets/audio/bg.wav',
+            'btn1': pygame.mixer.Sound('assets/audio/ui/btn1.mp3'),
+            'btn2': pygame.mixer.Sound('assets/audio/ui/btn2.mp3'),
+            'btn3': pygame.mixer.Sound('assets/audio/ui/btn3.mp3'),
+            'btn4': pygame.mixer.Sound('assets/audio/ui/btn4.mp3'),
+            'btn5': pygame.mixer.Sound('assets/audio/ui/btn5.mp3'),
+            'btn6': pygame.mixer.Sound('assets/audio/ui/btn6.mp3'),
         }
 
         self.completed_tasks = []
@@ -148,6 +154,8 @@ class Game:
                 # 4. Ensure QM has references to player and/or call game.advance_act()
                 # 5. Test/Clean up
                 if button_index is not None:
+                    num = int(r.uniform(1, 6))
+                    self.sfx[f'btn{num}'].play()
                     self.quest_manager.advance_step(button_index)
                     self.button_manager.create_buttons(self.quest_manager.get_current_options())
                     self.text_renderer.reset(self.quest_manager.get_current_narrative())
