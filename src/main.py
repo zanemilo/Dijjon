@@ -147,6 +147,7 @@ class Game:
 
                 # Handle button clicks
                 button_index = self.button_manager.handle_event(event)
+                ui_button_index = self.button_manager.handle_UI_event(event)
                 # FIXME: This all needs to be refactored to include the steps below:
                 # 1. UIState / next() in QM
                 # 2.Update Game.run() to use next() and UIState
@@ -159,6 +160,13 @@ class Game:
                     self.quest_manager.advance_step(button_index)
                     self.button_manager.create_buttons(self.quest_manager.get_current_options())
                     self.text_renderer.reset(self.quest_manager.get_current_narrative())
+                if ui_button_index is not None:
+                    num = int(r.uniform(1, 6))
+                    self.sfx[f'btn{num}'].play()
+                    self.quest_manager.advance_step(button_index)
+                    self.button_manager.create_buttons(self.quest_manager.get_current_options())
+                    self.text_renderer.reset(self.quest_manager.get_current_narrative())
+            
             
             # Clear the screen
             self.screen.fill((0, 0, 0))
