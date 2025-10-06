@@ -32,7 +32,7 @@ class Game:
             font_size=24,
             color=(255, 255, 255),  # White text
             position=(50, 100),
-            typing_speed=50 # Typing speed in milliseconds
+            typing_speed=80 # Typing speed in milliseconds
         )
 
         self.qtype = {

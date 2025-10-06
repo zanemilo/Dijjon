@@ -25,8 +25,8 @@ class ButtonManager:
                 size=(700, 50), 
                 font_name=None,  # Default font
                 font_size=24, 
-                color=(100, 50, 50), 
-                hover_color=(90, 39, 40)
+                color=(255, 255, 255), 
+                hover_color=(90, 90, 90)
             )
             self.buttons.append(button)
 
