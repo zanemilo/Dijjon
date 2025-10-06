@@ -7,6 +7,7 @@ import pygame
 import time
 
 from entities.PlayerFactory import PlayerFactory
+from entities.Player import Player
 from systems.utils import load_image, load_images, Animation
 from systems.ui.text import TextRenderer
 from systems.ButtonManager import ButtonManager
@@ -69,11 +70,12 @@ class Game:
         self.quest_manager = QuestManager(self.quest, self.text_renderer, self.screen)
 
         self.player_factory = PlayerFactory()
-        self.player = None
+        # self.player = None
+        self.player = Player("random_name", 'Humara', 'Psion')
 
         self.button_manager = ButtonManager(self.screen)
         self.button_manager.create_buttons(self.quest_manager.get_current_options())
-
+        self.button_manager.create_UI_buttons(['Menu'], pos=(250, 50))
         self.dialogue_manager = DialogueManager(game=self, quest_manager=self.quest_manager)
 
     def update_tasks(self, new_tasks):
@@ -163,9 +165,8 @@ class Game:
                 if ui_button_index is not None:
                     num = int(r.uniform(1, 6))
                     self.sfx[f'btn{num}'].play()
-                    self.quest_manager.advance_step(button_index)
-                    self.button_manager.create_buttons(self.quest_manager.get_current_options())
-                    self.text_renderer.reset(self.quest_manager.get_current_narrative())
+                    self.button_manager.create_UI_buttons(['Menu'], pos=(100, 600))
+                    
             
             
             # Clear the screen

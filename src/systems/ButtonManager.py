@@ -33,14 +33,14 @@ class ButtonManager:
 
     def create_UI_buttons(self, options, pos=(100, 600)):
         """Create UI buttons for the given options."""
-        self.ui_buttons.clear()  # Clear previous buttons
+        # self.ui_buttons.clear()  # Clear previous buttons
         for i, option in enumerate(options):
             button = Button(
                 text=option, 
                 position=pos, 
                 size=(700, 50), 
                 font_name=None,  # Default font
-                font_size=24, 
+                font_size=48, 
                 color=(150, 255, 100), 
                 hover_color=(80, 90, 70)
             )
