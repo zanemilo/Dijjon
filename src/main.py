@@ -19,6 +19,7 @@ from systems.a3_tasks import tasks as a3_tasks
 
 class Game:
     def __init__(self):
+        pygame.mixer.init()
         pygame.init()
         self.screen = pygame.display.set_mode((800, 600))
         pygame.display.set_caption('Dijjon')
@@ -120,6 +121,9 @@ class Game:
         # Note: Player factory will at the moment remain in console.
         #self.dialogue_manager.run_dialogue_event(self.player)
 
+        pygame.mixer.music.load("./assets/audio/bg.wav")
+        pygame.mixer.music.play(loops=-1)
+
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -154,6 +158,7 @@ class Game:
             self.button_manager.draw_buttons()
             pygame.display.flip()
 
+        pygame.mixer.music.stop()
         pygame.quit()
 
 
