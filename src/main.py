@@ -7,6 +7,7 @@ import pygame
 import time
 
 from entities.PlayerFactory import PlayerFactory
+from systems.utils import load_image, load_images, Animation
 from systems.ui.text import TextRenderer
 from systems.ButtonManager import ButtonManager
 from systems.Quest import Quest
@@ -45,6 +46,15 @@ class Game:
             a2_tasks,
             a3_tasks,
         ]
+
+        self.assets = {
+            'bg': load_image('bg.png'),
+            
+        }
+
+        self.sfx = {
+            'bg':'assets/audio/bg.wav',
+        }
 
         self.completed_tasks = []
 
@@ -121,7 +131,7 @@ class Game:
         # Note: Player factory will at the moment remain in console.
         #self.dialogue_manager.run_dialogue_event(self.player)
 
-        pygame.mixer.music.load("./assets/audio/bg.wav")
+        pygame.mixer.music.load(self.sfx['bg'])
         pygame.mixer.music.play(loops=-1)
 
         while running:
@@ -144,7 +154,7 @@ class Game:
             
             # Clear the screen
             self.screen.fill((0, 0, 0))
-
+            self.screen.blit(self.assets['bg'], (0, 0))
             # Render quest narrative and buttons
             if not self.quest_manager.is_quest_complete:
                 self.text_renderer.update()
