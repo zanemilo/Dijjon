@@ -132,7 +132,7 @@ tasks = {
         },
         "answers": {
             1: [
-                "Enter '1' to continue . . .",
+                "Click here to continue . . .",
             ],
             2: [
                 "Reception Area: (Defiant) – 'We don’t need to arrest you. Your own kind will turn soon enough.'",
