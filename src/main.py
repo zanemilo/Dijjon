@@ -135,10 +135,6 @@ class Game:
                 print(f"Error creating player: {e}")
                 running = False
 
-        # Comment out below line to run in pygame window
-        # Note: Player factory will at the moment remain in console.
-        #self.dialogue_manager.run_dialogue_event(self.player)
-
         pygame.mixer.music.load(self.sfx['bg'])
         pygame.mixer.music.play(loops=-1)
 
