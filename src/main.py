@@ -75,8 +75,10 @@ class Game:
 
         self.button_manager = ButtonManager(self.screen)
         self.button_manager.create_buttons(self.quest_manager.get_current_options())
-        self.button_manager.create_UI_buttons(['Menu'], pos=(250, 50))
+        self.button_manager.create_UI_buttons(['Menu'], pos=(700, 10))
         self.dialogue_manager = DialogueManager(game=self, quest_manager=self.quest_manager)
+        self.text_renderer.reset(self.quest_manager.get_current_narrative())
+
 
     def update_tasks(self, new_tasks):
         """Update the tasks and refresh dependent systems."""
@@ -156,8 +158,8 @@ class Game:
                     num = int(r.uniform(1, 6))
                     self.sfx[f'btn{num}'].play()
                     self.quest_manager.advance_step(button_index)
-                    self.button_manager.create_buttons(self.quest_manager.get_current_options())
                     self.text_renderer.reset(self.quest_manager.get_current_narrative())
+                    self.button_manager.create_buttons(self.quest_manager.get_current_options())
                 if ui_button_index is not None:
                     num = int(r.uniform(1, 6))
                     self.sfx[f'btn{num}'].play()

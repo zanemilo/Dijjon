@@ -22,10 +22,10 @@ class ButtonManager:
         for i, option in enumerate(options):
             button = Button(
                 text=option, 
-                position=(50, 400 + i * 60), 
-                size=(700, 50), 
+                position=(200, 300 + i * 20), 
+                size=(400, 20), 
                 font_name=None,  # Default font
-                font_size=24, 
+                font_size=16, 
                 color=(255, 255, 255), 
                 hover_color=(90, 90, 90)
             )
@@ -38,11 +38,11 @@ class ButtonManager:
             button = Button(
                 text=option, 
                 position=pos, 
-                size=(700, 50), 
+                size=(60, 40), 
                 font_name=None,  # Default font
-                font_size=48, 
-                color=(150, 255, 100), 
-                hover_color=(80, 90, 70)
+                font_size=24, 
+                color=(100, 255, 50), 
+                hover_color=(20, 200, 30)
             )
             self.ui_buttons.append(button)
 
