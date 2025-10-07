@@ -10,7 +10,7 @@ import sys
 # Ensure parent directory is on the search path for imports
 sys.path.append("..")
 
-from core.settings import Settings
+from systems.settings import Settings
 from entities.PlayerFactory import PlayerFactory
 from entities.MobFactory import MobFactory
 from entities.Player import Player
