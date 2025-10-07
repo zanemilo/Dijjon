@@ -32,7 +32,7 @@ class Game:
             font_name=None,
             font_size=24,
             color=(255, 255, 255),  # White text
-            position=(50, 100),
+            position=(50, 48),
             typing_speed=16 # Typing speed: milliseconds time gap between chars
         )
 
