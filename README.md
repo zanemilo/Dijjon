@@ -40,6 +40,114 @@ Current Sprint Goal
         All imports now delegated to main.py or middle-man modules to ensure clarity and consistency.
         Refactor complete; see Change Log.
 
+        Absolutely — here’s a **more detailed README addition** that fully captures the *why*, *how*, and *intended structure* of your future refactor. It’s written in your dev voice for clarity and motivation later:
+
+---
+### Planned Refactor: Data-Driven Narrative System
+
+#### Why
+The current design uses Python scripts/classes per scene (`a1_tasks`, etc.), which mixes **content (story text, choices)** with **logic (branching, checks, events)**.  
+This becomes harder to maintain as scenes multiply — logic repeats, imports get messy, and changes risk breaking previous scenes.
+
+To scale Dijjon’s narrative (and any future games), the goal is to make **the data drive the flow**, not the code.  
+That means Python only runs generic engine logic, while **JSON defines what happens** — dialogue, branching, and triggers.
+
+Benefits:
+- Write once, reuse everywhere (DRY principle)
+-  Add new scenes without editing Python
+-  Save/load works cleanly via dialogue IDs and node IDs
+-  Writers/designers can edit content directly
+-  Easier to test, validate, and localize
+-  Engine is reusable for future projects or sequels
+
+---
+
+#### How
+
+1. **Data → JSON**
+- Each dialogue, quest, or event becomes a JSON file (e.g., `data/dialogue/act1_scene1.json`).
+- JSON stores:
+    - Dialogue text and speaker
+    - Choices with `goto` (local or cross-file)
+    - Optional skill checks or side-effects (`ops`)
+    - Optional high-level triggers (`events`) like “start combat” or “push new scene”
+
+Example:
+```json
+{
+    "id": "dlg.act1.scene1",
+    "start": "intro",
+    "nodes": {
+    "intro": {
+        "line": {"speaker": "Narrator", "text": "You arrive at Hollowreach Citadel."},
+        "choices": [
+        {"text": "Survey the crowd", "goto": "survey_check"},
+        {"text": "Approach the mage", "goto": "approach_mage"}
+        ]
+    },
+    "survey_check": {
+        "ops": [{"op": "skill_check", "skill": "perception", "dc": 5}],
+        "branch": {"on_pass": "survey_pass", "on_fail": "survey_fail"}
+    },
+    "survey_pass": {
+        "line": {"speaker": "Narrator", "text": "You notice key diplomats whispering nervously."},
+        "ops": [{"op": "set_flag", "name": "intel.gala", "value": true}]
+    }
+    }
+}
+````
+
+**Engine → DialogueRunner**
+
+* A single Python class interprets the JSON.
+* Runs each node, executes its `ops`, and moves to the next `goto` or `branch`.
+* Returns:
+
+    * A **view** (speaker, text, choices)
+    * A list of **events** for the SceneManager (e.g., push new scene, start combat)
+
+**Logic → Ops System**
+
+* Tiny modular functions handle gameplay logic:
+
+    ```python
+    def op_skill_check(gs, args, rng):
+        total = gs.player.check_roll(args["skill"])
+        passed = total >= args["dc"]
+        return {"pass": passed}
+    ```
+* Registered in an `OPCODES` dictionary so JSON can call them by name.
+* Keeps engine flexible — add new mechanics by adding a new op, not rewriting scenes.
+
+**Flow → SceneManager**
+
+* SceneManager remains focused on stack transitions (`push`, `pop`, `replace`).
+* DialogueScene acts as a **presenter**: renders current node, passes player choices to the DialogueRunner, and forwards any emitted events (like starting combat).
+
+**Future-Proofing**
+
+* Later, `JsonStore` or `ContentStore` handles loading + caching.
+* Cross-file jumps via `"goto": "dlg.act1.scene2#start"`.
+* Optional SQLite backend for scalable content management later.
+
+---
+
+### Quick Reminder
+
+* **Don’t delete old task scripts yet.**
+Migrate one scene at a time and validate with your bridge layer.
+* **Engine = Logic, JSON = Content.**
+Keep these cleanly separated.
+* **Goal:** Once this system is stable, you can write full storylines in JSON — no new Python scenes required.
+
+
+
+    ---
+
+    Would you like me to format it as a section ready to paste into your actual `README.md` (with headers and indentation matched to your repo’s style)?
+    ```
+
+
     Key Development Tasks:
 
         Integrate skill checks, combat systems, and player mechanics into the Quest class.
