@@ -240,6 +240,8 @@ Key Development Tasks:
 ## Major Change Log
 
 <ul>
+    <li>Implemented basic visuals, narrative engine, UI, bg music and SFX.
+    Plans to refector into Data-Driven model -> Scene -> SceneManager (10/8/2025)
     <li>Refactored import statements to avoid circular imports:
     All imports now delegated to main
     <li>Implemented a new `Quest` class to handle quest
@@ -267,46 +269,5 @@ Key Development Tasks:
     and collaboration.
 </ul>
 
-### Codebase Structure
 
-Code base -- Certain folders to be implemented in the future if not active yet.
-
-    Dijjon/
-    ├── assets/
-    │   ├── audio/                # For storing any sound/music files
-    │   ├── fonts/                # For font resources
-    │   ├── images/               # Restructured image assets here
-    │   │   ├── characters/
-    │   │   ├── enemies/
-    │   │   ├── environment/
-    │   │   └── ui/
-    │   └── levels/
-    │       └── tilesets/
-    ├── docs/
-    ├── src/
-    │   ├── core/
-    │   │   ├── config.py         # New, consolidated config file
-    │   │   ├── constants.py      # Constants and universal settings
-    │   │   ├── main.py           # Renamed main game loop
-    │   │   └── settings.py
-    │   ├── entities/
-    │   │   ├── player.py         # From `scripts/entity/Player.py`
-    │   │   ├── enemy.py          # From `scripts/entity/Mob.py`
-    │   │   ├── npc.py
-    │   │   └── effects/          # Special effects like lycan, vampire
-    │   ├── systems/
-    │   │   ├── ai/
-    │   │   ├── audio/
-    │   │   ├── events/
-    │   │   ├── graphics/
-    │   │   ├── input/
-    │   │   ├── physics/
-    │   │   ├── rendering.py
-    │   │   └── ui.py
-    │   └── world/
-    │       ├── dungeon/
-    │       └── environment.py
-    ├── tests/
-    ├── tools/
-    └── README.md
 
