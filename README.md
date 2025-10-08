@@ -144,19 +144,17 @@ Keep these cleanly separated.
 
     ---
 
-    Would you like me to format it as a section ready to paste into your actual `README.md` (with headers and indentation matched to your repo’s style)?
-    ```
 
 
-    Key Development Tasks:
+Key Development Tasks:
 
-        Integrate skill checks, combat systems, and player mechanics into the Quest class.
-        Fully implement the Enchanted Forest hardcoded quest, adding functional puzzle elements.
-        Connect the text renderer (pygame GUI) with the quest system to shift gameplay from terminal to an interactive game window.
-        Introduce basic audio-visual elements for immersion:
-            Background images.
-            Ambient sound effects.
-            Simple music loops.
+    Integrate skill checks, combat systems, and player mechanics into the Quest class.
+    Fully implement the Enchanted Forest hardcoded quest, adding functional puzzle elements.
+    Connect the text renderer (pygame GUI) with the quest system to shift gameplay from terminal to an interactive game window.
+    Introduce basic audio-visual elements for immersion:
+        Background images.
+        Ambient sound effects.
+        Simple music loops.
     
 ### Dynamic Quest & Narrative Mechanics
 - **Branching Quest System:** The quest engine is planned to dynamically handle quest instances and branching storylines through a modular dispatcher system. Quests are defined as collections of narrative tasks, each with multiple possible outcomes based on player choices.
