@@ -18,7 +18,7 @@ class Start(Scene):
             if e.type == pg.KEYDOWN and e.key == pg.K_c:
                 print("Switching to Combat Scene")
                 self.egg = True
-            if e.type == pg.KEYDOWN and e.key == pg.Q_c:
+            if e.type == pg.KEYDOWN and e.key == pg.K_q:
                 print("Switching to Overworld Scene")
                 self.egg = False    
 
