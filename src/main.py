@@ -181,6 +181,7 @@ class Game:
                     num = int(r.uniform(1, 6))
                     self.sfx[f'btn{num}'].play()
                     self.button_manager.create_UI_buttons(['Menu'], pos=(100, 600))
+                self.scene_manager.handle_event(event)
                     
             
             
@@ -189,8 +190,8 @@ class Game:
             self.screen.blit(self.assets['bg'], (0, 0))
             # Render quest narrative and buttons
             if not self.quest_manager.is_quest_complete:
-                self.text_renderer.update()
-                self.text_renderer.draw()
+                # self.text_renderer.update()
+                # self.text_renderer.draw()
                 self.scene_manager.update(self.get_dt())
                 self.scene_manager.draw()
                 

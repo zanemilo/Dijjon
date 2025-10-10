@@ -15,7 +15,8 @@ class Start(Scene):
                 print("Switching to Combat Scene")
 
         def update(self, dt, passive=False): 
-             print(f"Updating Start Scene [dt:", dt, "]")
+             if dt > 0.18:
+                print(f"Updating Start Scene [dt:", dt, "]")
 
         def draw(self, screen): 
              screen.fill((24,30,40))
