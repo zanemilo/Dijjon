@@ -14,9 +14,12 @@ from systems.ButtonManager import ButtonManager
 from systems.Quest import Quest
 from systems.QuestManager import QuestManager
 from systems.DialogueManager import DialogueManager
+from systems.SceneManager import SceneManager, Scene
 from systems.a1_tasks import tasks as a1_tasks
 from systems.a2_tasks import tasks as a2_tasks
 from systems.a3_tasks import tasks as a3_tasks
+
+from systems.scenes.Start import Start
 
 
 class Game:
@@ -24,6 +27,8 @@ class Game:
         pygame.mixer.init()
         pygame.init()
         self.screen = pygame.display.set_mode((800, 600))
+        self.clock = pygame.time.Clock()
+        self.dt = self.clock.tick(60) / 1000.0
         pygame.display.set_caption('Dijjon')
 
         self.text_renderer = TextRenderer(
@@ -65,6 +70,8 @@ class Game:
 
         self.completed_tasks = []
 
+        self.ctx = {}
+
         self.tasks = a1_tasks  # Default tasks
         self.quest = Quest("Act I - Scene I", "The Summit at Hollowreach Citadel", self.qtype, self.tasks)
         self.quest_manager = QuestManager(self.quest, self.text_renderer, self.screen)
@@ -78,6 +85,12 @@ class Game:
         self.button_manager.create_UI_buttons(['Menu'], pos=(700, 10))
         self.dialogue_manager = DialogueManager(game=self, quest_manager=self.quest_manager)
         self.text_renderer.reset(self.quest_manager.get_current_narrative())
+
+        self.ctx['manager'] = None
+
+        self.scene_manager = SceneManager(self.screen, Start(), self.ctx)
+        self.ctx['manager'] = self.scene_manager
+
 
 
     def update_tasks(self, new_tasks):
@@ -123,6 +136,10 @@ class Game:
 
         return True
 
+    def get_dt(self):
+        """Calculate delta time since last frame."""
+        self.dt = self.clock.tick(60) / 1000.0
+        return self.dt
 
     def run(self):
         """Main game loop."""
@@ -174,6 +191,8 @@ class Game:
             if not self.quest_manager.is_quest_complete:
                 self.text_renderer.update()
                 self.text_renderer.draw()
+                self.scene_manager.update(self.get_dt())
+                self.scene_manager.draw()
                 
             else:
                 self.text_renderer.reset("Quest Complete! Congratulations!")
