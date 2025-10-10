@@ -86,7 +86,6 @@ class Game:
         self.dialogue_manager = DialogueManager(game=self, quest_manager=self.quest_manager)
         self.text_renderer.reset(self.quest_manager.get_current_narrative())
 
-        self.ctx['manager'] = None
 
         self.scene_manager = SceneManager(self.screen, Start(), self.ctx)
         self.ctx['manager'] = self.scene_manager

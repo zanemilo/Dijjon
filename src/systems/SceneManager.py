@@ -106,7 +106,9 @@ class SceneManager:
         self.enable_passive_updates = enable_passive_updates
         self.transition: Optional[_BaseTransition] = None
         # Start with the initial scene
+        self.ctx['manager'] = self
         self.replace(initial_scene)
+        
 
     # --- Introspection ---
     def current(self) -> Scene:

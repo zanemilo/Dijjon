@@ -4,11 +4,13 @@ from ..SceneManager import SceneManager, Scene
 import pygame as pg
 import random as r
 import math
+from .Overworld import Overworld
 
 class Start(Scene):
         
         def on_enter(self, ctx): 
              self.manager = ctx['manager']
+             print(f"Debug: Start.py -> self.manager: {self.manager}\non_enter called with ctx: {ctx}")
              self.ctx = ctx
              self.egg = False
              
@@ -20,6 +22,8 @@ class Start(Scene):
                 self.egg = True
             if e.type == pg.KEYDOWN and e.key == pg.K_q:
                 print("Switching to Overworld Scene")
+                self.manager.replace(Overworld())
+
                 self.egg = False    
 
         def update(self, dt, passive=False): 
