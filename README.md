@@ -16,7 +16,7 @@ in the Fantasy RPG world of Dijjon.
 
 ## Introduction
 
-Dijjon Alpha is a text-based fantasy RPG that combines RNG mechanics with dynamic storytelling. No two playthroughs are alike, offering unique encounters and outcomes with each session. The game incorporates Agile development practices, structured around focused mini-sprints for iterative progress.
+Dijjon Alpha is a text-based fantasy RPG that combines RNG mechanics with dynamic storytelling. No two playthroughs are alike, offering unique encounters and outcomes with each session. 
 
 # Why I’m Making This Game
 
@@ -29,8 +29,9 @@ At its core, this project is about expression—about finding a way to share my 
 ## Key Features
 
 ### Custom Engine Architecture
+
 - **Modular Design:** The codebase is organized into dedicated modules (e.g., `Quest`, `QuestManager`, `DialogueManager`, `InteractionManager`) to separate concerns and enhance maintainability.
-- **Agile & Iterative Development:** The project employs mini-sprints to continuously integrate new features, refactor code, and refine gameplay mechanics.
+
 Current Sprint Goal
 
     Primary Goals:
@@ -41,9 +42,8 @@ Current Sprint Goal
 #### Why
 The current design uses Python scripts/classes per scene (`a1_tasks`, etc.), which mixes **content (story text, choices)** with **logic (branching, checks, events)**.  
 This becomes harder to maintain as scenes multiply — logic repeats, imports get messy, and changes risk breaking previous scenes.
-
-To scale Dijjon’s narrative (and any future games), the goal is to make **the data drive the flow**, not the code.  
-That means Python only runs generic engine logic, while **JSON defines what happens** — dialogue, branching, and triggers.
+  
+**JSON defines what happens** — dialogue, branching, and triggers.
 
 Benefits:
 - Write once, reuse everywhere (DRY principle)
@@ -90,7 +90,7 @@ Example:
 }
 ````
 
-**Engine → DialogueRunner**
+**Engine → Parser**
 
 * A single Python class interprets the JSON.
 * Runs each node, executes its `ops`, and moves to the next `goto` or `branch`.
@@ -115,60 +115,8 @@ Example:
 **Flow → SceneManager**
 
 * SceneManager remains focused on stack transitions (`push`, `pop`, `replace`).
-* DialogueScene acts as a **presenter**: renders current node, passes player choices to the DialogueRunner, and forwards any emitted events (like starting combat).
-
-**Future-Proofing**
-
-* Later, `JsonStore` or `ContentStore` handles loading + caching.
-* Cross-file jumps via `"goto": "dlg.act1.scene2#start"`.
-* Optional SQLite backend for scalable content management later.
 
 ---
-
-### Quick Reminder
-
-* **Don’t delete old task scripts yet.**
-Migrate one scene at a time and validate with your bridge layer.
-* **Engine = Logic, JSON = Content.**
-Keep these cleanly separated.
-* **Goal:** Once this system is stable, you can write full storylines in JSON — no new Python scenes required.
-
-
-
-    ---
-
-
-
-Key Development Tasks:
-
-    Integrate skill checks, combat systems, and player mechanics into the Quest class.
-    Fully implement the Enchanted Forest hardcoded quest, adding functional puzzle elements.
-    Connect the text renderer (pygame GUI) with the quest system to shift gameplay from terminal to an interactive game window.
-    Introduce basic audio-visual elements for immersion:
-        Background images.
-        Ambient sound effects.
-        Simple music loops.
-    
-### Dynamic Quest & Narrative Mechanics
-- **Branching Quest System:** The quest engine is planned to dynamically handle quest instances and branching storylines through a modular dispatcher system. Quests are defined as collections of narrative tasks, each with multiple possible outcomes based on player choices.
-- **Robust Internal Logic:**  
-  - **Task Execution:** Quests are broken down into steps that execute scripted actions based on user input.
-  - **Skill Checks & Randomization:** Integrated logic for dice rolls and dynamic skill checks ensures that outcomes reflect both player decisions and RNG mechanics.
-  - **Dialogue Management:** A dedicated dialogue system presents narrative text with clear formatting and timed output for a more immersive terminal experience.
-
-### Planned Enhancements
-- **Visual & GUI Upgrades:** While current development focuses on internal logic and text-based mechanics, future iterations will transition into rich visual experiences:
-  - **Interactive GUI:** Plans to integrate a full Pygame-based GUI that will replace terminal interactions with dynamic windows, interactive menus, and visual storytelling.
-  - **Audio-Visual Integration:** Future enhancements include background imagery, ambient sound effects, and music loops to further immerse the player in the world of Dijjon. Potentially, voice acted introduction and key dialogues.
-- **Extended Gameplay Systems:** Additional features such as an enhanced combat system, AI-driven NPC behavior, and a more complex quest generation system are already planned.
-
-## Technical Highlights
-
-- **Custom Quest Engine:**  
-  The `Quest` class, along with its manager modules, implements a dispatcher pattern to execute narrative tasks dynamically. This allows for highly flexible story progression that can adapt to player choices.
-  
-- **Interaction Management:**  
-  The `InteractionManager` orchestrates skill checks and opposing roll logic, ensuring that all in-game challenges are resolved with clear, reproducible outcomes based on both player stats and random factors.
   
 ## Roadmap
 
@@ -189,46 +137,7 @@ Key Development Tasks:
     detailed environments and interactive elements, such as merchants,
     NPCs, and more.
 
-### Character Development
 
-    Character Classes: Enhance character class system with unique
-    abilities and progression paths. Creating unique classes!
-    Entities and NPCs: Develop detailed attributes and behaviors
-    for entities. Using AI->queue commands!
-
-### Item and Inventory Management
-
-    Items: Add item durability and special effects.
-    Trading System: Implement a trading system for interactions
-    with NPC vendors and players.
-
-### World Building
-
-    Environment: Define more environments and locations for
-    exploration.
-    Mob & Event Generation: Dynamically create challenges for players.
-
-### User Interface and Experience
-
-    GUI: Use a simple pyGame gui to display text, images and
-         stats much more gracefully.
-    Settings and Customization: Update the settings module for
-    more customization options.
-    Configuration: Implement a config file for key mapping, input-
-                    type, screen resolution, etc.
-    Feedback System: Implement a system to collect player feedback.
-
-### Technical Improvements
-
-    Code Refactoring: Regularly review and refactor the codebase.
-    Testing and Debugging: Use unit tests to ensure code quality
-    via assertions, mock objects, and test cases.
-
-### Documentation and Help System
-
-    Game Documentation: Create comprehensive documentation for
-    players.
-    Developer Documentation: Maintain clear developer documentation.
 
 ## Major Change Log
 
