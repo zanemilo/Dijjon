@@ -22,7 +22,7 @@ class ButtonManager:
         for i, option in enumerate(options):
             button = Button(
                 text=option, 
-                position=(200, 300 + i * 20), 
+                position=(200, 360 + i * 20), 
                 size=(400, 20), 
                 font_name=None,  # Default font
                 font_size=16, 
@@ -37,7 +37,7 @@ class ButtonManager:
         for i, option in enumerate(options):
             button = Button(
                 text=option, 
-                position=pos, 
+                position=(700, 10 + i * 50), 
                 size=(60, 40), 
                 font_name=None,  # Default font
                 font_size=24, 

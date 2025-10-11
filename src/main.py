@@ -82,7 +82,7 @@ class Game:
 
         self.button_manager = ButtonManager(self.screen)
         self.button_manager.create_buttons(self.quest_manager.get_current_options())
-        self.button_manager.create_UI_buttons(['Menu'], pos=(700, 10))
+        self.button_manager.create_UI_buttons(['Menu', 'Inv', 'Char', 'Save', 'Load', 'Exit'])
         self.dialogue_manager = DialogueManager(game=self, quest_manager=self.quest_manager)
         self.text_renderer.reset(self.quest_manager.get_current_narrative())
 
@@ -160,6 +160,9 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        running = False
 
                 # Handle button clicks
                 button_index = self.button_manager.handle_event(event)
