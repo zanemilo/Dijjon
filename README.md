@@ -35,13 +35,6 @@ Current Sprint Goal
 
     Primary Goals:
 
-        Complete a reflective "Year in Review" of the game’s development progress.
-        Refactor import statements to avoid circular imports:
-        All imports now delegated to main.py or middle-man modules to ensure clarity and consistency.
-        Refactor complete; see Change Log.
-
-        Absolutely — here’s a **more detailed README addition** that fully captures the *why*, *how*, and *intended structure* of your future refactor. It’s written in your dev voice for clarity and motivation later:
-
 ---
 ### Planned Refactor: Data-Driven Narrative System
 
