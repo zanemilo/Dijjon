@@ -5,7 +5,7 @@ in the Fantasy RPG world of Dijjon.
 
 ## Author: Zane Milo Deso
 
-### Last Updated: 6/14/2025
+### Last Updated: 10/10/2025
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -32,9 +32,8 @@ At its core, this project is about expression—about finding a way to share my 
 
 - **Modular Design:** The codebase is organized into dedicated modules (e.g., `Quest`, `QuestManager`, `DialogueManager`, `InteractionManager`) to separate concerns and enhance maintainability.
 
-Current Sprint Goal
 
-    Primary Goals:
+Primary Goals:
 
 ---
 ### Planned Refactor: Data-Driven Narrative System
