@@ -16,13 +16,13 @@ class ButtonManager:
         self.buttons = []
         self.ui_buttons = []
 
-    def create_buttons(self, options):
+    def create_buttons(self, options, pos=(160, 40), spacing=20):
         """Create buttons for the given options."""
         self.buttons.clear()  # Clear previous buttons
         for i, option in enumerate(options):
             button = Button(
                 text=option, 
-                position=(200, 360 + i * 20), 
+                position=(pos[0], pos[1] + i * spacing), 
                 size=(400, 20), 
                 font_name=None,  # Default font
                 font_size=16, 
@@ -31,13 +31,13 @@ class ButtonManager:
             )
             self.buttons.append(button)
 
-    def create_UI_buttons(self, options, pos=(100, 600)):
+    def create_UI_buttons(self, options, pos=(700, 20), spacing=30):
         """Create UI buttons for the given options."""
         # self.ui_buttons.clear()  # Clear previous buttons
         for i, option in enumerate(options):
             button = Button(
                 text=option, 
-                position=(700, 10 + i * 50), 
+                position=(pos[0], pos[1] + i * spacing), 
                 size=(60, 40), 
                 font_name=None,  # Default font
                 font_size=24, 

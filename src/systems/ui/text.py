@@ -45,6 +45,7 @@ class TextRenderer:
         typing_speed=50,
         line_spacing=6,
         max_width=550,
+        max_length=557,
         right_margin=50,
         align="left",
     ):
@@ -57,7 +58,7 @@ class TextRenderer:
         self.line_spacing = line_spacing
         self.right_margin = right_margin
         self.align = align
-
+        self.max_length = max_length
         scr_w = self.screen.get_width()
         self.max_width = max_width if max_width is not None else max(10, scr_w - self.x - self.right_margin)
 
@@ -78,6 +79,8 @@ class TextRenderer:
     def reset(self, new_text: str):
         """Reset to a new text and restart the typewriter effect."""
         self.text = new_text or ""
+        if self.max_length is not None:
+            self.text = self.text[: self.max_length]
         self.display_char_count = 0
         self.last_update_time = 0
         self.finished = False
@@ -115,7 +118,10 @@ class TextRenderer:
     # -----------------------------
     def _visible_text(self) -> str:
         # Respect explicit newlines; typewriter reveals through them
-        return self.text[: self.display_char_count]
+        visible = self.text[: self.display_char_count]
+        if self.max_length is not None:
+            visible = visible[: self.max_length]
+        return visible
 
     def _recompute_wrapping(self):
         vt = self._visible_text()

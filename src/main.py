@@ -167,6 +167,7 @@ class Game:
                 running = False
 
         pygame.mixer.music.load(self.sfx['bg'])
+        pygame.mixer.music.set_volume(0.3)
         pygame.mixer.music.play(loops=-1)
 
         while running:
