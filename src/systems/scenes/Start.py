@@ -10,7 +10,7 @@ class Start(Scene):
         
         def on_enter(self, ctx): 
              self.manager = ctx['manager']
-             print(f"Debug: Start.py -> self.manager: {self.manager}\non_enter called with ctx: {ctx}")
+             # print(f"Debug: Start.py -> self.manager: {self.manager}\non_enter called with ctx: {ctx}")
              self.ctx = ctx
              self.egg = False
              

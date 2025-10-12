@@ -10,6 +10,7 @@ class Overworld(Scene):
         self.manager = ctx['manager']
         self.ctx = ctx
         self.egg = False
+        self.assets = ctx.get('assets', {})
 
         print("Entered Overworld Scene")
 
@@ -42,3 +43,6 @@ class Overworld(Scene):
 
     def draw(self, screen):
         screen.fill((int(self.r), int(self.g), int(self.b)))
+        # print(f"Debug: Overworld.py -> assets in draw(): {self.assets}")
+        screen.blit(self.assets['notice_ui'], (0, 0))
+
