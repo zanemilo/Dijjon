@@ -179,12 +179,6 @@ class Game:
                 # Handle button clicks
                 button_index = self.button_manager.handle_event(event)
                 ui_button_index = self.button_manager.handle_UI_event(event)
-                # FIXME: This all needs to be refactored to include the steps below:
-                # 1. UIState / next() in QM
-                # 2.Update Game.run() to use next() and UIState
-                # 3. Remover legacy per-frame UI resets
-                # 4. Ensure QM has references to player and/or call game.advance_act()
-                # 5. Test/Clean up
                 if button_index is not None:
                     num = int(r.uniform(1, 6))
                     self.sfx[f'btn{num}'].play()
@@ -200,8 +194,8 @@ class Game:
             
             
             # Clear the screen
-            self.screen.fill((0, 0, 0))
-            self.screen.blit(self.assets['bg'], (0, 0))
+            # self.screen.fill((0, 0, 0))
+            # self.screen.blit(self.assets['bg'], (0, 0))
             # Render quest narrative and buttons
             if not self.quest_manager.is_quest_complete:
                 # self.text_renderer.update()
