@@ -44,7 +44,7 @@ class TextRenderer:
         position=(50, 100),
         typing_speed=50,
         line_spacing=6,
-        max_width=None,
+        max_width=550,
         right_margin=50,
         align="left",
     ):

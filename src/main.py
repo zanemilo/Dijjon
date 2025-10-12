@@ -35,10 +35,11 @@ class Game:
             screen=self.screen,
             text="",
             font_name=None,
-            font_size=24,
+            font_size=16,
             color=(255, 255, 255),  # White text
-            position=(50, 48),
-            typing_speed=16 # Typing speed: milliseconds time gap between chars
+            position=(220, 400),
+            typing_speed=16, # Typing speed: milliseconds time gap between chars
+            max_width=440,
         )
 
         self.qtype = {
