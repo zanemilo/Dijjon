@@ -1,4 +1,4 @@
-# Scene: Overworld
+# Scene: Desert_Road
 
 from ..SceneManager import SceneManager, Scene
 import pygame as pg
@@ -7,24 +7,28 @@ import math
 
 
 
-class Overworld(Scene):
+class Desert_Road(Scene):
     def on_enter(self, ctx):
         self.manager = ctx['manager']
         self.ctx = ctx
         self.egg = False
         self.assets = ctx.get('assets', {})
 
-        print("Entered Overworld Scene")
+        print("Entered Desert Road Scene")
 
     def handle_event(self, e):
         if e.type == pg.KEYDOWN and e.key == pg.K_w:
+            print("Switching to Desert_Town Scene")
+            from .Desert_Town import Desert_Town
+            self.manager.replace(Desert_Town())
+        if e.type == pg.KEYDOWN and e.key == pg.K_a:
+            print("Switching to Overworld Scene")
+            from .Overworld import Overworld
+            self.manager.replace(Overworld())
+        if e.type == pg.KEYDOWN and e.key == pg.K_s:
             print("Switching to Inn Scene")
             from .Inn import Inn
             self.manager.replace(Inn())
-        if e.type == pg.KEYDOWN and e.key == pg.K_s:
-            print("Switching to Start Scene")
-            from .Start import Start
-            self.manager.replace(Start())
         if e.type == pg.KEYDOWN and e.key == pg.K_TAB:
             print("Switching to Inventory Scene")
             from .Inventory import Inventory
@@ -52,6 +56,6 @@ class Overworld(Scene):
     def draw(self, screen):
 
         # print(f"Debug: Overworld.py -> assets in draw(): {self.assets}")
-        screen.blit(self.assets['bg'], (0, 0))
+        screen.blit(self.assets['bg_desert_road'], (0, 0))
 
 

@@ -4,7 +4,7 @@ from ..SceneManager import SceneManager, Scene
 import pygame as pg
 import random as r
 import math
-from .Overworld import Overworld
+
 
 class Start(Scene):
         
@@ -13,18 +13,20 @@ class Start(Scene):
              # print(f"Debug: Start.py -> self.manager: {self.manager}\non_enter called with ctx: {ctx}")
              self.ctx = ctx
              self.egg = False
+             self.assets = ctx.get('assets', {})
              
              print("Entered Start Scene")
 
         def handle_event(self, e):
-            if e.type == pg.KEYDOWN and e.key == pg.K_c:
-                print("Switching to Combat Scene")
-                self.egg = True
-            if e.type == pg.KEYDOWN and e.key == pg.K_q:
+            if e.type == pg.KEYDOWN and e.key == pg.K_w:
                 print("Switching to Overworld Scene")
+                from .Overworld import Overworld
                 self.manager.replace(Overworld())
-
-                self.egg = False    
+                self.egg = False
+            if e.type == pg.KEYDOWN and e.key == pg.K_TAB:
+                print("Switching to Inventory Scene")
+                from .Inventory import Inventory
+                self.manager.push(Inventory())
 
         def update(self, dt, passive=False): 
             if self.egg:
@@ -46,5 +48,7 @@ class Start(Scene):
                 self.b = 40
 
         def draw(self, screen): 
-             screen.fill((self.r,self.g,self.b))
+            screen.fill((self.r,self.g,self.b))
+            screen.blit(self.assets['bg_desert_road'], (0, 0))
+
 

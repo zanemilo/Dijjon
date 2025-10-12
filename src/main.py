@@ -55,7 +55,7 @@ class Game:
 
         self.assets = {
             'bg': load_image('bg.png'),
-            'bg_desert': load_image('bg_d.jpg'),
+            'bg_desert_town': load_image('bg_d.jpg'),
             'bg_desert_trade': load_image('bg_d_trade.jpg'),
             'bg_desert_road': load_image('bg_d_road.png'),
             'bg_inn': load_image('bg_inn.png'),
