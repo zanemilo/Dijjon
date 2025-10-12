@@ -196,18 +196,17 @@ class Game:
             # Clear the screen
             # self.screen.fill((0, 0, 0))
             # self.screen.blit(self.assets['bg'], (0, 0))
+
             # Render quest narrative and buttons
             if not self.quest_manager.is_quest_complete:
-                # self.text_renderer.update()
-                # self.text_renderer.draw()
-                self.scene_manager.update(self.get_dt())
-                self.scene_manager.draw()
-                
-            else:
-                self.text_renderer.reset("Quest Complete! Congratulations!")
-                self.text_renderer.update()
-                self.text_renderer.draw()
+                # self.scene_manager.update(self.get_dt())
+                # self.scene_manager.draw()
+                pass
 
+            self.scene_manager.update(self.get_dt())
+            self.scene_manager.draw()
+            self.text_renderer.update()
+            self.text_renderer.draw()
             self.button_manager.draw_buttons()
             pygame.display.flip()
 
