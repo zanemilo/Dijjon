@@ -29,7 +29,7 @@ class Game:
         self.screen = pygame.display.set_mode((800, 600))
         self.clock = pygame.time.Clock()
         self.dt = self.clock.tick(60) / 1000.0
-        pygame.display.set_caption('Dijjon')
+        pygame.display.set_caption('Dijjon v0.0.3')
 
         self.text_renderer = TextRenderer(
             screen=self.screen,
