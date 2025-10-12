@@ -55,6 +55,17 @@ class Game:
 
         self.assets = {
             'bg': load_image('bg.png'),
+            'bg_desert': load_image('bg_d.jpg'),
+            'bg_desert_trade': load_image('bg_d_trade.jpg'),
+            'bg_desert_road': load_image('bg_d_road.png'),
+            'bg_inn': load_image('bg_inn.png'),
+            'bg_forest': load_image('bg_f.png'),
+            'combat_ui': load_image('ui/combat.png'),
+            'dialogue_ui': load_image('ui/dialogue.png'),
+            'notice_ui': load_image('ui/notice.png'),
+            'trade_ui': load_image('ui/trade.png'),
+            'inventory_ui': load_image('ui/inventory.png'),
+            'pause_ui': load_image('ui/pause.png'),
             
         }
 
@@ -86,9 +97,10 @@ class Game:
         self.dialogue_manager = DialogueManager(game=self, quest_manager=self.quest_manager)
         self.text_renderer.reset(self.quest_manager.get_current_narrative())
 
-
+        self.ctx['assets'] = self.assets
         self.scene_manager = SceneManager(self.screen, Start(), self.ctx)
         self.ctx['manager'] = self.scene_manager
+        
 
 
 
