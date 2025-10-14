@@ -8,7 +8,7 @@ import math
 
 
 class Dialogue(Scene):
-    
+
     def on_enter(self, ctx):
         self.manager = ctx['manager']
         self.ctx = ctx
@@ -19,7 +19,9 @@ class Dialogue(Scene):
         self.button_manager = ctx.get('button_manager', None)
         self.text_renderer = ctx.get('text_renderer', None)
         self.sfx = ctx.get('sfx', {})
-        print(f"Debug: Start.py -> self.manager: {self.manager}\non_enter called with ctx: {ctx}")
+        self.text_renderer.reset(self.quest_manager.get_current_narrative())
+        self.button_manager.create_buttons(self.quest_manager.get_current_options())
+        # print(f"Debug: Start.py -> self.manager: {self.manager}\non_enter called with ctx: {ctx}")
 
         print("Entered Dialogue Road Scene")
 
@@ -50,15 +52,14 @@ class Dialogue(Scene):
             self.quest_manager.advance_step(button_index)
             self.text_renderer.reset(self.quest_manager.get_current_narrative())
             self.button_manager.create_buttons(self.quest_manager.get_current_options())
-        if ui_button_index == 0:
+        if ui_button_index is not None:
             print(f"UI Button {ui_button_index}(Dia Scene)")
             num = int(r.uniform(1, 6))
             self.sfx[f'btn{num}'].play()
         
 
     def update(self, dt, passive=False):
-        self.text_renderer.reset(self.quest_manager.get_current_narrative())
-        self.button_manager.create_buttons(self.quest_manager.get_current_options())
+        
         if self.egg:
             if not hasattr(self, "_color_phase"):
                 self._color_phase = 0.0
@@ -79,7 +80,7 @@ class Dialogue(Scene):
 
     def draw(self, screen):
 
-        # print(f"Debug: Overworld.py -> assets in draw(): {self.assets}")
+        # print(f"Debug: Overworld.py -> assets in draw(): {self.text_renderer.text}")
         screen.blit(self.assets['bg_desert_road'], (0, 0))
         self.text_renderer.update()
         self.text_renderer.draw()
