@@ -3,10 +3,6 @@
     <img src="src/assets/resources/Dijjon_Title.png" alt="Dijjon Alpha Title Screen" />
 </p>
 
-*Dijjon Alpha — Title Screen*
-
-[View full size](src/assets/resources/Dijjon_Title.png)
-
 
 This is the official documentation for Dijjon Alpha, a text-based game set
 in the Fantasy RPG world of Dijjon.
