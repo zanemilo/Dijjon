@@ -19,8 +19,11 @@ class Dialogue(Scene):
         self.button_manager = ctx.get('button_manager', None)
         self.text_renderer = ctx.get('text_renderer', None)
         self.sfx = ctx.get('sfx', {})
+        self.screen = ctx.get('screen', None)
         self.text_renderer.reset(self.quest_manager.get_current_narrative())
         self.button_manager.create_buttons(self.quest_manager.get_current_options())
+     
+        self.overlay = pg.Surface((self.ctx.get('screen_width', 600), (self.ctx.get('screen_height', 800))), pg.SRCALPHA)
         # print(f"Debug: Start.py -> self.manager: {self.manager}\non_enter called with ctx: {ctx}")
 
         print("Entered Dialogue Road Scene")
@@ -38,10 +41,7 @@ class Dialogue(Scene):
             print("Switching to Inn Scene")
             from .Inn import Inn
             self.manager.replace(Inn())
-        if e.type == pg.KEYDOWN and e.key == pg.K_TAB:
-            print("Switching to Inventory Scene")
-            from .Inventory import Inventory
-            self.manager.push(Inventory())
+
 
         button_index = self.button_manager.handle_event(e)
         ui_button_index = self.button_manager.handle_UI_event(e)
@@ -80,8 +80,13 @@ class Dialogue(Scene):
 
     def draw(self, screen):
 
+
         # print(f"Debug: Overworld.py -> assets in draw(): {self.text_renderer.text}")
-        screen.blit(self.assets['bg_desert_road'], (0, 0))
+        self.assets['dialogue_ui']
+        screen.blit(self.assets['dialogue_ui'], (0, 0))
+        self.assets['notice_ui']
+        screen.blit(self.assets['notice_ui'], (0, -120))
+
         self.text_renderer.update()
         self.text_renderer.draw()
         self.button_manager.draw_buttons()

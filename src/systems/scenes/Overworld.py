@@ -29,6 +29,10 @@ class Overworld(Scene):
             print("Switching to Inventory Scene")
             from .Inventory import Inventory
             self.manager.push(Inventory())
+        if e.type == pg.KEYDOWN and e.key == pg.K_v:
+                print("Switching to Dialogue Scene")
+                from .Dialogue import Dialogue
+                self.manager.push(Dialogue())
 
     def update(self, dt, passive=False):
         if self.egg:
@@ -52,6 +56,6 @@ class Overworld(Scene):
     def draw(self, screen):
 
         # print(f"Debug: Overworld.py -> assets in draw(): {self.assets}")
-        screen.blit(self.assets['bg'], (0, 0))
+        screen.blit(self.assets['bg_forest'], (0, 0))
 
 

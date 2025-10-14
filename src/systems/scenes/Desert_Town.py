@@ -28,7 +28,11 @@ class Desert_Town(Scene):
         if e.type == pg.KEYDOWN and e.key == pg.K_TAB:
             print("Switching to Inventory Scene")
             from .Inventory import Inventory
-            self.manager.push(Inventory())        
+            self.manager.push(Inventory())
+        if e.type == pg.KEYDOWN and e.key == pg.K_v:
+                print("Switching to Dialogue Scene")
+                from .Dialogue import Dialogue
+                self.manager.push(Dialogue())        
 
     def update(self, dt, passive=False):
         if self.egg:

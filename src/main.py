@@ -22,6 +22,8 @@ from systems.a3_tasks import tasks as a3_tasks
 from systems.scenes.Start import Start
 from systems.scenes.Dialogue import Dialogue
 
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
 
 class Game:
     def __init__(self):
@@ -101,7 +103,7 @@ class Game:
 
         self.scene_manager = None
         self.update_ctx()
-        self.scene_manager = SceneManager(self.screen, Dialogue(), self.ctx)
+        self.scene_manager = SceneManager(self.screen, Start(), self.ctx)
         self.update_ctx()
         
 
@@ -118,6 +120,9 @@ class Game:
             self.ctx['manager'] = self.scene_manager
         self.ctx['assets'] = self.assets
         self.ctx['sfx'] = self.sfx
+        self.ctx['screen'] = self.screen
+        self.ctx['screen_width'] = SCREEN_WIDTH
+        self.ctx['screen_height'] = SCREEN_HEIGHT
 
 
     def update_tasks(self, new_tasks):
