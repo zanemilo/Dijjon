@@ -57,5 +57,5 @@ class Desert_Town(Scene):
 
         # print(f"Debug: Overworld.py -> assets in draw(): {self.assets}")
         screen.blit(self.assets['bg_desert_town'], (0, 0))
-        screen.blit(self.assets['dialogue_ui'], (0, 0))
+
 
