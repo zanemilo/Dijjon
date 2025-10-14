@@ -1,4 +1,6 @@
-# Dijjon Alpha
+# Dijjon Alpha 
+### v0.0.3
+
 <p align="center">
     <img src="src/assets/resources/Dijjon_Title.png" alt="Dijjon Alpha Title Screen" />
 </p>
@@ -9,7 +11,7 @@ in the Fantasy RPG world of Dijjon.
 
 ## Author: Zane Milo Deso
 
-### Last Updated: 10/10/2025
+### Last Updated: 10/14/2025
 
 ## Table of Contents
 - [Introduction](#introduction)
