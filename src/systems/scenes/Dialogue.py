@@ -84,8 +84,13 @@ class Dialogue(Scene):
         # print(f"Debug: Overworld.py -> assets in draw(): {self.text_renderer.text}")
         self.assets['dialogue_ui']
         screen.blit(self.assets['dialogue_ui'], (0, 0))
+
         self.assets['notice_ui']
-        screen.blit(self.assets['notice_ui'], (0, -120))
+        screen.blit(self.assets['notice_ui'], (-28, -120))
+
+        img = self.assets['protrait']
+        scaled = pg.transform.smoothscale_by(img, .2875)
+        screen.blit(scaled, (80, 391))
 
         self.text_renderer.update()
         self.text_renderer.draw()

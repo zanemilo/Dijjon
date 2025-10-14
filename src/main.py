@@ -70,6 +70,7 @@ class Game:
             'trade_ui': load_image('ui/trade.png'),
             'inventory_ui': load_image('ui/inventory.png'),
             'pause_ui': load_image('ui/pause.png'),
+            'protrait': load_image('inn_keeper_portrait.png'),
             
         }
 

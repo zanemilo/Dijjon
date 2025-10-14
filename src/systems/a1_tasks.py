@@ -129,6 +129,10 @@ tasks = {
                 "2) Pursue a suspicious figure seen fleeing the scene, potentially the mastermind behind the attack; or "
                 "3) Secure the dormant Shard of Ascendance, a powerful artifact that could change the balance of power if it falls into the wrong hands."
             ),
+            5: (
+                "With the cave clear of bandits, we can start up mining operations again. The local economy will boom in no time, despite the war. "
+                "So, as discussed, here is the payment for your services. There is a free bunk at the Sinkhole Inn if you ever need a place to stay. "
+            ),
         },
         "answers": {
             1: [
@@ -161,6 +165,10 @@ tasks = {
                 "Branch B2 – Pursue Suspicion: 'Track the suspect through the labyrinthine corridors.'",
                 "Branch C1 – Secure the Dormant Shard: 'If we leave it, it’s as good as lost. We need to secure it—now.'",
                 "Branch C2 – Secure the Dormant Shard: 'Protect the shard from falling into enemy hands at all costs.'",
+            ],
+            5: [
+                "Thanks, I appreciate it. I'll make sure to put it to good use.",
+                "You know what, I think you owe me more. (Intimidate)",
             ],
         },
         "scripts": {

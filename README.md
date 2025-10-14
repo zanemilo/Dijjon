@@ -36,6 +36,9 @@ At its core, this project is about expression—about finding a way to share my 
 
 - **Modular Design:** The codebase is organized into dedicated modules (e.g., `Quest`, `QuestManager`, `DialogueManager`, `InteractionManager`) to separate concerns and enhance maintainability.
 
+<p align="center">
+    <img src="src/assets/resources/Dijjon_Gameplay_v0.0.3.png" alt="Dijjon Alpha v0.0.3 gameplay." />
+</p>
 
 Primary Goals:
 
