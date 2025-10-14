@@ -20,6 +20,7 @@ from systems.a2_tasks import tasks as a2_tasks
 from systems.a3_tasks import tasks as a3_tasks
 
 from systems.scenes.Start import Start
+from systems.scenes.Dialogue import Dialogue
 
 
 class Game:
@@ -98,11 +99,25 @@ class Game:
         self.dialogue_manager = DialogueManager(game=self, quest_manager=self.quest_manager)
         self.text_renderer.reset(self.quest_manager.get_current_narrative())
 
-        self.ctx['assets'] = self.assets
-        self.scene_manager = SceneManager(self.screen, Start(), self.ctx)
-        self.ctx['manager'] = self.scene_manager
+        self.scene_manager = None
+        self.update_ctx()
+        self.scene_manager = SceneManager(self.screen, Dialogue(), self.ctx)
+        self.update_ctx()
         
 
+
+    def update_ctx(self):        
+        """Update the context dictionary with current game state, managers and assets."""
+        self.ctx['player'] = self.player
+        self.ctx['quest'] = self.quest
+        self.ctx['quest_manager'] = self.quest_manager
+        self.ctx['text_renderer'] = self.text_renderer
+        self.ctx['button_manager'] = self.button_manager
+        self.ctx['dialogue_manager'] = self.dialogue_manager
+        if self.scene_manager:
+            self.ctx['manager'] = self.scene_manager
+        self.ctx['assets'] = self.assets
+        self.ctx['sfx'] = self.sfx
 
 
     def update_tasks(self, new_tasks):
@@ -178,19 +193,20 @@ class Game:
                     if event.key == pygame.K_ESCAPE:
                         running = False
 
-                # Handle button clicks
-                button_index = self.button_manager.handle_event(event)
-                ui_button_index = self.button_manager.handle_UI_event(event)
-                if button_index is not None:
-                    num = int(r.uniform(1, 6))
-                    self.sfx[f'btn{num}'].play()
-                    self.quest_manager.advance_step(button_index)
-                    self.text_renderer.reset(self.quest_manager.get_current_narrative())
-                    self.button_manager.create_buttons(self.quest_manager.get_current_options())
-                if ui_button_index is not None:
-                    num = int(r.uniform(1, 6))
-                    self.sfx[f'btn{num}'].play()
-                    self.button_manager.create_UI_buttons(['Menu'], pos=(100, 600))
+                # # Handle button clicks
+                # button_index = self.button_manager.handle_event(event)
+                # ui_button_index = self.button_manager.handle_UI_event(event)
+                # if button_index is not None:
+                #     print(f"Button {button_index}")
+                #     num = int(r.uniform(1, 6))
+                #     self.sfx[f'btn{num}'].play()
+                #     self.quest_manager.advance_step(button_index)
+                #     self.text_renderer.reset(self.quest_manager.get_current_narrative())
+                #     self.button_manager.create_buttons(self.quest_manager.get_current_options())
+                # if ui_button_index is not None:
+                #     print(f"UI Button {ui_button_index}")
+                #     num = int(r.uniform(1, 6))
+                #     self.sfx[f'btn{num}'].play()
                 self.scene_manager.handle_event(event)
                     
             
@@ -207,9 +223,9 @@ class Game:
 
             self.scene_manager.update(self.get_dt())
             self.scene_manager.draw()
-            self.text_renderer.update()
-            self.text_renderer.draw()
-            self.button_manager.draw_buttons()
+            # self.text_renderer.update()
+            # self.text_renderer.draw()
+            # self.button_manager.draw_buttons()
             pygame.display.flip()
 
         pygame.mixer.music.stop()
