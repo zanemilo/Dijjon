@@ -214,8 +214,6 @@ class Game:
                 #     num = int(r.uniform(1, 6))
                 #     self.sfx[f'btn{num}'].play()
                 self.scene_manager.handle_event(event)
-                    
-            
             
             # Clear the screen
             # self.screen.fill((0, 0, 0))
